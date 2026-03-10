@@ -66,13 +66,28 @@ export function FundingQuotesSection() {
           className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 overflow-hidden shadow-sm mb-8"
         >
           {/* Table Header */}
-          <div className="grid grid-cols-7 gap-0 bg-slate-800 text-white text-xs font-bold uppercase tracking-wide">
-            <div className="col-span-2 px-4 py-3">Bundesland</div>
-            <div className="px-2 py-3 text-center">Basis</div>
-            <div className="px-2 py-3 text-center">Tierwohl</div>
-            <div className="px-2 py-3 text-center">SIUK max.</div>
-            <div className="px-2 py-3 text-center">Kombi max.</div>
-            <div className="px-2 py-3 text-center">Jung +10 %</div>
+          <div className="grid grid-cols-7 gap-0 bg-slate-800 text-white text-[10px] sm:text-xs font-bold uppercase tracking-wide">
+            <div className="col-span-2 px-3 sm:px-4 py-3">Bundesland</div>
+            <div className="px-1 sm:px-2 py-3 text-center leading-tight">
+              Basis
+              <span className="block text-slate-400 font-normal normal-case text-[9px] sm:text-[10px] tracking-normal">Grundsatz</span>
+            </div>
+            <div className="px-1 sm:px-2 py-3 text-center leading-tight">
+              Tierwohl
+              <span className="block text-slate-400 font-normal normal-case text-[9px] sm:text-[10px] tracking-normal">Stall &amp; Haltung</span>
+            </div>
+            <div className="px-1 sm:px-2 py-3 text-center leading-tight">
+              Klima max.
+              <span className="block text-slate-400 font-normal normal-case text-[9px] sm:text-[10px] tracking-normal">SIUK Emissionen</span>
+            </div>
+            <div className="px-1 sm:px-2 py-3 text-center leading-tight">
+              Kombi max.
+              <span className="block text-slate-400 font-normal normal-case text-[9px] sm:text-[10px] tracking-normal">Tierwohl + Klima</span>
+            </div>
+            <div className="px-1 sm:px-2 py-3 text-center leading-tight">
+              Jung
+              <span className="block text-slate-400 font-normal normal-case text-[9px] sm:text-[10px] tracking-normal">≤ 40 Jahre</span>
+            </div>
           </div>
           {fundingData.map((row, idx) => (
             <div
@@ -99,6 +114,22 @@ export function FundingQuotesSection() {
             </div>
           ))}
         </motion.div>
+
+        {/* Legende — Abkürzungen erklärt */}
+        <div className="flex flex-wrap gap-x-5 gap-y-2 mb-8 px-1">
+          {[
+            { term: "Basis",        desc: "Grundförderquote — gilt für alle förderfähigen Investitionen" },
+            { term: "Tierwohl",     desc: "Stall-Umbau über Mindeststandard: mehr Platz, Licht, Laufhöfe (Anlage 1 + 2)" },
+            { term: "SIUK",         desc: "Stallbau, Infrastruktur, Umwelt & Klima — z.B. Abluftreinigung, Güllekühlung, Biogasanlage (Anlage 3B)" },
+            { term: "Kombi",        desc: "Kombination Tierwohl + SIUK in einem Vorhaben — ergibt den höchsten Gesamtsatz" },
+            { term: "Jung +10 %",   desc: "Junglandwirt-Bonus für Betriebsinhaber bis 40 Jahre, max. 20.000 € Aufschlag" },
+          ].map(({ term, desc }) => (
+            <div key={term} className="flex items-start gap-1.5 text-xs text-slate-500">
+              <span className="font-semibold text-slate-700 whitespace-nowrap">{term}:</span>
+              <span>{desc}</span>
+            </div>
+          ))}
+        </div>
 
         {/* Bonus Cards */}
         <motion.div
