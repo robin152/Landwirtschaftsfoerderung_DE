@@ -1,11 +1,14 @@
 "use client"
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle2, Clock, TrendingUp } from "lucide-react"
 import { motion } from "framer-motion"
 import { TractorIcon, WheatIcon, MoneyBagIcon, BarnIcon, ShieldCheckAgriIcon } from "@/components/agri-icons"
+import { LeadCaptureModal } from "@/components/lead-capture-modal"
 
 export function HeroSection() {
+  const [showModal, setShowModal] = useState(false)
   return (
     <>
       {/* Hero Main */}
@@ -37,52 +40,54 @@ export function HeroSection() {
               className="text-center lg:text-left"
             >
               {/* Agri badge */}
-              <div className="inline-flex items-center gap-2 bg-green-50 border border-green-200 rounded-full px-4 py-1.5 mb-5">
-                <WheatIcon className="w-4 h-4 text-green-700" />
-                <span className="text-sm font-semibold text-green-800">AFP-Förderung 2023–2027</span>
+              <div className="inline-flex flex-wrap items-center gap-2 bg-green-50 border border-green-200 rounded-full px-4 py-1.5 mb-5">
+                <WheatIcon className="w-4 h-4 text-green-700 flex-shrink-0" />
+                <span className="text-sm font-semibold text-green-800">
+                  AFP – <span className="font-normal text-green-700">Agrarinvestitionsförderungsprogramm</span> 2023–2027
+                </span>
               </div>
 
-              <h1 className="text-5xl md:text-6xl lg:text-6xl font-bold mb-6 bg-gradient-to-br from-slate-900 via-green-800 to-slate-700 bg-clip-text text-transparent leading-tight text-balance">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-5 bg-gradient-to-br from-slate-900 via-green-800 to-slate-700 bg-clip-text text-transparent leading-tight text-balance">
                 Der Staat zahlt dir 20–50 % für deinen nächsten Stall, Güllelager oder Klimaschutz
               </h1>
 
-              <p className="text-lg md:text-xl text-slate-600 mb-8 leading-relaxed">
-                Gib in 45 Sekunden dein Bundesland und dein Vorhaben ein. Du siehst sofort, wie viel Geld du wirklich kriegst – und ob du zu den Gewinnern oder Verlierern gehörst. 2026 sind die Töpfe noch voll. In 3–6 Monaten wahrscheinlich nicht mehr.
+              <p className="text-base md:text-lg text-slate-600 mb-7 leading-relaxed">
+                Gib in 45 Sekunden dein Bundesland und dein Vorhaben ein. Du siehst sofort, wie viel Geld du wirklich kriegst. 2026 sind die Töpfe noch voll.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center sm:items-start lg:justify-start gap-4 mb-10">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                  <span className="text-slate-700"><span className="font-semibold">400+ Landwirte</span> haben schon kassiert</span>
+              <div className="flex flex-wrap justify-center lg:justify-start gap-x-5 gap-y-2 mb-8">
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                  <span className="text-sm text-slate-700"><span className="font-semibold">400+</span> Landwirte gefördert</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="w-5 h-5 text-green-600 flex-shrink-0" />
-                  <span className="text-slate-700"><span className="font-semibold">45 Sek</span> Prüfung</span>
+                <div className="flex items-center gap-1.5">
+                  <Clock className="w-4 h-4 text-green-600 flex-shrink-0" />
+                  <span className="text-sm text-slate-700"><span className="font-semibold">45 Sek</span> Prüfung</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5 text-teal-500 flex-shrink-0" />
-                  <span className="text-slate-700"><span className="font-semibold">Erfolgsbasiert</span></span>
+                <div className="flex items-center gap-1.5">
+                  <TrendingUp className="w-4 h-4 text-teal-500 flex-shrink-0" />
+                  <span className="text-sm text-slate-700"><span className="font-semibold">98 %</span> Erfolgsquote</span>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 mb-6 justify-center lg:justify-start">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <div className="flex flex-col sm:flex-row gap-3 mb-5 justify-center lg:justify-start">
+                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
                   <Button
                     size="lg"
                     className="relative overflow-hidden gap-2 bg-green-600 hover:bg-green-500 text-base h-14 px-8 w-full sm:w-auto rounded-xl font-bold shadow-lg shadow-green-900/25 hg-btn"
                     onClick={() => document.getElementById("rechner")?.scrollIntoView({ behavior: "smooth" })}
                   >
                     <TractorIcon className="w-5 h-5 text-white" />
-                    JETZT GRATIS BERECHNEN
+                    Förderung kostenlos berechnen
                     <ArrowRight className="w-5 h-5" />
                   </Button>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
                   <Button
                     size="lg"
                     variant="outline"
-                    className="gap-2 text-base h-13 px-8 w-full sm:w-auto rounded-xl border-green-300 text-green-800 hover:bg-green-50"
-                    onClick={() => document.getElementById("rechner")?.scrollIntoView({ behavior: "smooth" })}
+                    className="gap-2 text-base h-14 px-8 w-full sm:w-auto rounded-xl border-green-300 text-green-800 hover:bg-green-50 font-semibold"
+                    onClick={() => setShowModal(true)}
                   >
                     <WheatIcon className="w-5 h-5 text-green-700" />
                     Persönliche Beratung
@@ -90,9 +95,8 @@ export function HeroSection() {
                 </motion.div>
               </div>
 
-              <p className="text-sm text-slate-500">
-                100 % kostenlos & unverbindlich  •  Ich bin der Typ, der die Ablehnungen verhindert
-              </p>
+              <p className="text-sm text-slate-500 text-center lg:text-left">
+                100 % kostenlos &amp; unverbindlich</p>
             </motion.div>
 
             {/* Right: Hero Image + floating badge */}
@@ -194,6 +198,15 @@ export function HeroSection() {
           </div>
         </div>
       </section>
+
+      {/* Lead Modal — sekundärer CTA "Persönliche Beratung" */}
+      {showModal && (
+        <LeadCaptureModal
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+          source="hero-beratung"
+        />
+      )}
     </>
   )
 }

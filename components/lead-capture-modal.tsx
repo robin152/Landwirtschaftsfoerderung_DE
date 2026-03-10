@@ -93,32 +93,34 @@ const WHATSAPP_NUMBER = "41763616062"
 const WHATSAPP_MESSAGE = encodeURIComponent("Guten Tag, wir müssen investieren und hätten dafür gerne Fördermittel! :-) ")
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`
 
-// Psychological micro-confirmations - dynamic based on personalization
+// Psychological micro-confirmations - tailored to Landwirtschaft / AFP
 const stepConfirmations = (firstName?: string, industry?: string) => [
   null, // Step 0
-  { 
-    text: firstName ? `Willkommen, ${firstName}!` : "Super!", 
-    subtext: firstName ? "Schön, dass Sie den nächsten Schritt gehen." : "Wir bereiten Ihre persönliche Analyse vor..." 
+  {
+    text: firstName ? `Willkommen, ${firstName}!` : "Super!",
+    subtext: firstName
+      ? "Schön, dass du den nächsten Schritt gehst – Patrick freut sich auf deine Anfrage."
+      : "Wir bereiten deine persönliche Förderanalyse vor...",
   },
-  { 
-    text: "Perfekt!", 
-    subtext: industry 
-      ? `Unternehmen aus dem Bereich ${industry} werden aktuell besonders häufig gefördert.`
-      : "Unternehmen in Ihrer Branche erhalten oft maximale Förderquoten." 
+  {
+    text: "Perfekt!",
+    subtext: industry
+      ? `Betriebe aus dem Bereich ${industry} sichern sich aktuell bis zu 50 % Zuschuss.`
+      : "Landwirtschaftliche Betriebe mit deinem Profil erhalten oft maximale AFP-Quoten.",
   },
-  { 
-    text: firstName ? `Sehr gut, ${firstName}!` : "Hervorragend!", 
-    subtext: "Patrick Starkmann wird Ihre Anfrage priorisiert bearbeiten." 
+  {
+    text: firstName ? `Sehr gut, ${firstName}!` : "Hervorragend!",
+    subtext: "Patrick Starkmann wird deine Anfrage priorisiert bearbeiten – meist am gleichen Werktag.",
   },
-  { 
-    text: "Wichtiger Schritt!", 
-    subtext: "Telefonische Beratung ist 3x effektiver als E-Mail." 
+  {
+    text: "Wichtiger Schritt!",
+    subtext: "Ein kurzes Telefongespräch verhindert 70 % der häufigsten Antragsfehler.",
   },
-  { 
-    text: "Fast geschafft!", 
-    subtext: industry 
-      ? `Mehrere ${industry}-Unternehmen haben dieses Jahr bereits Förderung erhalten.`
-      : "Ihr Standort wird auf Förderfähigkeit geprüft..." 
+  {
+    text: "Fast geschafft!",
+    subtext: industry
+      ? `Mehrere ${industry}-Betriebe haben 2026 bereits ihren AFP-Bescheid erhalten.`
+      : "Dein Standort wird auf volle Förderfähigkeit geprüft...",
   },
   null, // Final step - no confirmation
 ]
@@ -328,13 +330,77 @@ export function LeadCaptureModal({ isOpen, onClose, onSuccess, prefilledData, so
   }, [currentStep, totalSteps, formData.investment, tooltipDismissed])
 
   const triggerConfetti = () => {
+    // Helper: create emoji shape for canvas-confetti
+    const emojiShape = (emoji: string) => {
+      const size = 24
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}"><text y="${size * 0.9}" font-size="${size}">${emoji}</text></svg>`
+      const url = `data:image/svg+xml;base64,${btoa(unescape(encodeURIComponent(svg)))}`
+      return confetti.shapeFromPath
+        ? undefined // fallback to text path below
+        : undefined
+    }
+
+    // Burst 1 — Tiere von oben links
     confetti({
-      particleCount: 100,
-      spread: 70,
-      origin: { y: 0.6 },
-      colors: ["#10b981", "#059669", "#34d399"],
+      particleCount: 18,
+      spread: 55,
+      origin: { x: 0.2, y: 0 },
+      shapes: ["text"],
+      shapeOptions: {
+        text: { value: ["🐄", "🐷", "🐔"] },
+      },
+      scalar: 2.2,
+      gravity: 0.9,
+      drift: 0.4,
+      ticks: 220,
       zIndex: 99999,
-    })
+    } as Parameters<typeof confetti>[0])
+
+    // Burst 2 — Tiere von oben rechts
+    confetti({
+      particleCount: 18,
+      spread: 55,
+      origin: { x: 0.8, y: 0 },
+      shapes: ["text"],
+      shapeOptions: {
+        text: { value: ["🐄", "🐷", "🐔"] },
+      },
+      scalar: 2.2,
+      gravity: 0.9,
+      drift: -0.4,
+      ticks: 220,
+      zIndex: 99999,
+    } as Parameters<typeof confetti>[0])
+
+    // Burst 3 — Weizen + Geld aus Mitte oben (verzögert)
+    setTimeout(() => {
+      confetti({
+        particleCount: 20,
+        spread: 80,
+        origin: { x: 0.5, y: 0.1 },
+        shapes: ["text"],
+        shapeOptions: {
+          text: { value: ["🌾", "💰", "🚜", "🌾", "💰"] },
+        },
+        scalar: 1.8,
+        gravity: 0.7,
+        ticks: 260,
+        zIndex: 99999,
+      } as Parameters<typeof confetti>[0])
+    }, 350)
+
+    // Burst 4 — klassisches grünes Konfetti als Hintergrundteppich
+    setTimeout(() => {
+      confetti({
+        particleCount: 80,
+        spread: 100,
+        origin: { x: 0.5, y: 0.3 },
+        colors: ["#16a34a", "#22c55e", "#bbf7d0", "#fbbf24", "#fef9c3"],
+        gravity: 0.6,
+        ticks: 200,
+        zIndex: 99998,
+      })
+    }, 150)
   }
 
   const getRegionInfo = () => {
@@ -598,7 +664,7 @@ export function LeadCaptureModal({ isOpen, onClose, onSuccess, prefilledData, so
               <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden border-2 border-purple-500 flex-shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/patrick-starkmann.jpg"
+                  src="/patrick-starkmann.webp"
                   alt="Patrick Starkmann"
                   width={40}
                   height={40}
@@ -972,7 +1038,7 @@ export function LeadCaptureModal({ isOpen, onClose, onSuccess, prefilledData, so
                         Wo befindet sich der Investitionsstandort?
                       </label>
                       {formData.plz && formData.plz.length === 5 && (
-                        <p className="text-xs text-purple-600 mb-2 flex items-center gap-1">
+                        <p className="text-xs text-green-700 mb-2 flex items-center gap-1">
                           <CheckCircle2 className="w-3.5 h-3.5" />
                           PLZ automatisch aus Firmenadresse erkannt
                         </p>
@@ -986,34 +1052,20 @@ export function LeadCaptureModal({ isOpen, onClose, onSuccess, prefilledData, so
                         onChange={(e) => setFormData({ ...formData, plz: e.target.value.replace(/\D/g, "") })}
                         onKeyDown={(e) => e.key === "Enter" && handleNext()}
                         onFocus={(e) => scrollInputIntoView(e.target)}
-                        className={`w-full px-4 py-4 text-base border-2 rounded-xl focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 transition-all touch-manipulation text-center text-xl tracking-widest font-mono ${formData.plz && formData.plz.length === 5 ? "border-purple-300 bg-purple-50/50" : "border-slate-200"}`}
+                        className={`w-full px-4 py-4 text-base border-2 rounded-xl focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-500/10 transition-all touch-manipulation text-center text-xl tracking-widest font-mono ${formData.plz && formData.plz.length === 5 ? "border-green-400 bg-green-50/40" : "border-slate-200"}`}
                         placeholder="45127"
                         autoComplete="postal-code"
                       />
-                      {regionInfo && (
+                      {formData.plz.length === 5 && (
                         <motion.div
-                          initial={{ opacity: 0, y: -10 }}
+                          initial={{ opacity: 0, y: -8 }}
                           animate={{ opacity: 1, y: 0 }}
-                          className="mt-3 p-3 bg-violet-50 rounded-xl border border-violet-200"
+                          className="mt-3 p-3 bg-green-50 rounded-xl border border-green-200"
                         >
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <p className="text-sm font-semibold text-violet-800">{regionInfo.region}</p>
-                              <p className="text-xs text-violet-600">Fördergebiet erkannt!</p>
-                            </div>
-                            <span className="text-xs font-bold px-3 py-1.5 bg-violet-500 text-white rounded-full">
-                              +{regionInfo.bonus}% Bonus
-                            </span>
-                          </div>
-                        </motion.div>
-                      )}
-                      {!regionInfo && formData.plz.length === 5 && (
-                        <motion.div
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className="mt-3 p-3 bg-blue-50 rounded-xl border border-blue-200"
-                        >
-                          <p className="text-sm text-blue-800">Wir prüfen Ihre Förderfähigkeit im Erstgespräch</p>
+                          <p className="text-sm text-green-800 font-medium flex items-center gap-2">
+                            <CheckCircle2 className="w-4 h-4 text-green-600 flex-shrink-0" />
+                            PLZ erkannt — Bundesland wird im Beratungsgespräch berücksichtigt
+                          </p>
                         </motion.div>
                       )}
                     </div>
@@ -1025,28 +1077,57 @@ export function LeadCaptureModal({ isOpen, onClose, onSuccess, prefilledData, so
                       <label className="block text-sm font-semibold text-slate-900 mb-3">
                         Wie hoch ist Ihre geplante Investition?
                       </label>
-                      
-                      {/* Investment range cards */}
-                      <div className="grid grid-cols-2 gap-2 mb-3">
-                        {investmentRanges.map((range) => (
-                          <motion.button
-                            key={range.label}
-                            type="button"
-                            onClick={() => setFormData({ ...formData, investment: range.value.toString() })}
-                            className={`p-3 rounded-xl border-2 text-left transition-all touch-manipulation ${
-                              Number(formData.investment) === range.value
-                                ? "border-violet-500 bg-violet-50 ring-2 ring-violet-500/20"
-                                : "border-slate-200 hover:border-slate-300 hover:bg-slate-50"
-                            }`}
-                            whileTap={{ scale: 0.98 }}
-                          >
-                            <span className={`text-sm font-semibold ${Number(formData.investment) === range.value ? "text-violet-700" : "text-slate-700"}`}>
-                              {range.label}
-                            </span>
-                            <span className="block text-xs text-slate-400 mt-0.5">EUR</span>
-                          </motion.button>
-                        ))}
-                      </div>
+
+                      {/* Vom Rechner übernommen — keine erneute Eingabe nötig */}
+                      {prefilledData?.investment && (
+                        <div className="mb-4 flex items-start gap-3 bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3.5">
+                          <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                          </div>
+                          <div>
+                            <p className="text-xs font-bold text-emerald-700 uppercase tracking-wide mb-0.5">Aus dem Förderrechner übernommen</p>
+                            <p className="text-base font-extrabold text-emerald-800">
+                              {Number(prefilledData.investment).toLocaleString("de-DE")} €
+                            </p>
+                            {prefilledData.foerderbetrag && (
+                              <p className="text-xs text-emerald-600 mt-0.5">
+                                Geschätzter Förderbetrag: <span className="font-bold">{Number(prefilledData.foerderbetrag).toLocaleString("de-DE")} €</span>
+                              </p>
+                            )}
+                            <button
+                              type="button"
+                              onClick={() => setFormData({ ...formData, investment: "" })}
+                              className="text-xs text-emerald-600 underline underline-offset-2 mt-1.5 hover:text-emerald-800 transition-colors"
+                            >
+                              Betrag ändern
+                            </button>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Karten-Auswahl — nur wenn KEIN Rechner-Wert vorhanden oder User hat "ändern" geklickt */}
+                      {!prefilledData?.investment && (
+                        <div className="grid grid-cols-2 gap-2 mb-3">
+                          {investmentRanges.map((range) => (
+                            <motion.button
+                              key={range.label}
+                              type="button"
+                              onClick={() => setFormData({ ...formData, investment: range.value.toString() })}
+                              className={`p-3 rounded-xl border-2 text-left transition-all touch-manipulation ${
+                                Number(formData.investment) === range.value
+                                  ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-500/20"
+                                  : "border-slate-200 hover:border-slate-300 hover:bg-slate-50"
+                              }`}
+                              whileTap={{ scale: 0.98 }}
+                            >
+                              <span className={`text-sm font-semibold ${Number(formData.investment) === range.value ? "text-emerald-700" : "text-slate-700"}`}>
+                                {range.label}
+                              </span>
+                              <span className="block text-xs text-slate-400 mt-0.5">EUR</span>
+                            </motion.button>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   )}
 

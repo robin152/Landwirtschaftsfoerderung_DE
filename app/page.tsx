@@ -14,6 +14,8 @@ import { FAQMegaSection } from "@/components/faq-mega-section"
 import { ErrorBoundary } from "@/components/error-boundary"
 import { AFPRechner } from "@/components/afp-rechner"
 import { ScrollReveal } from "@/components/scroll-reveal"
+import { ExclusionsSection } from "@/components/exclusions-section"
+import { FoerderZieleSection } from "@/components/foerder-ziele-section"
 
 export default function LandingPage() {
   return (
@@ -27,7 +29,12 @@ export default function LandingPage() {
           <HeroSection />
         </ErrorBoundary>
 
-        {/* Social Proof — direkt unter Hero */}
+        {/* Förderziele — direkt unter Hero */}
+        <ScrollReveal variant="fade-up" duration={0.6}>
+          <FoerderZieleSection />
+        </ScrollReveal>
+
+        {/* Social Proof */}
         <ScrollReveal variant="fade-up" duration={0.6}>
           <section className="py-10 sm:py-12 bg-white border-y border-slate-200">
             <GoogleReviewsSlider />
@@ -70,6 +77,11 @@ export default function LandingPage() {
         {/* Förderquoten */}
         <ScrollReveal variant="slide-left" duration={0.7} delay={0.05}>
           <FundingQuotesSection />
+        </ScrollReveal>
+
+        {/* Ausschlüsse — was NICHT gefördert wird */}
+        <ScrollReveal variant="fade-up" duration={0.65}>
+          <ExclusionsSection />
         </ScrollReveal>
 
         {/* Prozess */}

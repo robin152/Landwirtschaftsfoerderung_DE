@@ -7,15 +7,16 @@ const footerLinks = {
     { label: "Impressum", href: "https://eskalator.ag/impressum", external: true },
     { label: "Datenschutz", href: "https://eskalator.ag/dsgvo", external: true },
   ],
-  leistungen: [
-    { label: "Fördergebiete", href: "#regions", external: false },
-    { label: "Rechner", href: "#calculator", external: false },
-    { label: "Voraussetzungen", href: "#eligibility", external: false },
+  seite: [
+    { label: "Rechner", href: "#rechner", external: false },
+    { label: "Förderquoten", href: "#funding-quotes", external: false },
+    { label: "Ablauf", href: "#ablauf", external: false },
+    { label: "Experte", href: "#experte", external: false },
+    { label: "FAQ", href: "#faq", external: false },
   ],
-  ressourcen: [
-    { label: "Risiken", href: "#risk", external: false },
-    { label: "Assets", href: "#assets", external: false },
-    { label: "Paradigmenwechsel", href: "#pivot", external: false },
+  foerderung: [
+    { label: "Was wird gefördert", href: "#assets", external: false },
+    { label: "Nicht förderfähig", href: "#exclusions", external: false },
   ],
 }
 
@@ -34,8 +35,8 @@ export function Footer() {
               className="bg-primary hover:bg-primary/90 text-primary-foreground border-0 transition-all h-12 px-6 font-medium group w-full sm:w-auto touch-target"
               asChild
             >
-              <a href="#calculator">
-                Förderhöhe berechnen
+              <a href="#rechner">
+                Förderung kostenlos berechnen
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
             </Button>
@@ -47,13 +48,13 @@ export function Footer() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-12 mb-8 sm:mb-16">
           <div className="col-span-2 md:col-span-1">
-            <a href="#" className="flex items-center gap-2 mb-3 sm:mb-4">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-primary flex items-center justify-center font-bold text-base sm:text-lg text-white">
-                E
+            <a href="/" className="flex items-center gap-2 mb-3 sm:mb-4">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-green-700 flex items-center justify-center font-bold text-[10px] sm:text-xs text-white leading-tight text-center">
+                AFP
               </div>
             </a>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-4">
-              Eskalator AG — Partner für die Regional-Förderung.
+              Eskalator AG — Ihr Partner für die Landwirtschaftsförderung (AFP).
             </p>
             <div className="space-y-2">
               <p className="text-xs text-muted-foreground">
@@ -90,9 +91,9 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-3 sm:mb-4 text-foreground text-sm sm:text-base">Leistungen</h4>
+            <h4 className="font-semibold mb-3 sm:mb-4 text-foreground text-sm sm:text-base">Seite</h4>
             <ul className="space-y-2 sm:space-y-3">
-              {footerLinks.leistungen.map((link) => (
+              {footerLinks.seite.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
@@ -108,9 +109,9 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-3 sm:mb-4 text-foreground text-sm sm:text-base">Ressourcen</h4>
+            <h4 className="font-semibold mb-3 sm:mb-4 text-foreground text-sm sm:text-base">AFP-Förderung</h4>
             <ul className="space-y-2 sm:space-y-3">
-              {footerLinks.ressourcen.map((link) => (
+              {footerLinks.foerderung.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}

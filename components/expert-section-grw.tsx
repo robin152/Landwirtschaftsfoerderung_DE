@@ -92,7 +92,7 @@ export default function ExpertSection() {
     : null
 
   return (
-    <section ref={ref} id="expert" className="py-24 md:py-32 bg-white">
+    <section ref={ref} id="experte" className="py-24 md:py-32 bg-white">
       <div className="container mx-auto px-4 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -125,7 +125,7 @@ export default function ExpertSection() {
                 <div className="relative w-40 h-40 rounded-full overflow-hidden mb-6 shadow-xl shadow-slate-400/30 ring-4 ring-white">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/patrick-starkmann.jpg"
+                  src="/patrick-starkmann.webp"
                   alt="Patrick Starkmann – AFP-Spezialist für Landwirtschaft"
                   width={160}
                   height={160}

@@ -65,6 +65,14 @@ export function FundingQuotesSection() {
           viewport={{ once: true }}
           className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 overflow-hidden shadow-sm mb-8"
         >
+          {/* Mobile scroll hint */}
+          <div className="sm:hidden flex items-center justify-end gap-1 bg-slate-50 px-3 py-1.5 border-b border-slate-100">
+            <span className="text-[11px] text-slate-400">Wische zum Scrollen</span>
+            <span className="text-slate-400 text-xs">→</span>
+          </div>
+          {/* Scrollable table wrapper on mobile */}
+          <div className="overflow-x-auto -webkit-overflow-scrolling-touch">
+          <div className="min-w-[520px]">
           {/* Table Header */}
           <div className="grid grid-cols-7 gap-0 bg-slate-800 text-white text-[10px] sm:text-xs font-bold uppercase tracking-wide">
             <div className="col-span-2 px-3 sm:px-4 py-3">Bundesland</div>
@@ -113,6 +121,8 @@ export function FundingQuotesSection() {
               <div className="px-2 py-3 text-center font-medium text-amber-600">{row.jung}</div>
             </div>
           ))}
+          </div>
+          </div>
         </motion.div>
 
         {/* Legende — Abkürzungen erklärt */}
@@ -181,7 +191,7 @@ export function FundingQuotesSection() {
             onClick={() => setIsModalOpen(true)}
             className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-xl transition-colors"
           >
-            Jetzt meinen genauen Fördersatz berechnen
+            Förderung kostenlos berechnen
           </button>
           <p className="text-sm text-slate-500 mt-2">Kostenlos • 45 Sekunden • Brutal ehrlich</p>
         </motion.div>

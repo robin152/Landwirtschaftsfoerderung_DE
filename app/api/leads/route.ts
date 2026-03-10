@@ -6,12 +6,18 @@ export async function POST(request: Request) {
   try {
     const data = await request.json()
 
+    const payload = {
+      ...data,
+      projektseite: "Landwirtschaftsförderung",
+      lead_quelle: "Landwirtschaftsförderung",
+    }
+
     const webhookResponse = await fetch(WEBHOOK_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(payload),
       signal: AbortSignal.timeout(15000),
     })
 

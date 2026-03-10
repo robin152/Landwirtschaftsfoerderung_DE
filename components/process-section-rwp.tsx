@@ -312,7 +312,7 @@ export function ProcessSectionRWP() {
             onClick={() => setIsModalOpen(true)}
             className="inline-flex items-center gap-2 px-7 py-4 bg-green-600 hover:bg-green-500 active:bg-green-700 text-white font-bold rounded-xl shadow-lg shadow-green-900/20 transition-all duration-200 group hg-btn relative overflow-hidden"
           >
-            Jetzt kostenlos Förderbetrag berechnen
+            Förderung kostenlos berechnen
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
           <p className="text-xs text-slate-400 mt-2.5">
