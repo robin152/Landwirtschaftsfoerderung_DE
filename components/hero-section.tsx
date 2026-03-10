@@ -40,9 +40,11 @@ export function HeroSection() {
               className="text-center lg:text-left"
             >
               {/* Agri badge */}
-              <div className="inline-flex items-center gap-2 bg-green-50 border border-green-200 rounded-full px-4 py-1.5 mb-5">
-                <WheatIcon className="w-4 h-4 text-green-700" />
-                <span className="text-sm font-semibold text-green-800">AFP-Förderung 2023–2027</span>
+              <div className="inline-flex flex-wrap items-center gap-2 bg-green-50 border border-green-200 rounded-full px-4 py-1.5 mb-5">
+                <WheatIcon className="w-4 h-4 text-green-700 flex-shrink-0" />
+                <span className="text-sm font-semibold text-green-800">
+                  AFP – <span className="font-normal text-green-700">Agrarinvestitionsförderungsprogramm</span> 2023–2027
+                </span>
               </div>
 
               <h1 className="text-5xl md:text-6xl lg:text-6xl font-bold mb-6 bg-gradient-to-br from-slate-900 via-green-800 to-slate-700 bg-clip-text text-transparent leading-tight text-balance">
