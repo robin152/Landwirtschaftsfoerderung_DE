@@ -18,50 +18,40 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "65% Zuschuss vom Staat - Maschinen & Gebäude geschenkt | Eskalator AG",
+  title: "AFP-Förderung 2023–2027 | Bis zu 50 % Zuschuss für Stallbau & Tierwohl | Patrick Starkmann",
   description:
-    "Reform 2026: Der Staat zahlt bis zu 65% Ihrer Investition. Kein Kredit. Keine Rückzahlung. Jetzt kostenlos prüfen, ob Ihr Standort förderfähig ist.",
+    "Berechne in 45 Sekunden deinen staatlichen AFP-Zuschuss. Stallbau, Tierwohl, SIUK, Gülle – wir kennen alle Bundesland-Quoten. Kostenlose Prüfung durch AFP-Spezialist Patrick Starkmann.",
   generator: "v0.app",
   keywords:
-    "Regional-Förderung, Investitionsförderung, 65% Zuschuss, Infrastruktur, Standortentscheidung, C-Gebiet, D-Gebiet, Klimaschutz-Bonus",
-  authors: [{ name: "Eskalator AG" }],
-  creator: "Eskalator AG",
-  publisher: "Eskalator AG",
+    "AFP Förderung, Agrarinvestitionsförderungsprogramm, Stallbau Zuschuss, Tierwohl Förderung, SIUK, Güllelager Förderung, Landwirtschaft Förderung 2026, AFP Rechner, Junglandwirt Bonus",
+  authors: [{ name: "Patrick Starkmann – AFP-Spezialist für Landwirtschaft" }],
+  creator: "Patrick Starkmann",
+  publisher: "AFP Landwirtschaftsförderung",
   formatDetection: {
     email: false,
     telephone: false,
     address: false,
   },
-  metadataBase: new URL("https://grw-rwp.eskalator.ag"),
+  metadataBase: new URL("https://afp-foerderung.de"),
   openGraph: {
     type: "website",
     locale: "de_DE",
-    url: "https://grw-rwp.eskalator.ag",
-    siteName: "Eskalator AG - Regional-Förderung",
-    title: "65% Zuschuss vom Staat - Maschinen & Gebäude geschenkt | Eskalator AG",
+    url: "https://afp-foerderung.de",
+    siteName: "AFP-Förderung – Patrick Starkmann",
+    title: "AFP-Förderung 2023–2027 | Bis zu 50 % Zuschuss für Stallbau & Tierwohl",
     description:
-      "Reform 2026: Der Staat zahlt bis zu 65% Ihrer Investition. Kein Kredit. Keine Rückzahlung. Jetzt kostenlos prüfen lassen.",
+      "Berechne in 45 Sekunden deinen staatlichen AFP-Zuschuss. Kostenlose Prüfung durch AFP-Spezialist Patrick Starkmann.",
   },
   twitter: {
     card: "summary_large_image",
-    creator: "@eskalator_ag",
-    title: "65% Zuschuss vom Staat - Maschinen & Gebäude geschenkt | Eskalator AG",
-    description: "Reform 2026: Der Staat zahlt bis zu 65% Ihrer Investition. Kein Kredit. Keine Rückzahlung.",
+    title: "AFP-Förderung 2023–2027 | Bis zu 50 % Zuschuss für Stallbau & Tierwohl",
+    description: "Berechne in 45 Sekunden deinen staatlichen AFP-Zuschuss. Kostenlos & unverbindlich.",
   },
   icons: {
     icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
+      { url: "/icon-light-32x32.png", media: "(prefers-color-scheme: light)" },
+      { url: "/icon-dark-32x32.png",  media: "(prefers-color-scheme: dark)" },
+      { url: "/icon.svg", type: "image/svg+xml" },
     ],
     apple: "/apple-icon.png",
   },
@@ -87,7 +77,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
       </head>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-slate-50`}>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-background`}>
         <ClientLayout>
           {children}
         </ClientLayout>

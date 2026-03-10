@@ -635,7 +635,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
 
   return (
     <>
-    <div className="bg-slate-900 rounded-2xl border border-slate-700 overflow-hidden shadow-2xl">
+    <div className="bg-slate-900 rounded-2xl border border-slate-700/60 overflow-hidden hg-card-dark">
       {/* Header */}
       <div className="bg-gradient-to-r from-emerald-900/50 to-slate-900 border-b border-slate-700 px-4 sm:px-6 py-4 sm:py-5">
         <div className="flex items-center gap-3">
@@ -936,7 +936,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                       </p>
                       <button
                         onClick={() => setShowUnlockModal(true)}
-                        className="w-full max-w-xs bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 active:from-orange-700 active:to-orange-600 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-200 shadow-lg shadow-orange-900/40 text-base touch-manipulation min-h-[52px]"
+                        className="relative overflow-hidden w-full max-w-xs bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 active:from-orange-700 active:to-orange-600 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-200 text-base touch-manipulation min-h-[52px] hg-btn"
                       >
                         <TractorIcon className="w-5 h-5 text-white flex-shrink-0" />
                         Ergebnis jetzt freischalten
@@ -1031,7 +1031,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
 
                     <button
                       onClick={onCTAClick}
-                      className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 active:from-orange-700 active:to-orange-600 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-200 shadow-lg shadow-orange-900/40 text-sm touch-manipulation min-h-[52px]"
+                      className="relative overflow-hidden w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 active:from-orange-700 active:to-orange-600 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-200 text-sm touch-manipulation min-h-[52px] hg-btn"
                     >
                       <WheatIcon className="w-5 h-5 text-white flex-shrink-0" />
                       JETZT PERSÖNLICHEN MAXIMAL-CHECK SICHERN (kostenlos)

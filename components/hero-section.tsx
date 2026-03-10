@@ -1,8 +1,9 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle2, Clock, TrendingUp } from "lucide-react"
 import { motion } from "framer-motion"
 import { TractorIcon, WheatIcon, MoneyBagIcon, BarnIcon, ShieldCheckAgriIcon } from "@/components/agri-icons"
-import { AgriLottie } from "@/components/agri-lottie"
 
 export function HeroSection() {
   return (
@@ -68,7 +69,7 @@ export function HeroSection() {
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Button
                     size="lg"
-                    className="gap-2 bg-green-600 hover:bg-green-500 text-base h-13 px-8 w-full sm:w-auto rounded-xl font-bold shadow-lg shadow-green-900/20"
+                    className="relative overflow-hidden gap-2 bg-green-600 hover:bg-green-500 text-base h-14 px-8 w-full sm:w-auto rounded-xl font-bold shadow-lg shadow-green-900/25 hg-btn"
                     onClick={() => document.getElementById("rechner")?.scrollIntoView({ behavior: "smooth" })}
                   >
                     <TractorIcon className="w-5 h-5 text-white" />
@@ -94,24 +95,45 @@ export function HeroSection() {
               </p>
             </motion.div>
 
-            {/* Right: Hero Image + floating Lottie coin animation */}
+            {/* Right: Hero Image + floating badge */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="relative flex items-center justify-center"
+              className="relative flex items-center justify-center mt-8 lg:mt-0"
             >
               <div className="relative w-full max-w-md mx-auto">
-                <div className="absolute inset-0 rounded-2xl bg-green-400/20 blur-2xl scale-105" />
+                {/* Hochglanz-Glow */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-emerald-400/30 to-green-600/20 blur-3xl scale-110" />
                 <img
                   src="/hero-foerderung.webp"
                   alt="Bis zu 50 % staatliche Förderung für Landwirte – Stallbau, Tierwohl, Umwelttechnik"
-                  className="relative rounded-2xl shadow-2xl w-full object-cover"
+                  className="relative rounded-2xl shadow-2xl w-full object-cover ring-1 ring-white/20"
                 />
-                {/* Floating Lottie money animation top-right */}
-                <div className="absolute -top-6 -right-6 w-24 h-24 pointer-events-none">
-                  <AgriLottie animation="coins" className="w-full h-full" loop autoplay />
-                </div>
+                {/* Floating award badge — kein Netzwerk nötig */}
+                <motion.div
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute -top-5 -right-4 sm:-top-6 sm:-right-6 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-2 ring-1 ring-emerald-100"
+                >
+                  <MoneyBagIcon className="w-8 h-8 text-emerald-600 flex-shrink-0" />
+                  <div>
+                    <p className="text-[10px] font-semibold text-slate-500 uppercase tracking-wide leading-none mb-0.5">Staatlicher Zuschuss</p>
+                    <p className="text-xl font-extrabold text-emerald-700 leading-none">bis 50 %</p>
+                  </div>
+                </motion.div>
+                {/* Bottom badge */}
+                <motion.div
+                  animate={{ y: [0, 5, 0] }}
+                  transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                  className="absolute -bottom-5 -left-4 sm:-bottom-6 sm:-left-6 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-2 ring-1 ring-green-100"
+                >
+                  <TractorIcon className="w-7 h-7 text-green-700 flex-shrink-0" />
+                  <div>
+                    <p className="text-[10px] font-semibold text-slate-500 uppercase tracking-wide leading-none mb-0.5">Landwirte gefördert</p>
+                    <p className="text-xl font-extrabold text-green-700 leading-none">400+</p>
+                  </div>
+                </motion.div>
               </div>
             </motion.div>
           </div>
@@ -159,7 +181,7 @@ export function HeroSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="p-6 rounded-xl bg-slate-50 border border-slate-200 hover:border-green-300 hover:shadow-lg transition-all group"
+                  className="p-6 rounded-xl bg-white border border-slate-100 hg-card hg-card-animated-border hover:shadow-xl transition-all duration-300 group"
                 >
                   <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${benefit.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                     <AgriIcon className="w-7 h-7 text-white" />
