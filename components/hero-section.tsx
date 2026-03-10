@@ -31,14 +31,14 @@ export function HeroSection() {
         </div>
 
         <div className="page-container relative w-full">
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-12 items-center">
 
-            {/* Left: Text & CTA */}
+            {/* Left: Text & CTA — always left */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-center lg:text-left order-1"
+              className="text-center md:text-left"
             >
               {/* AFP badge */}
               <div className="inline-flex flex-wrap items-center gap-2 bg-green-50 border border-green-200 rounded-full px-3 py-1 mb-3 lg:mb-5">
@@ -48,16 +48,16 @@ export function HeroSection() {
                 </span>
               </div>
 
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 lg:mb-5 bg-gradient-to-br from-slate-900 via-green-800 to-slate-700 bg-clip-text text-transparent leading-tight text-balance">
+              <h1 className="text-2xl sm:text-3xl md:text-3xl lg:text-5xl xl:text-6xl font-bold mb-2 lg:mb-5 bg-gradient-to-br from-slate-900 via-green-800 to-slate-700 bg-clip-text text-transparent leading-tight text-balance">
                 Der Staat zahlt dir <span className="text-green-700">bis 50 %</span> für deinen nächsten Stall, Güllelager oder Klimaschutz
               </h1>
 
-              <p className="text-sm md:text-base lg:text-lg text-slate-600 mb-3 lg:mb-7 leading-relaxed">
+              <p className="text-sm md:text-sm lg:text-lg text-slate-600 mb-3 lg:mb-7 leading-relaxed">
                 Gib in 45 Sekunden dein Bundesland und dein Vorhaben ein — du siehst sofort, wie viel Geld du wirklich kriegst.
               </p>
 
-              {/* Hero image — mobile only, between subheadline and CTA */}
-              <div className="lg:hidden mb-3 relative">
+              {/* Hero image — mobile only (< md), between subheadline and CTA */}
+              <div className="md:hidden mb-3 relative">
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-emerald-400/20 to-green-600/10 blur-2xl scale-110" />
                 <img
                   src="/hero-foerderung.webp"
@@ -73,7 +73,7 @@ export function HeroSection() {
                 </div>
               </div>
 
-              <div className="flex flex-wrap justify-center lg:justify-start gap-x-4 gap-y-1.5 mb-3 lg:mb-8">
+              <div className="flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-1.5 mb-3 lg:mb-8">
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
                   <span className="text-xs sm:text-sm text-slate-700"><span className="font-semibold">400+</span> Landwirte gefördert</span>
@@ -88,7 +88,7 @@ export function HeroSection() {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 mb-4 justify-center lg:justify-start">
+              <div className="flex flex-col sm:flex-row gap-3 mb-4 justify-center md:justify-start">
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
                   <Button
                     size="lg"
@@ -113,17 +113,17 @@ export function HeroSection() {
                 </motion.div>
               </div>
 
-              <p className="text-xs text-slate-400 text-center lg:text-left">
+              <p className="text-xs text-slate-400 text-center md:text-left">
                 100 % kostenlos &amp; unverbindlich
               </p>
             </motion.div>
 
-            {/* Right: Hero Image — desktop only */}
+            {/* Right: Hero Image — visible from md upwards */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="hidden lg:flex relative items-center justify-center"
+              className="hidden md:flex relative items-center justify-center"
             >
               <div className="relative w-full max-w-md mx-auto">
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-emerald-400/30 to-green-600/20 blur-3xl scale-110" />
@@ -135,7 +135,7 @@ export function HeroSection() {
                 <motion.div
                   animate={{ y: [0, -6, 0] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute -top-5 -right-4 sm:-top-6 sm:-right-6 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-2 ring-1 ring-emerald-100"
+                  className="absolute -top-5 -right-4 lg:-top-6 lg:-right-6 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-2 ring-1 ring-emerald-100"
                 >
                   <MoneyBagIcon className="w-8 h-8 text-emerald-600 flex-shrink-0" />
                   <div>
@@ -146,7 +146,7 @@ export function HeroSection() {
                 <motion.div
                   animate={{ y: [0, 5, 0] }}
                   transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                  className="absolute -bottom-5 -left-4 sm:-bottom-6 sm:-left-6 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-2 ring-1 ring-green-100"
+                  className="absolute -bottom-5 -left-4 lg:-bottom-6 lg:-left-6 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-2 ring-1 ring-green-100"
                 >
                   <TractorIcon className="w-7 h-7 text-green-700 flex-shrink-0" />
                   <div>
