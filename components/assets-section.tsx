@@ -36,48 +36,107 @@ import Image from "next/image"
 // - Featured-Items = Höchste Förderquoten → Aufmerksamkeit maximieren
 // - Alle Items sollten KONKRETE Beispiele haben (keine Abstraktion)
 
+import { motion } from "framer-motion"
+import { Check, ChevronRight } from "lucide-react"
+import Image from "next/image"
+
 const assets = [
   {
-    title: "Premium-Tierhaltung",
-    description: "Stallumbauten mit mehr Platz, Licht & Lüftung, Liegeboxen, Außenklimabereiche, Laufhöfe",
+    title: "Premium-Tierhaltung & Stallbau",
+    badge: "bis 40 %",
+    badgeColor: "bg-emerald-600",
+    description: "Stallumbauten für mehr Tierwohl: mehr Platz, natürliches Licht, frische Luft.",
+    bullets: [
+      "Min. 20 % mehr nutzbare Fläche als gesetzlich nötig",
+      "Liegeboxen, Laufhöfe, Außenklimabereich",
+      "Tierwohl-Premium: bis 40 % Zuschuss (Bayern 25 %)",
+      "Kombination mit SIUK möglich: bis 50 %",
+    ],
     image: "/images/assets/tierhaltung.jpg",
     span: "col-span-1 md:col-span-2",
     featured: true,
   },
   {
-    title: "Klima- & Emissionsschutz",
-    description: "Abluftreinigung, Güllekühlung, Biogasanlagen, Abdeckungen für Güllelager",
+    title: "Klima- & Emissionsschutz (SIUK)",
+    badge: "bis 75 %",
+    badgeColor: "bg-teal-600",
+    description: "Maßnahmen zur Reduktion von Ammoniak, Methan und CO₂ aus der Tierhaltung.",
+    bullets: [
+      "Abluftreinigung, Güllekühlung, Biogasanlagen",
+      "Hessen & Brandenburg: bis 75 % SIUK-Fördersatz",
+      "Bundesweit Kombi-Satz bis 50 %",
+      "Gülleabdeckung bis 90 % (Saarland)",
+    ],
     image: "/images/assets/klima.jpg",
     span: "col-span-1",
   },
   {
-    title: "Gülle- & Mistlager",
-    description: "Neubauten & Erweiterungen mit fester Abdeckung, mind. 6 Monate Lagerkapazität",
+    title: "Gülle- & Festmistlager",
+    badge: "bis 40 %",
+    badgeColor: "bg-amber-600",
+    description: "Neubau und Erweiterung von Lagern mit fester Abdeckung und ausreichend Kapazität.",
+    bullets: [
+      "Feste, gasdichte Abdeckung Pflicht für Höchstsatz",
+      "Mind. 6 Monate Lagerkapazität über gesetzlichem Min.",
+      "Bis 40 % Zuschuss auf förderfähige Baukosten",
+      "Kombinierbar mit SIUK-Maßnahmen",
+    ],
     image: "/images/assets/guelle.jpg",
     span: "col-span-1",
   },
   {
     title: "Weiche Kälbermatten",
-    description: "Befristeter Bonus 2025/2026: Liege- & Tränkebereiche für Kälber unter 8 Monate",
+    badge: "bis 40 %",
+    badgeColor: "bg-orange-600",
+    description: "Befristeter Bonus für tiergerechte Liege- und Tränkebereiche für Kälber.",
+    bullets: [
+      "Nur für Kälber unter 8 Monate",
+      "+10 % Aufschlag in NRW befristet",
+      "Einfacher Antrag, schnelle Bewilligung",
+      "Mindestinvestition: 10.000 € (Ausnahme)",
+    ],
     image: "/images/assets/kaelber.jpg",
     span: "col-span-1",
-    featured: false,
   },
   {
     title: "Präzisionstechnik & Bewässerung",
-    description: "Drohnen, GPS-Lenksysteme, Tröpfchenbewässerung, Hagelschutznetze",
+    badge: "bis 40 %",
+    badgeColor: "bg-blue-600",
+    description: "Modernste Technik für weniger Ressourcenverbrauch und mehr Ertragssicherheit.",
+    bullets: [
+      "GPS-Lenksysteme, Drohnen, Sensor-Technik",
+      "Tröpfchen- & Unterfluranlagen: mind. 15 % Wassereinsparung",
+      "Hagelschutznetze & Naturgefahrenvorsorge",
+      "Keine selbstfahrenden Maschinen (ausgeschlossen)",
+    ],
     image: "/images/assets/technik.jpg",
     span: "col-span-1",
   },
   {
-    title: "Junglandwirt-Investitionen",
-    description: "Alle förderfähigen Maßnahmen plus +10 % Extra-Bonus für Landwirte unter 40 Jahren",
+    title: "Junglandwirt-Bonus",
+    badge: "+10 %",
+    badgeColor: "bg-rose-600",
+    description: "Wer unter 40 ist und sich frisch niedergelassen hat, bekommt automatisch mehr.",
+    bullets: [
+      "Erstniederlassung max. 5 Jahre zurück",
+      "+10 % auf den Basis-Fördersatz (max. 20.000 €)",
+      "Gesamtsatz meist ≤ 50 % gedeckelt",
+      "Bayern: Meister/Agrarbetriebswirt = Extrapunkte",
+    ],
     image: "/images/assets/junglandwirt.jpg",
     span: "col-span-1",
   },
   {
     title: "Mobilställe & Freilandhaltung",
-    description: "Mobile Hühner- & Geflügelställe, Außenweideanlagen, Weidezeltlösungen",
+    badge: "bis 40 %",
+    badgeColor: "bg-emerald-600",
+    description: "Mobile Haltungssysteme für Geflügel und Weidetierhaltung — explizit förderfähig.",
+    bullets: [
+      "Mobile Hühner- & Geflügelställe",
+      "Weidezelte, Außenweideanlagen",
+      "Niedersachsen & MV: explizit in Richtlinie genannt",
+      "Kombination mit Tierwohl-Premium möglich",
+    ],
     image: "/images/assets/mobilstall.jpg",
     span: "col-span-1 md:col-span-2",
     featured: true,
@@ -111,7 +170,6 @@ export function AssetsSection() {
           </p>
         </motion.div>
 
-        {/* Visual Asset Grid - Bento Style */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
           {assets.map((asset, index) => (
             <motion.div
@@ -120,7 +178,7 @@ export function AssetsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              className={`${asset.span} group relative overflow-hidden rounded-xl sm:rounded-2xl cursor-pointer`}
+              className={`${asset.span} group relative overflow-hidden rounded-xl sm:rounded-2xl`}
             >
               {/* Image Container */}
               <div className={`relative ${asset.featured ? "aspect-[16/9]" : "aspect-[4/3]"} overflow-hidden`}>
@@ -131,18 +189,31 @@ export function AssetsSection() {
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                   sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                 />
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent" />
-                
+                {/* Stronger gradient for readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-900/60 to-slate-900/10" />
+
                 {/* Content */}
-                <div className="absolute inset-0 p-4 sm:p-5 flex flex-col justify-end">
-                  <h3 className="text-lg sm:text-xl font-bold text-white mb-1">{asset.title}</h3>
-                  <p className="text-sm text-slate-200 opacity-90">{asset.description}</p>
-                </div>
-                
-                {/* Hover indicator */}
-                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Check className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                <div className="absolute inset-0 p-4 sm:p-5 flex flex-col justify-end gap-2">
+                  {/* Badge */}
+                  <span className={`self-start text-xs font-bold px-2.5 py-1 rounded-full text-white ${asset.badgeColor}`}>
+                    {asset.badge}
+                  </span>
+
+                  {/* Title */}
+                  <h3 className="text-base sm:text-lg font-bold text-white leading-tight">{asset.title}</h3>
+
+                  {/* Short description */}
+                  <p className="text-sm text-slate-300 leading-snug">{asset.description}</p>
+
+                  {/* Bullet list */}
+                  <ul className="mt-1 space-y-1">
+                    {asset.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2 text-xs text-slate-200 leading-snug">
+                        <Check className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </motion.div>
