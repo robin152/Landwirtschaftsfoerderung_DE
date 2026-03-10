@@ -1075,28 +1075,57 @@ export function LeadCaptureModal({ isOpen, onClose, onSuccess, prefilledData, so
                       <label className="block text-sm font-semibold text-slate-900 mb-3">
                         Wie hoch ist Ihre geplante Investition?
                       </label>
-                      
-                      {/* Investment range cards */}
-                      <div className="grid grid-cols-2 gap-2 mb-3">
-                        {investmentRanges.map((range) => (
-                          <motion.button
-                            key={range.label}
-                            type="button"
-                            onClick={() => setFormData({ ...formData, investment: range.value.toString() })}
-                            className={`p-3 rounded-xl border-2 text-left transition-all touch-manipulation ${
-                              Number(formData.investment) === range.value
-                                ? "border-violet-500 bg-violet-50 ring-2 ring-violet-500/20"
-                                : "border-slate-200 hover:border-slate-300 hover:bg-slate-50"
-                            }`}
-                            whileTap={{ scale: 0.98 }}
-                          >
-                            <span className={`text-sm font-semibold ${Number(formData.investment) === range.value ? "text-violet-700" : "text-slate-700"}`}>
-                              {range.label}
-                            </span>
-                            <span className="block text-xs text-slate-400 mt-0.5">EUR</span>
-                          </motion.button>
-                        ))}
-                      </div>
+
+                      {/* Vom Rechner übernommen — keine erneute Eingabe nötig */}
+                      {prefilledData?.investment && (
+                        <div className="mb-4 flex items-start gap-3 bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3.5">
+                          <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                          </div>
+                          <div>
+                            <p className="text-xs font-bold text-emerald-700 uppercase tracking-wide mb-0.5">Aus dem Förderrechner übernommen</p>
+                            <p className="text-base font-extrabold text-emerald-800">
+                              {Number(prefilledData.investment).toLocaleString("de-DE")} €
+                            </p>
+                            {prefilledData.foerderbetrag && (
+                              <p className="text-xs text-emerald-600 mt-0.5">
+                                Geschätzter Förderbetrag: <span className="font-bold">{Number(prefilledData.foerderbetrag).toLocaleString("de-DE")} €</span>
+                              </p>
+                            )}
+                            <button
+                              type="button"
+                              onClick={() => setFormData({ ...formData, investment: "" })}
+                              className="text-xs text-emerald-600 underline underline-offset-2 mt-1.5 hover:text-emerald-800 transition-colors"
+                            >
+                              Betrag ändern
+                            </button>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Karten-Auswahl — nur wenn KEIN Rechner-Wert vorhanden oder User hat "ändern" geklickt */}
+                      {!prefilledData?.investment && (
+                        <div className="grid grid-cols-2 gap-2 mb-3">
+                          {investmentRanges.map((range) => (
+                            <motion.button
+                              key={range.label}
+                              type="button"
+                              onClick={() => setFormData({ ...formData, investment: range.value.toString() })}
+                              className={`p-3 rounded-xl border-2 text-left transition-all touch-manipulation ${
+                                Number(formData.investment) === range.value
+                                  ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-500/20"
+                                  : "border-slate-200 hover:border-slate-300 hover:bg-slate-50"
+                              }`}
+                              whileTap={{ scale: 0.98 }}
+                            >
+                              <span className={`text-sm font-semibold ${Number(formData.investment) === range.value ? "text-emerald-700" : "text-slate-700"}`}>
+                                {range.label}
+                              </span>
+                              <span className="block text-xs text-slate-400 mt-0.5">EUR</span>
+                            </motion.button>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   )}
 
