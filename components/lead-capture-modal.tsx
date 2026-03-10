@@ -662,7 +662,7 @@ export function LeadCaptureModal({ isOpen, onClose, onSuccess, prefilledData, so
               <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden border-2 border-purple-500 flex-shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/patrick-starkmann.jpg"
+                  src="/patrick-starkmann.webp"
                   alt="Patrick Starkmann"
                   width={40}
                   height={40}

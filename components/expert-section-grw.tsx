@@ -125,7 +125,7 @@ export default function ExpertSection() {
                 <div className="relative w-40 h-40 rounded-full overflow-hidden mb-6 shadow-xl shadow-slate-400/30 ring-4 ring-white">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/patrick-starkmann.jpg"
+                  src="/patrick-starkmann.webp"
                   alt="Patrick Starkmann – AFP-Spezialist für Landwirtschaft"
                   width={160}
                   height={160}

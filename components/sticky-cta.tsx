@@ -90,7 +90,7 @@ function StickyCTAInner() {
                   <div className="w-16 h-16 rounded-xl overflow-hidden shadow-lg border-2 border-white">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src="/patrick-starkmann.jpg"
+                      src="/patrick-starkmann.webp"
                       alt="Patrick Starkmann - Fördermittelexperte"
                       width={64}
                       height={64}
@@ -171,7 +171,7 @@ function StickyCTAInner() {
                   <div className="relative w-11 h-11 rounded-full overflow-hidden border-2 border-green-500 flex-shrink-0">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src="/patrick-starkmann.jpg"
+                      src="/patrick-starkmann.webp"
                       alt="Patrick Starkmann"
                       width={44}
                       height={44}
