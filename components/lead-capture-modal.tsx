@@ -328,13 +328,77 @@ export function LeadCaptureModal({ isOpen, onClose, onSuccess, prefilledData, so
   }, [currentStep, totalSteps, formData.investment, tooltipDismissed])
 
   const triggerConfetti = () => {
+    // Helper: create emoji shape for canvas-confetti
+    const emojiShape = (emoji: string) => {
+      const size = 24
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}"><text y="${size * 0.9}" font-size="${size}">${emoji}</text></svg>`
+      const url = `data:image/svg+xml;base64,${btoa(unescape(encodeURIComponent(svg)))}`
+      return confetti.shapeFromPath
+        ? undefined // fallback to text path below
+        : undefined
+    }
+
+    // Burst 1 — Tiere von oben links
     confetti({
-      particleCount: 100,
-      spread: 70,
-      origin: { y: 0.6 },
-      colors: ["#10b981", "#059669", "#34d399"],
+      particleCount: 18,
+      spread: 55,
+      origin: { x: 0.2, y: 0 },
+      shapes: ["text"],
+      shapeOptions: {
+        text: { value: ["🐄", "🐷", "🐔"] },
+      },
+      scalar: 2.2,
+      gravity: 0.9,
+      drift: 0.4,
+      ticks: 220,
       zIndex: 99999,
-    })
+    } as Parameters<typeof confetti>[0])
+
+    // Burst 2 — Tiere von oben rechts
+    confetti({
+      particleCount: 18,
+      spread: 55,
+      origin: { x: 0.8, y: 0 },
+      shapes: ["text"],
+      shapeOptions: {
+        text: { value: ["🐄", "🐷", "🐔"] },
+      },
+      scalar: 2.2,
+      gravity: 0.9,
+      drift: -0.4,
+      ticks: 220,
+      zIndex: 99999,
+    } as Parameters<typeof confetti>[0])
+
+    // Burst 3 — Weizen + Geld aus Mitte oben (verzögert)
+    setTimeout(() => {
+      confetti({
+        particleCount: 20,
+        spread: 80,
+        origin: { x: 0.5, y: 0.1 },
+        shapes: ["text"],
+        shapeOptions: {
+          text: { value: ["🌾", "💰", "🚜", "🌾", "💰"] },
+        },
+        scalar: 1.8,
+        gravity: 0.7,
+        ticks: 260,
+        zIndex: 99999,
+      } as Parameters<typeof confetti>[0])
+    }, 350)
+
+    // Burst 4 — klassisches grünes Konfetti als Hintergrundteppich
+    setTimeout(() => {
+      confetti({
+        particleCount: 80,
+        spread: 100,
+        origin: { x: 0.5, y: 0.3 },
+        colors: ["#16a34a", "#22c55e", "#bbf7d0", "#fbbf24", "#fef9c3"],
+        gravity: 0.6,
+        ticks: 200,
+        zIndex: 99998,
+      })
+    }, 150)
   }
 
   const getRegionInfo = () => {
