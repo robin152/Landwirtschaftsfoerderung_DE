@@ -56,14 +56,12 @@ export function NavigationIndustrial() {
         <div className="page-container px-4 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-18">
             {/* Logo */}
-            <a href="/" className="flex items-center gap-3 group">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-green-600 to-emerald-700 flex items-center justify-center shadow-md shadow-green-700/20">
-                <span className="text-white font-bold text-sm">AFP</span>
-              </div>
-              <div className="hidden sm:block">
-                <span className="font-bold text-slate-900 text-base leading-none">Landwirtschafts-</span>
-                <span className="block text-slate-500 font-medium text-xs">förderung</span>
-              </div>
+            <a href="/" className="flex items-center group">
+              <img
+                src="/eskalator-logo.webp"
+                alt="Eskalator AG – Fortschritt. Fördern."
+                className="h-9 md:h-10 w-auto object-contain"
+              />
             </a>
 
             {/* Desktop Nav - Pill Style */}

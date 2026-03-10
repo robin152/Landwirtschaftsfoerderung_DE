@@ -12,11 +12,11 @@ export function HeroSection() {
   return (
     <>
       {/* Hero Main */}
-      <section className="relative flex items-center justify-center px-4 pt-28 pb-8 md:min-h-[90svh] md:pt-32 md:pb-10 overflow-hidden" style={{ background: "linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 30%, #f8fafc 60%, #f0fdf4 100%)" }}>
-        {/* Background light orbs for glass depth */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-300/20 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
-        <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-green-400/15 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
-        <div className="absolute top-1/2 left-0 w-64 h-64 bg-teal-200/20 rounded-full blur-2xl pointer-events-none" aria-hidden="true" />
+      <section className="relative flex items-center justify-center px-4 pt-28 pb-8 md:min-h-[90svh] md:pt-32 md:pb-10 overflow-hidden bg-white">
+        {/* Subtle background orbs — very light, non-green */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-violet-100/40 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+        <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-emerald-50/60 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+        <div className="absolute top-1/2 left-0 w-64 h-64 bg-slate-50/80 rounded-full blur-2xl pointer-events-none" aria-hidden="true" />
 
         {/* Subtle wheat pattern background */}
         <div className="absolute inset-0 pointer-events-none opacity-[0.03]" aria-hidden="true">
@@ -46,45 +46,44 @@ export function HeroSection() {
           >
             {/* Glass headline card */}
             <div className="relative inline-block w-full mb-3">
-              {/* Glass panel behind headline */}
               <div className="relative rounded-2xl md:rounded-3xl px-4 py-5 md:px-8 md:py-7"
                 style={{
-                  background: "linear-gradient(135deg, rgba(255,255,255,0.72) 0%, rgba(240,253,244,0.55) 50%, rgba(255,255,255,0.62) 100%)",
-                  backdropFilter: "blur(20px) saturate(1.6)",
-                  WebkitBackdropFilter: "blur(20px) saturate(1.6)",
-                  border: "1px solid rgba(255,255,255,0.75)",
-                  boxShadow: "0 4px 32px rgba(16,120,56,0.08), 0 1px 0 rgba(255,255,255,0.9) inset, 0 -1px 0 rgba(255,255,255,0.3) inset",
+                  background: "linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(248,250,252,0.70) 50%, rgba(255,255,255,0.80) 100%)",
+                  backdropFilter: "blur(20px) saturate(1.4)",
+                  WebkitBackdropFilter: "blur(20px) saturate(1.4)",
+                  border: "1px solid rgba(255,255,255,0.85)",
+                  boxShadow: "0 4px 32px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.95) inset",
                 }}
               >
-                {/* Glass shine streak */}
-                <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent pointer-events-none" />
-                <div className="absolute top-0 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent blur-sm pointer-events-none" />
+                <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-white/90 to-transparent pointer-events-none" />
 
-                <div className="inline-flex flex-wrap items-center gap-2 bg-green-600/10 border border-green-400/30 rounded-full px-3 py-1 mb-3 backdrop-blur-sm">
-                  <WheatIcon className="w-3.5 h-3.5 text-green-700 flex-shrink-0" />
-                  <span className="text-xs font-semibold text-green-800">
-                    AFP – <span className="font-normal text-green-700">Agrarinvestitionsförderungsprogramm</span> 2023–2027
-                  </span>
+                {/* Eskalator logo badge */}
+                <div className="flex justify-center mb-3">
+                  <img
+                    src="/eskalator-logo.webp"
+                    alt="Eskalator AG – Fortschritt. Fördern."
+                    className="h-8 md:h-10 w-auto object-contain"
+                  />
                 </div>
 
                 <h1
                   className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-[1.1] text-balance mb-2 md:mb-3"
                   style={{
-                    background: "linear-gradient(135deg, #0f2e18 0%, #14532d 25%, #166534 50%, #15803d 70%, #1a3a22 100%)",
+                    background: "linear-gradient(135deg, #166534 0%, #15803d 30%, #7c3aed 65%, #6d28d9 100%)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text",
-                    filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.12))",
+                    filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.08))",
                   }}
                 >
                   Der Staat zahlt dir{" "}
                   <span
                     style={{
-                      background: "linear-gradient(135deg, #16a34a 0%, #15803d 40%, #22c55e 70%, #16a34a 100%)",
+                      background: "linear-gradient(135deg, #16a34a 0%, #15803d 40%, #22c55e 100%)",
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
                       backgroundClip: "text",
-                      filter: "drop-shadow(0 0 12px rgba(22,163,74,0.35))",
+                      filter: "drop-shadow(0 0 10px rgba(22,163,74,0.30))",
                     }}
                   >
                     bis 50&thinsp;%
