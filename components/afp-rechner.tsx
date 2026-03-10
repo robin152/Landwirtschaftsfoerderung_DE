@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useMemo } from "react"
-import { AlertTriangle, TrendingUp, Award, ChevronRight, Leaf, CheckCircle2, XCircle, Info } from "lucide-react"
+import { AlertTriangle, TrendingUp, Award, ChevronRight, Leaf, CheckCircle2, XCircle, Info, AlertCircle } from "lucide-react"
 
 // ─────────────────────────────────────────────────────────────────────────────
 // DATA — exakt nach Förderquoten-Tabelle 2026 (Screenshot + PDF)
@@ -363,6 +363,7 @@ function SelectField({
   options,
   placeholder,
   hint,
+  error,
 }: {
   label: string
   value: string
@@ -370,24 +371,43 @@ function SelectField({
   options: { value: string; label: string }[]
   placeholder: string
   hint?: string
+  error?: boolean
 }) {
   return (
-    <div className="flex flex-col gap-1.5">
-      <label className="text-sm font-semibold text-slate-300 uppercase tracking-wide">{label}</label>
-      <select
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        style={{ fontSize: "16px" }}
-        className="w-full bg-slate-800 border border-slate-600 text-white rounded-xl px-4 py-3.5 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all appearance-none cursor-pointer touch-manipulation min-h-[48px]"
-      >
-        <option value="">{placeholder}</option>
-        {options.map((o) => (
-          <option key={o.value} value={o.value}>
-            {o.label}
-          </option>
-        ))}
-      </select>
-      {hint && <p className="text-xs text-slate-500 mt-1">{hint}</p>}
+    <div className={`flex flex-col gap-1.5 ${error ? "animate-shake" : ""}`}>
+      <label className={`text-sm font-semibold uppercase tracking-wide ${error ? "text-red-400" : "text-slate-300"}`}>
+        {label}
+        {error && <span className="ml-1 normal-case font-normal text-red-400 text-xs">— Pflichtfeld</span>}
+      </label>
+      <div className="relative">
+        <select
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          style={{ fontSize: "16px" }}
+          className={`w-full bg-slate-800 border text-white rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 transition-all appearance-none cursor-pointer touch-manipulation min-h-[48px] ${
+            error
+              ? "border-red-500 ring-2 ring-red-500/30 focus:border-red-400 focus:ring-red-400/30"
+              : "border-slate-600 focus:border-emerald-500 focus:ring-emerald-500/20"
+          }`}
+        >
+          <option value="">{placeholder}</option>
+          {options.map((o) => (
+            <option key={o.value} value={o.value}>
+              {o.label}
+            </option>
+          ))}
+        </select>
+        {error && (
+          <AlertCircle className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-red-400 pointer-events-none" aria-hidden="true" />
+        )}
+      </div>
+      {error && (
+        <p className="text-xs text-red-400 flex items-center gap-1">
+          <AlertCircle className="w-3 h-3 flex-shrink-0" aria-hidden="true" />
+          Bitte auswählen, um fortzufahren.
+        </p>
+      )}
+      {hint && !error && <p className="text-xs text-slate-500 mt-0.5">{hint}</p>}
     </div>
   )
 }
@@ -402,6 +422,7 @@ function NumberField({
   placeholder,
   hint,
   inputMode: inputModeOverride,
+  error,
 }: {
   label: string
   value: string
@@ -412,10 +433,14 @@ function NumberField({
   placeholder?: string
   hint?: string
   inputMode?: React.HTMLAttributes<HTMLInputElement>["inputMode"]
+  error?: boolean
 }) {
   return (
-    <div className="flex flex-col gap-1.5">
-      <label className="text-sm font-semibold text-slate-300 uppercase tracking-wide">{label}</label>
+    <div className={`flex flex-col gap-1.5 ${error ? "animate-shake" : ""}`}>
+      <label className={`text-sm font-semibold uppercase tracking-wide ${error ? "text-red-400" : "text-slate-300"}`}>
+        {label}
+        {error && <span className="ml-1 normal-case font-normal text-red-400 text-xs">— Pflichtfeld</span>}
+      </label>
       <div className="relative">
         <input
           type="number"
@@ -426,15 +451,28 @@ function NumberField({
           max={max}
           placeholder={placeholder}
           style={{ fontSize: "16px" }}
-          className="w-full bg-slate-800 border border-slate-600 text-white rounded-xl px-4 py-3.5 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all pr-16 touch-manipulation min-h-[48px]"
+          className={`w-full bg-slate-800 border text-white rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 transition-all pr-16 touch-manipulation min-h-[48px] ${
+            error
+              ? "border-red-500 ring-2 ring-red-500/30 focus:border-red-400 focus:ring-red-400/30"
+              : "border-slate-600 focus:border-emerald-500 focus:ring-emerald-500/20"
+          }`}
         />
+        {error && !suffix && (
+          <AlertCircle className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-red-400 pointer-events-none" aria-hidden="true" />
+        )}
         {suffix && (
-          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-medium pointer-events-none">
+          <span className={`absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium pointer-events-none ${error ? "text-red-400" : "text-slate-400"}`}>
             {suffix}
           </span>
         )}
       </div>
-      {hint && <p className="text-xs text-slate-500 mt-1">{hint}</p>}
+      {error && (
+        <p className="text-xs text-red-400 flex items-center gap-1">
+          <AlertCircle className="w-3 h-3 flex-shrink-0" aria-hidden="true" />
+          Bitte ausfüllen, um fortzufahren.
+        </p>
+      )}
+      {hint && !error && <p className="text-xs text-slate-500 mt-0.5">{hint}</p>}
     </div>
   )
 }
@@ -510,6 +548,7 @@ function StepIndicator({ current }: { current: number }) {
 // ─────────────────────────────────────────────────────────────────────────────
 export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
   const [step, setStep] = useState(0)
+  const [showErrors, setShowErrors] = useState(false)
 
   // Step 0 — Betrieb
   const [bundesland, setBundesland] = useState<BundeslandKey | "">("")
@@ -559,9 +598,15 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
   const isBlocked = ergebnis && (ergebnis.prosperitaetFail || ergebnis.zuWenig || ergebnis.schweinSperre)
 
   function nextStep() {
+    if (!canProceed[step]) {
+      setShowErrors(true)
+      return
+    }
+    setShowErrors(false)
     if (step < 3) setStep(step + 1)
   }
   function prevStep() {
+    setShowErrors(false)
     if (step > 0) setStep(step - 1)
   }
 
@@ -586,24 +631,32 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
         {/* ─── STEP 0: Betrieb ─────────────────────────────────────────────── */}
         {step === 0 && (
           <div className="space-y-4">
-            <p className="text-slate-400 text-sm mb-4">
+            {showErrors && !canProceed[0] && (
+              <div className="flex items-center gap-2 bg-red-950/60 border border-red-700/50 rounded-xl px-4 py-3">
+                <AlertCircle className="w-4 h-4 text-red-400 flex-shrink-0" aria-hidden="true" />
+                <p className="text-red-300 text-sm font-semibold">Bitte alle Pflichtfelder ausfullen, um fortzufahren.</p>
+              </div>
+            )}
+            <p className="text-slate-400 text-sm">
               Wo liegt dein Betrieb und was hältst du?
             </p>
             <SelectField
               label="Bundesland"
               value={bundesland}
-              onChange={(v) => setBundesland(v as BundeslandKey | "")}
+              onChange={(v) => { setBundesland(v as BundeslandKey | ""); setShowErrors(false) }}
               options={bundeslandOptions}
               placeholder="Bundesland wählen"
               hint="Der Fördersatz hängt stark vom Bundesland ab."
+              error={showErrors && !bundesland}
             />
             <SelectField
               label="Hauptbetriebszweig / Tierhaltung"
               value={tierhaltung}
-              onChange={(v) => setTierhaltung(v as TierhaltungsartId | "")}
+              onChange={(v) => { setTierhaltung(v as TierhaltungsartId | ""); setShowErrors(false) }}
               options={tierhaltungOptions}
               placeholder="Betriebszweig wählen"
               hint="Schweine haben in manchen BL Sonderregeln."
+              error={showErrors && !tierhaltung}
             />
             <ToggleField
               label="Ökologischer Betrieb (Bio-Zertifizierung)"
@@ -617,18 +670,28 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
         {/* ─── STEP 1: Vorhaben ────────────────────────────────────────────── */}
         {step === 1 && (
           <div className="space-y-4">
-            <p className="text-slate-400 text-sm mb-2">
+            {showErrors && !canProceed[1] && (
+              <div className="flex items-center gap-2 bg-red-950/60 border border-red-700/50 rounded-xl px-4 py-3">
+                <AlertCircle className="w-4 h-4 text-red-400 flex-shrink-0" aria-hidden="true" />
+                <p className="text-red-300 text-sm font-semibold">
+                  {!investitionsart ? "Bitte eine Investitionsart wählen." : "Bitte ein Investitionsvolumen von mindestens 10.000 € eingeben."}
+                </p>
+              </div>
+            )}
+            <p className="text-slate-400 text-sm">
               Was willst du bauen oder investieren?
             </p>
-            <div className="grid grid-cols-1 gap-2">
+            <div className={`grid grid-cols-1 gap-2 ${showErrors && !investitionsart ? "rounded-xl ring-2 ring-red-500/40 p-1 -m-1" : ""}`}>
               {INVESTITIONSARTEN.map((art) => (
                 <button
                   key={art.id}
                   type="button"
-                  onClick={() => setInvestitionsart(art.id)}
+                  onClick={() => { setInvestitionsart(art.id); setShowErrors(false) }}
                   className={`text-left p-4 rounded-xl border transition-all duration-150 touch-manipulation min-h-[72px] ${
                     investitionsart === art.id
                       ? "border-emerald-500 bg-emerald-900/30 shadow-lg shadow-emerald-900/20"
+                      : showErrors && !investitionsart
+                      ? "border-red-700/60 bg-red-950/20 active:border-red-500 active:bg-red-950/30"
                       : "border-slate-700 bg-slate-800/50 active:border-slate-500 active:bg-slate-800"
                   }`}
                 >
@@ -642,14 +705,21 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                 </button>
               ))}
             </div>
+            {showErrors && !investitionsart && (
+              <p className="text-xs text-red-400 flex items-center gap-1 -mt-2">
+                <AlertCircle className="w-3 h-3 flex-shrink-0" aria-hidden="true" />
+                Bitte eine Investitionsart auswählen.
+              </p>
+            )}
             <NumberField
               label="Geplantes Investitionsvolumen"
               value={investVolumen}
-              onChange={setInvestVolumen}
+              onChange={(v) => { setInvestVolumen(v); setShowErrors(false) }}
               min={10_000}
               suffix="€"
               placeholder="z.B. 300000"
               hint="Netto ohne MwSt. Mind. 20.000 € (Kälbermatten: 10.000 €)."
+              error={showErrors && Number(investVolumen) < 10_000}
             />
           </div>
         )}
@@ -657,19 +727,26 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
         {/* ─── STEP 2: Person ──────────────────────────────────────────────── */}
         {step === 2 && (
           <div className="space-y-4">
-            <p className="text-slate-400 text-sm mb-2">
+            {showErrors && !canProceed[2] && (
+              <div className="flex items-center gap-2 bg-red-950/60 border border-red-700/50 rounded-xl px-4 py-3">
+                <AlertCircle className="w-4 h-4 text-red-400 flex-shrink-0" aria-hidden="true" />
+                <p className="text-red-300 text-sm font-semibold">Bitte das Alter eingeben, um das Ergebnis zu berechnen.</p>
+              </div>
+            )}
+            <p className="text-slate-400 text-sm">
               Wer ist der Betriebsleiter? Das bestimmt deine Boni.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <NumberField
                 label="Alter des Betriebsleiters"
                 value={alter}
-                onChange={setAlter}
+                onChange={(v) => { setAlter(v); setShowErrors(false) }}
                 min={18}
                 max={99}
                 suffix="Jahre"
                 placeholder="z.B. 34"
                 hint="Bis 40 Jahre: +10 % (max. 20.000 € extra)"
+                error={showErrors && !alter}
               />
               <SelectField
                 label="Familienstand"
