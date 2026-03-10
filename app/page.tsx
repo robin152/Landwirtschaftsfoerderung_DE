@@ -27,6 +27,13 @@ export default function LandingPage() {
           <HeroSection />
         </ErrorBoundary>
 
+        {/* Social Proof — direkt unter Hero */}
+        <ScrollReveal variant="fade-up" duration={0.6}>
+          <section className="py-10 sm:py-12 bg-white border-y border-slate-200">
+            <GoogleReviewsSlider />
+          </section>
+        </ScrollReveal>
+
         {/* AFP-Rechner */}
         <ScrollReveal variant="fade-up" duration={0.7}>
           <section id="rechner" className="py-16 sm:py-24 bg-gradient-to-b from-slate-50 to-white">
@@ -53,13 +60,6 @@ export default function LandingPage() {
         {/* Was wird gefördert */}
         <ScrollReveal variant="slide-left" duration={0.7}>
           <AssetsSection />
-        </ScrollReveal>
-
-        {/* Social Proof */}
-        <ScrollReveal variant="slide-right" duration={0.65}>
-          <section className="py-10 sm:py-12 bg-white border-y border-slate-200">
-            <GoogleReviewsSlider />
-          </section>
         </ScrollReveal>
 
         {/* Experte */}
