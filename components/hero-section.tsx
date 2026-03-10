@@ -62,7 +62,7 @@ export function HeroSection() {
                 <img
                   src="/hero-foerderung.webp"
                   alt="Bis zu 50 % staatliche Förderung für Landwirte"
-                  className="relative rounded-xl shadow-xl w-full object-cover max-h-48 ring-1 ring-white/20"
+                  className="relative rounded-xl shadow-xl w-full object-contain ring-1 ring-white/20"
                 />
                 <div className="absolute top-3 right-3 bg-white rounded-xl shadow-lg px-3 py-2 flex items-center gap-1.5 ring-1 ring-emerald-100">
                   <MoneyBagIcon className="w-5 h-5 text-emerald-600 flex-shrink-0" />
