@@ -102,10 +102,10 @@ export function NavigationIndustrial() {
             <div className="lg:hidden flex items-center gap-2">
               <Button
                 size="sm"
-                onClick={() => setIsModalOpen(true)}
-                className="bg-slate-900 hover:bg-slate-800 text-white font-medium px-4 py-2 rounded-full text-sm"
+                onClick={() => document.getElementById("rechner")?.scrollIntoView({ behavior: "smooth" })}
+                className="bg-green-600 hover:bg-green-500 text-white font-semibold px-4 py-2 rounded-full text-sm"
               >
-                Prüfen
+                Berechnen
               </Button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -164,17 +164,17 @@ export function NavigationIndustrial() {
                 
                 <div className="mt-6 pt-6 border-t border-slate-100">
                   <Button
-                    className="w-full bg-slate-900 hover:bg-slate-800 text-white py-4 rounded-xl font-semibold text-base"
+                    className="w-full bg-green-600 hover:bg-green-500 text-white py-4 rounded-xl font-semibold text-base"
                     onClick={() => {
                       setMobileMenuOpen(false)
-                      setIsModalOpen(true)
+                      document.getElementById("rechner")?.scrollIntoView({ behavior: "smooth" })
                     }}
                   >
-                    Förderfähigkeit prüfen
+                    Förderung kostenlos berechnen
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                   <p className="text-center text-xs text-slate-500 mt-3">
-                    Kostenlos • Ohne Anmeldung
+                    Kostenlos &bull; Ohne Anmeldung
                   </p>
                 </div>
               </div>

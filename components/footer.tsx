@@ -8,14 +8,14 @@ const footerLinks = {
     { label: "Datenschutz", href: "https://eskalator.ag/dsgvo", external: true },
   ],
   leistungen: [
-    { label: "Fördergebiete", href: "#regions", external: false },
-    { label: "Rechner", href: "#calculator", external: false },
-    { label: "Voraussetzungen", href: "#eligibility", external: false },
+    { label: "Förderquoten", href: "#funding-quotes", external: false },
+    { label: "Rechner", href: "#rechner", external: false },
+    { label: "Ablauf", href: "#ablauf", external: false },
   ],
   ressourcen: [
-    { label: "Risiken", href: "#risk", external: false },
-    { label: "Assets", href: "#assets", external: false },
-    { label: "Paradigmenwechsel", href: "#pivot", external: false },
+    { label: "Was wird gefördert", href: "#assets", external: false },
+    { label: "Nicht förderfähig", href: "#exclusions", external: false },
+    { label: "FAQ", href: "#faq", external: false },
   ],
 }
 
@@ -34,8 +34,8 @@ export function Footer() {
               className="bg-primary hover:bg-primary/90 text-primary-foreground border-0 transition-all h-12 px-6 font-medium group w-full sm:w-auto touch-target"
               asChild
             >
-              <a href="#calculator">
-                Förderhöhe berechnen
+              <a href="#rechner">
+                Förderung kostenlos berechnen
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
             </Button>

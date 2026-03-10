@@ -93,32 +93,34 @@ const WHATSAPP_NUMBER = "41763616062"
 const WHATSAPP_MESSAGE = encodeURIComponent("Guten Tag, wir müssen investieren und hätten dafür gerne Fördermittel! :-) ")
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`
 
-// Psychological micro-confirmations - dynamic based on personalization
+// Psychological micro-confirmations - tailored to Landwirtschaft / AFP
 const stepConfirmations = (firstName?: string, industry?: string) => [
   null, // Step 0
-  { 
-    text: firstName ? `Willkommen, ${firstName}!` : "Super!", 
-    subtext: firstName ? "Schön, dass Sie den nächsten Schritt gehen." : "Wir bereiten Ihre persönliche Analyse vor..." 
+  {
+    text: firstName ? `Willkommen, ${firstName}!` : "Super!",
+    subtext: firstName
+      ? "Schön, dass du den nächsten Schritt gehst – Patrick freut sich auf deine Anfrage."
+      : "Wir bereiten deine persönliche Förderanalyse vor...",
   },
-  { 
-    text: "Perfekt!", 
-    subtext: industry 
-      ? `Unternehmen aus dem Bereich ${industry} werden aktuell besonders häufig gefördert.`
-      : "Unternehmen in Ihrer Branche erhalten oft maximale Förderquoten." 
+  {
+    text: "Perfekt!",
+    subtext: industry
+      ? `Betriebe aus dem Bereich ${industry} sichern sich aktuell bis zu 50 % Zuschuss.`
+      : "Landwirtschaftliche Betriebe mit deinem Profil erhalten oft maximale AFP-Quoten.",
   },
-  { 
-    text: firstName ? `Sehr gut, ${firstName}!` : "Hervorragend!", 
-    subtext: "Patrick Starkmann wird Ihre Anfrage priorisiert bearbeiten." 
+  {
+    text: firstName ? `Sehr gut, ${firstName}!` : "Hervorragend!",
+    subtext: "Patrick Starkmann wird deine Anfrage priorisiert bearbeiten – meist am gleichen Werktag.",
   },
-  { 
-    text: "Wichtiger Schritt!", 
-    subtext: "Telefonische Beratung ist 3x effektiver als E-Mail." 
+  {
+    text: "Wichtiger Schritt!",
+    subtext: "Ein kurzes Telefongespräch verhindert 70 % der häufigsten Antragsfehler.",
   },
-  { 
-    text: "Fast geschafft!", 
-    subtext: industry 
-      ? `Mehrere ${industry}-Unternehmen haben dieses Jahr bereits Förderung erhalten.`
-      : "Ihr Standort wird auf Förderfähigkeit geprüft..." 
+  {
+    text: "Fast geschafft!",
+    subtext: industry
+      ? `Mehrere ${industry}-Betriebe haben 2026 bereits ihren AFP-Bescheid erhalten.`
+      : "Dein Standort wird auf volle Förderfähigkeit geprüft...",
   },
   null, // Final step - no confirmation
 ]

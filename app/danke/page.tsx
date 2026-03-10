@@ -123,122 +123,112 @@ function Confetti() {
 /* ------------------------------------------------------------------ */
 export default function ThankYouPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-teal-50/30">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Confetti effect – safely deferred to client */}
       <Confetti />
 
-      <div className="container mx-auto px-4 py-12 md:py-20">
-        <div className="max-w-2xl mx-auto">
-          {/* Success Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden"
-          >
-            {/* Header */}
-            <div className="bg-gradient-to-br from-teal-600 to-emerald-600 px-6 py-8 text-center text-white">
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ type: "spring", delay: 0.2 }}
-                className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4"
-              >
-                <CheckCircle className="w-10 h-10" />
-              </motion.div>
-              <h1 className="text-2xl md:text-3xl font-bold mb-2">Anfrage erfolgreich gesendet!</h1>
-              <p className="text-teal-100">Ihre Förderfähigkeit wird jetzt geprüft</p>
-            </div>
-
-            {/* Content */}
-            <div className="p-6 md:p-8">
-              {/* Expert Card */}
-              <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-xl mb-6">
-                <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-teal-500 flex-shrink-0">
-                  <Image
-                    src="/patrick-starkmann.webp"
-                    alt="Patrick Starkmann"
-                    fill
-                    className="object-cover object-top"
-                  />
-                  <span className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-white rounded-full" />
-                </div>
-                <div>
-                  <p className="font-bold text-slate-900">Patrick Starkmann</p>
-                  <p className="text-sm text-slate-500">Bestellter Gutachter & Sachverständiger (DGUSV)</p>
-                  <p className="text-xs text-teal-600 mt-1">Prüft Ihre Anfrage persönlich</p>
-                </div>
-              </div>
-
-              {/* Next Steps */}
-              <h2 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-teal-600" />
-                Was passiert als nächstes?
-              </h2>
-
-              <div className="space-y-4 mb-8">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-sm font-bold text-teal-600">1</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-slate-800">Prüfung Ihrer Angaben</p>
-                    <p className="text-sm text-slate-500">
-                      Wir analysieren Ihre Förderfähigkeit anhand Standort, Branche und Investitionsvorhaben
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-sm font-bold text-teal-600">2</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-slate-800">Persönliche Rückmeldung</p>
-                    <p className="text-sm text-slate-500">
-                      Sie erhalten eine individuelle Einschätzung per E-Mail
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-sm font-bold text-teal-600">3</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-slate-800">Beratungsgespräch (optional)</p>
-                    <p className="text-sm text-slate-500">
-                      Bei positiver Prüfung besprechen wir die nächsten Schritte
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* TidyCal Calendar Embed */}
-              <div className="mb-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <Calendar className="w-5 h-5 text-teal-600" />
-                  <p className="font-bold text-slate-900">Jetzt direkt Termin buchen</p>
-                </div>
-                <p className="text-sm text-slate-600 mb-4">
-                  Wählen Sie einen passenden Termin für Ihr kostenloses Erstgespräch mit Patrick Starkmann.
-                </p>
-                <TidyCalEmbed path="team/eskalator-ag/regional-investition" />
-              </div>
-
-              {/* Trust */}
-              <div className="flex items-center justify-center gap-2 text-xs text-slate-400">
-                <Shield className="w-4 h-4" />
-                <span>Ihre Daten sind sicher und werden nicht an Dritte weitergegeben</span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Back Link */}
-          <div className="text-center mt-8">
-            <Link href="/" className="text-sm text-slate-500 hover:text-teal-600 transition-colors">
-              Zurück zur Startseite
-            </Link>
+      <div className="container mx-auto px-4 py-10 md:py-16 max-w-2xl">
+        {/* Success Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden"
+        >
+          {/* Header */}
+          <div className="bg-gradient-to-br from-green-700 to-emerald-600 px-6 py-8 text-center text-white">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", delay: 0.2 }}
+              className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <CheckCircle className="w-10 h-10" aria-hidden="true" />
+            </motion.div>
+            <h1 className="text-2xl md:text-3xl font-bold mb-2 text-balance">Anfrage erfolgreich gesendet!</h1>
+            <p className="text-green-100 text-sm">Deine Förderfähigkeit wird jetzt geprüft</p>
           </div>
+
+          {/* Content */}
+          <div className="p-5 md:p-8">
+            {/* Expert Card */}
+            <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-xl mb-6">
+              <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-green-500 flex-shrink-0">
+                <Image
+                  src="/patrick-starkmann.webp"
+                  alt="Patrick Starkmann"
+                  fill
+                  className="object-cover object-top"
+                />
+                <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full" />
+              </div>
+              <div>
+                <p className="font-bold text-slate-900">Patrick Starkmann</p>
+                <p className="text-sm text-slate-500">AFP-Spezialist &amp; Sachverständiger (DGUSV)</p>
+                <p className="text-xs text-emerald-600 mt-0.5 font-medium">Prüft deine Anfrage persönlich</p>
+              </div>
+            </div>
+
+            {/* Next Steps — micro-commitment */}
+            <h2 className="font-bold text-slate-900 mb-4 flex items-center gap-2 text-base">
+              <Sparkles className="w-4 h-4 text-emerald-600" aria-hidden="true" />
+              Was passiert als nächstes?
+            </h2>
+
+            <div className="space-y-3 mb-7">
+              {[
+                {
+                  n: "1",
+                  title: "Prüfung deiner Angaben",
+                  desc: "Patrick analysiert Bundesland, Vorhaben und Investitionssumme auf maximale Förderfähigkeit.",
+                },
+                {
+                  n: "2",
+                  title: "Persönliche Rückmeldung",
+                  desc: "Du erhältst deine individuelle Fördereinschätzung per E-Mail — meist am gleichen Werktag.",
+                },
+                {
+                  n: "3",
+                  title: "Beratungstermin (kostenlos)",
+                  desc: "Bei positivem Befund besprechen wir die Antragsstrategie — kein Risiko, keine Verpflichtung.",
+                },
+              ].map(({ n, title, desc }) => (
+                <div key={n} className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-xs font-bold text-emerald-700">{n}</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-slate-800 text-sm">{title}</p>
+                    <p className="text-xs text-slate-500 mt-0.5 leading-relaxed">{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* TidyCal Calendar Embed */}
+            <div className="mb-5">
+              <div className="flex items-center gap-2 mb-3">
+                <Calendar className="w-4 h-4 text-emerald-600" aria-hidden="true" />
+                <p className="font-bold text-slate-900 text-sm">Direkt Termin buchen</p>
+              </div>
+              <p className="text-xs text-slate-500 mb-4">
+                Wähle einen Termin für dein kostenloses Erstgespräch mit Patrick.
+              </p>
+              <TidyCalEmbed path="team/eskalator-ag/regional-investition" />
+            </div>
+
+            {/* Trust */}
+            <div className="flex items-center justify-center gap-2 text-xs text-slate-400">
+              <Shield className="w-3.5 h-3.5" aria-hidden="true" />
+              <span>Deine Daten sind sicher und werden nicht weitergegeben</span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Back Link */}
+        <div className="text-center mt-6">
+          <Link href="/" className="text-sm text-slate-500 hover:text-emerald-600 transition-colors">
+            Zurück zur Startseite
+          </Link>
         </div>
       </div>
     </div>
