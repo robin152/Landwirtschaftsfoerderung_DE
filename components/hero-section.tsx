@@ -31,7 +31,7 @@ export function HeroSection() {
         </div>
 
         <div className="page-container relative w-full">
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-12 items-center">
+          <div className="grid md:grid-cols-[55%_45%] gap-4 md:gap-8 lg:gap-10 items-center">
 
             {/* Left: Text & CTA — always left */}
             <motion.div
@@ -48,7 +48,7 @@ export function HeroSection() {
                 </span>
               </div>
 
-              <h1 className="text-2xl sm:text-3xl md:text-3xl lg:text-5xl xl:text-6xl font-bold mb-2 lg:mb-5 bg-gradient-to-br from-slate-900 via-green-800 to-slate-700 bg-clip-text text-transparent leading-tight text-balance">
+              <h1 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-2 lg:mb-5 bg-gradient-to-br from-slate-900 via-green-800 to-slate-700 bg-clip-text text-transparent leading-[1.15] text-pretty">
                 Der Staat zahlt dir <span className="text-green-700">bis 50 %</span> für deinen nächsten Stall, Güllelager oder Klimaschutz
               </h1>
 
@@ -62,7 +62,7 @@ export function HeroSection() {
                 <img
                   src="/hero-foerderung.webp"
                   alt="Bis zu 50 % staatliche Förderung für Landwirte"
-                  className="relative rounded-xl shadow-xl w-full object-cover max-h-48 ring-1 ring-white/20"
+                  className="relative rounded-xl shadow-xl w-full object-contain ring-1 ring-white/20"
                 />
                 <div className="absolute top-3 right-3 bg-white rounded-xl shadow-lg px-3 py-2 flex items-center gap-1.5 ring-1 ring-emerald-100">
                   <MoneyBagIcon className="w-5 h-5 text-emerald-600 flex-shrink-0" />
