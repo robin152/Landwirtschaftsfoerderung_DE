@@ -1,13 +1,32 @@
 import { Button } from "@/components/ui/button"
-import { ArrowRight, CheckCircle2, Clock, TrendingUp, Zap, Award, BarChart3 } from "lucide-react"
+import { ArrowRight, CheckCircle2, Clock, TrendingUp } from "lucide-react"
 import { motion } from "framer-motion"
+import { TractorIcon, WheatIcon, MoneyBagIcon, BarnIcon, ShieldCheckAgriIcon } from "@/components/agri-icons"
+import { AgriLottie } from "@/components/agri-lottie"
 
 export function HeroSection() {
   return (
     <>
       {/* Hero Main */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 pt-24 pb-12 bg-gradient-to-b from-slate-50 to-white">
-        <div className="container max-w-6xl mx-auto">
+      <section className="relative min-h-screen flex items-center justify-center px-4 pt-24 pb-12 bg-gradient-to-b from-slate-50 to-white overflow-hidden">
+        {/* Subtle wheat pattern background */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.03]" aria-hidden="true">
+          {[...Array(6)].map((_, i) => (
+            <WheatIcon
+              key={i}
+              className="absolute text-green-900"
+              style={{
+                width: 120,
+                height: 120,
+                top: `${10 + i * 15}%`,
+                left: `${i % 2 === 0 ? 2 + i * 3 : 88 - i * 3}%`,
+                transform: `rotate(${i * 12 - 20}deg)`,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="container max-w-6xl mx-auto relative">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left: Text & CTA */}
             <motion.div
@@ -16,7 +35,13 @@ export function HeroSection() {
               transition={{ duration: 0.6 }}
               className="text-center lg:text-left"
             >
-              <h1 className="text-5xl md:text-6xl lg:text-6xl font-bold mb-6 bg-gradient-to-br from-slate-900 via-green-800 to-slate-700 bg-clip-text text-transparent leading-tight">
+              {/* Agri badge */}
+              <div className="inline-flex items-center gap-2 bg-green-50 border border-green-200 rounded-full px-4 py-1.5 mb-5">
+                <WheatIcon className="w-4 h-4 text-green-700" />
+                <span className="text-sm font-semibold text-green-800">AFP-Förderung 2023–2027</span>
+              </div>
+
+              <h1 className="text-5xl md:text-6xl lg:text-6xl font-bold mb-6 bg-gradient-to-br from-slate-900 via-green-800 to-slate-700 bg-clip-text text-transparent leading-tight text-balance">
                 Der Staat zahlt dir 20–50 % für deinen nächsten Stall, Güllelager oder Klimaschutz
               </h1>
 
@@ -43,9 +68,10 @@ export function HeroSection() {
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Button
                     size="lg"
-                    className="gap-2 bg-green-600 hover:bg-green-500 text-base h-12 px-8 w-full sm:w-auto"
+                    className="gap-2 bg-green-600 hover:bg-green-500 text-base h-13 px-8 w-full sm:w-auto rounded-xl font-bold shadow-lg shadow-green-900/20"
                     onClick={() => document.getElementById("rechner")?.scrollIntoView({ behavior: "smooth" })}
                   >
+                    <TractorIcon className="w-5 h-5 text-white" />
                     JETZT GRATIS BERECHNEN
                     <ArrowRight className="w-5 h-5" />
                   </Button>
@@ -54,9 +80,10 @@ export function HeroSection() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="gap-2 text-base h-12 px-8 w-full sm:w-auto"
+                    className="gap-2 text-base h-13 px-8 w-full sm:w-auto rounded-xl border-green-300 text-green-800 hover:bg-green-50"
                     onClick={() => document.getElementById("rechner")?.scrollIntoView({ behavior: "smooth" })}
                   >
+                    <WheatIcon className="w-5 h-5 text-green-700" />
                     Persönliche Beratung
                   </Button>
                 </motion.div>
@@ -67,7 +94,7 @@ export function HeroSection() {
               </p>
             </motion.div>
 
-            {/* Right: Hero Image */}
+            {/* Right: Hero Image + floating Lottie coin animation */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -75,13 +102,16 @@ export function HeroSection() {
               className="relative flex items-center justify-center"
             >
               <div className="relative w-full max-w-md mx-auto">
-                {/* Glow effect */}
                 <div className="absolute inset-0 rounded-2xl bg-green-400/20 blur-2xl scale-105" />
                 <img
                   src="/hero-foerderung.webp"
                   alt="Bis zu 50 % staatliche Förderung für Landwirte – Stallbau, Tierwohl, Umwelttechnik"
                   className="relative rounded-2xl shadow-2xl w-full object-cover"
                 />
+                {/* Floating Lottie money animation top-right */}
+                <div className="absolute -top-6 -right-6 w-24 h-24 pointer-events-none">
+                  <AgriLottie animation="coins" className="w-full h-full" loop autoplay />
+                </div>
               </div>
             </motion.div>
           </div>
@@ -92,7 +122,7 @@ export function HeroSection() {
       <section className="py-16 sm:py-24 bg-white border-t border-slate-200">
         <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-balance">
               Warum Landwirte mit uns mehr rausholen
             </h2>
             <p className="text-lg text-slate-600">
@@ -103,22 +133,25 @@ export function HeroSection() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                icon: Zap,
+                AgriIcon: TractorIcon,
                 title: "In 45 Sek. weißt du es",
-                description: "Unser Rechner gibt dir sofort deinen exakten Förderbetrag – kein Blabla, keine versteckten Kosten."
+                description: "Unser Rechner gibt dir sofort deinen exakten Förderbetrag – kein Blabla, keine versteckten Kosten.",
+                color: "from-green-600 to-emerald-600",
               },
               {
-                icon: Award,
+                AgriIcon: ShieldCheckAgriIcon,
                 title: "Ich verhindere Ablehnungen",
-                description: "Prosperitätsgrenze, vorzeitiger Maßnahmenbeginn, falsche Kostenart – ich checke das alles vorher. Punkt."
+                description: "Prosperitätsgrenze, vorzeitiger Maßnahmenbeginn, falsche Kostenart – ich checke das alles vorher. Punkt.",
+                color: "from-teal-600 to-green-700",
               },
               {
-                icon: BarChart3,
+                AgriIcon: MoneyBagIcon,
                 title: "20–50 % statt gar nichts",
-                description: "Tierwohl-Premium, SIUK-Bonus, Junglandwirt-Zuschlag, regionale Boni – wir finden alles, was dir zusteht."
-              }
+                description: "Tierwohl-Premium, SIUK-Bonus, Junglandwirt-Zuschlag, regionale Boni – wir finden alles, was dir zusteht.",
+                color: "from-amber-600 to-green-600",
+              },
             ].map((benefit, index) => {
-              const Icon = benefit.icon
+              const { AgriIcon } = benefit
               return (
                 <motion.div
                   key={index}
@@ -126,10 +159,10 @@ export function HeroSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="p-6 rounded-xl bg-slate-50 border border-slate-200 hover:border-green-300 hover:shadow-lg transition-all"
+                  className="p-6 rounded-xl bg-slate-50 border border-slate-200 hover:border-green-300 hover:shadow-lg transition-all group"
                 >
-                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-green-600 to-emerald-600 flex items-center justify-center mb-4">
-                    <Icon className="w-6 h-6 text-white" />
+                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${benefit.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                    <AgriIcon className="w-7 h-7 text-white" />
                   </div>
                   <h3 className="text-lg font-bold text-slate-900 mb-2">{benefit.title}</h3>
                   <p className="text-slate-600 text-sm leading-relaxed">{benefit.description}</p>

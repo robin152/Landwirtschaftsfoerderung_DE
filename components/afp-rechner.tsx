@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react"
 import { AlertTriangle, TrendingUp, Award, ChevronRight, Leaf, CheckCircle2, XCircle, Info, AlertCircle } from "lucide-react"
 import { LeadCaptureModal } from "@/components/lead-capture-modal"
+import { TractorIcon, WheatIcon, BarnIcon, MoneyBagIcon, SunLeafIcon } from "@/components/agri-icons"
 
 // ─────────────────────────────────────────────────────────────────────────────
 // DATA — exakt nach Förderquoten-Tabelle 2026 (Screenshot + PDF)
@@ -169,6 +170,7 @@ const INVESTITIONSARTEN = [
     desc: "Mehr Platz, Licht, Lüftung, Laufhöfe, Liegeboxen — messbar über Mindeststandard",
     badge: "bis 40 %",
     badgeColor: "bg-emerald-900/60 text-emerald-300 border-emerald-700",
+    icon: "barn",
   },
   {
     id: "siuk",
@@ -176,6 +178,7 @@ const INVESTITIONSARTEN = [
     desc: "Abluft, Güllekühlung, Biogasanlage, Lager mit fester Abdeckung",
     badge: "bis 75 %",
     badgeColor: "bg-blue-900/60 text-blue-300 border-blue-700",
+    icon: "sun",
   },
   {
     id: "kombi",
@@ -183,6 +186,7 @@ const INVESTITIONSARTEN = [
     desc: "Stallbau + Emissionsschutz kombiniert — holt den maximalen Gesamtsatz",
     badge: "Maximum",
     badgeColor: "bg-orange-900/60 text-orange-300 border-orange-700",
+    icon: "money",
   },
   {
     id: "guelle",
@@ -190,6 +194,7 @@ const INVESTITIONSARTEN = [
     desc: "+2 Monate Kapazität über gesetzl. Minimum, feste Abdeckung Pflicht",
     badge: "40 %",
     badgeColor: "bg-emerald-900/60 text-emerald-300 border-emerald-700",
+    icon: "wheat",
   },
   {
     id: "kaelber",
@@ -197,6 +202,7 @@ const INVESTITIONSARTEN = [
     desc: "Liege- & Tränkebereiche für Kälber unter 8 Monate — NRW +10 % Aufschlag",
     badge: "30–40 %",
     badgeColor: "bg-amber-900/60 text-amber-300 border-amber-700",
+    icon: "sun",
   },
   {
     id: "praezision",
@@ -204,6 +210,7 @@ const INVESTITIONSARTEN = [
     desc: "GPS/Sensorik mind. 15 % Wassereinsparung, Hagelschutznetze, Frostschutz",
     badge: "30 %",
     badgeColor: "bg-slate-700/60 text-slate-300 border-slate-600",
+    icon: "tractor",
   },
   {
     id: "basis",
@@ -211,6 +218,7 @@ const INVESTITIONSARTEN = [
     desc: "Maßnahmen ohne erhöhten Tierwohl- oder SIUK-Anteil",
     badge: "20–25 %",
     badgeColor: "bg-slate-700/60 text-slate-300 border-slate-600",
+    icon: "barn",
   },
 ] as const
 
@@ -351,6 +359,18 @@ function berechne(params: {
     besonderheit: bl.besonderheit,
     minInvest,
     investVolumen,
+  }
+}
+
+// Map icon keys to agri SVG components
+function AgriCardIcon({ icon, className }: { icon: string; className?: string }) {
+  switch (icon) {
+    case "tractor": return <TractorIcon className={className} />
+    case "wheat":   return <WheatIcon className={className} />
+    case "barn":    return <BarnIcon className={className} />
+    case "money":   return <MoneyBagIcon className={className} />
+    case "sun":     return <SunLeafIcon className={className} />
+    default:        return <WheatIcon className={className} />
   }
 }
 
@@ -619,7 +639,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
       <div className="bg-gradient-to-r from-emerald-900/50 to-slate-900 border-b border-slate-700 px-4 sm:px-6 py-4 sm:py-5">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 sm:w-10 sm:h-10 bg-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0">
-            <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-white" aria-hidden="true" />
+            <TractorIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white" aria-hidden="true" />
           </div>
           <div>
             <h3 className="text-white font-bold text-base sm:text-lg leading-tight">AFP-Förderrechner 2026</h3>
@@ -698,13 +718,22 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                       : "border-slate-700 bg-slate-800/50 active:border-slate-500 active:bg-slate-800"
                   }`}
                 >
-                  <div className="flex items-start justify-between gap-2">
-                    <span className="text-sm font-semibold text-white leading-tight">{art.label}</span>
-                    <span className={`text-xs px-2 py-0.5 rounded-full border whitespace-nowrap flex-shrink-0 ${art.badgeColor}`}>
-                      {art.badge}
-                    </span>
+                  <div className="flex items-start gap-3">
+                    <div className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center mt-0.5 ${
+                      investitionsart === art.id ? "bg-emerald-600/30" : "bg-slate-700/50"
+                    }`}>
+                      <AgriCardIcon icon={art.icon} className={`w-5 h-5 ${investitionsart === art.id ? "text-emerald-400" : "text-slate-400"}`} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between gap-2 mb-1">
+                        <span className="text-sm font-semibold text-white leading-tight">{art.label}</span>
+                        <span className={`text-xs px-2 py-0.5 rounded-full border whitespace-nowrap flex-shrink-0 ${art.badgeColor}`}>
+                          {art.badge}
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-400 leading-relaxed">{art.desc}</p>
+                    </div>
                   </div>
-                  <p className="text-xs text-slate-400 mt-1 leading-relaxed">{art.desc}</p>
                 </button>
               ))}
             </div>
@@ -889,10 +918,14 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
 
                     {/* Overlay CTA — darüber zentriert */}
                     <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900/80 backdrop-blur-[2px] px-6 py-8">
-                      <div className="w-14 h-14 bg-emerald-600 rounded-full flex items-center justify-center mb-4 shadow-lg shadow-emerald-900/50">
-                        <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                        </svg>
+                      <div className="w-16 h-16 bg-emerald-600 rounded-full flex items-center justify-center mb-4 shadow-lg shadow-emerald-900/50 relative">
+                        <MoneyBagIcon className="w-9 h-9 text-white" />
+                        {/* lock badge */}
+                        <div className="absolute -top-1 -right-1 w-6 h-6 bg-slate-900 border-2 border-emerald-600 rounded-full flex items-center justify-center">
+                          <svg className="w-3 h-3 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                          </svg>
+                        </div>
                       </div>
                       <h4 className="text-white font-extrabold text-xl text-center mb-2 leading-tight">
                         Dein Ergebnis ist fertig!
@@ -904,6 +937,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                         onClick={() => setShowUnlockModal(true)}
                         className="w-full max-w-xs bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 active:from-orange-700 active:to-orange-600 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-200 shadow-lg shadow-orange-900/40 text-base touch-manipulation min-h-[52px]"
                       >
+                        <TractorIcon className="w-5 h-5 text-white flex-shrink-0" />
                         Ergebnis jetzt freischalten
                         <ChevronRight className="w-5 h-5" aria-hidden="true" />
                       </button>
@@ -998,6 +1032,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                       onClick={onCTAClick}
                       className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 active:from-orange-700 active:to-orange-600 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-200 shadow-lg shadow-orange-900/40 text-sm touch-manipulation min-h-[52px]"
                     >
+                      <WheatIcon className="w-5 h-5 text-white flex-shrink-0" />
                       JETZT PERSÖNLICHEN MAXIMAL-CHECK SICHERN (kostenlos)
                       <ChevronRight className="w-4 h-4" aria-hidden="true" />
                     </button>
