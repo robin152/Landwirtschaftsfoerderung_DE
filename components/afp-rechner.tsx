@@ -615,6 +615,18 @@ function StepIndicator({ current }: { current: number }) {
 // ─────────────────────────────────────────────────────────────────────────────
 // MAIN COMPONENT
 // ─────────────────────────────────────────────────────────────────────────────
+// ─── Confetti on first mount ─────────────────────────────────────────────────
+function ConfettiOnMount({ children, triggerConfetti }: { children: React.ReactNode; triggerConfetti: () => void }) {
+  const firedRef = useRef(false)
+  useEffect(() => {
+    if (!firedRef.current) {
+      firedRef.current = true
+      setTimeout(triggerConfetti, 200)
+    }
+  }, [triggerConfetti])
+  return <>{children}</>
+}
+
 export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
   const [step, setStep] = useState(0)
   const [showErrors, setShowErrors] = useState(false)
@@ -1014,98 +1026,48 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
 
                 {/* ── ENTSPERRT: Volles Ergebnis ──────────────────────── */}
                 {resultUnlocked && (
-                  <div className="p-5">
-                    {/* Level-Bar */}
-                    <div className="mb-4">
-                      <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wide">Förderlevel</span>
-                        <span className="text-xs font-bold text-white">{ergebnis.foerderLevel} %</span>
-                      </div>
-                      <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full transition-all duration-700"
-                          style={{ width: `${ergebnis.foerderLevel}%` }}
-                        />
-                      </div>
-                    </div>
+                  <ConfettiOnMount triggerConfetti={triggerConfetti}>
+                  <div className="p-5 sm:p-7">
 
-                    <p className="text-sm font-semibold text-emerald-400 uppercase tracking-wide mb-2">
-                      Dein Zuschuss vom Staat:
+                    {/* Zuschuss — gross & clean */}
+                    <p className="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-3">
+                      Dein staatlicher Zuschuss
                     </p>
-                    <p className="text-4xl sm:text-5xl font-extrabold text-white leading-none mb-2">
+                    <p className="text-5xl sm:text-6xl font-extrabold text-white leading-none mb-1 tabular-nums">
                       {ergebnis.zuschuss.toLocaleString("de-DE", { maximumFractionDigits: 0 })} €
                     </p>
-                    <p className="text-emerald-300 text-sm mb-5">
-                      = {ergebnis.gesamtSatz} % von {ergebnis.cappedInvest.toLocaleString("de-DE")} € Investition
+                    <p className="text-emerald-300/70 text-sm mb-6">
+                      bei {ergebnis.cappedInvest.toLocaleString("de-DE")} € Investition
                     </p>
 
-                    {/* Aufschlüsselung */}
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
-                      <div className="bg-slate-800/60 rounded-lg p-3 text-center">
-                        <p className="text-xs text-slate-400 mb-0.5">Basis</p>
-                        <p className="text-base font-bold text-white">{ergebnis.baseSatz} %</p>
-                      </div>
-                      {ergebnis.qualBonus > 0 && (
-                        <div className="bg-blue-900/40 border border-blue-700/40 rounded-lg p-3 text-center">
-                          <p className="text-xs text-slate-400 mb-0.5">Meister-Bonus</p>
-                          <p className="text-base font-bold text-blue-400">+{ergebnis.qualBonus} %</p>
-                        </div>
+                    {/* Badges — nur wenn relevant */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {ergebnis.istJunglandwirt && (
+                        <span className="inline-flex items-center gap-1.5 bg-amber-900/40 border border-amber-700/40 text-amber-300 text-xs font-semibold px-3 py-1.5 rounded-full">
+                          <Award className="w-3.5 h-3.5" aria-hidden="true" />
+                          Junglandwirt-Bonus aktiv (+10 %)
+                        </span>
                       )}
-                      {ergebnis.oekoBonus > 0 && (
-                        <div className="bg-green-900/40 border border-green-700/40 rounded-lg p-3 text-center">
-                          <p className="text-xs text-slate-400 mb-0.5">Öko-Bonus</p>
-                          <p className="text-base font-bold text-green-400">+{ergebnis.oekoBonus} %</p>
-                        </div>
+                      {ergebnis.besonderheit && (
+                        <span className="inline-flex items-center gap-1.5 bg-emerald-900/30 border border-emerald-700/30 text-emerald-300 text-xs font-semibold px-3 py-1.5 rounded-full">
+                          <Leaf className="w-3.5 h-3.5" aria-hidden="true" />
+                          {ergebnis.besonderheit.split(".")[0]}
+                        </span>
                       )}
-                      <div className={`rounded-lg p-3 text-center ${ergebnis.istJunglandwirt ? "bg-amber-900/40 border border-amber-700/40" : "bg-slate-800/60"}`}>
-                        <p className="text-xs text-slate-400 mb-0.5">Junglandwirt</p>
-                        <p className={`text-base font-bold ${ergebnis.istJunglandwirt ? "text-amber-400" : "text-slate-500"}`}>
-                          {ergebnis.istJunglandwirt ? `+${ergebnis.jungBonusPP} %` : "—"}
-                        </p>
-                      </div>
                     </div>
 
-                    {/* Besonderheit */}
-                    {ergebnis.besonderheit && (
-                      <div className="flex items-start gap-2 bg-slate-800/50 rounded-lg px-3 py-2 mb-4">
-                        <Leaf className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                        <p className="text-slate-300 text-xs">{ergebnis.besonderheit}</p>
-                      </div>
-                    )}
-
-                    {ergebnis.istJunglandwirt && (
-                      <div className="flex items-center gap-2 bg-amber-900/30 border border-amber-700/30 rounded-lg px-3 py-2 mb-4">
-                        <Award className="w-4 h-4 text-amber-400 flex-shrink-0" aria-hidden="true" />
-                        <p className="text-amber-300 text-xs font-medium">
-                          Junglandwirt-Bonus aktiv — max. 20.000 € Aufschlag auf Basis-Zuschuss
-                        </p>
-                      </div>
-                    )}
-
-                    <div className="bg-emerald-950/40 border border-emerald-700/30 rounded-lg px-4 py-3 mb-4">
-                      <p className="text-emerald-300 text-sm font-bold">
-                        Das ist mehr, als 87 % der Landwirte allein rausholen.
+                    {/* Nächster Schritt */}
+                    <div className="bg-emerald-950/40 border border-emerald-700/30 rounded-xl px-4 py-3.5 mb-6">
+                      <p className="text-emerald-300 text-sm font-bold mb-0.5">
+                        Mehr als 87 % der Landwirte holen das nicht alleine raus.
                       </p>
-                      <p className="text-slate-400 text-xs mt-1">
-                        Nächster Schritt: Ich prüfe deine Unterlagen kostenlos — und sorge dafür,
-                        dass kein Fehler deinen Antrag killt.
+                      <p className="text-slate-400 text-xs leading-relaxed">
+                        Buch jetzt deinen kostenlosen Termin — Patrick prüft dein Vorhaben und sorgt dafür, dass kein Fehler deinen Antrag gefährdet.
                       </p>
                     </div>
-
-                    <button
-                      onClick={onCTAClick}
-                      className="relative overflow-hidden w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 active:from-orange-700 active:to-orange-600 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-200 text-sm touch-manipulation min-h-[52px] hg-btn"
-                    >
-                      <WheatIcon className="w-5 h-5 text-white flex-shrink-0" />
-                      JETZT PERSÖNLICHEN MAXIMAL-CHECK SICHERN (kostenlos)
-                      <ChevronRight className="w-4 h-4" aria-hidden="true" />
-                    </button>
-                    <p className="text-center text-xs text-slate-500 mt-2">
-                      Kostenlos · Unverbindlich · Nur für Vorhaben ab 20.000 €
-                    </p>
 
                     {/* Kalender — Termin direkt buchen */}
-                    <div className="mt-6 border-t border-slate-700/60 pt-6">
+                    <div className="border-t border-slate-700/60 pt-6">
                       <div className="flex items-center gap-3 mb-3">
                         <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-emerald-500 flex-shrink-0">
                           <img
@@ -1116,22 +1078,15 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                           <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-slate-900 rounded-full" />
                         </div>
                         <div>
-                          <p className="text-sm font-bold text-white">Direkt Termin buchen</p>
+                          <p className="text-sm font-bold text-white">Kostenlosen Termin buchen</p>
                           <p className="text-xs text-slate-400">Patrick Starkmann · AFP-Spezialist</p>
                         </div>
-                      </div>
-
-                      <div className="bg-amber-950/40 border border-amber-600/30 rounded-xl px-4 py-3 mb-4 flex items-start gap-2.5">
-                        <Calendar className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                        <p className="text-amber-200 text-xs leading-relaxed">
-                          <span className="font-bold">Jetzt kostenlosen Beratungstermin sichern.</span>{" "}
-                          Patrick prüft dein Vorhaben persönlich und sorgt dafür, dass kein Fehler deinen Antrag gefährdet.
-                        </p>
                       </div>
 
                       <TidyCalEmbedRechner path="team/eskalator-ag/regional-investition" />
                     </div>
                   </div>
+                  </ConfettiOnMount>
                 )}
               </div>
             )}
