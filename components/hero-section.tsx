@@ -139,7 +139,7 @@ export function HeroSection() {
               </div>
             </div>
 
-            <p className="text-sm md:text-base lg:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-sm md:text-base lg:text-lg text-slate-600 leading-relaxed max-w-4xl mx-auto">
               Wir holen für Sie das absolute Maximum an staatlichen Zuschüssen heraus (bis zu{" "}
               <span className="font-semibold text-green-700">50 % Ihrer Investition</span>
               ), während Sie sich voll auf Ihren Betrieb konzentrieren. Wir übernehmen die komplette Abwicklung vom ersten Antrag bis zur finalen Auszahlung auf Ihr Konto.{" "}
@@ -148,7 +148,7 @@ export function HeroSection() {
           </motion.div>
 
           {/* Row 2: Two-column grid — constrained width, centred */}
-          <div className="max-w-3xl mx-auto w-full grid md:grid-cols-[auto_1fr] gap-4 md:gap-6 mb-5 md:mb-6 items-start">
+          <div className="max-w-[56rem] mx-auto w-full grid md:grid-cols-[auto_1fr] gap-4 md:gap-6 mb-5 md:mb-6 items-start">
 
             {/* Left: Image — fixed size, no crop */}
             <motion.div
