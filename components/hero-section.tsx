@@ -12,7 +12,7 @@ export function HeroSection() {
   return (
     <>
       {/* Hero Main */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 pt-24 pb-12 bg-gradient-to-b from-slate-50 to-white overflow-hidden">
+      <section className="relative min-h-[100svh] flex items-start lg:items-center justify-center px-4 pt-20 pb-6 lg:pt-24 lg:pb-12 bg-gradient-to-b from-slate-50 to-white overflow-hidden">
         {/* Subtle wheat pattern background */}
         <div className="absolute inset-0 pointer-events-none opacity-[0.03]" aria-hidden="true">
           {[...Array(6)].map((_, i) => (
@@ -30,63 +30,82 @@ export function HeroSection() {
           ))}
         </div>
 
-        <div className="container max-w-6xl mx-auto relative">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="container max-w-6xl mx-auto relative w-full">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
+
             {/* Left: Text & CTA */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-center lg:text-left"
+              className="text-center lg:text-left order-1"
             >
-              {/* Agri badge */}
-              <div className="inline-flex flex-wrap items-center gap-2 bg-green-50 border border-green-200 rounded-full px-4 py-1.5 mb-5">
-                <WheatIcon className="w-4 h-4 text-green-700 flex-shrink-0" />
-                <span className="text-sm font-semibold text-green-800">
+              {/* AFP badge */}
+              <div className="inline-flex flex-wrap items-center gap-2 bg-green-50 border border-green-200 rounded-full px-3 py-1 mb-3 lg:mb-5">
+                <WheatIcon className="w-3.5 h-3.5 text-green-700 flex-shrink-0" />
+                <span className="text-xs font-semibold text-green-800">
                   AFP – <span className="font-normal text-green-700">Agrarinvestitionsförderungsprogramm</span> 2023–2027
                 </span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-5 bg-gradient-to-br from-slate-900 via-green-800 to-slate-700 bg-clip-text text-transparent leading-tight text-balance">
-                Der Staat zahlt dir 20–50 % für deinen nächsten Stall, Güllelager oder Klimaschutz
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 lg:mb-5 bg-gradient-to-br from-slate-900 via-green-800 to-slate-700 bg-clip-text text-transparent leading-tight text-balance">
+                Der Staat zahlt dir <span className="text-green-700">bis 50 %</span> für deinen nächsten Stall, Güllelager oder Klimaschutz
               </h1>
 
-              <p className="text-base md:text-lg text-slate-600 mb-7 leading-relaxed">
-                Gib in 45 Sekunden dein Bundesland und dein Vorhaben ein. Du siehst sofort, wie viel Geld du wirklich kriegst. 2026 sind die Töpfe noch voll.
-              </p>
-
-              <div className="flex flex-wrap justify-center lg:justify-start gap-x-5 gap-y-2 mb-8">
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                  <span className="text-sm text-slate-700"><span className="font-semibold">400+</span> Landwirte gefördert</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Clock className="w-4 h-4 text-green-600 flex-shrink-0" />
-                  <span className="text-sm text-slate-700"><span className="font-semibold">45 Sek</span> Prüfung</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <TrendingUp className="w-4 h-4 text-teal-500 flex-shrink-0" />
-                  <span className="text-sm text-slate-700"><span className="font-semibold">98 %</span> Erfolgsquote</span>
+              {/* Hero image — mobile only, shown between headline and CTA */}
+              <div className="lg:hidden my-4 relative">
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-emerald-400/20 to-green-600/10 blur-2xl scale-110" />
+                <img
+                  src="/hero-foerderung.webp"
+                  alt="Bis zu 50 % staatliche Förderung für Landwirte"
+                  className="relative rounded-xl shadow-xl w-full object-cover max-h-52 ring-1 ring-white/20"
+                />
+                {/* Mobile floating badge */}
+                <div className="absolute top-3 right-3 bg-white rounded-xl shadow-lg px-3 py-2 flex items-center gap-1.5 ring-1 ring-emerald-100">
+                  <MoneyBagIcon className="w-6 h-6 text-emerald-600 flex-shrink-0" />
+                  <div>
+                    <p className="text-[9px] font-semibold text-slate-500 uppercase tracking-wide leading-none mb-0.5">Zuschuss</p>
+                    <p className="text-base font-extrabold text-emerald-700 leading-none">bis 50 %</p>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 mb-5 justify-center lg:justify-start">
+              <p className="text-sm md:text-base lg:text-lg text-slate-600 mb-4 lg:mb-7 leading-relaxed">
+                Gib in 45 Sekunden dein Bundesland und dein Vorhaben ein — du siehst sofort, wie viel Geld du wirklich kriegst.
+              </p>
+
+              <div className="flex flex-wrap justify-center lg:justify-start gap-x-4 gap-y-1.5 mb-4 lg:mb-8">
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                  <span className="text-xs sm:text-sm text-slate-700"><span className="font-semibold">400+</span> Landwirte gefördert</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <Clock className="w-4 h-4 text-green-600 flex-shrink-0" />
+                  <span className="text-xs sm:text-sm text-slate-700"><span className="font-semibold">45 Sek</span> Prüfung</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <TrendingUp className="w-4 h-4 text-teal-500 flex-shrink-0" />
+                  <span className="text-xs sm:text-sm text-slate-700"><span className="font-semibold">98 %</span> Erfolgsquote</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-3 mb-4 justify-center lg:justify-start">
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
                   <Button
                     size="lg"
-                    className="relative overflow-hidden gap-2 bg-green-600 hover:bg-green-500 text-base h-14 px-8 w-full sm:w-auto rounded-xl font-bold shadow-lg shadow-green-900/25 hg-btn"
+                    className="relative overflow-hidden gap-2 bg-green-600 hover:bg-green-500 text-sm sm:text-base h-12 sm:h-14 px-6 sm:px-8 w-full sm:w-auto rounded-xl font-bold shadow-lg shadow-green-900/25 hg-btn"
                     onClick={() => document.getElementById("rechner")?.scrollIntoView({ behavior: "smooth" })}
                   >
                     <TractorIcon className="w-5 h-5 text-white" />
                     Förderung kostenlos berechnen
-                    <ArrowRight className="w-5 h-5" />
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                   </Button>
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
                   <Button
                     size="lg"
                     variant="outline"
-                    className="gap-2 text-base h-14 px-8 w-full sm:w-auto rounded-xl border-green-300 text-green-800 hover:bg-green-50 font-semibold"
+                    className="gap-2 text-sm sm:text-base h-12 sm:h-14 px-6 sm:px-8 w-full sm:w-auto rounded-xl border-green-300 text-green-800 hover:bg-green-50 font-semibold"
                     onClick={() => setShowModal(true)}
                   >
                     <WheatIcon className="w-5 h-5 text-green-700" />
@@ -95,26 +114,25 @@ export function HeroSection() {
                 </motion.div>
               </div>
 
-              <p className="text-sm text-slate-500 text-center lg:text-left">
-                100 % kostenlos &amp; unverbindlich</p>
+              <p className="text-xs text-slate-400 text-center lg:text-left">
+                100 % kostenlos &amp; unverbindlich
+              </p>
             </motion.div>
 
-            {/* Right: Hero Image + floating badge */}
+            {/* Right: Hero Image — desktop only */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="relative flex items-center justify-center mt-8 lg:mt-0"
+              className="hidden lg:flex relative items-center justify-center"
             >
               <div className="relative w-full max-w-md mx-auto">
-                {/* Hochglanz-Glow */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-emerald-400/30 to-green-600/20 blur-3xl scale-110" />
                 <img
                   src="/hero-foerderung.webp"
                   alt="Bis zu 50 % staatliche Förderung für Landwirte – Stallbau, Tierwohl, Umwelttechnik"
                   className="relative rounded-2xl shadow-2xl w-full object-cover ring-1 ring-white/20"
                 />
-                {/* Floating award badge — kein Netzwerk nötig */}
                 <motion.div
                   animate={{ y: [0, -6, 0] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -126,7 +144,6 @@ export function HeroSection() {
                     <p className="text-xl font-extrabold text-emerald-700 leading-none">bis 50 %</p>
                   </div>
                 </motion.div>
-                {/* Bottom badge */}
                 <motion.div
                   animate={{ y: [0, 5, 0] }}
                   transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
@@ -140,6 +157,7 @@ export function HeroSection() {
                 </motion.div>
               </div>
             </motion.div>
+
           </div>
         </div>
       </section>
@@ -172,7 +190,7 @@ export function HeroSection() {
               },
               {
                 AgriIcon: MoneyBagIcon,
-                title: "20–50 % statt gar nichts",
+                title: "bis 50 % statt gar nichts",
                 description: "Tierwohl-Premium, SIUK-Bonus, Junglandwirt-Zuschlag, regionale Boni – wir finden alles, was dir zusteht.",
                 color: "from-amber-600 to-green-600",
               },
