@@ -1,11 +1,57 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 import { TractorIcon, WheatIcon, MoneyBagIcon, BarnIcon, ShieldCheckAgriIcon } from "@/components/agri-icons"
 import { LeadCaptureModal } from "@/components/lead-capture-modal"
+
+// Count-up animation for "2,5 Millionen €"
+function AnimatedAmount() {
+  const [display, setDisplay] = useState("0")
+  const hasRun = useRef(false)
+
+  useEffect(() => {
+    if (hasRun.current) return
+    hasRun.current = true
+
+    const target = 2.5
+    const duration = 1800
+    const steps = 60
+    const interval = duration / steps
+    let step = 0
+
+    const timer = setInterval(() => {
+      step++
+      const progress = step / steps
+      // ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3)
+      const value = eased * target
+      setDisplay(value.toLocaleString("de-DE", { minimumFractionDigits: value >= 2.4 ? 1 : 0, maximumFractionDigits: 1 }))
+      if (step >= steps) {
+        clearInterval(timer)
+        setDisplay("2,5")
+      }
+    }, interval)
+
+    return () => clearInterval(timer)
+  }, [])
+
+  return (
+    <span
+      style={{
+        background: "linear-gradient(135deg, #16a34a 0%, #15803d 40%, #22c55e 100%)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        backgroundClip: "text",
+        filter: "drop-shadow(0 0 10px rgba(22,163,74,0.30))",
+      }}
+    >
+      {display} Mio.&thinsp;€
+    </span>
+  )
+}
 
 export function HeroSection() {
   const [showModal, setShowModal] = useState(false)
@@ -67,25 +113,18 @@ export function HeroSection() {
                     filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.08))",
                   }}
                 >
-                  Der Staat zahlt dir{" "}
-                  <span
-                    style={{
-                      background: "linear-gradient(135deg, #16a34a 0%, #15803d 40%, #22c55e 100%)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                      filter: "drop-shadow(0 0 10px rgba(22,163,74,0.30))",
-                    }}
-                  >
-                    bis 50&thinsp;%
-                  </span>{" "}
-                  für deinen nächsten Stall, Güllelager oder Klimaschutz
+                  Sichern Sie sich bis zu{" "}
+                  <AnimatedAmount />{" "}
+                  geschenktes Kapital für Ihren Hof – ohne einen Finger für den Papierkram zu rühren.
                 </h1>
               </div>
             </div>
 
             <p className="text-sm md:text-base lg:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
-              Gib in 45 Sekunden dein Bundesland und dein Vorhaben ein — du siehst sofort, wie viel Geld du wirklich kriegst.
+              Wir holen für Sie das absolute Maximum an staatlichen Zuschüssen heraus (bis zu{" "}
+              <span className="font-semibold text-green-700">50 % Ihrer Investition</span>
+              ), während Sie sich voll auf Ihren Betrieb konzentrieren. Wir übernehmen die komplette Abwicklung vom ersten Antrag bis zur finalen Auszahlung auf Ihr Konto.{" "}
+              <span className="font-semibold text-slate-800">Kein Risiko, kein Behörden-Stress</span> – wir liefern den Bescheid, Sie bauen die Zukunft.
             </p>
           </motion.div>
 
