@@ -1,11 +1,14 @@
 "use client"
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle2, Clock, TrendingUp } from "lucide-react"
 import { motion } from "framer-motion"
 import { TractorIcon, WheatIcon, MoneyBagIcon, BarnIcon, ShieldCheckAgriIcon } from "@/components/agri-icons"
+import { LeadCaptureModal } from "@/components/lead-capture-modal"
 
 export function HeroSection() {
+  const [showModal, setShowModal] = useState(false)
   return (
     <>
       {/* Hero Main */}
@@ -81,8 +84,8 @@ export function HeroSection() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="gap-2 text-base h-13 px-8 w-full sm:w-auto rounded-xl border-green-300 text-green-800 hover:bg-green-50"
-                    onClick={() => document.getElementById("rechner")?.scrollIntoView({ behavior: "smooth" })}
+                    className="gap-2 text-base h-14 px-8 w-full sm:w-auto rounded-xl border-green-300 text-green-800 hover:bg-green-50 font-semibold"
+                    onClick={() => setShowModal(true)}
                   >
                     <WheatIcon className="w-5 h-5 text-green-700" />
                     Persönliche Beratung
@@ -194,6 +197,15 @@ export function HeroSection() {
           </div>
         </div>
       </section>
+
+      {/* Lead Modal — sekundärer CTA "Persönliche Beratung" */}
+      {showModal && (
+        <LeadCaptureModal
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+          source="hero-beratung"
+        />
+      )}
     </>
   )
 }
