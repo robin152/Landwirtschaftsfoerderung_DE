@@ -159,7 +159,7 @@ export function HeroSection() {
               </div>
             </motion.div>
 
-            {/* Right: 5 Nutzenbotschaften — storytelling für den Landwirt */}
+            {/* Right: 4 Nutzenbotschaften — Warum Sie mit uns gewinnen */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -168,50 +168,41 @@ export function HeroSection() {
             >
               {/* Header */}
               <div className="mb-1">
-                <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#7c3aed" }}>Dein Vorteil als Landwirt</p>
-                <p className="text-sm text-slate-500 leading-snug">Was die Förderung konkret für dich bedeutet:</p>
+                <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#7c3aed" }}>Warum Sie mit uns gewinnen</p>
               </div>
 
               {[
                 {
                   icon: MoneyBagIcon,
-                  headline: "Der Staat zahlt — du investierst nur die Hälfte",
-                  body: "Statt 500.000 € trägst du oft nur 250.000 € selbst. Das restliche Geld kommt vom Staat, nicht von der Bank.",
+                  headline: "Halbe Kosten, voller Fortschritt",
+                  body: "Bauen Sie doppelt so groß oder bezahlen Sie Ihre Investition doppelt so schnell ab – der Staat übernimmt 50 % der Rechnung.",
                   accent: "#16a34a",
                   bg: "rgba(22,163,74,0.08)",
                   border: "rgba(22,163,74,0.18)",
                 },
                 {
                   icon: ShieldCheckAgriIcon,
-                  headline: "Kein Kredit, kein Zins — echtes Geschenk",
-                  body: "AFP-Zuschüsse müssen nicht zurückgezahlt werden. Du verbesserst deine Liquidität dauerhaft, nicht nur kurzfristig.",
+                  headline: "Schuldenfrei wachsen",
+                  body: "Sichern Sie sich echtes Eigenkapital statt teurer Bankkredite. Weniger Zinslast, mehr Gewinn und ruhiger Schlaf für Ihre Familie.",
                   accent: "#7c3aed",
                   bg: "rgba(124,58,237,0.07)",
                   border: "rgba(124,58,237,0.18)",
                 },
                 {
                   icon: BarnIcon,
-                  headline: "Modernisier jetzt — bevor die Konkurrenz es tut",
-                  body: "Stallbau, Güllelager, Präzisionstechnik: Wer früh investiert, sichert sich Wettbewerbsvorteile für die nächsten 20 Jahre.",
+                  headline: "Endlich wieder nur Landwirt sein",
+                  body: "Wir nehmen Ihnen den kompletten Behörden-Wahnsinn ab. Während wir die Formulare bändigen, haben Sie den Kopf frei für Ihren Hof und Ihre Tiere.",
                   accent: "#16a34a",
                   bg: "rgba(22,163,74,0.08)",
                   border: "rgba(22,163,74,0.18)",
                 },
                 {
                   icon: TractorIcon,
-                  headline: "Tierwohl & Umwelt zahlen sich aus",
-                  body: "Höhere Tierwohl-Stufen und Klimaschutzmaßnahmen werden extra belohnt. Du tust Gutes — und wirst dafür bezahlt.",
+                  headline: "Kein Rätselraten mehr",
+                  body: "In nur 45 Sekunden wissen Sie exakt, wie viel Geld für Ihren Betrieb reserviert ist. Schluss mit der Unsicherheit – planen Sie mit harten Fakten.",
                   accent: "#7c3aed",
                   bg: "rgba(124,58,237,0.07)",
                   border: "rgba(124,58,237,0.18)",
-                },
-                {
-                  icon: WheatIcon,
-                  headline: "In 45 Sekunden weißt du, was dir zusteht",
-                  body: "Kein Behördenmarathon, kein Rätselraten. Unser Rechner zeigt dir sofort deinen exakten Förderbetrag — kostenlos.",
-                  accent: "#16a34a",
-                  bg: "rgba(22,163,74,0.08)",
-                  border: "rgba(22,163,74,0.18)",
                 },
               ].map(({ icon: Icon, headline, body, accent, bg, border }, i) => (
                 <motion.div
