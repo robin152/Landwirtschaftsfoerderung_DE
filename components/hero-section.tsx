@@ -12,7 +12,7 @@ export function HeroSection() {
   return (
     <>
       {/* Hero Main */}
-      <section className="relative flex items-center justify-center px-4 pt-20 pb-8 md:min-h-[90svh] md:pt-24 md:pb-10 overflow-hidden" style={{ background: "linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 30%, #f8fafc 60%, #f0fdf4 100%)" }}>
+      <section className="relative flex items-center justify-center px-4 pt-28 pb-8 md:min-h-[90svh] md:pt-32 md:pb-10 overflow-hidden" style={{ background: "linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 30%, #f8fafc 60%, #f0fdf4 100%)" }}>
         {/* Background light orbs for glass depth */}
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-300/20 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
         <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-green-400/15 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
