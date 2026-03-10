@@ -127,14 +127,23 @@ const BUNDESLAENDER = {
     siukMax: 40,
     besonderheit: "Kleinstes Agrarland, GAK-Standard",
   },
-  "Sachsen (Freistaat)": {
-    maxInvest: 5_000_000,
-    prosperitaetLedig: 999_999_999,
-    prosperitaetVerheiratet: 999_999_999,
+  "Rheinland-Pfalz": {
+    maxInvest: 1_200_000,
+    prosperitaetLedig: 150_000,
+    prosperitaetVerheiratet: 180_000,
     basisSatz: 20,
     tierwohlPremium: 40,
-    siukMax: 65,
-    besonderheit: "Keine Einkommensgrenze, innovative Tierwohlprogramme",
+    siukMax: 40,
+    besonderheit: "Weinbau & Naturgefahren-Prämie stark gewichtet",
+  },
+  "Saarland": {
+    maxInvest: 1_200_000,
+    prosperitaetLedig: 150_000,
+    prosperitaetVerheiratet: 180_000,
+    basisSatz: 20,
+    tierwohlPremium: 40,
+    siukMax: 40,
+    besonderheit: "GAK-Standard, kleinste Agrarfläche Deutschlands",
   },
 } as const
 
