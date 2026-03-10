@@ -39,10 +39,10 @@ export default function LandingPage() {
               <ScrollReveal variant="fade-up" delay={0.1}>
                 <div className="text-center mb-10 sm:mb-14">
                   <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
-                    Berechnen Sie Ihre Regionalförderung
+                    In 45 Sekunden weißt du exakt, wie viel der Staat dir zahlt
                   </h2>
                   <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
-                    In 4 Schritten erfahren Sie, wie viel nicht-rückzahlbaren Zuschuss Sie für Ihre geplante Investition erhalten können.
+                    Live & brutal ehrlich – dein persönlicher AFP-Förderbetrag für Stall, Gülle, Tierwohl oder Klimaschutz.
                   </p>
                 </div>
               </ScrollReveal>
@@ -128,12 +128,12 @@ export default function LandingPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FinancialService",
-            name: "Investitionsförderung Deutschland - Eskalator AG",
-            url: "https://grw-rwp.eskalator.ag",
+            name: "AFP Agrarinvestitionsförderung – Eskalator AG",
+            url: "https://afp-foerderung.eskalator.ag",
             description:
-              "Bis zu 65% Investitionszuschuss für Maschinen, Gebäude und Digitalisierung. Keine Rückzahlung. Kostenlose Erstberatung.",
+              "Bis zu 75 % Zuschuss für Stallbau, Güllelager, Tierwohl und Klimaschutz. AFP 2023–2027 bundesweit. Kostenloser Erstcheck in 45 Sekunden.",
             areaServed: "DE",
-            serviceType: "Investitionsförderung",
+            serviceType: "Agrarinvestitionsförderung",
             telephone: "+49-208-780-125-78",
           }),
         }}

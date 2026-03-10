@@ -36,7 +36,7 @@ export function NavigationIndustrial() {
   const navItems = [
     { label: "Rechner", href: "#rechner", id: "rechner" },
     { label: "Was wird gefördert", href: "#assets", id: "assets" },
-    { label: "Förderpfade", href: "#strategic-paths", id: "strategic-paths" },
+    { label: "Förderquoten", href: "#funding-quotes", id: "funding-quotes" },
     { label: "Ablauf", href: "#ablauf", id: "ablauf" },
     { label: "FAQ", href: "#faq", id: "faq" },
   ]
@@ -93,7 +93,7 @@ export function NavigationIndustrial() {
                   shadow-[0_0_16px_rgba(147,51,234,0.4)]"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  JETZT Förderfähigkeit prüfen
+                  JETZT Förderung berechnen
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </span>
                 {/* Shine sweep */}

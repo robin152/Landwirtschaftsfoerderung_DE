@@ -38,46 +38,47 @@ import Image from "next/image"
 
 const assets = [
   {
-    title: "[INVESTITIONSTYP 1]",
-    description: "[Konkretes Beispiel 1], [Beispiel 2], [Beispiel 3]",
-    image: "/images/assets/placeholder-1.jpg",
-    span: "col-span-1",
-  },
-  {
-    title: "[INVESTITIONSTYP 2 - FEATURED]",
-    description: "[Konkretes Beispiel 1], [Beispiel 2]",
-    image: "/images/assets/placeholder-2.jpg",
+    title: "Premium-Tierhaltung",
+    description: "Stallumbauten mit mehr Platz, Licht & Lüftung, Liegeboxen, Außenklimabereiche, Laufhöfe",
+    image: "/images/assets/tierhaltung.jpg",
     span: "col-span-1 md:col-span-2",
     featured: true,
   },
   {
-    title: "[INVESTITIONSTYP 3]",
-    description: "[Konkretes Beispiel 1], [Beispiel 2], [Beispiel 3]",
-    image: "/images/assets/placeholder-3.jpg",
+    title: "Klima- & Emissionsschutz",
+    description: "Abluftreinigung, Güllekühlung, Biogasanlagen, Abdeckungen für Güllelager",
+    image: "/images/assets/klima.jpg",
     span: "col-span-1",
   },
   {
-    title: "[INVESTITIONSTYP 4]",
-    description: "[Konkretes Beispiel 1], [Beispiel 2]",
-    image: "/images/assets/placeholder-4.jpg",
+    title: "Gülle- & Mistlager",
+    description: "Neubauten & Erweiterungen mit fester Abdeckung, mind. 6 Monate Lagerkapazität",
+    image: "/images/assets/guelle.jpg",
     span: "col-span-1",
   },
   {
-    title: "[INVESTITIONSTYP 5]",
-    description: "[Konkretes Beispiel 1], [Beispiel 2], [Beispiel 3]",
-    image: "/images/assets/placeholder-5.jpg",
+    title: "Weiche Kälbermatten",
+    description: "Befristeter Bonus 2025/2026: Liege- & Tränkebereiche für Kälber unter 8 Monate",
+    image: "/images/assets/kaelber.jpg",
+    span: "col-span-1",
+    featured: false,
+  },
+  {
+    title: "Präzisionstechnik & Bewässerung",
+    description: "Drohnen, GPS-Lenksysteme, Tröpfchenbewässerung, Hagelschutznetze",
+    image: "/images/assets/technik.jpg",
     span: "col-span-1",
   },
   {
-    title: "[INVESTITIONSTYP 6]",
-    description: "[Konkretes Beispiel 1], [Beispiel 2]",
-    image: "/images/assets/placeholder-6.jpg",
+    title: "Junglandwirt-Investitionen",
+    description: "Alle förderfähigen Maßnahmen plus +10 % Extra-Bonus für Landwirte unter 40 Jahren",
+    image: "/images/assets/junglandwirt.jpg",
     span: "col-span-1",
   },
   {
-    title: "[INVESTITIONSTYP 7 - FEATURED]",
-    description: "[Konkretes Beispiel 1], [Beispiel 2]",
-    image: "/images/assets/placeholder-7.jpg",
+    title: "Mobilställe & Freilandhaltung",
+    description: "Mobile Hühner- & Geflügelställe, Außenweideanlagen, Weidezeltlösungen",
+    image: "/images/assets/mobilstall.jpg",
     span: "col-span-1 md:col-span-2",
     featured: true,
   },
@@ -96,20 +97,17 @@ export function AssetsSection() {
           className="text-center mb-10 sm:mb-14"
         >
           <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-teal-50 rounded-full text-xs sm:text-sm font-semibold text-teal-600 mb-4">
-            {/* TEMPLATE: Icon bleiben */}
             Qualifizierung
           </span>
           
           {/* TEMPLATE: Headline für Lead-Qualifizierung */}
           {/* ANLEITUNG: Headline sollte EINE Frage stellen: "Passt Ihr Vorhaben?" oder "Ist Ihre Investition förderbar?" */}
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight mb-4">
-            [HEADLINE: Schnell-Check für Lead-Qualifizierung]
+            Was wird gefördert – passt dein Vorhaben?
           </h2>
           
-          {/* TEMPLATE: Subheadline */}
-          {/* ANLEITUNG: Kurzer, motivierender Text (max. 10 Wörter) */}
           <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
-            [SUBHEADLINE: Motivierender Text - warum diese Sektion relevant ist]
+            Diese 7 Investitionstypen holt das AFP – klick deins an und sieh sofort deinen Fördersatz.
           </p>
         </motion.div>
 
@@ -165,8 +163,8 @@ export function AssetsSection() {
              - Sollte Besucher zum nächsten Schritt motivieren (z.B. Kalkulator, Anfrage)
           */}
           <p className="text-slate-600 text-sm sm:text-base">
-            <span className="font-semibold text-slate-900">[CONFIRMATION-TEXT: "Passt / Passt nicht"]</span>{" "}
-            [CTA-TEXT: Was jetzt? Kalkulator? Kontakt?]
+            <span className="font-semibold text-slate-900">Dein Vorhaben ist dabei?</span>{" "}
+            Dann berechne jetzt deinen genauen Förderbetrag – kostenlos & in 45 Sekunden.
           </p>
         </motion.div>
       </div>

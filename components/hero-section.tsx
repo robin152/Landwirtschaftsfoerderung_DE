@@ -20,24 +20,24 @@ export function HeroSection() {
               className="text-center lg:text-left"
             >
               {/* HORMOZI HEADLINE: Specific Outcome */}
-              <h1 className="text-5xl md:text-6xl lg:text-6xl font-bold mb-6 bg-gradient-to-br from-slate-900 via-purple-800 to-slate-700 bg-clip-text text-transparent leading-tight">
-                Bis zu 65% Zuschuss für Ihre Investition
+              <h1 className="text-5xl md:text-6xl lg:text-6xl font-bold mb-6 bg-gradient-to-br from-slate-900 via-green-800 to-slate-700 bg-clip-text text-transparent leading-tight">
+                Der Staat zahlt dir 40–75 % für deinen nächsten Stall, Güllelager oder Klimaschutz
               </h1>
 
               {/* SUBHEADLINE: Mechanism */}
               <p className="text-lg md:text-xl text-slate-600 mb-8 leading-relaxed">
-                Sie beschreiben Ihre geplante Investition in wenigen Sätzen. Unsere Experten übernehmen den Rest – Ergebnis in Minuten bei 98% Erfolgsquote.
+                Gib in 45 Sekunden dein Bundesland und dein Vorhaben ein. Du siehst sofort, wie viel Geld du wirklich kriegst – und ob du zu den Gewinnern oder Verlierern gehörst. 2026 sind die Töpfe noch voll. In 3–6 Monaten wahrscheinlich nicht mehr.
               </p>
 
               {/* SOCIAL PROOF: Why Now */}
               <div className="flex flex-col sm:flex-row items-center sm:items-start lg:justify-start gap-4 mb-10">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                  <span className="text-slate-700"><span className="font-semibold">98% Quote</span></span>
+                  <span className="text-slate-700"><span className="font-semibold">400+ Landwirte</span> haben schon kassiert</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Clock className="w-5 h-5 text-purple-500 flex-shrink-0" />
-                  <span className="text-slate-700"><span className="font-semibold">2 Min Prüfung</span></span>
+                  <Clock className="w-5 h-5 text-green-600 flex-shrink-0" />
+                  <span className="text-slate-700"><span className="font-semibold">45 Sek</span> Prüfung</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <TrendingUp className="w-5 h-5 text-teal-500 flex-shrink-0" />
@@ -53,9 +53,10 @@ export function HeroSection() {
                 >
                   <Button 
                     size="lg" 
-                    className="gap-2 bg-purple-600 hover:bg-purple-500 text-base h-12 px-8 w-full sm:w-auto"
+                    className="gap-2 bg-green-600 hover:bg-green-500 text-base h-12 px-8 w-full sm:w-auto"
+                    onClick={() => document.getElementById("rechner")?.scrollIntoView({ behavior: "smooth" })}
                   >
-                    Kostenlos prüfen
+                    JETZT GRATIS BERECHNEN
                     <ArrowRight className="w-5 h-5" />
                   </Button>
                 </motion.div>
@@ -68,14 +69,14 @@ export function HeroSection() {
                     variant="outline" 
                     className="gap-2 text-base h-12 px-8 w-full sm:w-auto"
                   >
-                    Beratung anfordern
+                    Persönliche Beratung
                   </Button>
                 </motion.div>
               </div>
 
-              {/* OBJECTION HANDLER: Keine Kosten, Keine Verpflichtung */}
+              {/* OBJECTION HANDLER */}
               <p className="text-sm text-slate-500">
-                ✓ Kostenlos  ✓ Unverbindlich  ✓ Erfolgsbasiert
+                100 % kostenlos & unverbindlich  •  Ich bin der Typ, der die Ablehnungen verhindert
               </p>
             </motion.div>
 
@@ -107,10 +108,10 @@ export function HeroSection() {
         <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              Warum Sie mit uns fördern sollten
+              Warum Landwirte mit uns mehr rausholen
             </h2>
             <p className="text-lg text-slate-600">
-              Wir machen Förderung einfach, schnell und sicher
+              Wir kennen das AFP in- und auswendig – und verhindern die Fehler, die 70 % der Anträge killen
             </p>
           </div>
 
@@ -119,18 +120,18 @@ export function HeroSection() {
             {[
               {
                 icon: Zap,
-                title: "Blitzschnell",
-                description: "Ergebnis in Minuten statt Tagen. Unser KI-System prüft sofort Ihre Förderfähigkeit."
+                title: "In 45 Sek. weißt du es",
+                description: "Unser Rechner gibt dir sofort deinen exakten Förderbetrag – kein Blabla, keine versteckten Kosten."
               },
               {
                 icon: Award,
-                title: "98% Erfolgsquote",
-                description: "Über 1000 bewilligte Anträge. Wir wissen genau, welche Investitionen förderfähig sind."
+                title: "Ich verhindere Ablehnungen",
+                description: "Prosperitätsgrenze, vorzeitiger Maßnahmenbeginn, falsche Kostenart – ich checke das alles vorher. Punkt."
               },
               {
                 icon: BarChart3,
-                title: "Maximale Quote",
-                description: "Wir finden alle versteckten Boni: Klimaschutz, Transformation, KMU-Zuschlag."
+                title: "40–75 % statt 20 %",
+                description: "Tierwohl-Premium, SIUK-Bonus, Junglandwirt-Zuschlag, regionale Boni – wir finden alles, was dir zusteht."
               }
             ].map((benefit, index) => {
               const Icon = benefit.icon

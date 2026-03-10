@@ -18,14 +18,14 @@ import { useState } from "react"
 // 3. HIGHLIGHT-BOX mit MAXIMUM Quote
 
 const fundingData = [
-  { region: "[REGION 1]", kmu: "[bis X%]", grossunternehmen: "[bis Y%]", examples: "[Beispielregionen]" },
-  { region: "[REGION 2]", kmu: "[bis X%]", grossunternehmen: "[bis Y%]", examples: "[Beispielregionen]" },
-  { region: "[REGION 3]", kmu: "[bis X%]", grossunternehmen: "[bis Y%]", examples: "[Beispielregionen]" },
+  { region: "Neue Bundesländer (BB, SN, ST, TH, MV)", kmu: "bis 75 %", grossunternehmen: "bis 65 %", examples: "Brandenburg, Sachsen, Thüringen, Sachsen-Anhalt, Mecklenburg-Vorpommern" },
+  { region: "Westdeutsche Regionen (NRW, NDS, BY, BW …)", kmu: "bis 50 %", grossunternehmen: "bis 40 %", examples: "NRW, Niedersachsen, Bayern, Baden-Württemberg, Hessen" },
+  { region: "Alle Bundesländer – Basis-Satz", kmu: "20 %", grossunternehmen: "20 %", examples: "Gilt immer als Mindestförderung ohne Boni" },
 ]
 
 const bonuses = [
-  { name: "[BONUS 1]", value: "[+X%]", icon: Leaf, color: "text-green-600", bg: "bg-green-50" },
-  { name: "[BONUS 2]", value: "[+X%]", icon: TrendingUp, color: "text-purple-600", bg: "bg-purple-50" },
+  { name: "Tierwohl-Premium (Anlage 2)", value: "+20 %", icon: Leaf, color: "text-green-600", bg: "bg-green-50" },
+  { name: "Junglandwirt-Bonus (≤ 40 Jahre)", value: "+10 %", icon: TrendingUp, color: "text-orange-600", bg: "bg-orange-50" },
 ]
 
 export function FundingQuotesSection() {
@@ -42,15 +42,15 @@ export function FundingQuotesSection() {
           viewport={{ once: true }}
           className="text-center mb-8 sm:mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-purple-50 rounded-full text-xs sm:text-sm font-semibold text-purple-600 mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-50 rounded-full text-xs sm:text-sm font-semibold text-green-700 mb-4">
             <MapPin className="w-3.5 h-3.5" />
-            [BADGE: z.B. "Standort entscheidet"]
+            Dein Bundesland entscheidet
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-3">
-            [HEADLINE: Förderquoten im Überblick]
+            Manche Bundesländer zahlen deutlich mehr – siehst du deins?
           </h2>
           <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
-            [SUBHEADLINE: Ihre Region bestimmt die Förderquote]
+            Der AFP-Fördersatz hängt von Standort, Maßnahme und deinen Boni ab. Hier der Überblick – ohne Weichzeichner.
           </p>
         </motion.div>
 
@@ -108,9 +108,9 @@ export function FundingQuotesSection() {
           viewport={{ once: true }}
           className="bg-gradient-to-r from-purple-600 to-violet-600 rounded-xl sm:rounded-2xl p-5 sm:p-6 text-center text-white mb-8"
         >
-          <div className="text-sm sm:text-base opacity-90 mb-1">[LABEL: Max Förderquote]</div>
-          <div className="text-4xl sm:text-5xl font-bold mb-2">[MAX-PROZENTSATZ]</div>
-          <div className="text-sm opacity-80">[BEDINGUNGEN]</div>
+          <div className="text-sm sm:text-base opacity-90 mb-1">Maximum AFP-Fördersatz (Hessen SIUK + Tierwohl + Junglandwirt)</div>
+          <div className="text-4xl sm:text-5xl font-bold mb-2">bis 75 %</div>
+          <div className="text-sm opacity-80">Hessen, ohne Einkommensgrenze, Tierwohl-Maßnahme + Junglandwirt-Bonus</div>
         </motion.div>
 
         {/* CTA */}
@@ -124,9 +124,9 @@ export function FundingQuotesSection() {
             onClick={() => setIsModalOpen(true)}
             className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-xl transition-colors"
           >
-            [CTA-BUTTON]
+            Jetzt meinen genauen Fördersatz berechnen
           </button>
-          <p className="text-sm text-slate-500 mt-2">[SUB-TEXT]</p>
+          <p className="text-sm text-slate-500 mt-2">Kostenlos • 45 Sekunden • Brutal ehrlich</p>
         </motion.div>
       </div>
 

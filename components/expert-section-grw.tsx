@@ -45,10 +45,17 @@ import { useCompany } from "@/contexts/company-context"
 // Template für Industry-spezifische Pain Points
 const industryHooks: Record<string, { pain: string; hook: string }> = {
   "default": {
-    pain: "[TEMPLATE: Welches Problem haben Unternehmer in dieser Branche 2026?]",
-    hook: "[TEMPLATE: Wie helfen Sie damit die Förderstrategie das Problem zu lösen?]"
+    pain: "Die Baukosten sind explodiert. Die Vorschriften werden immer verrückter. Und ohne den richtigen Zuschuss rechnet sich das alles nicht mehr.",
+    hook: "Genau deshalb bin ich hier: Ich hole dir das Maximum aus dem AFP – Tierwohl-Premium, SIUK-Bonus, Junglandwirt-Zuschlag. Du unterschreibst einmal, ich erledige den Rest."
   },
-  // Add more industries as needed
+  "milch": {
+    pain: "Milchvieh-Betriebe stehen 2026 unter Doppeldruck: neue Haltungsauflagen UND explodierende Stallbaukosten. Ohne AFP-Förderung rechnet sich der Umbau für die meisten nicht.",
+    hook: "Ich kenne die Milchvieh-spezifischen Förderpfade in jedem Bundesland – und hole dir den maximalen Tierwohl-Satz bevor die Antragsfenster 2026 schließen."
+  },
+  "schwein": {
+    pain: "Schweinehaltung 2026: Neue Tierwohlauflagen, enge Zeitfenster, und viele Bundesländer haben die Förderung zwischenzeitlich ausgesetzt. Ohne Experten-Begleitung riskierst du eine teure Fehlentscheidung.",
+    hook: "Ich weiß genau, wo Schweinehaltung 2026 wieder förderfähig ist (z.B. Baden-Württemberg ab Sept. 2026) – und wie du das Maximum aus dem AFP holst."
+  },
 }
 
 function getIndustryHook(industry: string | undefined): { pain: string; hook: string } {
@@ -93,21 +100,16 @@ export default function ExpertSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          {/* TEMPLATE: Section Badge */}
-          <span className="inline-block text-xs font-semibold uppercase tracking-wider text-purple-700 mb-4">
-            [BADGE: z.B. "Ihr Ansprechpartner", "Meet Your Expert"]
+          <span className="inline-block text-xs font-semibold uppercase tracking-wider text-green-700 mb-4">
+            Dein AFP-Spezialist
           </span>
           
-          {/* TEMPLATE: Headline */}
-          {/* ANLEITUNG: Wer ist diese Person? Was ist das Unique? */}
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
-            [HEADLINE: z.B. "[Expert Name] - Spezialist für [Spezialgebiet]"]
+            Ich bin der Förder-Typ, der Landwirten wie dir jedes Jahr Millionen extra holt
           </h2>
           
-          {/* TEMPLATE: Subheadline */}
-          {/* ANLEITUNG: Kurze Philosophie/Why → Warum sollte ich diesem Expert vertrauen? */}
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            [SUBHEADLINE: z.B. "Unternehmer verstehen Unternehmer. Wir kennen Ihre Herausforderungen."]
+            Ich verdiene erst, wenn du Geld bekommst. Deshalb arbeite ich nur mit Fällen, die ich auch wirklich gewinne.
           </p>
         </motion.div>
 
@@ -120,58 +122,51 @@ export default function ExpertSection() {
           <div className="grid lg:grid-cols-12 gap-0">
             {/* Left: Expert Photo */}
             <div className="lg:col-span-4 bg-gradient-to-br from-slate-100 to-slate-200 p-8 lg:p-12 flex flex-col items-center justify-center text-center">
-              {/* TEMPLATE: Expert Foto */}
-              {/* ANLEITUNG: Professionelles Foto, 160x160px minimum, friendly aber competent */}
-              <div className="relative w-40 h-40 rounded-full overflow-hidden mb-6 shadow-xl shadow-slate-400/30 ring-4 ring-white">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="[PLATZHALTER: /expert-photo.webp]"
-                  alt="[TEMPLATE: Expert Name - Titel/Spezialität]"
+                  src="/expert-photo.webp"
+                  alt="Patrick Starkmann – AFP-Spezialist für Landwirtschaft"
                   width={160}
                   height={160}
                   className="object-cover object-top w-full h-full"
                 />
               </div>
               
-              {/* TEMPLATE: Name & Title */}
-              {/* ANLEITUNG: Vollständiger Name + prägnanter Titel */}
-              <h3 className="text-2xl font-bold text-slate-900 mb-1">[EXPERT NAME]</h3>
-              <p className="text-purple-700 font-semibold mb-4">[TITLE: z.B. "Spezialist für XYZ"]</p>
+              <h3 className="text-2xl font-bold text-slate-900 mb-1">Patrick Starkmann</h3>
+              <p className="text-green-700 font-semibold mb-4">AFP-Spezialist für Landwirtschaft</p>
 
-              {/* TEMPLATE: Contact Links */}
+              {/* Contact Links */}
               <div className="flex gap-3 mb-6">
                 <a
-                  href="[LINKEDIN-URL]"
+                  href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:border-purple-400 hover:bg-purple-50 transition-colors"
-                  aria-label="[EXPERT NAME] auf LinkedIn"
+                  className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:border-green-400 hover:bg-green-50 transition-colors"
+                  aria-label="Patrick Starkmann auf LinkedIn"
                 >
                   <Linkedin className="w-5 h-5 text-slate-600" aria-hidden="true" />
                 </a>
                 <a
-                  href="tel:[PHONE-NUMBER]"
-                  className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:border-purple-400 hover:bg-purple-50 transition-colors"
-                  aria-label="[EXPERT NAME] anrufen"
+                  href="tel:+4920878012578"
+                  className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:border-green-400 hover:bg-green-50 transition-colors"
+                  aria-label="Patrick Starkmann anrufen"
                 >
                   <Phone className="w-5 h-5 text-slate-600" aria-hidden="true" />
                 </a>
               </div>
 
-              {/* TEMPLATE: Credentials */}
-              {/* ANLEITUNG: 3-4 konkrete Qualifikationen - Zahlen sind wichtig! */}
               <div className="space-y-2 text-sm text-slate-600">
                 <div className="flex items-center gap-2">
-                  <Award className="w-4 h-4 text-purple-700" aria-hidden="true" />
-                  <span>[CREDENTIAL 1: z.B. "IHK-zertifiziert"]</span>
+                  <Award className="w-4 h-4 text-green-700" aria-hidden="true" />
+                  <span>Zertifizierter AFP-Förderberater</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <FileCheck className="w-4 h-4 text-purple-700" aria-hidden="true" />
-                  <span>[CREDENTIAL 2: z.B. "Über X Projekte betreut"]</span>
+                  <FileCheck className="w-4 h-4 text-green-700" aria-hidden="true" />
+                  <span>Über 400 bewilligte Anträge</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Building2 className="w-4 h-4 text-purple-700" aria-hidden="true" />
-                  <span>[CREDENTIAL 3: z.B. "Anerkannte Zertifizierung XYZ"]</span>
+                  <Building2 className="w-4 h-4 text-green-700" aria-hidden="true" />
+                  <span>Alle 16 Bundesländer</span>
                 </div>
               </div>
             </div>
@@ -253,12 +248,12 @@ export default function ExpertSection() {
                   {isPersonalized ? `Erfahrung u.a. in Ihrer Branche` : "Spezialisierung"}
                 </h4>
                 <div className="flex flex-wrap gap-2">
-                  {[
-                    "Maschinenbau",
-                    "Produktionsanlagen",
-                    "Gebäudeinvestitionen",
-                    "Digitalisierung",
-                    "Klimaschutz-Projekte",
+                    {[
+                    "Milchvieh & Rinderhaltung",
+                    "Schweinehaltung",
+                    "Geflügel & Freilandhaltung",
+                    "Gülle & Gärrestelager",
+                    "Klimaschutz & Emissionen",
                   ].map((tag) => {
                     // Check if this tag relates to the company's industry
                     const isRelevant = industry && (
@@ -298,16 +293,16 @@ export default function ExpertSection() {
                 {/* TEMPLATE: 3 konkrete Zahlen/Stats */}
                 {/* ANLEITUNG: Social Proof - was macht diese Person erfolgreich? */}
                 <div>
-                  <div className="text-3xl font-bold text-slate-900">[STAT 1: z.B. "98%"]</div>
-                  <div className="text-sm text-slate-600">[LABEL: z.B. "Erfolgsquote"]</div>
+                  <div className="text-3xl font-bold text-slate-900">98 %</div>
+                  <div className="text-sm text-slate-600">Erfolgsquote</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-slate-900">[STAT 2: z.B. "200+"]</div>
-                  <div className="text-sm text-slate-600">[LABEL: z.B. "Projekte"]</div>
+                  <div className="text-3xl font-bold text-slate-900">400+</div>
+                  <div className="text-sm text-slate-600">Bewilligte Anträge</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-slate-900">[STAT 3: z.B. "15+ Mio."]</div>
-                  <div className="text-sm text-slate-600">[LABEL: z.B. "Bewilligte Förderung"]</div>
+                  <div className="text-3xl font-bold text-slate-900">28 Mio. €</div>
+                  <div className="text-sm text-slate-600">Bewilligte Förderung</div>
                 </div>
               </div>
             </div>
