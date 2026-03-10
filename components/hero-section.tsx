@@ -48,33 +48,32 @@ export function HeroSection() {
                 </span>
               </div>
 
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 lg:mb-5 bg-gradient-to-br from-slate-900 via-green-800 to-slate-700 bg-clip-text text-transparent leading-tight text-balance">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 lg:mb-5 bg-gradient-to-br from-slate-900 via-green-800 to-slate-700 bg-clip-text text-transparent leading-tight text-balance">
                 Der Staat zahlt dir <span className="text-green-700">bis 50 %</span> für deinen nächsten Stall, Güllelager oder Klimaschutz
               </h1>
 
-              {/* Hero image — mobile only, shown between headline and CTA */}
-              <div className="lg:hidden my-4 relative">
+              <p className="text-sm md:text-base lg:text-lg text-slate-600 mb-3 lg:mb-7 leading-relaxed">
+                Gib in 45 Sekunden dein Bundesland und dein Vorhaben ein — du siehst sofort, wie viel Geld du wirklich kriegst.
+              </p>
+
+              {/* Hero image — mobile only, between subheadline and CTA */}
+              <div className="lg:hidden mb-3 relative">
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-emerald-400/20 to-green-600/10 blur-2xl scale-110" />
                 <img
                   src="/hero-foerderung.webp"
                   alt="Bis zu 50 % staatliche Förderung für Landwirte"
-                  className="relative rounded-xl shadow-xl w-full object-cover max-h-52 ring-1 ring-white/20"
+                  className="relative rounded-xl shadow-xl w-full object-cover max-h-48 ring-1 ring-white/20"
                 />
-                {/* Mobile floating badge */}
                 <div className="absolute top-3 right-3 bg-white rounded-xl shadow-lg px-3 py-2 flex items-center gap-1.5 ring-1 ring-emerald-100">
-                  <MoneyBagIcon className="w-6 h-6 text-emerald-600 flex-shrink-0" />
+                  <MoneyBagIcon className="w-5 h-5 text-emerald-600 flex-shrink-0" />
                   <div>
                     <p className="text-[9px] font-semibold text-slate-500 uppercase tracking-wide leading-none mb-0.5">Zuschuss</p>
-                    <p className="text-base font-extrabold text-emerald-700 leading-none">bis 50 %</p>
+                    <p className="text-sm font-extrabold text-emerald-700 leading-none">bis 50 %</p>
                   </div>
                 </div>
               </div>
 
-              <p className="text-sm md:text-base lg:text-lg text-slate-600 mb-4 lg:mb-7 leading-relaxed">
-                Gib in 45 Sekunden dein Bundesland und dein Vorhaben ein — du siehst sofort, wie viel Geld du wirklich kriegst.
-              </p>
-
-              <div className="flex flex-wrap justify-center lg:justify-start gap-x-4 gap-y-1.5 mb-4 lg:mb-8">
+              <div className="flex flex-wrap justify-center lg:justify-start gap-x-4 gap-y-1.5 mb-3 lg:mb-8">
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
                   <span className="text-xs sm:text-sm text-slate-700"><span className="font-semibold">400+</span> Landwirte gefördert</span>
