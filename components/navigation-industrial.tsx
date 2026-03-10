@@ -53,7 +53,7 @@ export function NavigationIndustrial() {
             : "bg-slate-50/80 backdrop-blur-sm"
         }`}
       >
-        <div className="container mx-auto px-4 lg:px-8 max-w-7xl">
+        <div className="page-container px-4 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-18">
             {/* Logo */}
             <a href="/" className="flex items-center gap-3 group">

@@ -93,7 +93,7 @@ export default function ExpertSection() {
 
   return (
     <section ref={ref} id="experte" className="py-24 md:py-32 bg-white">
-      <div className="container mx-auto px-4 max-w-7xl">
+      <div className="page-container px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

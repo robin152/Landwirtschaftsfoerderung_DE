@@ -30,7 +30,7 @@ export function HeroSection() {
           ))}
         </div>
 
-        <div className="container max-w-6xl mx-auto relative w-full">
+        <div className="page-container relative w-full">
           <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
 
             {/* Left: Text & CTA */}
@@ -164,7 +164,7 @@ export function HeroSection() {
 
       {/* Benefits Section */}
       <section className="py-16 sm:py-24 bg-white border-t border-slate-200">
-        <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="page-container px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-balance">
               Warum Landwirte mit uns mehr rausholen

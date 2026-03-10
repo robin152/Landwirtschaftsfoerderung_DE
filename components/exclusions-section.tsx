@@ -80,7 +80,7 @@ export function ExclusionsSection() {
 
   return (
     <section id="exclusions" className="py-16 sm:py-24 bg-white border-t border-slate-100">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+      <div className="page-container px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <motion.div

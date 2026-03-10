@@ -37,7 +37,7 @@ export function FundingQuotesSection() {
 
   return (
     <section id="funding-quotes" className="py-14 sm:py-20 bg-slate-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+      <div className="page-container px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <motion.div
