@@ -12,7 +12,7 @@ export function HeroSection() {
   return (
     <>
       {/* Hero Main */}
-      <section className="relative min-h-[100svh] flex items-start lg:items-center justify-center px-4 pt-20 pb-6 lg:pt-24 lg:pb-12 bg-gradient-to-b from-slate-50 to-white overflow-hidden">
+      <section className="relative flex items-center justify-center px-4 pt-20 pb-8 md:min-h-[90svh] md:pt-24 md:pb-12 bg-gradient-to-b from-slate-50 to-white overflow-hidden">
         {/* Subtle wheat pattern background */}
         <div className="absolute inset-0 pointer-events-none opacity-[0.03]" aria-hidden="true">
           {[...Array(6)].map((_, i) => (
@@ -162,7 +162,7 @@ export function HeroSection() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-16 sm:py-24 bg-white border-t border-slate-200">
+      <section className="py-10 sm:py-16 md:py-24 bg-white border-t border-slate-200">
         <div className="page-container px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-balance">
