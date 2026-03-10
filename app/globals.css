@@ -662,23 +662,48 @@ html {
 
 /* ====== ULTRAWIDE (21:9) OPTIMIZATIONS ====== */
 
-/* Detect ultrawide aspect ratio */
-@media (min-aspect-ratio: 2/1) and (min-width: 1920px) {
-  .ultrawide-constrain {
-    max-width: 1600px;
-    margin-inline: auto;
-  }
-  
-  .ultrawide-padding {
-    padding-inline: clamp(2rem, 8vw, 12rem);
+/*
+  Responsive container strategy:
+  - Mobile (< 768px):   full width, 1rem padding
+  - Tablet (768–1280px): full width, 1.5rem padding
+  - 16:9 desktop (1280–1920px): 85% of viewport, centred
+  - 21:9 ultrawide (> 1920px):  70% of viewport, centred
+  The clamp() formula handles continuous scaling between breakpoints.
+*/
+
+.page-container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2rem);
+  /* 85vw caps at 1920px wide screens, but never exceeds 1600px on very wide */
+  max-width: min(85vw, 1600px);
+}
+
+/* On true 21:9 or wider: shrink to 70% */
+@media (min-aspect-ratio: 21/9) {
+  .page-container {
+    max-width: min(70vw, 1600px);
   }
 }
 
-/* 21:9 screens (2560x1080 and similar) */
+/* On narrow mobile: full width */
+@media (max-width: 767px) {
+  .page-container {
+    max-width: 100%;
+    padding-inline: 1rem;
+  }
+}
+
+/* Legacy: existing .container classes get the same treatment on wide screens */
+@media (min-width: 1280px) {
+  .container {
+    max-width: min(85vw, 1600px) !important;
+  }
+}
+
 @media (min-aspect-ratio: 21/9) {
-  .hero-content {
-    max-width: 85vw;
-    margin-inline: auto;
+  .container {
+    max-width: min(70vw, 1600px) !important;
   }
 }
 

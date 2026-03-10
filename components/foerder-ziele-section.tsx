@@ -71,7 +71,7 @@ const item = {
 export function FoerderZieleSection() {
   return (
     <section className="py-14 sm:py-20 bg-white border-t border-slate-100">
-      <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="page-container px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="text-center mb-10 sm:mb-14">

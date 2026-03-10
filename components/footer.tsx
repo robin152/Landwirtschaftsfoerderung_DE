@@ -23,7 +23,7 @@ const footerLinks = {
 export function Footer() {
   return (
     <footer className="border-t border-border py-10 sm:py-20 safe-area-bottom bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
+      <div className="page-container px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 pb-8 sm:pb-16 border-b border-border mb-8 sm:mb-16">
           <div className="text-center sm:text-left">
             <h3 className="text-xl sm:text-3xl font-bold mb-1 sm:mb-2 text-foreground">Bereit für Ihre Förderung?</h3>
