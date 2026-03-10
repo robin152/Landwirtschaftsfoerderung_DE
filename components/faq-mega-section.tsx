@@ -93,7 +93,7 @@ const faqCategories: FAQCategory[] = [
         answer: "Ja. Mindestens 20 % mehr nutzbare Fläche als gesetzlich vorgeschrieben plus weiche Liegefläche, Beschäftigungsmaterial und offene Tränken."
       },
       {
-        question: "Was genau bedeutet „feste Abdeckung" beim Güllelager?",
+        question: 'Was genau bedeutet "feste Abdeckung" beim Güllelager?',
         answer: "Eine feste, gasdichte Abdeckung plus mindestens 2 Monate zusätzliche Lagerkapazität über dem gesetzlichen Minimum – dann gibt es 40 % Zuschuss."
       },
       {

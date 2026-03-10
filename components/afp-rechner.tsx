@@ -634,6 +634,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
   }
 
   return (
+    <>
     <div className="bg-slate-900 rounded-2xl border border-slate-700 overflow-hidden shadow-2xl">
       {/* Header */}
       <div className="bg-gradient-to-r from-emerald-900/50 to-slate-900 border-b border-slate-700 px-4 sm:px-6 py-4 sm:py-5">
@@ -1118,17 +1119,18 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
       </div>
     </div>
 
-    {/* Unlock Modal */}
-    {showUnlockModal && (
-      <LeadCaptureModal
-        isOpen={showUnlockModal}
-        onClose={() => setShowUnlockModal(false)}
-        onSuccess={() => {
-          setShowUnlockModal(false)
-          setResultUnlocked(true)
-        }}
-        source="rechner-unlock"
-      />
-    )}
+      {/* Unlock Modal */}
+      {showUnlockModal && (
+        <LeadCaptureModal
+          isOpen={showUnlockModal}
+          onClose={() => setShowUnlockModal(false)}
+          onSuccess={() => {
+            setShowUnlockModal(false)
+            setResultUnlocked(true)
+          }}
+          source="rechner-unlock"
+        />
+      )}
+    </>
   )
 }

@@ -1,42 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Check } from "lucide-react"
-import Image from "next/image"
-
-// ============================================
-// TEMPLATE ANLEITUNG: ASSETS / FÖRDERUNGSFÄHIGE INVESTITIONEN
-// ============================================
-// SALES-FUNNEL STAGE: Aufmerksamkeit & Qualifizierung
-// ZWECK: Besucher sollen schnell erkennen, ob ihre geplante Investition förderfähig ist
-// VERKAUFSLOGIK: "Does our product fit your needs?" → Lead-Qualifizierung
-// KONVERSIONSROUTE: ✓ Ja, meine Investition ist hier → Zu nächster Sektion
-//                   ✗ Nein, nicht dabei → Kalkulator/Kontakt
-// ============================================
-//
-// WAS REIN MUSS:
-// - 6-8 förderfähige Investitionskategorien
-// - Visuell ansprechende Icons/Bilder für jede Kategorie
-// - Klare, sprechende Titel (nicht technisch)
-// - 2-3 konkrete Beispiele pro Kategorie
-// - 2-3 FEATURED-Items hervorheben (meist die mit höchster Förderquote)
-//   → Gebäude, PV-Anlagen, Fertigungsanlagen (Automatisierung)
-//
-// BEISPIEL-STRUKTUR:
-// {
-//   title: "[INVESTITIONSTYP - verständlich]",
-//   description: "[3-4 konkrete Beispiele, komma-getrennt]",
-//   image: "/images/assets/[aussagekräftige-bild].jpg",
-//   span: "col-span-1",           // oder "col-span-1 md:col-span-2" für Featured
-//   featured: true,               // optional - Hervorhebung
-// }
-//
-// VERKAUFS-TIPP:
-// - Erste 2-3 Items sollten häufigste Investitionen sein (Maschinen, Gebäude)
-// - Featured-Items = Höchste Förderquoten → Aufmerksamkeit maximieren
-// - Alle Items sollten KONKRETE Beispiele haben (keine Abstraktion)
-
-import { motion } from "framer-motion"
 import { Check, ChevronRight } from "lucide-react"
 import Image from "next/image"
 
