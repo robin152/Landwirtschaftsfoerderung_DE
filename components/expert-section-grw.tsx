@@ -236,9 +236,7 @@ export default function ExpertSection() {
                   </div>
                 ) : (
                   <p className="text-xl md:text-2xl text-slate-700 italic leading-relaxed pl-10 relative z-10">
-                    Erfolgreiche Investitionsförderung beginnt mit der richtigen Strategie. Ich helfe Ihnen, Ihre
-                    geplanten Investitionen optimal zu strukturieren und den maximalen Zuschuss zu sichern — bevor Sie
-                    einen Euro ausgeben.
+                    "Wer im Herbst nicht sät, der erntet im Sommer nichts." Genau so ist es mit der AFP-Förderung: Wer seinen Antrag früh und richtig stellt, holt bis zu 50 % der Investition als Zuschuss raus. Wer zu spät kommt oder Fehler macht, zahlt alles selbst — das muss nicht sein.
                   </p>
                 )}
               </div>
