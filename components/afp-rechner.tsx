@@ -154,18 +154,18 @@ const BUNDESLAENDER = {
     besonderheit: "SIUK variabel 40–65 %. Mobilställe & SIUK stark. Milchvieh-Schwerpunkt.",
   },
   "Schleswig-Holstein": {
-    maxInvest: 5_000_000,
-    prosperitaetLedig: null,
-    prosperitaetVerheiratet: null,
+    maxInvest: 1_500_000,   // 1–5 Mio. variabel; Standard an Niedersachsen angelehnt
+    prosperitaetLedig: 170_000,
+    prosperitaetVerheiratet: 200_000,
     basisSatz: 20,
     tierwohlMax: 40,
     siukMax: 40,
     kombiMax: 40,
     jungBonus: 10,
-    besonderheit: "1–5 Mio. Max-Invest variabel. Mobilställe & SIUK stark.",
+    besonderheit: "Max-Invest 1–5 Mio. variabel (Standardwert 1,5 Mio.). Mobilställe & SIUK stark.",
   },
   "Rheinland-Pfalz": {
-    maxInvest: null,   // k.A., mind. 50.000 €
+    maxInvest: null,         // variabel, mind. 50.000 € Invest
     minInvestSpecial: 50_000,
     prosperitaetLedig: 200_000,
     prosperitaetVerheiratet: 200_000,
@@ -174,7 +174,7 @@ const BUNDESLAENDER = {
     siukMax: 40,
     kombiMax: 40,
     jungBonus: 10,
-    besonderheit: "Mind. 50.000 € Invest. Max-Invest k.A. Diversifizierung stark gewichtet.",
+    besonderheit: "Mind. 50.000 € Invest (höhere Schwelle als Bundesdurchschnitt). Max-Invest variabel. Diversifizierung stark gewichtet.",
   },
   "Saarland": {
     maxInvest: 3_000_000,
@@ -280,8 +280,10 @@ function berechne(params: {
   einkommen: number
   istOeko: boolean
   hatMeister: boolean
+  gvHa?: number          // Viehbesatz GV/ha (optional)
+  tierbestand?: number   // Anzahl Tierplätze (für NRW-Bestandsobergrenzen)
 }) {
-  const { bundesland, investitionsart, tierhaltung, investVolumen, alter, familienstand, einkommen, istOeko, hatMeister } = params
+  const { bundesland, investitionsart, tierhaltung, investVolumen, alter, familienstand, einkommen, istOeko, hatMeister, gvHa, tierbestand } = params
 
   if (!bundesland || !investitionsart) return null
 
@@ -294,8 +296,11 @@ function berechne(params: {
   const prosperitaetFail =
     aktuelleGrenze !== null && einkommen > 0 && einkommen > aktuelleGrenze
 
-  // 2. Mindestinvestition
-  const minInvest = investitionsart === "kaelber" ? 10_000 : 20_000
+  // 2. Mindestinvestition — RP hat erhöhte Schwelle von 50.000 €
+  const minInvestBase = investitionsart === "kaelber" ? 10_000 : 20_000
+  const minInvest = ("minInvestSpecial" in bl && bl.minInvestSpecial)
+    ? Math.max(minInvestBase, bl.minInvestSpecial)
+    : minInvestBase
   const zuWenig = investVolumen > 0 && investVolumen < minInvest
 
   // 3. Cap auf Maximalvolumen
@@ -303,61 +308,64 @@ function berechne(params: {
   const cappedInvest = Math.min(investVolumen, maxInvest)
   const cappedByMax = investVolumen > maxInvest
 
-  // 4. Schweine-Sperre prüfen (BW bis Sept 2026 gesperrt)
+  // 4. Schweine-Sperre (BW bis Sept 2026)
   const schweinSperre =
     tierhaltung === "schwein" &&
     bundesland === "Baden-Württemberg"
 
-  // 5. Basis-Fördersatz je Investitionsart
+  // 5. Viehbesatzgrenze: max. 2,0 GV/ha selbstbewirtschafteter Fläche
+  //    Warnung wenn gvHa bekannt und > 2,0
+  const viehbesatzWarnung = typeof gvHa === "number" && gvHa > 0 && gvHa > 2.0
+
+  // 6. NRW Bestandsobergrenzen (kumulativ, absolute Platzgrenzen)
+  const nrwBestandsWarnung =
+    bundesland === "Nordrhein-Westfalen" &&
+    typeof tierbestand === "number" &&
+    tierbestand > 0 &&
+    (
+      (tierhaltung === "gefluegel" && tierbestand > 15_000) ||
+      (tierhaltung === "rind"     && tierbestand > 600)    ||
+      (tierhaltung === "schwein"  && tierbestand > 1_500)
+    )
+
+  // 7. Basis-Fördersatz je Investitionsart
   let baseSatz = 0
   switch (investitionsart) {
-    case "tierwohl":
-      baseSatz = bl.tierwohlMax
-      break
-    case "siuk":
-      baseSatz = bl.siukMax
-      break
-    case "kombi":
-      baseSatz = bl.kombiMax
-      break
-    case "guelle":
-      baseSatz = 40
-      break
+    case "tierwohl":   baseSatz = bl.tierwohlMax; break
+    case "siuk":       baseSatz = bl.siukMax;     break
+    case "kombi":      baseSatz = bl.kombiMax;    break
+    case "guelle":     baseSatz = 40;             break
     case "kaelber":
       baseSatz = 30 + ("kalberAufschlag" in bl && bl.kalberAufschlag ? 10 : 0)
       break
-    case "praezision":
-      baseSatz = 30
-      break
-    case "basis":
-      baseSatz = bl.basisSatz
-      break
+    case "praezision": baseSatz = 30;             break
+    case "basis":      baseSatz = bl.basisSatz;   break
   }
 
-  // 6. Bayern Tierwohl-Sonderfall: Meister bringt +15 PP
+  // 8. Bayern Tierwohl-Sonderfall: Meister +15 PP
   let qualBonus = 0
   if (bundesland === "Bayern" && hatMeister && (investitionsart === "tierwohl" || investitionsart === "kombi")) {
     qualBonus = 15
   }
 
-  // 7. Öko-Bonus (Thüringen, Bayern, Sachsen)
+  // 9. Öko-Bonus (Thüringen, Bayern, Sachsen)
   let oekoBonus = 0
   if (istOeko && ["Bayern", "Thüringen", "Sachsen"].includes(bundesland)) {
     oekoBonus = 5
   }
 
-  // 8. Junglandwirt-Bonus
+  // 10. Junglandwirt-Bonus (+10 PP, max. 20.000 € absolut)
   const istJunglandwirt = alter > 0 && alter <= 40
   const jungBonusPP = istJunglandwirt ? 10 : 0
 
-  // 9. Gesamtsatz (cap auf bundeslandspez. kombiMax oder siukMax)
-  const hardCap = Math.max(bl.kombiMax, bl.siukMax) + 10 // +10 für Junglandwirt
+  // 11. Gesamtsatz (hard cap = höchster BL-Satz + 10 für Junglandwirt)
+  const hardCap = Math.max(bl.kombiMax, bl.siukMax) + 10
   let gesamtSatz = Math.min(baseSatz + qualBonus + oekoBonus + jungBonusPP, hardCap)
 
-  // 10. Zuschuss berechnen
+  // 12. Zuschuss berechnen
   let zuschuss = cappedInvest * (gesamtSatz / 100)
 
-  // Junglandwirt-Bonus darf max. 20.000 € betragen
+  // Junglandwirt-Bonus max. 20.000 €
   if (istJunglandwirt) {
     const zuschussOhneJung = cappedInvest * ((baseSatz + qualBonus + oekoBonus) / 100)
     const jungBonusBetrag = zuschuss - zuschussOhneJung
@@ -367,7 +375,11 @@ function berechne(params: {
     }
   }
 
-  // 11. Förderlevel für Anzeige (relativ zum max möglichen des BL)
+  // 13. Zweckbindungsfristen
+  const zweckbindungJahre =
+    ["basis", "tierwohl", "kombi", "guelle", "siuk"].includes(investitionsart) ? 12 : 5
+
+  // 14. Förderlevel für Anzeige
   const maxMoeglich = hardCap
   const foerderLevel = Math.min(Math.round((gesamtSatz / maxMoeglich) * 100), 100)
 
@@ -376,6 +388,8 @@ function berechne(params: {
     aktuelleGrenze,
     zuWenig,
     schweinSperre,
+    viehbesatzWarnung,
+    nrwBestandsWarnung,
     cappedInvest,
     cappedByMax,
     maxInvest,
@@ -390,6 +404,7 @@ function berechne(params: {
     besonderheit: bl.besonderheit,
     minInvest,
     investVolumen,
+    zweckbindungJahre,
   }
 }
 
@@ -405,7 +420,7 @@ function AgriCardIcon({ icon, className }: { icon: string; className?: string })
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────��─────────────────
 // HELPER COMPONENTS
 // ─────────────────────────────────────────────────────────────────────────────
 function SelectField({
@@ -639,8 +654,23 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
   const [istOeko, setIstOeko] = useState(false)
 
   // Step 1 — Vorhaben
-  const [investitionsart, setInvestitionsart] = useState<InvestitionsartId | "">("")
+  const [investitionsarten, setInvestitionsarten] = useState<InvestitionsartId[]>([])
+  const investitionsart = investitionsarten[0] ?? ("" as const) // backward compat for berechne (uses highest-rate art)
   const [investVolumen, setInvestVolumen] = useState("")
+
+  function toggleInvestitionsart(id: InvestitionsartId) {
+    setShowErrors(false)
+    setInvestitionsarten((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    )
+  }
+
+  // For calculation: pick the art with highest potential Fördersatz
+  const INVEST_ORDER: InvestitionsartId[] = ["kombi", "siuk", "tierwohl", "guelle", "kaelber", "praezision", "basis"]
+  const primaryInvestitionsart: InvestitionsartId | "" =
+    investitionsarten.length === 0
+      ? ""
+      : INVEST_ORDER.find((id) => investitionsarten.includes(id)) ?? investitionsarten[0]
 
   // Step 2 — Person
   const [alter, setAlter] = useState("")
@@ -652,7 +682,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
     () =>
       berechne({
         bundesland: bundesland as BundeslandKey | null,
-        investitionsart: investitionsart as InvestitionsartId | null,
+        investitionsart: primaryInvestitionsart as InvestitionsartId | null,
         tierhaltung: tierhaltung as TierhaltungsartId | null,
         investVolumen: Number(investVolumen) || 0,
         alter: Number(alter) || 0,
@@ -660,8 +690,9 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
         einkommen: Number(einkommen) || 0,
         istOeko,
         hatMeister,
+        // gvHa & tierbestand sind optional — werden nur gewarnt wenn bekannt
       }),
-    [bundesland, investitionsart, tierhaltung, investVolumen, alter, familienstand, einkommen, istOeko, hatMeister]
+    [bundesland, primaryInvestitionsart, tierhaltung, investVolumen, alter, familienstand, einkommen, istOeko, hatMeister]
   )
 
   const bundeslandOptions = Object.keys(BUNDESLAENDER).map((k) => ({ value: k, label: k }))
@@ -674,7 +705,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
   // Validierung je Step
   const canProceed = [
     !!bundesland && !!tierhaltung,
-    !!investitionsart && Number(investVolumen) >= 10_000,
+    !!primaryInvestitionsart && Number(investVolumen) >= 10_000,
     !!alter,
   ]
 
@@ -771,47 +802,76 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
               <div className="flex items-center gap-2 bg-red-950/60 border border-red-700/50 rounded-xl px-4 py-3">
                 <AlertCircle className="w-4 h-4 text-red-400 flex-shrink-0" aria-hidden="true" />
                 <p className="text-red-300 text-sm font-semibold">
-                  {!investitionsart ? "Bitte eine Investitionsart wählen." : "Bitte ein Investitionsvolumen von mindestens 10.000 € eingeben."}
+                  {investitionsarten.length === 0 ? "Bitte mindestens eine Investitionsart wählen." : "Bitte ein Investitionsvolumen von mindestens 10.000 € eingeben."}
                 </p>
               </div>
             )}
-            <div className={`grid grid-cols-1 gap-2 ${showErrors && !investitionsart ? "rounded-xl ring-2 ring-red-500/40 p-1 -m-1" : ""}`}>
-              {INVESTITIONSARTEN.map((art) => (
+            {/* Selection counter badge */}
+            {investitionsarten.length > 0 && (
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-xs font-semibold bg-emerald-600/20 border border-emerald-500/40 text-emerald-300 px-2.5 py-1 rounded-full">
+                  {investitionsarten.length} Vorhaben gewählt
+                </span>
                 <button
-                  key={art.id}
                   type="button"
-                  onClick={() => { setInvestitionsart(art.id); setShowErrors(false) }}
-                  className={`text-left p-4 rounded-xl border transition-all duration-150 touch-manipulation min-h-[72px] ${
-                    investitionsart === art.id
-                      ? "border-emerald-500 bg-emerald-900/30 shadow-lg shadow-emerald-900/20"
-                      : showErrors && !investitionsart
-                      ? "border-red-700/60 bg-red-950/20 active:border-red-500 active:bg-red-950/30"
-                      : "border-slate-700 bg-slate-800/50 active:border-slate-500 active:bg-slate-800"
-                  }`}
+                  onClick={() => setInvestitionsarten([])}
+                  className="text-xs text-slate-500 hover:text-slate-300 underline transition-colors"
                 >
-                  <div className="flex items-start gap-3">
-                    <div className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center mt-0.5 ${
-                      investitionsart === art.id ? "bg-emerald-600/30" : "bg-slate-700/50"
-                    }`}>
-                      <AgriCardIcon icon={art.icon} className={`w-5 h-5 ${investitionsart === art.id ? "text-emerald-400" : "text-slate-400"}`} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-2 mb-1">
-                        <span className="text-sm font-semibold text-white leading-tight">{art.label}</span>
-                        <span className={`text-xs px-2 py-0.5 rounded-full border whitespace-nowrap flex-shrink-0 ${art.badgeColor}`}>
-                          {art.badge}
-                        </span>
-                      </div>
-                      <p className="text-xs text-slate-400 leading-relaxed">{art.desc}</p>
-                    </div>
-                  </div>
+                  Auswahl leeren
                 </button>
-              ))}
+              </div>
+            )}
+            <div className={`grid grid-cols-1 gap-2 ${showErrors && investitionsarten.length === 0 ? "rounded-xl ring-2 ring-red-500/40 p-1 -m-1" : ""}`}>
+              {INVESTITIONSARTEN.map((art) => {
+                const isSelected = investitionsarten.includes(art.id)
+                return (
+                  <button
+                    key={art.id}
+                    type="button"
+                    onClick={() => toggleInvestitionsart(art.id)}
+                    className={`text-left p-4 rounded-xl border transition-all duration-150 touch-manipulation min-h-[72px] ${
+                      isSelected
+                        ? "border-emerald-500 bg-emerald-900/30 shadow-lg shadow-emerald-900/20"
+                        : showErrors && investitionsarten.length === 0
+                        ? "border-red-700/60 bg-red-950/20 active:border-red-500 active:bg-red-950/30"
+                        : "border-slate-700 bg-slate-800/50 active:border-slate-500 active:bg-slate-800"
+                    }`}
+                    aria-pressed={isSelected}
+                  >
+                    <div className="flex items-start gap-3">
+                      {/* Checkbox indicator */}
+                      <div className={`flex-shrink-0 w-5 h-5 rounded border-2 flex items-center justify-center mt-0.5 transition-colors ${
+                        isSelected ? "border-emerald-500 bg-emerald-500" : "border-slate-600 bg-slate-800"
+                      }`}>
+                        {isSelected && (
+                          <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 12 12" aria-hidden="true">
+                            <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        )}
+                      </div>
+                      <div className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center ${
+                        isSelected ? "bg-emerald-600/30" : "bg-slate-700/50"
+                      }`}>
+                        <AgriCardIcon icon={art.icon} className={`w-5 h-5 ${isSelected ? "text-emerald-400" : "text-slate-400"}`} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-start justify-between gap-2 mb-1">
+                          <span className="text-sm font-semibold text-white leading-tight">{art.label}</span>
+                          <span className={`text-xs px-2 py-0.5 rounded-full border whitespace-nowrap flex-shrink-0 ${art.badgeColor}`}>
+                            {art.badge}
+                          </span>
+                        </div>
+                        <p className="text-xs text-slate-400 leading-relaxed">{art.desc}</p>
+                      </div>
+                    </div>
+                  </button>
+                )
+              })}
             </div>
-            {showErrors && !investitionsart && (
+            {showErrors && investitionsarten.length === 0 && (
               <p className="text-xs text-red-400 flex items-center gap-1 -mt-2">
                 <AlertCircle className="w-3 h-3 flex-shrink-0" aria-hidden="true" />
-                Bitte eine Investitionsart auswählen.
+                Bitte mindestens eine Investitionsart auswählen.
               </p>
             )}
             <NumberField
@@ -949,6 +1009,35 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
               </div>
             )}
 
+            {/* Viehbesatz-Warnung (2,0 GV/ha Grenze) */}
+            {ergebnis.viehbesatzWarnung && (
+              <div className="bg-amber-950/60 border border-amber-700/50 rounded-xl p-3 flex gap-3">
+                <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                <div>
+                  <p className="text-amber-300 font-bold text-xs">Viehbesatzgrenze — Prüfung empfohlen</p>
+                  <p className="text-amber-400 text-xs mt-0.5">
+                    Die meisten Bundesländer setzen max. 2,0 GV/ha selbstbewirtschafteter Fläche voraus.
+                    Dein Betrieb liegt darüber — im persönlichen Check klären wir die Auswirkung auf die Förderfähigkeit.
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* NRW Bestandsobergrenzen-Warnung */}
+            {ergebnis.nrwBestandsWarnung && (
+              <div className="bg-red-950/60 border border-red-700/50 rounded-xl p-3 flex gap-3">
+                <AlertTriangle className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                <div>
+                  <p className="text-red-300 font-bold text-xs">NRW Bestandsgrenze erreicht</p>
+                  <p className="text-red-400 text-xs mt-0.5">
+                    In NRW gelten kumulative Obergrenzen: max. 15.000 Hennenplätze, 600 Rinderplätze,
+                    1.500 Mastschweineplätze. Dein Bestand liegt möglicherweise über dieser Grenze — dies
+                    kann zum Ausschluss führen. Wir prüfen das im Detail.
+                  </p>
+                </div>
+              </div>
+            )}
+
             {/* Haupt-Ergebnis */}
             {!isBlocked && (
               <div className="bg-gradient-to-br from-emerald-900/70 to-slate-900 border-2 border-emerald-600/60 rounded-2xl overflow-hidden shadow-xl shadow-emerald-900/30">
@@ -1054,6 +1143,11 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                           {ergebnis.besonderheit.split(".")[0]}
                         </span>
                       )}
+                      {/* Zweckbindungsfrist-Badge */}
+                      <span className="inline-flex items-center gap-1.5 bg-slate-700/60 border border-slate-600/50 text-slate-300 text-xs font-semibold px-3 py-1.5 rounded-full">
+                        <Calendar className="w-3.5 h-3.5" aria-hidden="true" />
+                        Zweckbindung: {ergebnis.zweckbindungJahre} Jahre
+                      </span>
                     </div>
 
                     {/* Nächster Schritt */}
@@ -1179,7 +1273,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
             <p className="text-center text-xs text-slate-600">
               {canProceed[step]
                 ? "Alles ausgefüllt — du kannst fortfahren"
-                : `Noch ${step === 0 ? (!bundesland && !tierhaltung ? "2 Felder" : "1 Feld") : step === 1 ? (!investitionsart ? "Investitionsart" : "Volumen") : "Alter"} ausfüllen`}
+                : `Noch ${step === 0 ? (!bundesland && !tierhaltung ? "2 Felder" : "1 Feld") : step === 1 ? (investitionsarten.length === 0 ? "Investitionsart" : "Volumen") : "Alter"} ausfüllen`}
             </p>
           )}
         </div>
@@ -1198,9 +1292,9 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
           source="rechner-unlock"
           prefilledData={{
             investment: Number(investVolumen) || undefined,
-            investitionsart: investitionsart || undefined,
-            investitionsartLabel: investitionsart
-              ? INVESTITIONSARTEN.find((a) => a.id === investitionsart)?.label
+            investitionsart: primaryInvestitionsart || undefined,
+            investitionsartLabel: primaryInvestitionsart
+              ? INVESTITIONSARTEN.find((a) => a.id === primaryInvestitionsart)?.label
               : undefined,
             bundesland: bundesland || undefined,
             foerdersatz: ergebnis?.gesamtSatz ?? undefined,
