@@ -129,7 +129,7 @@ export function HeroSection() {
               </div>
             </motion.div>
 
-            {/* Right: Conversion-starke Vorteile — top-aligned */}
+            {/* Right: 5 Nutzenbotschaften — storytelling für den Landwirt */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -138,49 +138,69 @@ export function HeroSection() {
             >
               {/* Header */}
               <div className="mb-1">
-                <p className="text-xs font-bold text-green-700 uppercase tracking-widest mb-1">Was wird gefördert?</p>
-                <p className="text-sm text-slate-500 leading-snug">Wähle dein Thema — so viel Geld wartet auf dich:</p>
+                <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#7c3aed" }}>Dein Vorteil als Landwirt</p>
+                <p className="text-sm text-slate-500 leading-snug">Was die Förderung konkret für dich bedeutet:</p>
               </div>
 
-              {/* Topic rows with amounts */}
               {[
-                { topic: "Stallbau & Umbau", pct: "bis 40 %", bonus: null, icon: BarnIcon },
-                { topic: "Tierwohl & Haltung", pct: "bis 50 %", bonus: "+10 % Tierwohl-Premium", icon: ShieldCheckAgriIcon },
-                { topic: "Güllelager & Umwelt", pct: "bis 50 %", bonus: "inkl. SIUK-Bonus", icon: WheatIcon },
-                { topic: "Präzisionstechnik", pct: "bis 35 %", bonus: null, icon: TractorIcon },
-                { topic: "Junglandwirt-Bonus", pct: "+10 % extra", bonus: "Unter 40? Macht bis 60 %!", icon: MoneyBagIcon },
-              ].map(({ topic, pct, bonus, icon: Icon }, i) => (
+                {
+                  icon: MoneyBagIcon,
+                  headline: "Der Staat zahlt — du investierst nur die Hälfte",
+                  body: "Statt 500.000 € trägst du oft nur 250.000 € selbst. Das restliche Geld kommt vom Staat, nicht von der Bank.",
+                  accent: "#16a34a",
+                  bg: "rgba(22,163,74,0.08)",
+                  border: "rgba(22,163,74,0.18)",
+                },
+                {
+                  icon: ShieldCheckAgriIcon,
+                  headline: "Kein Kredit, kein Zins — echtes Geschenk",
+                  body: "AFP-Zuschüsse müssen nicht zurückgezahlt werden. Du verbesserst deine Liquidität dauerhaft, nicht nur kurzfristig.",
+                  accent: "#7c3aed",
+                  bg: "rgba(124,58,237,0.07)",
+                  border: "rgba(124,58,237,0.18)",
+                },
+                {
+                  icon: BarnIcon,
+                  headline: "Modernisier jetzt — bevor die Konkurrenz es tut",
+                  body: "Stallbau, Güllelager, Präzisionstechnik: Wer früh investiert, sichert sich Wettbewerbsvorteile für die nächsten 20 Jahre.",
+                  accent: "#16a34a",
+                  bg: "rgba(22,163,74,0.08)",
+                  border: "rgba(22,163,74,0.18)",
+                },
+                {
+                  icon: TractorIcon,
+                  headline: "Tierwohl & Umwelt zahlen sich aus",
+                  body: "Höhere Tierwohl-Stufen und Klimaschutzmaßnahmen werden extra belohnt. Du tust Gutes — und wirst dafür bezahlt.",
+                  accent: "#7c3aed",
+                  bg: "rgba(124,58,237,0.07)",
+                  border: "rgba(124,58,237,0.18)",
+                },
+                {
+                  icon: WheatIcon,
+                  headline: "In 45 Sekunden weißt du, was dir zusteht",
+                  body: "Kein Behördenmarathon, kein Rätselraten. Unser Rechner zeigt dir sofort deinen exakten Förderbetrag — kostenlos.",
+                  accent: "#16a34a",
+                  bg: "rgba(22,163,74,0.08)",
+                  border: "rgba(22,163,74,0.18)",
+                },
+              ].map(({ icon: Icon, headline, body, accent, bg, border }, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, x: 12 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.35, delay: 0.3 + i * 0.07 }}
-                  className="flex items-center gap-3 rounded-xl px-3 py-2.5 border border-slate-100 hover:border-green-200 hover:shadow-md transition-all duration-200 cursor-default"
+                  className="flex items-start gap-3 rounded-xl px-3 py-2.5 transition-all duration-200 cursor-default hover:shadow-md"
                   style={{
-                    background: "linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(240,253,244,0.7) 100%)",
-                    backdropFilter: "blur(8px)",
-                    WebkitBackdropFilter: "blur(8px)",
+                    background: bg,
+                    border: `1px solid ${border}`,
                   }}
                 >
-                  {/* Icon */}
-                  <div className="w-8 h-8 rounded-lg bg-green-600 flex items-center justify-center flex-shrink-0">
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: accent }}>
                     <Icon className="w-4 h-4 text-white" />
                   </div>
-                  {/* Topic */}
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-slate-900 text-sm leading-none">{topic}</p>
-                    {bonus && <p className="text-[11px] text-emerald-600 font-medium mt-0.5 leading-none">{bonus}</p>}
-                  </div>
-                  {/* Percentage badge */}
-                  <div
-                    className="flex-shrink-0 rounded-lg px-2.5 py-1 font-black text-sm leading-none"
-                    style={{
-                      background: "linear-gradient(135deg, rgba(22,163,74,0.15) 0%, rgba(21,128,61,0.10) 100%)",
-                      border: "1px solid rgba(22,163,74,0.25)",
-                      color: "#15803d",
-                    }}
-                  >
-                    {pct}
+                    <p className="font-bold text-slate-900 text-sm leading-snug">{headline}</p>
+                    <p className="text-[11px] text-slate-500 mt-0.5 leading-relaxed">{body}</p>
                   </div>
                 </motion.div>
               ))}
@@ -192,7 +212,7 @@ export function HeroSection() {
                   <span className="text-xs font-semibold text-slate-700">400+ Landwirte gefördert</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" style={{ animationDelay: "0.5s" }} />
+                  <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#7c3aed", animationDelay: "0.5s" }} />
                   <span className="text-xs font-semibold text-slate-700">98 % Erfolgsquote</span>
                 </div>
                 <div className="flex items-center gap-1.5">
