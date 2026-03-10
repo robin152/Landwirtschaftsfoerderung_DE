@@ -32,6 +32,14 @@ interface LeadCaptureModalProps {
     industry?: string
     ownerRole?: string
     mainActivity?: string
+    // Rechner-Daten
+    investitionsart?: string
+    investitionsartLabel?: string
+    bundesland?: string
+    foerdersatz?: number
+    foerderbetrag?: number
+    istJunglandwirt?: boolean
+    istOeko?: boolean
   }
 }
 
@@ -409,6 +417,15 @@ export function LeadCaptureModal({ isOpen, onClose, onSuccess, prefilledData, so
         ? `${prefilledData.ownerFirstName} ${prefilledData.ownerLastName}` 
         : null,
       prefilled_main_activity: prefilledData?.mainActivity || null,
+
+      // Rechner-Auswahl (AFP-spezifisch)
+      rechner_investitionsart: prefilledData?.investitionsart || null,
+      rechner_investitionsart_label: prefilledData?.investitionsartLabel || null,
+      rechner_bundesland: prefilledData?.bundesland || null,
+      rechner_foerdersatz: prefilledData?.foerdersatz ?? null,
+      rechner_foerderbetrag: prefilledData?.foerderbetrag ?? null,
+      rechner_junglandwirt: prefilledData?.istJunglandwirt ?? null,
+      rechner_oeko: prefilledData?.istOeko ?? null,
       
       // Facebook Pixel tracking
       fbclid: finalTrackingData.fbclid,
