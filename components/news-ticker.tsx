@@ -3,13 +3,13 @@
 import { motion } from "framer-motion"
 
 const tickerItems = [
-  "AFP 2026: Bis zu 75 % Zuschuss für Tierwohl & Klimaschutz – jetzt berechnen!",
-  "Hessen-Höchstsatz: 75 % SIUK-Förderung – bundesweit der Spitzenwert!",
+  "AFP 2026: Bis zu 50 % Zuschuss für Tierwohl & Klimaschutz – jetzt berechnen!",
   "Neue Bundesländer: Bis 5 Mio. € Investitionsvolumen förderfähig!",
-  "Junglandwirt-Bonus: +10 % extra wenn du unter 40 bist – nicht verpassen!",
+  "Junglandwirt-Bonus: +10 % extra wenn du unter 40 bist – macht bis zu 50 % Gesamtförderung!",
   "NRW Kälbermatten-Aufschlag: Befristeter 10 % Extra-Bonus noch verfügbar!",
   "Baden-Württemberg: 2 Mio. € Max-Invest + Schweine ab Sept. 2026 wieder förderfähig!",
   "Gülle mit Abdeckung: Bis 40 % Zuschuss + 2 Monate Lagerkapazität Pflicht!",
+  "Tierwohl-Premium: Basis 20 % + 20 % Premium = 40 % für Stallumbau mit mehr Platz & Licht!",
 ]
 
 export function NewsTicker() {

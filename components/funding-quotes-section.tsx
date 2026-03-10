@@ -18,8 +18,8 @@ import { useState } from "react"
 // 3. HIGHLIGHT-BOX mit MAXIMUM Quote
 
 const fundingData = [
-  { region: "Neue Bundesländer (BB, SN, ST, TH, MV)", kmu: "bis 75 %", grossunternehmen: "bis 65 %", examples: "Brandenburg, Sachsen, Thüringen, Sachsen-Anhalt, Mecklenburg-Vorpommern" },
-  { region: "Westdeutsche Regionen (NRW, NDS, BY, BW …)", kmu: "bis 50 %", grossunternehmen: "bis 40 %", examples: "NRW, Niedersachsen, Bayern, Baden-Württemberg, Hessen" },
+  { region: "Neue Bundesländer (BB, SN, ST, TH, MV)", kmu: "bis 50 %", grossunternehmen: "bis 50 %", examples: "Brandenburg, Sachsen, Thüringen, Sachsen-Anhalt, Mecklenburg-Vorpommern" },
+  { region: "Westdeutsche Regionen (NRW, NDS, BY, BW, HE …)", kmu: "bis 50 %", grossunternehmen: "bis 40 %", examples: "NRW, Niedersachsen, Bayern, Baden-Württemberg, Hessen" },
   { region: "Alle Bundesländer – Basis-Satz", kmu: "20 %", grossunternehmen: "20 %", examples: "Gilt immer als Mindestförderung ohne Boni" },
 ]
 
@@ -108,9 +108,9 @@ export function FundingQuotesSection() {
           viewport={{ once: true }}
           className="bg-gradient-to-r from-purple-600 to-violet-600 rounded-xl sm:rounded-2xl p-5 sm:p-6 text-center text-white mb-8"
         >
-          <div className="text-sm sm:text-base opacity-90 mb-1">Maximum AFP-Fördersatz (Hessen SIUK + Tierwohl + Junglandwirt)</div>
-          <div className="text-4xl sm:text-5xl font-bold mb-2">bis 75 %</div>
-          <div className="text-sm opacity-80">Hessen, ohne Einkommensgrenze, Tierwohl-Maßnahme + Junglandwirt-Bonus</div>
+          <div className="text-sm sm:text-base opacity-90 mb-1">Maximum AFP-Fördersatz (Tierwohl + Junglandwirt-Bonus)</div>
+          <div className="text-4xl sm:text-5xl font-bold mb-2">bis 50 %</div>
+          <div className="text-sm opacity-80">Basis 20 % + Tierwohl-Premium 20 % + Junglandwirt-Bonus 10 % = 50 % (alle Bundesländer)</div>
         </motion.div>
 
         {/* CTA */}

@@ -143,7 +143,7 @@ const INVESTITIONSARTEN = [
     id: "klima",
     label: "Klima- & Emissionsschutz",
     desc: "Abluft, Güllekühlung, Lager mit Deckel (SIUK Anlage 3B)",
-    badge: "bis 75 %",
+    badge: "bis 50 %",
     badgeColor: "bg-blue-900/60 text-blue-300 border-blue-700",
   },
   {
@@ -246,7 +246,7 @@ function berechne(params: {
 
   // Gesamt-Satz cap
   const highSatzLaender: readonly BundeslandKey[] = ["Hessen", "Brandenburg", "Sachsen"]
-  const maxGesamtSatz = highSatzLaender.includes(bundesland) ? 80 : 50
+  const maxGesamtSatz = highSatzLaender.includes(bundesland) ? 75 : 50
   let gesamtSatz = Math.min(baseSatz + jungBonus, maxGesamtSatz)
 
   // 6. Zuschuss berechnen

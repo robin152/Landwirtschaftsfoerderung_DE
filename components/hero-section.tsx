@@ -21,7 +21,7 @@ export function HeroSection() {
             >
               {/* HORMOZI HEADLINE: Specific Outcome */}
               <h1 className="text-5xl md:text-6xl lg:text-6xl font-bold mb-6 bg-gradient-to-br from-slate-900 via-green-800 to-slate-700 bg-clip-text text-transparent leading-tight">
-                Der Staat zahlt dir 40–75 % für deinen nächsten Stall, Güllelager oder Klimaschutz
+                Der Staat zahlt dir 20–50 % für deinen nächsten Stall, Güllelager oder Klimaschutz
               </h1>
 
               {/* SUBHEADLINE: Mechanism */}
@@ -130,7 +130,7 @@ export function HeroSection() {
               },
               {
                 icon: BarChart3,
-                title: "40–75 % statt 20 %",
+                title: "20–50 % statt gar nichts",
                 description: "Tierwohl-Premium, SIUK-Bonus, Junglandwirt-Zuschlag, regionale Boni – wir finden alles, was dir zusteht."
               }
             ].map((benefit, index) => {
