@@ -377,7 +377,8 @@ function SelectField({
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full bg-slate-800 border border-slate-600 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all appearance-none cursor-pointer"
+        style={{ fontSize: "16px" }}
+        className="w-full bg-slate-800 border border-slate-600 text-white rounded-xl px-4 py-3.5 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all appearance-none cursor-pointer touch-manipulation min-h-[48px]"
       >
         <option value="">{placeholder}</option>
         {options.map((o) => (
@@ -400,6 +401,7 @@ function NumberField({
   suffix,
   placeholder,
   hint,
+  inputMode: inputModeOverride,
 }: {
   label: string
   value: string
@@ -409,6 +411,7 @@ function NumberField({
   suffix?: string
   placeholder?: string
   hint?: string
+  inputMode?: React.HTMLAttributes<HTMLInputElement>["inputMode"]
 }) {
   return (
     <div className="flex flex-col gap-1.5">
@@ -416,12 +419,14 @@ function NumberField({
       <div className="relative">
         <input
           type="number"
+          inputMode={inputModeOverride ?? "numeric"}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           min={min}
           max={max}
           placeholder={placeholder}
-          className="w-full bg-slate-800 border border-slate-600 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all pr-16"
+          style={{ fontSize: "16px" }}
+          className="w-full bg-slate-800 border border-slate-600 text-white rounded-xl px-4 py-3.5 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all pr-16 touch-manipulation min-h-[48px]"
         />
         {suffix && (
           <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-medium pointer-events-none">
@@ -446,7 +451,7 @@ function ToggleField({
   onChange: (v: boolean) => void
 }) {
   return (
-    <label className="flex items-start gap-3 cursor-pointer group">
+    <label className="flex items-start gap-3 cursor-pointer group touch-manipulation min-h-[48px] py-1">
       <div className="relative flex-shrink-0 mt-0.5">
         <input
           type="checkbox"
@@ -454,8 +459,8 @@ function ToggleField({
           onChange={(e) => onChange(e.target.checked)}
           className="sr-only peer"
         />
-        <div className="w-10 h-6 bg-slate-700 rounded-full peer peer-checked:bg-emerald-600 transition-colors" />
-        <div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow transition-transform peer-checked:translate-x-4" />
+        <div className="w-11 h-6 bg-slate-700 rounded-full peer peer-checked:bg-emerald-600 transition-colors" />
+        <div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow transition-transform peer-checked:translate-x-5" />
       </div>
       <div>
         <p className="text-sm font-semibold text-slate-300">{label}</p>
@@ -563,19 +568,19 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
   return (
     <div className="bg-slate-900 rounded-2xl border border-slate-700 overflow-hidden shadow-2xl">
       {/* Header */}
-      <div className="bg-gradient-to-r from-emerald-900/50 to-slate-900 border-b border-slate-700 px-6 py-5">
+      <div className="bg-gradient-to-r from-emerald-900/50 to-slate-900 border-b border-slate-700 px-4 sm:px-6 py-4 sm:py-5">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0">
-            <TrendingUp className="w-5 h-5 text-white" aria-hidden="true" />
+          <div className="w-9 h-9 sm:w-10 sm:h-10 bg-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0">
+            <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-white" aria-hidden="true" />
           </div>
           <div>
-            <h3 className="text-white font-bold text-lg leading-tight">AFP-Förderrechner 2026</h3>
-            <p className="text-emerald-400 text-sm">In 3 Schritten zu deinem exakten Förderbetrag</p>
+            <h3 className="text-white font-bold text-base sm:text-lg leading-tight">AFP-Förderrechner 2026</h3>
+            <p className="text-emerald-400 text-xs sm:text-sm">In 3 Schritten zu deinem exakten Förderbetrag</p>
           </div>
         </div>
       </div>
 
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         <StepIndicator current={step} />
 
         {/* ─── STEP 0: Betrieb ─────────────────────────────────────────────── */}
@@ -621,10 +626,10 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                   key={art.id}
                   type="button"
                   onClick={() => setInvestitionsart(art.id)}
-                  className={`text-left p-3 rounded-xl border transition-all duration-150 ${
+                  className={`text-left p-4 rounded-xl border transition-all duration-150 touch-manipulation min-h-[72px] ${
                     investitionsart === art.id
                       ? "border-emerald-500 bg-emerald-900/30 shadow-lg shadow-emerald-900/20"
-                      : "border-slate-700 bg-slate-800/50 hover:border-slate-500 hover:bg-slate-800"
+                      : "border-slate-700 bg-slate-800/50 active:border-slate-500 active:bg-slate-800"
                   }`}
                 >
                   <div className="flex items-start justify-between gap-2">
@@ -655,7 +660,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
             <p className="text-slate-400 text-sm mb-2">
               Wer ist der Betriebsleiter? Das bestimmt deine Boni.
             </p>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <NumberField
                 label="Alter des Betriebsleiters"
                 value={alter}
@@ -848,7 +853,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
 
                 <button
                   onClick={onCTAClick}
-                  className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-200 shadow-lg shadow-orange-900/40 hover:-translate-y-0.5 text-sm"
+                  className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 active:from-orange-700 active:to-orange-600 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-200 shadow-lg shadow-orange-900/40 text-sm touch-manipulation min-h-[52px]"
                 >
                   JETZT PERSÖNLICHEN MAXIMAL-CHECK SICHERN (kostenlos)
                   <ChevronRight className="w-4 h-4" aria-hidden="true" />
@@ -907,7 +912,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
           {step > 0 && step < 3 && (
             <button
               onClick={prevStep}
-              className="flex-1 py-3 px-4 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold rounded-xl text-sm transition-colors border border-slate-700"
+              className="flex-1 py-3.5 px-4 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-slate-300 font-semibold rounded-xl text-sm transition-colors border border-slate-700 touch-manipulation min-h-[52px]"
             >
               Zurück
             </button>
@@ -915,7 +920,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
           {step === 3 && (
             <button
               onClick={() => setStep(0)}
-              className="flex-1 py-3 px-4 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold rounded-xl text-sm transition-colors border border-slate-700"
+              className="flex-1 py-3.5 px-4 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-slate-300 font-semibold rounded-xl text-sm transition-colors border border-slate-700 touch-manipulation min-h-[52px]"
             >
               Neu berechnen
             </button>
@@ -924,7 +929,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
             <button
               onClick={nextStep}
               disabled={!canProceed[step]}
-              className="flex-1 py-3 px-4 bg-emerald-600 hover:bg-emerald-500 disabled:bg-slate-700 disabled:text-slate-500 disabled:cursor-not-allowed text-white font-bold rounded-xl text-sm transition-all shadow-lg shadow-emerald-900/30"
+              className="flex-1 py-3.5 px-4 bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 disabled:bg-slate-700 disabled:text-slate-500 disabled:cursor-not-allowed text-white font-bold rounded-xl text-sm transition-all shadow-lg shadow-emerald-900/30 touch-manipulation min-h-[52px]"
             >
               {step === 2 ? "Ergebnis anzeigen" : "Weiter"}
             </button>

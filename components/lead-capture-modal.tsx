@@ -551,7 +551,8 @@ export function LeadCaptureModal({ isOpen, onClose, prefilledData }: LeadCapture
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 100 }}
           transition={{ type: "spring", damping: 30, stiffness: 300 }}
-          className="w-full sm:max-w-md bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl overflow-hidden max-h-[85dvh] sm:max-h-[90vh] keyboard-aware"
+          className="w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+          style={{ maxHeight: "calc(100dvh - env(safe-area-inset-top, 0px) - 16px)", height: "auto" }}
         >
           {/* Header - with drag handle for mobile */}
           <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-4 sm:px-5 pt-3 sm:pt-4 pb-3 sm:pb-4">
@@ -573,7 +574,7 @@ export function LeadCaptureModal({ isOpen, onClose, prefilledData }: LeadCapture
               <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden border-2 border-purple-500 flex-shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/patrick-starkmann.webp"
+                  src="/patrick-starkmann.jpg"
                   alt="Patrick Starkmann"
                   width={40}
                   height={40}
@@ -642,8 +643,11 @@ export function LeadCaptureModal({ isOpen, onClose, prefilledData }: LeadCapture
             data-gtm-form-interact-field-id="gtm_event_id"
           />
 
-          {/* Content - responsive padding and height */}
-          <div className="p-4 sm:p-5 overflow-y-auto touch-scroll" style={{ maxHeight: "calc(85dvh - 160px)" }}>
+          {/* Content - keyboard-aware scroll */}
+          <div
+            className="p-4 sm:p-5 overflow-y-auto overscroll-contain touch-scroll flex-1"
+            style={{ paddingBottom: "max(1.25rem, env(safe-area-inset-bottom, 1.25rem))" }}
+          >
             <AnimatePresence mode="wait">
               {/* Micro-confirmation overlay */}
               {showMicroConfirm && stepConfirmations(prefilledData?.ownerFirstName, prefilledData?.industry)?.[currentStep] && (
