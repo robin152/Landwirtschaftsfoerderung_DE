@@ -104,7 +104,7 @@ export function HeroSection() {
                 <img
                   src="/hero-foerderung.webp"
                   alt="Bis zu 50 % staatliche AFP-Förderung für Landwirte – Stallbau, Tierwohl, Umwelttechnik"
-                  className="relative rounded-xl md:rounded-2xl shadow-xl w-full object-contain ring-1 ring-white/20"
+                  className="relative rounded-xl md:rounded-2xl shadow-xl w-full max-h-48 md:max-h-none object-contain ring-1 ring-white/20"
                 />
                 <motion.div
                   animate={{ y: [0, -5, 0] }}
