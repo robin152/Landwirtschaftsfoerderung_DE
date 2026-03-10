@@ -1,117 +1,128 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { Check, ChevronRight } from "lucide-react"
-import Image from "next/image"
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Check, ChevronDown, AlertTriangle } from "lucide-react"
+import { TractorIcon, WheatIcon, BarnIcon, MoneyBagIcon, SunLeafIcon } from "@/components/agri-icons"
 
-const assets = [
+const CATEGORIES = [
   {
-    title: "Premium-Tierhaltung & Stallbau",
-    badge: "bis 40 %",
-    badgeColor: "bg-emerald-600",
-    description: "Stallumbauten für mehr Tierwohl: mehr Platz, natürliches Licht, frische Luft.",
-    bullets: [
-      "Min. 20 % mehr nutzbare Fläche als gesetzlich nötig",
-      "Liegeboxen, Laufhöfe, Außenklimabereich",
-      "Tierwohl-Premium: bis 40 % Zuschuss (Bayern 25 %)",
-      "Kombination mit SIUK möglich: bis 50 %",
+    id: "tierwohl",
+    label: "Besonders tiergerechte Haltung",
+    sublabel: "Anlage 1 – Premium",
+    badge: "35–40 %",
+    badgeClass: "bg-emerald-600 text-white",
+    borderClass: "border-emerald-500",
+    bgClass: "bg-emerald-50",
+    accentClass: "text-emerald-700",
+    iconColor: "text-emerald-600",
+    IconComp: BarnIcon,
+    intro: "Stallumbauten und Neubauten mit deutlich höheren Standards als gesetzlich vorgeschrieben — der häufigste Weg zum Premium-Fördersatz.",
+    items: [
+      "Umrüstung / Neubau von Ställen mit messbar höheren Standards",
+      "Mehr Platz je Tier (z.B. 20 % über gesetzlichem Minimum bei Schweinen)",
+      "Natürliches Tageslicht (mind. 3–5 % der Grundfläche)",
+      "Weiche / komfortable Liegeflächen (Komfortmatten, Einstreu)",
+      "Auslauf / Weidezugang oder Außenklimabereich",
+      "Beschäftigungsmaterial (ständig verfügbar)",
+      "Umstellung Anbindehaltung → Laufstall bei Milchkühen",
+      "Gruppenhaltung Kälber ab 5. Woche",
     ],
-    image: "/images/assets/tierhaltung.jpg",
-    span: "col-span-1 md:col-span-2",
-    featured: true,
+    note: "Besonders relevant für: Rinder, Kälber, Schweine (eingeschränkt), Geflügel (Bodenhaltung mit Wintergarten / Freiland)",
+    warning: "Für Schweinehaltung: genereller Ausschluss Stall-Neubauten bis 31.12.2027 in den meisten Ländern. Nur spezifische Emissionsmaßnahmen (Anlage 3) förderfähig.",
   },
   {
-    title: "Klima- & Emissionsschutz (SIUK)",
-    badge: "bis 75 %",
-    badgeColor: "bg-teal-600",
-    description: "Maßnahmen zur Reduktion von Ammoniak, Methan und CO₂ aus der Tierhaltung.",
-    bullets: [
-      "Abluftreinigung, Güllekühlung, Biogasanlagen",
-      "Hessen & Brandenburg: bis 75 % SIUK-Fördersatz",
-      "Bundesweit Kombi-Satz bis 50 %",
-      "Gülleabdeckung bis 90 % (Saarland)",
+    id: "siuk",
+    label: "Emissionsminderung & Klimaschutz",
+    sublabel: "SIUK – Anlage 3",
+    badge: "40–75 %",
+    badgeClass: "bg-teal-600 text-white",
+    borderClass: "border-teal-500",
+    bgClass: "bg-teal-50",
+    accentClass: "text-teal-700",
+    iconColor: "text-teal-600",
+    IconComp: SunLeafIcon,
+    intro: "SIUK steht für Stallbau, Infrastruktur, Umwelt & Klima. Die Fördersätze sind bundesweit am höchsten — bis zu 75 % in einzelnen Ländern.",
+    groups: [
+      {
+        heading: "Bauliche Maßnahmen im Stall (Teil B)",
+        items: [
+          "Abluftreinigungsanlagen",
+          "Kot-Harn-Trennung",
+          "Emissionsarme Stallböden",
+          "Verkleinerte Güllekanäle",
+          "Güllekühlung",
+          "Fütterungssysteme für nährstoffreduzierte Phasenfütterung",
+        ],
+      },
+      {
+        heading: "Lagerung Wirtschaftsdünger",
+        items: [
+          "Neue Gülle- / Festmistlager mit fester Abdeckung (gasdicht)",
+          "Mindestens 2 Monate zusätzliche Kapazität über gesetzlichem Minimum",
+        ],
+      },
+      {
+        heading: "Außenwirtschaft / Maschinen (Teil A)",
+        items: [
+          "Abdriftmindernde Pflanzenschutzgeräte (JKI-geprüft, ≥ 90 % Reduktion)",
+          "Mechanische Unkrautbekämpfung mit elektronischer Reihenführung (Kamera/GPS/Ultraschall)",
+          "Präzisionstechnik (GPS, Sensorik für Düngung/Ausbringung)",
+        ],
+      },
     ],
-    image: "/images/assets/klima.jpg",
-    span: "col-span-1",
   },
   {
-    title: "Gülle- & Festmistlager",
-    badge: "bis 40 %",
-    badgeColor: "bg-amber-600",
-    description: "Neubau und Erweiterung von Lagern mit fester Abdeckung und ausreichend Kapazität.",
-    bullets: [
-      "Feste, gasdichte Abdeckung Pflicht für Höchstsatz",
-      "Mind. 6 Monate Lagerkapazität über gesetzlichem Min.",
-      "Bis 40 % Zuschuss auf förderfähige Baukosten",
-      "Kombinierbar mit SIUK-Maßnahmen",
+    id: "resilienz",
+    label: "Resilienz & Naturgefahren-Vorsorge",
+    sublabel: "Meist 40 %",
+    badge: "40 %",
+    badgeClass: "bg-amber-600 text-white",
+    borderClass: "border-amber-500",
+    bgClass: "bg-amber-50",
+    accentClass: "text-amber-700",
+    iconColor: "text-amber-600",
+    IconComp: WheatIcon,
+    intro: "Schutz gegen Klimarisiken — Hagelschäden, Frost und Trockenheit können ganze Ernten vernichten. Der Staat fördert die Vorsorge.",
+    items: [
+      "Frostschutzberegnung (vor allem Sonderkulturen)",
+      "Hagelschutznetze",
+      "Starkregenschutz / Schutzsysteme",
+      "Errichtung / Modernisierung von Bewässerungsanlagen mit mind. 15 % Wassereinsparung",
+      "Tröpfchenbewässerung, Unterfluranlagen",
     ],
-    image: "/images/assets/guelle.jpg",
-    span: "col-span-1",
+    note: "Keine Brunnen oder Speicherbecken (ausgeschlossen).",
   },
   {
-    title: "Weiche Kälbermatten",
-    badge: "bis 40 %",
-    badgeColor: "bg-orange-600",
-    description: "Befristeter Bonus für tiergerechte Liege- und Tränkebereiche für Kälber.",
-    bullets: [
-      "Nur für Kälber unter 8 Monate",
-      "+10 % Aufschlag in NRW befristet",
-      "Einfacher Antrag, schnelle Bewilligung",
-      "Mindestinvestition: 10.000 € (Ausnahme)",
+    id: "basis",
+    label: "Weitere förderfähige Investitionen",
+    sublabel: "Basis 20 %",
+    badge: "20 %",
+    badgeClass: "bg-slate-600 text-white",
+    borderClass: "border-slate-400",
+    bgClass: "bg-slate-50",
+    accentClass: "text-slate-700",
+    iconColor: "text-slate-600",
+    IconComp: TractorIcon,
+    intro: "Standardinvestitionen ohne erhöhten Tierwohl- oder SIUK-Anteil — der Grundsatz von 20 % gilt bundesweit als Einstiegssatz.",
+    items: [
+      "Lagerhallen für Obst / Gemüse / Grobfutter (klimatisiert, ressourcenschonend)",
+      "Fahrsilos",
+      "Sonstige Stall- / Wirtschaftsgebäude (ohne reine Ersatzinvestition)",
+      "Weiche Liegebereiche für Kälber (Kälbermatten) — oft +10 % Aufschlag, befristet",
     ],
-    image: "/images/assets/kaelber.jpg",
-    span: "col-span-1",
-  },
-  {
-    title: "Präzisionstechnik & Bewässerung",
-    badge: "bis 40 %",
-    badgeColor: "bg-blue-600",
-    description: "Modernste Technik für weniger Ressourcenverbrauch und mehr Ertragssicherheit.",
-    bullets: [
-      "GPS-Lenksysteme, Drohnen, Sensor-Technik",
-      "Tröpfchen- & Unterfluranlagen: mind. 15 % Wassereinsparung",
-      "Hagelschutznetze & Naturgefahrenvorsorge",
-      "Keine selbstfahrenden Maschinen (ausgeschlossen)",
-    ],
-    image: "/images/assets/technik.jpg",
-    span: "col-span-1",
-  },
-  {
-    title: "Junglandwirt-Bonus",
-    badge: "+10 %",
-    badgeColor: "bg-rose-600",
-    description: "Wer unter 40 ist und sich frisch niedergelassen hat, bekommt automatisch mehr.",
-    bullets: [
-      "Erstniederlassung max. 5 Jahre zurück",
-      "+10 % auf den Basis-Fördersatz (max. 20.000 €)",
-      "Gesamtsatz meist ≤ 50 % gedeckelt",
-      "Bayern: Meister/Agrarbetriebswirt = Extrapunkte",
-    ],
-    image: "/images/assets/junglandwirt.jpg",
-    span: "col-span-1",
-  },
-  {
-    title: "Mobilställe & Freilandhaltung",
-    badge: "bis 40 %",
-    badgeColor: "bg-emerald-600",
-    description: "Mobile Haltungssysteme für Geflügel und Weidetierhaltung — explizit förderfähig.",
-    bullets: [
-      "Mobile Hühner- & Geflügelställe",
-      "Weidezelte, Außenweideanlagen",
-      "Niedersachsen & MV: explizit in Richtlinie genannt",
-      "Kombination mit Tierwohl-Premium möglich",
-    ],
-    image: "/images/assets/mobilstall.jpg",
-    span: "col-span-1 md:col-span-2",
-    featured: true,
   },
 ]
 
-// JSX RENDER BLEIBT UNVERÄNDERT - NUR TEXTE AKTUALISIEREN
 export function AssetsSection() {
+  const [activeId, setActiveId] = useState<string>("tierwohl")
+
+  const active = CATEGORIES.find((c) => c.id === activeId)!
+
   return (
-    <section id="assets" className="py-16 sm:py-20 lg:py-28 bg-slate-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+    <section id="foerderfaehig" className="py-16 sm:py-24 bg-white border-t border-slate-100">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -119,89 +130,172 @@ export function AssetsSection() {
           viewport={{ once: true }}
           className="text-center mb-10 sm:mb-14"
         >
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-teal-50 rounded-full text-xs sm:text-sm font-semibold text-teal-600 mb-4">
-            Qualifizierung
+          <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-50 border border-green-200 rounded-full text-xs font-semibold text-green-700 mb-4">
+            <WheatIcon className="w-3.5 h-3.5" />
+            Förderfähige Investitionen
           </span>
-          
-          {/* TEMPLATE: Headline für Lead-Qualifizierung */}
-          {/* ANLEITUNG: Headline sollte EINE Frage stellen: "Passt Ihr Vorhaben?" oder "Ist Ihre Investition förderbar?" */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight mb-4">
-            Was wird gefördert – passt dein Vorhaben?
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4 text-balance">
+            Was genau fördert das AFP — und wie viel?
           </h2>
-          
-          <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
-            Diese 7 Investitionstypen holt das AFP – klick deins an und sieh sofort deinen Fördersatz.
+          <p className="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto">
+            4 Hauptkategorien mit unterschiedlichen Fördersätzen. Klicke deine an und sieh alle Details.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
-          {assets.map((asset, index) => (
-            <motion.div
-              key={asset.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              className={`${asset.span} group relative overflow-hidden rounded-xl sm:rounded-2xl`}
-            >
-              {/* Image Container */}
-              <div className={`relative ${asset.featured ? "aspect-[16/9]" : "aspect-[4/3]"} overflow-hidden`}>
-                <Image
-                  src={asset.image}
-                  alt={asset.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                />
-                {/* Stronger gradient for readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-900/60 to-slate-900/10" />
-
-                {/* Content */}
-                <div className="absolute inset-0 p-4 sm:p-5 flex flex-col justify-end gap-2">
-                  {/* Badge */}
-                  <span className={`self-start text-xs font-bold px-2.5 py-1 rounded-full text-white ${asset.badgeColor}`}>
-                    {asset.badge}
-                  </span>
-
-                  {/* Title */}
-                  <h3 className="text-base sm:text-lg font-bold text-white leading-tight">{asset.title}</h3>
-
-                  {/* Short description */}
-                  <p className="text-sm text-slate-300 leading-snug">{asset.description}</p>
-
-                  {/* Bullet list */}
-                  <ul className="mt-1 space-y-1">
-                    {asset.bullets.map((b) => (
-                      <li key={b} className="flex items-start gap-2 text-xs text-slate-200 leading-snug">
-                        <Check className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
+        {/* Tab Navigation */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+          {CATEGORIES.map((cat, i) => {
+            const Icon = cat.IconComp
+            const isActive = cat.id === activeId
+            return (
+              <motion.button
+                key={cat.id}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.07 }}
+                onClick={() => setActiveId(cat.id)}
+                className={`
+                  relative flex flex-col items-start gap-2 p-4 rounded-xl border-2 text-left transition-all duration-200
+                  ${isActive
+                    ? `${cat.borderClass} ${cat.bgClass} shadow-md`
+                    : "border-slate-200 bg-white hover:border-slate-300 hover:shadow-sm"
+                  }
+                `}
+              >
+                {/* Active indicator bar */}
+                {isActive && (
+                  <motion.div
+                    layoutId="active-bar"
+                    className={`absolute top-0 left-0 right-0 h-1 rounded-t-xl ${cat.badgeClass.split(" ")[0]}`}
+                  />
+                )}
+                <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${isActive ? cat.bgClass : "bg-slate-100"}`}>
+                  <Icon className={`w-5 h-5 ${isActive ? cat.iconColor : "text-slate-400"}`} />
                 </div>
-              </div>
-            </motion.div>
-          ))}
+                <div>
+                  <p className={`text-xs font-bold leading-tight ${isActive ? "text-slate-900" : "text-slate-600"}`}>
+                    {cat.label}
+                  </p>
+                  <span className={`mt-1 inline-block text-[11px] font-bold px-2 py-0.5 rounded-full ${cat.badgeClass}`}>
+                    {cat.badge}
+                  </span>
+                </div>
+              </motion.button>
+            )
+          })}
         </div>
 
-        {/* Simple confirmation message */}
+        {/* Detail Panel */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeId}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.28 }}
+            className={`rounded-2xl border-2 ${active.borderClass} ${active.bgClass} overflow-hidden`}
+          >
+            {/* Panel Header */}
+            <div className={`px-6 py-5 border-b-2 ${active.borderClass} bg-white/60`}>
+              <div className="flex flex-wrap items-center gap-3">
+                <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${active.bgClass}`}>
+                  <active.IconComp className={`w-6 h-6 ${active.iconColor}`} />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900 leading-tight">{active.label}</h3>
+                  <p className={`text-sm font-semibold ${active.accentClass}`}>{active.sublabel}</p>
+                </div>
+                <span className={`ml-auto text-sm font-bold px-3 py-1.5 rounded-full ${active.badgeClass}`}>
+                  Förderung {active.badge}
+                </span>
+              </div>
+              <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">{active.intro}</p>
+            </div>
+
+            {/* Panel Body */}
+            <div className="p-5 sm:p-6">
+              {"groups" in active && active.groups ? (
+                // SIUK: Gruppen-Layout
+                <div className="grid sm:grid-cols-3 gap-5">
+                  {active.groups.map((group, gi) => (
+                    <motion.div
+                      key={group.heading}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: gi * 0.08 }}
+                      className="bg-white rounded-xl p-4 border border-slate-200 shadow-sm"
+                    >
+                      <p className={`text-xs font-bold uppercase tracking-wide mb-3 ${active.accentClass}`}>
+                        {group.heading}
+                      </p>
+                      <ul className="space-y-2">
+                        {group.items.map((item) => (
+                          <li key={item} className="flex items-start gap-2 text-sm text-slate-700 leading-snug">
+                            <Check className={`w-4 h-4 flex-shrink-0 mt-0.5 ${active.iconColor}`} aria-hidden="true" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  ))}
+                </div>
+              ) : (
+                // Einfaches Listen-Layout
+                <div className="grid sm:grid-cols-2 gap-2.5">
+                  {active.items!.map((item, idx) => (
+                    <motion.div
+                      key={item}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: idx * 0.04 }}
+                      className="flex items-start gap-3 bg-white rounded-xl p-3.5 border border-slate-200 shadow-sm"
+                    >
+                      <Check className={`w-4 h-4 flex-shrink-0 mt-0.5 ${active.iconColor}`} aria-hidden="true" />
+                      <span className="text-sm text-slate-700 leading-snug">{item}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+
+              {/* Note */}
+              {"note" in active && active.note && (
+                <p className="mt-4 text-xs text-slate-500 italic leading-relaxed">
+                  {active.note}
+                </p>
+              )}
+
+              {/* Warning */}
+              {"warning" in active && active.warning && (
+                <div className="mt-4 flex items-start gap-2.5 bg-amber-50 border border-amber-200 rounded-xl p-3.5">
+                  <AlertTriangle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                  <p className="text-xs text-amber-800 leading-relaxed">{active.warning}</p>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Bottom CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-8 sm:mt-12 text-center"
+          className="mt-10 text-center"
         >
-          {/* TEMPLATE: Bottom CTA Copy */}
-          {/* ANLEITUNG: 
-             - Bestätigungs-Text für "Ja, passt" → Nächster Schritt
-             - Kurz & actionable
-             - Sollte Besucher zum nächsten Schritt motivieren (z.B. Kalkulator, Anfrage)
-          */}
-          <p className="text-slate-600 text-sm sm:text-base">
+          <p className="text-slate-500 text-sm sm:text-base mb-4">
             <span className="font-semibold text-slate-900">Dein Vorhaben ist dabei?</span>{" "}
-            Dann berechne jetzt deinen genauen Förderbetrag – kostenlos & in 45 Sekunden.
+            Berechne jetzt deinen genauen Förderbetrag — kostenlos & in 45 Sekunden.
           </p>
+          <button
+            onClick={() => document.getElementById("rechner")?.scrollIntoView({ behavior: "smooth" })}
+            className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-500 text-white font-bold rounded-xl text-sm transition-all shadow-lg shadow-green-900/20 hg-btn relative overflow-hidden"
+          >
+            <TractorIcon className="w-4 h-4 text-white" />
+            Zum AFP-Rechner
+          </button>
         </motion.div>
+
       </div>
     </section>
   )
