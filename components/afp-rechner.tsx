@@ -1129,6 +1129,18 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
             setResultUnlocked(true)
           }}
           source="rechner-unlock"
+          prefilledData={{
+            investment: Number(investVolumen) || undefined,
+            investitionsart: investitionsart || undefined,
+            investitionsartLabel: investitionsart
+              ? INVESTITIONSARTEN.find((a) => a.id === investitionsart)?.label
+              : undefined,
+            bundesland: bundesland || undefined,
+            foerdersatz: ergebnis?.gesamtSatz ?? undefined,
+            foerderbetrag: ergebnis?.zuschuss ?? undefined,
+            istJunglandwirt: ergebnis?.istJunglandwirt ?? undefined,
+            istOeko: istOeko || undefined,
+          }}
         />
       )}
     </>
