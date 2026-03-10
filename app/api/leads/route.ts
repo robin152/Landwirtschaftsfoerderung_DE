@@ -9,6 +9,7 @@ export async function POST(request: Request) {
     const payload = {
       ...data,
       projektseite: "Landwirtschaftsförderung",
+      lead_quelle: "Landwirtschaftsförderung",
     }
 
     const webhookResponse = await fetch(WEBHOOK_URL, {
