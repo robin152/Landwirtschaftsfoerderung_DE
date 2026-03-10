@@ -21,6 +21,8 @@ interface Prediction {
 interface LeadCaptureModalProps {
   isOpen: boolean
   onClose: () => void
+  onSuccess?: () => void
+  source?: string
   prefilledData?: {
     investment?: number
     plz?: string
@@ -136,7 +138,7 @@ const getIndustrySocialProof = (industry?: string): string => {
   return `${industry}-Unternehmen`
 }
 
-export function LeadCaptureModal({ isOpen, onClose, prefilledData }: LeadCaptureModalProps) {
+export function LeadCaptureModal({ isOpen, onClose, onSuccess, prefilledData, source }: LeadCaptureModalProps) {
   // Use shared form data from context
   const { company: contextCompany, analysis, sharedFormData, updateSharedFormData } = useCompany()
   
@@ -501,12 +503,17 @@ export function LeadCaptureModal({ isOpen, onClose, prefilledData }: LeadCapture
     setShowSuccess(true)
     triggerConfetti()
 
-    // Redirect to thank you page after brief success animation
+    // If called from rechner unlock: reveal result in-place, no redirect
     setTimeout(() => {
-      onClose()
-      resetForm()
-      window.location.href = "/danke"
-    }, 1500)
+      if (source === "rechner-unlock" && onSuccess) {
+        onSuccess()
+        resetForm()
+      } else {
+        onClose()
+        resetForm()
+        window.location.href = "/danke"
+      }
+    }, 1200)
   }
 
   const resetForm = () => {

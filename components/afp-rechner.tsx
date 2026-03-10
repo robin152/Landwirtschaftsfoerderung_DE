@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react"
 import { AlertTriangle, TrendingUp, Award, ChevronRight, Leaf, CheckCircle2, XCircle, Info, AlertCircle } from "lucide-react"
+import { LeadCaptureModal } from "@/components/lead-capture-modal"
 
 // ─────────────────────────────────────────────────────────────────────────────
 // DATA — exakt nach Förderquoten-Tabelle 2026 (Screenshot + PDF)
@@ -549,6 +550,8 @@ function StepIndicator({ current }: { current: number }) {
 export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
   const [step, setStep] = useState(0)
   const [showErrors, setShowErrors] = useState(false)
+  const [resultUnlocked, setResultUnlocked] = useState(false)
+  const [showUnlockModal, setShowUnlockModal] = useState(false)
 
   // Step 0 — Betrieb
   const [bundesland, setBundesland] = useState<BundeslandKey | "">("")
@@ -843,101 +846,166 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
 
             {/* Haupt-Ergebnis */}
             {!isBlocked && (
-              <div className="bg-gradient-to-br from-emerald-900/70 to-slate-900 border-2 border-emerald-600/60 rounded-2xl p-5 shadow-xl shadow-emerald-900/30">
-                {/* Level-Bar */}
-                <div className="mb-4">
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wide">Förderlevel</span>
-                    <span className="text-xs font-bold text-white">{ergebnis.foerderLevel} %</span>
-                  </div>
-                  <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full transition-all duration-700"
-                      style={{ width: `${ergebnis.foerderLevel}%` }}
-                    />
-                  </div>
-                </div>
+              <div className="bg-gradient-to-br from-emerald-900/70 to-slate-900 border-2 border-emerald-600/60 rounded-2xl overflow-hidden shadow-xl shadow-emerald-900/30">
 
-                <p className="text-sm font-semibold text-emerald-400 uppercase tracking-wide mb-2">
-                  Dein Zuschuss vom Staat:
-                </p>
-                <p className="text-4xl sm:text-5xl font-extrabold text-white leading-none mb-2">
-                  {ergebnis.zuschuss.toLocaleString("de-DE", { maximumFractionDigits: 0 })} €
-                </p>
-                <p className="text-emerald-300 text-sm mb-5">
-                  = {ergebnis.gesamtSatz} % von {ergebnis.cappedInvest.toLocaleString("de-DE")} € Investition
-                </p>
-
-                {/* Aufschlüsselung */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
-                  <div className="bg-slate-800/60 rounded-lg p-3 text-center">
-                    <p className="text-xs text-slate-400 mb-0.5">Basis</p>
-                    <p className="text-base font-bold text-white">{ergebnis.baseSatz} %</p>
-                  </div>
-                  {ergebnis.qualBonus > 0 && (
-                    <div className="bg-blue-900/40 border border-blue-700/40 rounded-lg p-3 text-center">
-                      <p className="text-xs text-slate-400 mb-0.5">Meister-Bonus</p>
-                      <p className="text-base font-bold text-blue-400">+{ergebnis.qualBonus} %</p>
+                {/* ── GESPERRT: Blur-Gate ─────────────────────────────── */}
+                {!resultUnlocked && (
+                  <div className="relative">
+                    {/* Blurred preview of numbers */}
+                    <div className="p-5 select-none pointer-events-none" aria-hidden="true">
+                      {/* Level-Bar — sichtbar als Teaser */}
+                      <div className="mb-4">
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wide">Förderlevel</span>
+                          <span className="text-xs font-bold text-white blur-sm">{ergebnis.foerderLevel} %</span>
+                        </div>
+                        <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full"
+                            style={{ width: `${ergebnis.foerderLevel}%` }}
+                          />
+                        </div>
+                      </div>
+                      <p className="text-sm font-semibold text-emerald-400 uppercase tracking-wide mb-2">
+                        Dein Zuschuss vom Staat:
+                      </p>
+                      {/* Blurred amount */}
+                      <p className="text-4xl sm:text-5xl font-extrabold text-white leading-none mb-2 blur-md">
+                        {ergebnis.zuschuss.toLocaleString("de-DE", { maximumFractionDigits: 0 })} €
+                      </p>
+                      <p className="text-emerald-300 text-sm blur-sm mb-5">
+                        = {ergebnis.gesamtSatz} % von {ergebnis.cappedInvest.toLocaleString("de-DE")} € Investition
+                      </p>
+                      {/* Blurred grid */}
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 blur-sm">
+                        {[1, 2, 3, 4].map((i) => (
+                          <div key={i} className="bg-slate-800/60 rounded-lg p-3 text-center">
+                            <p className="text-xs text-slate-400 mb-0.5">——</p>
+                            <p className="text-base font-bold text-white">—— %</p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  )}
-                  {ergebnis.oekoBonus > 0 && (
-                    <div className="bg-green-900/40 border border-green-700/40 rounded-lg p-3 text-center">
-                      <p className="text-xs text-slate-400 mb-0.5">Öko-Bonus</p>
-                      <p className="text-base font-bold text-green-400">+{ergebnis.oekoBonus} %</p>
-                    </div>
-                  )}
-                  <div
-                    className={`rounded-lg p-3 text-center ${
-                      ergebnis.istJunglandwirt
-                        ? "bg-amber-900/40 border border-amber-700/40"
-                        : "bg-slate-800/60"
-                    }`}
-                  >
-                    <p className="text-xs text-slate-400 mb-0.5">Junglandwirt</p>
-                    <p className={`text-base font-bold ${ergebnis.istJunglandwirt ? "text-amber-400" : "text-slate-500"}`}>
-                      {ergebnis.istJunglandwirt ? `+${ergebnis.jungBonusPP} %` : "—"}
-                    </p>
-                  </div>
-                </div>
 
-                {/* Besonderheit */}
-                {ergebnis.besonderheit && (
-                  <div className="flex items-start gap-2 bg-slate-800/50 rounded-lg px-3 py-2 mb-4">
-                    <Leaf className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                    <p className="text-slate-300 text-xs">{ergebnis.besonderheit}</p>
+                    {/* Overlay CTA — darüber zentriert */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900/80 backdrop-blur-[2px] px-6 py-8">
+                      <div className="w-14 h-14 bg-emerald-600 rounded-full flex items-center justify-center mb-4 shadow-lg shadow-emerald-900/50">
+                        <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                      </div>
+                      <h4 className="text-white font-extrabold text-xl text-center mb-2 leading-tight">
+                        Dein Ergebnis ist fertig!
+                      </h4>
+                      <p className="text-slate-300 text-sm text-center mb-6 max-w-xs leading-relaxed">
+                        Trag dich kurz ein — dann siehst du sofort, wie viel Geld der Staat für dich bereithält.
+                      </p>
+                      <button
+                        onClick={() => setShowUnlockModal(true)}
+                        className="w-full max-w-xs bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 active:from-orange-700 active:to-orange-600 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-200 shadow-lg shadow-orange-900/40 text-base touch-manipulation min-h-[52px]"
+                      >
+                        Ergebnis jetzt freischalten
+                        <ChevronRight className="w-5 h-5" aria-hidden="true" />
+                      </button>
+                      <p className="text-slate-500 text-xs mt-3 text-center">
+                        Kostenlos · Kein Spam · Nur dein Ergebnis
+                      </p>
+                    </div>
                   </div>
                 )}
 
-                {/* Junglandwirt Badge */}
-                {ergebnis.istJunglandwirt && (
-                  <div className="flex items-center gap-2 bg-amber-900/30 border border-amber-700/30 rounded-lg px-3 py-2 mb-4">
-                    <Award className="w-4 h-4 text-amber-400 flex-shrink-0" aria-hidden="true" />
-                    <p className="text-amber-300 text-xs font-medium">
-                      Junglandwirt-Bonus aktiv — max. 20.000 € Aufschlag auf Basis-Zuschuss
+                {/* ── ENTSPERRT: Volles Ergebnis ──────────────────────── */}
+                {resultUnlocked && (
+                  <div className="p-5">
+                    {/* Level-Bar */}
+                    <div className="mb-4">
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wide">Förderlevel</span>
+                        <span className="text-xs font-bold text-white">{ergebnis.foerderLevel} %</span>
+                      </div>
+                      <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full transition-all duration-700"
+                          style={{ width: `${ergebnis.foerderLevel}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    <p className="text-sm font-semibold text-emerald-400 uppercase tracking-wide mb-2">
+                      Dein Zuschuss vom Staat:
+                    </p>
+                    <p className="text-4xl sm:text-5xl font-extrabold text-white leading-none mb-2">
+                      {ergebnis.zuschuss.toLocaleString("de-DE", { maximumFractionDigits: 0 })} €
+                    </p>
+                    <p className="text-emerald-300 text-sm mb-5">
+                      = {ergebnis.gesamtSatz} % von {ergebnis.cappedInvest.toLocaleString("de-DE")} € Investition
+                    </p>
+
+                    {/* Aufschlüsselung */}
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
+                      <div className="bg-slate-800/60 rounded-lg p-3 text-center">
+                        <p className="text-xs text-slate-400 mb-0.5">Basis</p>
+                        <p className="text-base font-bold text-white">{ergebnis.baseSatz} %</p>
+                      </div>
+                      {ergebnis.qualBonus > 0 && (
+                        <div className="bg-blue-900/40 border border-blue-700/40 rounded-lg p-3 text-center">
+                          <p className="text-xs text-slate-400 mb-0.5">Meister-Bonus</p>
+                          <p className="text-base font-bold text-blue-400">+{ergebnis.qualBonus} %</p>
+                        </div>
+                      )}
+                      {ergebnis.oekoBonus > 0 && (
+                        <div className="bg-green-900/40 border border-green-700/40 rounded-lg p-3 text-center">
+                          <p className="text-xs text-slate-400 mb-0.5">Öko-Bonus</p>
+                          <p className="text-base font-bold text-green-400">+{ergebnis.oekoBonus} %</p>
+                        </div>
+                      )}
+                      <div className={`rounded-lg p-3 text-center ${ergebnis.istJunglandwirt ? "bg-amber-900/40 border border-amber-700/40" : "bg-slate-800/60"}`}>
+                        <p className="text-xs text-slate-400 mb-0.5">Junglandwirt</p>
+                        <p className={`text-base font-bold ${ergebnis.istJunglandwirt ? "text-amber-400" : "text-slate-500"}`}>
+                          {ergebnis.istJunglandwirt ? `+${ergebnis.jungBonusPP} %` : "—"}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Besonderheit */}
+                    {ergebnis.besonderheit && (
+                      <div className="flex items-start gap-2 bg-slate-800/50 rounded-lg px-3 py-2 mb-4">
+                        <Leaf className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                        <p className="text-slate-300 text-xs">{ergebnis.besonderheit}</p>
+                      </div>
+                    )}
+
+                    {ergebnis.istJunglandwirt && (
+                      <div className="flex items-center gap-2 bg-amber-900/30 border border-amber-700/30 rounded-lg px-3 py-2 mb-4">
+                        <Award className="w-4 h-4 text-amber-400 flex-shrink-0" aria-hidden="true" />
+                        <p className="text-amber-300 text-xs font-medium">
+                          Junglandwirt-Bonus aktiv — max. 20.000 € Aufschlag auf Basis-Zuschuss
+                        </p>
+                      </div>
+                    )}
+
+                    <div className="bg-emerald-950/40 border border-emerald-700/30 rounded-lg px-4 py-3 mb-4">
+                      <p className="text-emerald-300 text-sm font-bold">
+                        Das ist mehr, als 87 % der Landwirte allein rausholen.
+                      </p>
+                      <p className="text-slate-400 text-xs mt-1">
+                        Nächster Schritt: Ich prüfe deine Unterlagen kostenlos — und sorge dafür,
+                        dass kein Fehler deinen Antrag killt.
+                      </p>
+                    </div>
+
+                    <button
+                      onClick={onCTAClick}
+                      className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 active:from-orange-700 active:to-orange-600 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-200 shadow-lg shadow-orange-900/40 text-sm touch-manipulation min-h-[52px]"
+                    >
+                      JETZT PERSÖNLICHEN MAXIMAL-CHECK SICHERN (kostenlos)
+                      <ChevronRight className="w-4 h-4" aria-hidden="true" />
+                    </button>
+                    <p className="text-center text-xs text-slate-500 mt-2">
+                      Kostenlos · Unverbindlich · Nur für Vorhaben ab 20.000 €
                     </p>
                   </div>
                 )}
-
-                <div className="bg-emerald-950/40 border border-emerald-700/30 rounded-lg px-4 py-3 mb-4">
-                  <p className="text-emerald-300 text-sm font-bold">
-                    Das ist mehr, als 87 % der Landwirte allein rausholen.
-                  </p>
-                  <p className="text-slate-400 text-xs mt-1">
-                    Nächster Schritt: Ich prüfe deine Unterlagen kostenlos — und sorge dafür,
-                    dass kein Fehler deinen Antrag killt.
-                  </p>
-                </div>
-
-                <button
-                  onClick={onCTAClick}
-                  className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 active:from-orange-700 active:to-orange-600 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-200 shadow-lg shadow-orange-900/40 text-sm touch-manipulation min-h-[52px]"
-                >
-                  JETZT PERSÖNLICHEN MAXIMAL-CHECK SICHERN (kostenlos)
-                  <ChevronRight className="w-4 h-4" aria-hidden="true" />
-                </button>
-                <p className="text-center text-xs text-slate-500 mt-2">
-                  Kostenlos · Unverbindlich · Nur für Vorhaben ab 20.000 €
-                </p>
               </div>
             )}
 
@@ -1014,5 +1082,18 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
         </div>
       </div>
     </div>
+
+    {/* Unlock Modal */}
+    {showUnlockModal && (
+      <LeadCaptureModal
+        isOpen={showUnlockModal}
+        onClose={() => setShowUnlockModal(false)}
+        onSuccess={() => {
+          setShowUnlockModal(false)
+          setResultUnlocked(true)
+        }}
+        source="rechner-unlock"
+      />
+    )}
   )
 }
