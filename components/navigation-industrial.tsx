@@ -92,7 +92,7 @@ export function NavigationIndustrial() {
                 className="relative bg-green-700 hover:bg-green-600 text-white font-semibold px-6 py-2.5 rounded-full overflow-hidden transition-all group shadow-lg shadow-green-900/20"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  JETZT Förderung berechnen
+                  Förderung kostenlos berechnen
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </span>
               </Button>

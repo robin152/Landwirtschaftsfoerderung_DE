@@ -181,7 +181,7 @@ export function FundingQuotesSection() {
             onClick={() => setIsModalOpen(true)}
             className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-xl transition-colors"
           >
-            Jetzt meinen genauen Fördersatz berechnen
+            Förderung kostenlos berechnen
           </button>
           <p className="text-sm text-slate-500 mt-2">Kostenlos • 45 Sekunden • Brutal ehrlich</p>
         </motion.div>

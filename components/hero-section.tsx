@@ -78,7 +78,7 @@ export function HeroSection() {
                     onClick={() => document.getElementById("rechner")?.scrollIntoView({ behavior: "smooth" })}
                   >
                     <TractorIcon className="w-5 h-5 text-white" />
-                    JETZT GRATIS BERECHNEN
+                    Förderung kostenlos berechnen
                     <ArrowRight className="w-5 h-5" />
                   </Button>
                 </motion.div>
