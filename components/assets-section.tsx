@@ -2,122 +2,177 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Check, ChevronDown, AlertTriangle } from "lucide-react"
+import { Check, AlertTriangle, X, ArrowRight } from "lucide-react"
 import { TractorIcon, WheatIcon, BarnIcon, MoneyBagIcon, SunLeafIcon } from "@/components/agri-icons"
+import Image from "next/image"
 
-const CATEGORIES = [
+const THEMEN = [
   {
     id: "tierwohl",
-    label: "Besonders tiergerechte Haltung",
-    sublabel: "Anlage 1 – Premium",
-    badge: "35–40 %",
-    badgeClass: "bg-emerald-600 text-white",
-    borderClass: "border-emerald-500",
-    bgClass: "bg-emerald-50",
-    accentClass: "text-emerald-700",
-    iconColor: "text-emerald-600",
-    IconComp: BarnIcon,
-    intro: "Stallumbauten und Neubauten mit deutlich höheren Standards als gesetzlich vorgeschrieben — der häufigste Weg zum Premium-Fördersatz.",
+    label: "Premium-Tierhaltung",
+    sublabel: "Stallumbau mit Platz & Licht",
+    badge: "bis 40 %",
+    badgeColor: "bg-emerald-600 text-white",
+    accentColor: "text-emerald-700",
+    borderColor: "border-emerald-500",
+    bgColor: "bg-emerald-50",
+    dotColor: "bg-emerald-500",
+    image: "/images/gallery/tierwohl-stall.jpg",
+    icon: BarnIcon,
+    desc: "Ställe mit deutlich höheren Standards als gesetzlich vorgeschrieben — mehr Platz, Tageslicht, weiche Liegeflächen und Auslauf.",
     items: [
-      "Umrüstung / Neubau von Ställen mit messbar höheren Standards",
-      "Mehr Platz je Tier (z.B. 20 % über gesetzlichem Minimum bei Schweinen)",
-      "Natürliches Tageslicht (mind. 3–5 % der Grundfläche)",
-      "Weiche / komfortable Liegeflächen (Komfortmatten, Einstreu)",
-      "Auslauf / Weidezugang oder Außenklimabereich",
-      "Beschäftigungsmaterial (ständig verfügbar)",
-      "Umstellung Anbindehaltung → Laufstall bei Milchkühen",
+      "Neubau/Umbau mit 20 % mehr Fläche je Tier",
+      "Natürliches Tageslicht (mind. 3–5 % Grundfläche)",
+      "Weiche Liegeflächen & Einstreu",
+      "Auslauf, Weidezugang oder Außenklimabereich",
+      "Umstellung Anbindehaltung → Laufstall",
       "Gruppenhaltung Kälber ab 5. Woche",
     ],
-    note: "Besonders relevant für: Rinder, Kälber, Schweine (eingeschränkt), Geflügel (Bodenhaltung mit Wintergarten / Freiland)",
-    warning: "Für Schweinehaltung: genereller Ausschluss Stall-Neubauten bis 31.12.2027 in den meisten Ländern. Nur spezifische Emissionsmaßnahmen (Anlage 3) förderfähig.",
+    note: "Relevant für: Rinder, Kälber, Geflügel (Bodenhaltung). Schweine: Emissionsmaßnahmen gesondert förderfähig.",
   },
   {
-    id: "siuk",
-    label: "Emissionsminderung & Klimaschutz",
-    sublabel: "SIUK – Anlage 3",
-    badge: "40–75 %",
-    badgeClass: "bg-teal-600 text-white",
-    borderClass: "border-teal-500",
-    bgClass: "bg-teal-50",
-    accentClass: "text-teal-700",
-    iconColor: "text-teal-600",
-    IconComp: SunLeafIcon,
-    intro: "SIUK steht für Stallbau, Infrastruktur, Umwelt & Klima. Die Fördersätze sind bundesweit am höchsten — bis zu 75 % in einzelnen Ländern.",
-    groups: [
-      {
-        heading: "Bauliche Maßnahmen im Stall (Teil B)",
-        items: [
-          "Abluftreinigungsanlagen",
-          "Kot-Harn-Trennung",
-          "Emissionsarme Stallböden",
-          "Verkleinerte Güllekanäle",
-          "Güllekühlung",
-          "Fütterungssysteme für nährstoffreduzierte Phasenfütterung",
-        ],
-      },
-      {
-        heading: "Lagerung Wirtschaftsdünger",
-        items: [
-          "Neue Gülle- / Festmistlager mit fester Abdeckung (gasdicht)",
-          "Mindestens 2 Monate zusätzliche Kapazität über gesetzlichem Minimum",
-        ],
-      },
-      {
-        heading: "Außenwirtschaft / Maschinen (Teil A)",
-        items: [
-          "Abdriftmindernde Pflanzenschutzgeräte (JKI-geprüft, ≥ 90 % Reduktion)",
-          "Mechanische Unkrautbekämpfung mit elektronischer Reihenführung (Kamera/GPS/Ultraschall)",
-          "Präzisionstechnik (GPS, Sensorik für Düngung/Ausbringung)",
-        ],
-      },
-    ],
-  },
-  {
-    id: "resilienz",
-    label: "Resilienz & Naturgefahren-Vorsorge",
-    sublabel: "Meist 40 %",
-    badge: "40 %",
-    badgeClass: "bg-amber-600 text-white",
-    borderClass: "border-amber-500",
-    bgClass: "bg-amber-50",
-    accentClass: "text-amber-700",
-    iconColor: "text-amber-600",
-    IconComp: WheatIcon,
-    intro: "Schutz gegen Klimarisiken — Hagelschäden, Frost und Trockenheit können ganze Ernten vernichten. Der Staat fördert die Vorsorge.",
+    id: "klima",
+    label: "Klima- & Emissionsschutz",
+    sublabel: "Abluft, Güllekühlung, Lager",
+    badge: "bis 50 %",
+    badgeColor: "bg-teal-600 text-white",
+    accentColor: "text-teal-700",
+    borderColor: "border-teal-500",
+    bgColor: "bg-teal-50",
+    dotColor: "bg-teal-500",
+    image: "/images/gallery/klima-emissionsschutz.jpg",
+    icon: SunLeafIcon,
+    desc: "SIUK-Maßnahmen mit den höchsten Fördersätzen bundesweit. Abluftanlagen, Güllekühlung und emissionsarme Stallböden.",
     items: [
-      "Frostschutzberegnung (vor allem Sonderkulturen)",
-      "Hagelschutznetze",
-      "Starkregenschutz / Schutzsysteme",
-      "Errichtung / Modernisierung von Bewässerungsanlagen mit mind. 15 % Wassereinsparung",
-      "Tröpfchenbewässerung, Unterfluranlagen",
+      "Abluftreinigungsanlagen",
+      "Güllekühlung & Kot-Harn-Trennung",
+      "Emissionsarme Stallböden",
+      "Verkleinerte Güllekanäle",
+      "Phasenfütterung (nährstoffreduziert)",
+      "Gasdichte Güllelagerabdeckung",
     ],
-    note: "Keine Brunnen oder Speicherbecken (ausgeschlossen).",
+    note: "SIUK = Stallbau, Infrastruktur, Umwelt & Klima. Kombinierbar mit Tierwohl-Bonus.",
+  },
+  {
+    id: "kombi",
+    label: "Kombi aus beidem",
+    sublabel: "Das absolute Maximum",
+    badge: "bis 50 %",
+    badgeColor: "bg-purple-600 text-white",
+    accentColor: "text-purple-700",
+    borderColor: "border-purple-500",
+    bgColor: "bg-purple-50",
+    dotColor: "bg-purple-500",
+    image: "/images/gallery/kombi-maximum.jpg",
+    icon: MoneyBagIcon,
+    desc: "Kombination aus Tierwohl (Anlage 1) und Emissionsschutz (Anlage 3) für den maximalen Fördersatz — der cleverste Weg.",
+    items: [
+      "Tierwohl-Stallbau + Abluftreinigung kombiniert",
+      "Beide Anlagen in einem Antrag gebündelt",
+      "Junglandwirt-Bonus (+10 %) on top möglich",
+      "Öko-Betriebe erhalten zusätzlichen Aufschlag",
+      "Maximale Bundesförderung + Landesbonus",
+      "Höchste Förderstufe in nahezu allen Bundesländern",
+    ],
+    note: "Kombination setzt voraus, dass beide Maßnahmen baulich und betrieblich zusammenpassen.",
+    highlight: true,
+  },
+  {
+    id: "guelle",
+    label: "Gülle-/Mistlager",
+    sublabel: "Feste Abdeckung + 2 Mon. Reserve",
+    badge: "bis 40 %",
+    badgeColor: "bg-amber-600 text-white",
+    accentColor: "text-amber-700",
+    borderColor: "border-amber-500",
+    bgColor: "bg-amber-50",
+    dotColor: "bg-amber-500",
+    image: "/images/gallery/guellelager.jpg",
+    icon: WheatIcon,
+    desc: "Neue oder erweiterte Güllelager mit gasdichter Abdeckung und mindestens 2 Monate Kapazität über dem gesetzlichen Minimum.",
+    items: [
+      "Neubau Gülle-/Festmistlager (gasdicht)",
+      "Feste Abdeckung (Folie, Beton, Schwimmfolie)",
+      "+2 Monate Kapazität über gesetzl. Minimum",
+      "Kombinierbar mit SIUK-Maßnahmen",
+      "Auch Erweiterung bestehender Lager förderfähig",
+      "Gilt für alle Tierarten",
+    ],
+  },
+  {
+    id: "praezision",
+    label: "Präzisionstechnik & Schutz",
+    sublabel: "Bewässerung & Hagelschutz",
+    badge: "bis 35 %",
+    badgeColor: "bg-blue-600 text-white",
+    accentColor: "text-blue-700",
+    borderColor: "border-blue-500",
+    bgColor: "bg-blue-50",
+    dotColor: "bg-blue-500",
+    image: "/images/gallery/praezisionstechnik.jpg",
+    icon: TractorIcon,
+    desc: "GPS-gestützte Präzisionstechnik, Hagelschutznetze und ressourcenschonende Bewässerung für robuste Ernten.",
+    items: [
+      "GPS/Sensor-Präzisionstechnik für Düngung",
+      "Abdriftmindernde Pflanzenschutzgeräte (≥90%)",
+      "Mechanische Unkrautbekämpfung (Kamera/GPS)",
+      "Hagelschutznetze für Sonderkulturen",
+      "Bewässerung mit mind. 15 % Wassereinsparung",
+      "Tröpfchen-/Unterfluranlagen",
+    ],
+    note: "Keine Brunnen oder Speicherbecken (ausgeschlossen). Frostschutzberegnung möglich.",
+  },
+  {
+    id: "kaelber",
+    label: "Weiche Kälbermatten",
+    sublabel: "Befristeter Extra-Bonus",
+    badge: "bis 40 %",
+    badgeColor: "bg-rose-600 text-white",
+    accentColor: "text-rose-700",
+    borderColor: "border-rose-500",
+    bgColor: "bg-rose-50",
+    dotColor: "bg-rose-500",
+    image: "/images/gallery/kaelbermatten.jpg",
+    icon: BarnIcon,
+    desc: "Weiche Liegebereiche für Kälber erhalten einen befristeten +10 % Aufschlag — Antrag stellen solange das Programm läuft.",
+    items: [
+      "Weiche Gummi-/Komfortmatten für Kälber",
+      "+10 % Aufschlag (befristet bis Ende 2026)",
+      "Gruppenhaltung ab der 5. Lebenswoche",
+      "Kombinierbar mit allgemeiner Tierwohl-Förderung",
+      "Mindestinvestition 10.000 €",
+      "Gilt bundesweit (Programmverfügbarkeit prüfen)",
+    ],
+    warning: "Befristetes Bonusprogramm — Antragsstellung zeitnah empfohlen, solange Budget vorhanden ist.",
   },
   {
     id: "basis",
-    label: "Weitere förderfähige Investitionen",
-    sublabel: "Basis 20 %",
+    label: "Lagerhallen & Fahrsilos",
+    sublabel: "Basis-Investitionen 20 %",
     badge: "20 %",
-    badgeClass: "bg-slate-600 text-white",
-    borderClass: "border-slate-400",
-    bgClass: "bg-slate-50",
-    accentClass: "text-slate-700",
-    iconColor: "text-slate-600",
-    IconComp: TractorIcon,
-    intro: "Standardinvestitionen ohne erhöhten Tierwohl- oder SIUK-Anteil — der Grundsatz von 20 % gilt bundesweit als Einstiegssatz.",
+    badgeColor: "bg-slate-600 text-white",
+    accentColor: "text-slate-700",
+    borderColor: "border-slate-400",
+    bgColor: "bg-slate-50",
+    dotColor: "bg-slate-500",
+    image: "/images/gallery/lagerhalle-fahrsilo.jpg",
+    icon: TractorIcon,
+    desc: "Standardinvestitionen in Lager und Betriebsgebäude — der Einstiegssatz von 20 % gilt bundesweit als solide Basis.",
     items: [
-      "Lagerhallen für Obst / Gemüse / Grobfutter (klimatisiert, ressourcenschonend)",
-      "Fahrsilos",
-      "Sonstige Stall- / Wirtschaftsgebäude (ohne reine Ersatzinvestition)",
-      "Weiche Liegebereiche für Kälber (Kälbermatten) — oft +10 % Aufschlag, befristet",
+      "Lagerhallen für Obst, Gemüse & Grobfutter",
+      "Fahrsilos (Betonfermentor, Flachsilos)",
+      "Sonstige Wirtschaftsgebäude",
+      "Keine reine Ersatzinvestition förderfähig",
+      "Mit Tierwohl-Maßnahmen kombinierbar",
+      "Gilt in allen 16 Bundesländern",
     ],
   },
 ]
 
 export function AssetsSection() {
-  const [activeId, setActiveId] = useState<string>("tierwohl")
+  const [selected, setSelected] = useState<string | null>(null)
 
-  const active = CATEGORIES.find((c) => c.id === activeId)!
+  const active = selected ? THEMEN.find((t) => t.id === selected) ?? null : null
 
   return (
     <section id="assets" className="py-16 sm:py-24 bg-white border-t border-slate-100">
@@ -132,54 +187,93 @@ export function AssetsSection() {
         >
           <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-50 border border-green-200 rounded-full text-xs font-semibold text-green-700 mb-4">
             <WheatIcon className="w-3.5 h-3.5" />
-            Förderfähige Investitionen
+            Förderfähige Investitionsthemen
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4 text-balance">
             Was genau fördert die Landwirtschaftsförderung — und wie viel?
           </h2>
           <p className="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto">
-            4 Hauptkategorien mit unterschiedlichen Fördersätzen. Klicke deine an und sieh alle Details.
+            7 Investitionsthemen mit unterschiedlichen Fördersätzen. Klicke ein Thema an für alle Details.
           </p>
         </motion.div>
 
-        {/* Tab Navigation */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
-          {CATEGORIES.map((cat, i) => {
-            const Icon = cat.IconComp
-            const isActive = cat.id === activeId
+        {/* Gallery Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-8">
+          {THEMEN.map((thema, i) => {
+            const Icon = thema.icon
+            const isSelected = selected === thema.id
             return (
               <motion.button
-                key={cat.id}
-                initial={{ opacity: 0, y: 16 }}
+                key={thema.id}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.07 }}
-                onClick={() => setActiveId(cat.id)}
-                className={`
-                  relative flex flex-col items-start gap-2 p-4 rounded-xl border-2 text-left transition-all duration-200
-                  ${isActive
-                    ? `${cat.borderClass} ${cat.bgClass} shadow-md`
-                    : "border-slate-200 bg-white hover:border-slate-300 hover:shadow-sm"
-                  }
-                `}
+                transition={{ delay: i * 0.06 }}
+                onClick={() => setSelected(isSelected ? null : thema.id)}
+                className={`group relative rounded-2xl overflow-hidden border-2 text-left transition-all duration-200 shadow-sm hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 ${
+                  isSelected
+                    ? `${thema.borderColor} shadow-lg`
+                    : "border-slate-200 hover:border-slate-300"
+                } ${thema.id === "kombi" ? "sm:col-span-2 lg:col-span-1" : ""}`}
+                aria-pressed={isSelected}
               >
-                {/* Active indicator bar */}
-                {isActive && (
-                  <motion.div
-                    layoutId="active-bar"
-                    className={`absolute top-0 left-0 right-0 h-1 rounded-t-xl ${cat.badgeClass.split(" ")[0]}`}
+                {/* Image */}
+                <div className="relative w-full h-44 overflow-hidden bg-slate-100">
+                  <Image
+                    src={thema.image}
+                    alt={thema.label}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
-                )}
-                <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${isActive ? cat.bgClass : "bg-slate-100"}`}>
-                  <Icon className={`w-5 h-5 ${isActive ? cat.iconColor : "text-slate-400"}`} />
+                  {/* Badge overlay */}
+                  <div className="absolute top-3 right-3">
+                    <span className={`text-xs font-bold px-2.5 py-1 rounded-full shadow-md ${thema.badgeColor}`}>
+                      {thema.badge}
+                    </span>
+                  </div>
+                  {/* Highlight ribbon */}
+                  {thema.highlight && (
+                    <div className="absolute top-3 left-3">
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-yellow-400 text-yellow-900 shadow">
+                        MAXIMUM
+                      </span>
+                    </div>
+                  )}
+                  {/* Kälber befristet */}
+                  {thema.id === "kaelber" && (
+                    <div className="absolute top-3 left-3">
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-500 text-white shadow">
+                        BEFRISTET
+                      </span>
+                    </div>
+                  )}
+                  {/* Dark overlay on selected */}
+                  {isSelected && (
+                    <div className="absolute inset-0 bg-slate-900/30" />
+                  )}
                 </div>
-                <div>
-                  <p className={`text-xs font-bold leading-tight ${isActive ? "text-slate-900" : "text-slate-600"}`}>
-                    {cat.label}
+
+                {/* Card body */}
+                <div className={`p-4 transition-colors duration-200 ${isSelected ? thema.bgColor : "bg-white"}`}>
+                  <div className="flex items-start justify-between gap-2 mb-1">
+                    <p className="font-bold text-slate-900 text-sm leading-tight">{thema.label}</p>
+                    <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
+                      isSelected ? `${thema.borderColor} ${thema.bgColor}` : "border-slate-200 bg-slate-50"
+                    }`}>
+                      {isSelected && (
+                        <div className={`w-2.5 h-2.5 rounded-full ${thema.dotColor}`} />
+                      )}
+                    </div>
+                  </div>
+                  <p className={`text-xs font-medium mb-2 ${isSelected ? thema.accentColor : "text-slate-500"}`}>
+                    {thema.sublabel}
                   </p>
-                  <span className={`mt-1 inline-block text-[11px] font-bold px-2 py-0.5 rounded-full ${cat.badgeClass}`}>
-                    {cat.badge}
-                  </span>
+                  <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">{thema.desc}</p>
+                  <div className={`flex items-center gap-1 mt-3 text-xs font-semibold transition-colors ${isSelected ? thema.accentColor : "text-slate-400"}`}>
+                    <span>{isSelected ? "Details ausblenden" : "Details anzeigen"}</span>
+                    <ArrowRight className={`w-3 h-3 transition-transform ${isSelected ? "rotate-90" : ""}`} />
+                  </div>
                 </div>
               </motion.button>
             )
@@ -187,95 +281,78 @@ export function AssetsSection() {
         </div>
 
         {/* Detail Panel */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeId}
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.28 }}
-            className={`rounded-2xl border-2 ${active.borderClass} ${active.bgClass} overflow-hidden`}
-          >
-            {/* Panel Header */}
-            <div className={`px-6 py-5 border-b-2 ${active.borderClass} bg-white/60`}>
-              <div className="flex flex-wrap items-center gap-3">
-                <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${active.bgClass}`}>
-                  <active.IconComp className={`w-6 h-6 ${active.iconColor}`} />
+        <AnimatePresence>
+          {active && (
+            <motion.div
+              key={active.id}
+              initial={{ opacity: 0, y: 16, height: 0 }}
+              animate={{ opacity: 1, y: 0, height: "auto" }}
+              exit={{ opacity: 0, y: -8, height: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="overflow-hidden"
+            >
+              <div className={`rounded-2xl border-2 ${active.borderColor} overflow-hidden mb-8`}>
+                {/* Panel header */}
+                <div className={`px-5 py-4 ${active.bgColor} border-b ${active.borderColor} flex items-start justify-between gap-4`}>
+                  <div className="flex items-center gap-3">
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${active.bgColor} border ${active.borderColor}`}>
+                      <active.icon className={`w-5 h-5 ${active.accentColor}`} />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-slate-900 leading-tight">{active.label}</h3>
+                      <p className={`text-sm font-medium ${active.accentColor}`}>{active.sublabel}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 flex-shrink-0">
+                    <span className={`text-sm font-bold px-3 py-1.5 rounded-full ${active.badgeColor}`}>
+                      {active.badge}
+                    </span>
+                    <button
+                      onClick={() => setSelected(null)}
+                      className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors"
+                      aria-label="Schliessen"
+                    >
+                      <X className="w-4 h-4 text-slate-500" />
+                    </button>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-lg font-bold text-slate-900 leading-tight">{active.label}</h3>
-                  <p className={`text-sm font-semibold ${active.accentClass}`}>{active.sublabel}</p>
+
+                {/* Panel body */}
+                <div className="p-5 sm:p-7 bg-white">
+                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-6">{active.desc}</p>
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {active.items.map((item, idx) => (
+                      <motion.div
+                        key={item}
+                        initial={{ opacity: 0, x: -8 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: idx * 0.04 }}
+                        className={`flex items-start gap-3 rounded-xl p-4 border ${active.borderColor} ${active.bgColor}`}
+                      >
+                        <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${active.dotColor}`}>
+                          <Check className="w-3 h-3 text-white" aria-hidden="true" />
+                        </div>
+                        <span className="text-sm text-slate-700 leading-snug">{item}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {active.note && (
+                    <p className="mt-4 text-xs text-slate-500 italic leading-relaxed border-t border-slate-100 pt-4">
+                      {active.note}
+                    </p>
+                  )}
+
+                  {active.warning && (
+                    <div className="mt-4 flex items-start gap-2.5 bg-amber-50 border border-amber-200 rounded-xl p-3.5">
+                      <AlertTriangle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                      <p className="text-xs text-amber-800 leading-relaxed">{active.warning}</p>
+                    </div>
+                  )}
                 </div>
-                <span className={`ml-auto text-sm font-bold px-3 py-1.5 rounded-full ${active.badgeClass}`}>
-                  Förderung {active.badge}
-                </span>
               </div>
-              <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">{active.intro}</p>
-            </div>
-
-            {/* Panel Body */}
-            <div className="p-6 sm:p-8">
-              {"groups" in active && active.groups ? (
-                // SIUK: Gruppen-Layout
-                <div className="grid sm:grid-cols-3 gap-5">
-                  {active.groups.map((group, gi) => (
-                    <motion.div
-                      key={group.heading}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: gi * 0.08 }}
-                      className="bg-white rounded-xl p-4 border border-slate-200 shadow-sm"
-                    >
-                      <p className={`text-xs font-bold uppercase tracking-wide mb-3 ${active.accentClass}`}>
-                        {group.heading}
-                      </p>
-                      <ul className="space-y-2">
-                        {group.items.map((item) => (
-                          <li key={item} className="flex items-start gap-2 text-sm text-slate-700 leading-snug">
-                            <Check className={`w-4 h-4 flex-shrink-0 mt-0.5 ${active.iconColor}`} aria-hidden="true" />
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </motion.div>
-                  ))}
-                </div>
-              ) : (
-                // Einfaches Listen-Layout
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {active.items!.map((item, idx) => (
-                    <motion.div
-                      key={item}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: idx * 0.04 }}
-                      className="flex items-start gap-3 bg-white rounded-xl p-5 border border-slate-200 shadow-sm"
-                    >
-                      <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${active.bgClass}`}>
-                        <Check className={`w-3.5 h-3.5 ${active.iconColor}`} aria-hidden="true" />
-                      </div>
-                      <span className="text-sm text-slate-700 leading-relaxed">{item}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              )}
-
-              {/* Note */}
-              {"note" in active && active.note && (
-                <p className="mt-4 text-xs text-slate-500 italic leading-relaxed">
-                  {active.note}
-                </p>
-              )}
-
-              {/* Warning */}
-              {"warning" in active && active.warning && (
-                <div className="mt-4 flex items-start gap-2.5 bg-amber-50 border border-amber-200 rounded-xl p-3.5">
-                  <AlertTriangle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                  <p className="text-xs text-amber-800 leading-relaxed">{active.warning}</p>
-                </div>
-              )}
-            </div>
-          </motion.div>
+            </motion.div>
+          )}
         </AnimatePresence>
 
         {/* Bottom CTA */}
@@ -283,7 +360,7 @@ export function AssetsSection() {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-10 text-center"
+          className="mt-4 text-center"
         >
           <p className="text-slate-500 text-sm sm:text-base mb-4">
             <span className="font-semibold text-slate-900">Dein Vorhaben ist dabei?</span>{" "}
