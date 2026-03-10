@@ -400,7 +400,7 @@ export function PersonalizedBenefitsSection() {
                         Spezialisierte Förderprogramme für Sie verfügbar
                       </h4>
                       <p className="text-emerald-300 leading-relaxed mb-3">
-                        {analysis.eligibility?.specialIndustry?.alternativeFunding || "Landwirtschaftsförderung (AFP, ELER, GAP)"}
+                        {analysis.eligibility?.specialIndustry?.alternativeFunding || "Förderung für die Landwirtschaft (ELER, GAP)"}
                       </p>
                       <p className="text-slate-300 leading-relaxed">
                         {analysis.eligibility?.reason || "Landwirtschaftliche Betriebe können zwar nicht über die Regional-Förderung gefördert werden, aber es gibt spezialisierte Agrarförderprogramme mit oft sogar höheren Förderquoten!"}
@@ -414,8 +414,8 @@ export function PersonalizedBenefitsSection() {
                         <div className="text-xs text-slate-400">Typische Förderquote</div>
                       </div>
                       <div className="bg-white/5 rounded-xl p-4 text-center">
-                        <div className="text-3xl font-bold text-emerald-400 mb-1">AFP</div>
-                        <div className="text-xs text-slate-400">Agrarinvestitions-Förderung</div>
+                        <div className="text-3xl font-bold text-emerald-400 mb-1">FfdL</div>
+                        <div className="text-xs text-slate-400">Förderung für die Landwirtschaft</div>
                       </div>
                       <div className="bg-white/5 rounded-xl p-4 text-center">
                         <div className="text-3xl font-bold text-emerald-400 mb-1">ELER</div>

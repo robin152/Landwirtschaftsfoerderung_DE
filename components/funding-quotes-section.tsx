@@ -54,7 +54,7 @@ export function FundingQuotesSection() {
             Manche Bundesländer zahlen deutlich mehr – siehst du deins?
           </h2>
           <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
-            Der AFP-Fördersatz hängt von Standort, Maßnahme und deinen Boni ab. Hier der Überblick – ohne Weichzeichner.
+            Der Fördersatz für die Landwirtschaft hängt von Standort, Maßnahme und deinen Boni ab. Hier der Überblick – ohne Weichzeichner.
           </p>
         </motion.div>
 
@@ -175,7 +175,7 @@ export function FundingQuotesSection() {
           viewport={{ once: true }}
           className="bg-gradient-to-r from-purple-600 to-violet-600 rounded-xl sm:rounded-2xl p-5 sm:p-6 text-center text-white mb-8"
         >
-          <div className="text-sm sm:text-base opacity-90 mb-1">Maximum AFP-Fördersatz (Tierwohl + Junglandwirt-Bonus)</div>
+          <div className="text-sm sm:text-base opacity-90 mb-1">Maximum Fördersatz für die Landwirtschaft (Tierwohl + Junglandwirt-Bonus)</div>
           <div className="text-4xl sm:text-5xl font-bold mb-2">bis 50 %</div>
           <div className="text-sm opacity-80">Basis 20 % + Tierwohl-Premium 20 % + Junglandwirt-Bonus 10 % = 50 % (alle Bundesländer)</div>
         </motion.div>

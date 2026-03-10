@@ -77,7 +77,7 @@ export function FoerderZieleSection() {
         <div className="text-center mb-10 sm:mb-14">
           <div className="inline-flex items-center gap-2 bg-green-50 border border-green-200 rounded-full px-4 py-1.5 mb-4">
             <ShieldCheckAgriIcon className="w-4 h-4 text-green-700" />
-            <span className="text-sm font-semibold text-green-800">Was das AFP fördert</span>
+            <span className="text-sm font-semibold text-green-800">Was die Förderung für die Landwirtschaft abdeckt</span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-3 text-balance">
             6 Förderziele — mindestens eines muss deine Investition erfüllen

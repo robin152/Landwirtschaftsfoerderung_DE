@@ -49,12 +49,12 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-12 mb-8 sm:mb-16">
           <div className="col-span-2 md:col-span-1">
             <a href="/" className="flex items-center gap-2 mb-3 sm:mb-4">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-green-700 flex items-center justify-center font-bold text-[10px] sm:text-xs text-white leading-tight text-center">
-                AFP
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-green-700 flex items-center justify-center font-bold text-[8px] sm:text-[9px] text-white leading-tight text-center">
+                FfdL
               </div>
             </a>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-4">
-              Eskalator AG — Ihr Partner für die Landwirtschaftsförderung (AFP).
+              Eskalator AG — Ihr Partner für die Förderung in der Landwirtschaft.
             </p>
             <div className="space-y-2">
               <p className="text-xs text-muted-foreground">
@@ -109,7 +109,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-3 sm:mb-4 text-foreground text-sm sm:text-base">AFP-Förderung</h4>
+            <h4 className="font-semibold mb-3 sm:mb-4 text-foreground text-sm sm:text-base">Förderung für die Landwirtschaft</h4>
             <ul className="space-y-2 sm:space-y-3">
               {footerLinks.foerderung.map((link) => (
                 <li key={link.label}>

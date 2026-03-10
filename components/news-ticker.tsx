@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 
 const tickerItems = [
-  "AFP 2026: Bis zu 50 % Zuschuss für Tierwohl & Klimaschutz – jetzt berechnen!",
+  "Förderung für die Landwirtschaft 2026: Bis zu 50 % Zuschuss für Tierwohl & Klimaschutz – jetzt berechnen!",
   "Neue Bundesländer: Bis 5 Mio. € Investitionsvolumen förderfähig!",
   "Junglandwirt-Bonus: +10 % extra wenn du unter 40 bist – macht bis zu 50 % Gesamtförderung!",
   "NRW Kälbermatten-Aufschlag: Befristeter 10 % Extra-Bonus noch verfügbar!",
