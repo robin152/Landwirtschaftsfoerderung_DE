@@ -420,7 +420,7 @@ function AgriCardIcon({ icon, className }: { icon: string; className?: string })
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────��─────────────────
 // HELPER COMPONENTS
 // ─────────────────────────────────────────────────────────────────────────────
 function SelectField({
@@ -654,8 +654,23 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
   const [istOeko, setIstOeko] = useState(false)
 
   // Step 1 — Vorhaben
-  const [investitionsart, setInvestitionsart] = useState<InvestitionsartId | "">("")
+  const [investitionsarten, setInvestitionsarten] = useState<InvestitionsartId[]>([])
+  const investitionsart = investitionsarten[0] ?? ("" as const) // backward compat for berechne (uses highest-rate art)
   const [investVolumen, setInvestVolumen] = useState("")
+
+  function toggleInvestitionsart(id: InvestitionsartId) {
+    setShowErrors(false)
+    setInvestitionsarten((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    )
+  }
+
+  // For calculation: pick the art with highest potential Fördersatz
+  const INVEST_ORDER: InvestitionsartId[] = ["kombi", "siuk", "tierwohl", "guelle", "kaelber", "praezision", "basis"]
+  const primaryInvestitionsart: InvestitionsartId | "" =
+    investitionsarten.length === 0
+      ? ""
+      : INVEST_ORDER.find((id) => investitionsarten.includes(id)) ?? investitionsarten[0]
 
   // Step 2 — Person
   const [alter, setAlter] = useState("")
@@ -667,7 +682,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
     () =>
       berechne({
         bundesland: bundesland as BundeslandKey | null,
-        investitionsart: investitionsart as InvestitionsartId | null,
+        investitionsart: primaryInvestitionsart as InvestitionsartId | null,
         tierhaltung: tierhaltung as TierhaltungsartId | null,
         investVolumen: Number(investVolumen) || 0,
         alter: Number(alter) || 0,
@@ -677,7 +692,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
         hatMeister,
         // gvHa & tierbestand sind optional — werden nur gewarnt wenn bekannt
       }),
-    [bundesland, investitionsart, tierhaltung, investVolumen, alter, familienstand, einkommen, istOeko, hatMeister]
+    [bundesland, primaryInvestitionsart, tierhaltung, investVolumen, alter, familienstand, einkommen, istOeko, hatMeister]
   )
 
   const bundeslandOptions = Object.keys(BUNDESLAENDER).map((k) => ({ value: k, label: k }))
@@ -690,7 +705,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
   // Validierung je Step
   const canProceed = [
     !!bundesland && !!tierhaltung,
-    !!investitionsart && Number(investVolumen) >= 10_000,
+    !!primaryInvestitionsart && Number(investVolumen) >= 10_000,
     !!alter,
   ]
 
@@ -787,47 +802,76 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
               <div className="flex items-center gap-2 bg-red-950/60 border border-red-700/50 rounded-xl px-4 py-3">
                 <AlertCircle className="w-4 h-4 text-red-400 flex-shrink-0" aria-hidden="true" />
                 <p className="text-red-300 text-sm font-semibold">
-                  {!investitionsart ? "Bitte eine Investitionsart wählen." : "Bitte ein Investitionsvolumen von mindestens 10.000 € eingeben."}
+                  {investitionsarten.length === 0 ? "Bitte mindestens eine Investitionsart wählen." : "Bitte ein Investitionsvolumen von mindestens 10.000 € eingeben."}
                 </p>
               </div>
             )}
-            <div className={`grid grid-cols-1 gap-2 ${showErrors && !investitionsart ? "rounded-xl ring-2 ring-red-500/40 p-1 -m-1" : ""}`}>
-              {INVESTITIONSARTEN.map((art) => (
+            {/* Selection counter badge */}
+            {investitionsarten.length > 0 && (
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-xs font-semibold bg-emerald-600/20 border border-emerald-500/40 text-emerald-300 px-2.5 py-1 rounded-full">
+                  {investitionsarten.length} Vorhaben gewählt
+                </span>
                 <button
-                  key={art.id}
                   type="button"
-                  onClick={() => { setInvestitionsart(art.id); setShowErrors(false) }}
-                  className={`text-left p-4 rounded-xl border transition-all duration-150 touch-manipulation min-h-[72px] ${
-                    investitionsart === art.id
-                      ? "border-emerald-500 bg-emerald-900/30 shadow-lg shadow-emerald-900/20"
-                      : showErrors && !investitionsart
-                      ? "border-red-700/60 bg-red-950/20 active:border-red-500 active:bg-red-950/30"
-                      : "border-slate-700 bg-slate-800/50 active:border-slate-500 active:bg-slate-800"
-                  }`}
+                  onClick={() => setInvestitionsarten([])}
+                  className="text-xs text-slate-500 hover:text-slate-300 underline transition-colors"
                 >
-                  <div className="flex items-start gap-3">
-                    <div className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center mt-0.5 ${
-                      investitionsart === art.id ? "bg-emerald-600/30" : "bg-slate-700/50"
-                    }`}>
-                      <AgriCardIcon icon={art.icon} className={`w-5 h-5 ${investitionsart === art.id ? "text-emerald-400" : "text-slate-400"}`} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-2 mb-1">
-                        <span className="text-sm font-semibold text-white leading-tight">{art.label}</span>
-                        <span className={`text-xs px-2 py-0.5 rounded-full border whitespace-nowrap flex-shrink-0 ${art.badgeColor}`}>
-                          {art.badge}
-                        </span>
-                      </div>
-                      <p className="text-xs text-slate-400 leading-relaxed">{art.desc}</p>
-                    </div>
-                  </div>
+                  Auswahl leeren
                 </button>
-              ))}
+              </div>
+            )}
+            <div className={`grid grid-cols-1 gap-2 ${showErrors && investitionsarten.length === 0 ? "rounded-xl ring-2 ring-red-500/40 p-1 -m-1" : ""}`}>
+              {INVESTITIONSARTEN.map((art) => {
+                const isSelected = investitionsarten.includes(art.id)
+                return (
+                  <button
+                    key={art.id}
+                    type="button"
+                    onClick={() => toggleInvestitionsart(art.id)}
+                    className={`text-left p-4 rounded-xl border transition-all duration-150 touch-manipulation min-h-[72px] ${
+                      isSelected
+                        ? "border-emerald-500 bg-emerald-900/30 shadow-lg shadow-emerald-900/20"
+                        : showErrors && investitionsarten.length === 0
+                        ? "border-red-700/60 bg-red-950/20 active:border-red-500 active:bg-red-950/30"
+                        : "border-slate-700 bg-slate-800/50 active:border-slate-500 active:bg-slate-800"
+                    }`}
+                    aria-pressed={isSelected}
+                  >
+                    <div className="flex items-start gap-3">
+                      {/* Checkbox indicator */}
+                      <div className={`flex-shrink-0 w-5 h-5 rounded border-2 flex items-center justify-center mt-0.5 transition-colors ${
+                        isSelected ? "border-emerald-500 bg-emerald-500" : "border-slate-600 bg-slate-800"
+                      }`}>
+                        {isSelected && (
+                          <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 12 12" aria-hidden="true">
+                            <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        )}
+                      </div>
+                      <div className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center ${
+                        isSelected ? "bg-emerald-600/30" : "bg-slate-700/50"
+                      }`}>
+                        <AgriCardIcon icon={art.icon} className={`w-5 h-5 ${isSelected ? "text-emerald-400" : "text-slate-400"}`} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-start justify-between gap-2 mb-1">
+                          <span className="text-sm font-semibold text-white leading-tight">{art.label}</span>
+                          <span className={`text-xs px-2 py-0.5 rounded-full border whitespace-nowrap flex-shrink-0 ${art.badgeColor}`}>
+                            {art.badge}
+                          </span>
+                        </div>
+                        <p className="text-xs text-slate-400 leading-relaxed">{art.desc}</p>
+                      </div>
+                    </div>
+                  </button>
+                )
+              })}
             </div>
-            {showErrors && !investitionsart && (
+            {showErrors && investitionsarten.length === 0 && (
               <p className="text-xs text-red-400 flex items-center gap-1 -mt-2">
                 <AlertCircle className="w-3 h-3 flex-shrink-0" aria-hidden="true" />
-                Bitte eine Investitionsart auswählen.
+                Bitte mindestens eine Investitionsart auswählen.
               </p>
             )}
             <NumberField
@@ -1229,7 +1273,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
             <p className="text-center text-xs text-slate-600">
               {canProceed[step]
                 ? "Alles ausgefüllt — du kannst fortfahren"
-                : `Noch ${step === 0 ? (!bundesland && !tierhaltung ? "2 Felder" : "1 Feld") : step === 1 ? (!investitionsart ? "Investitionsart" : "Volumen") : "Alter"} ausfüllen`}
+                : `Noch ${step === 0 ? (!bundesland && !tierhaltung ? "2 Felder" : "1 Feld") : step === 1 ? (investitionsarten.length === 0 ? "Investitionsart" : "Volumen") : "Alter"} ausfüllen`}
             </p>
           )}
         </div>
@@ -1248,9 +1292,9 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
           source="rechner-unlock"
           prefilledData={{
             investment: Number(investVolumen) || undefined,
-            investitionsart: investitionsart || undefined,
-            investitionsartLabel: investitionsart
-              ? INVESTITIONSARTEN.find((a) => a.id === investitionsart)?.label
+            investitionsart: primaryInvestitionsart || undefined,
+            investitionsartLabel: primaryInvestitionsart
+              ? INVESTITIONSARTEN.find((a) => a.id === primaryInvestitionsart)?.label
               : undefined,
             bundesland: bundesland || undefined,
             foerdersatz: ergebnis?.gesamtSatz ?? undefined,
