@@ -8,38 +8,57 @@ import { TractorIcon, WheatIcon, MoneyBagIcon, BarnIcon, ShieldCheckAgriIcon } f
 import { LeadCaptureModal } from "@/components/lead-capture-modal"
 
 // Count-up animation for "2,5 Millionen €"
+// Default to final value to avoid SSR/hydration showing "0"
 function AnimatedAmount() {
-  const [display, setDisplay] = useState("0")
+  const [display, setDisplay] = useState("2,5")
+  const ref = useRef<HTMLSpanElement>(null)
   const hasRun = useRef(false)
 
   useEffect(() => {
     if (hasRun.current) return
-    hasRun.current = true
 
-    const target = 2.5
-    const duration = 1800
-    const steps = 60
-    const interval = duration / steps
-    let step = 0
+    // Use IntersectionObserver so animation fires when visible
+    const el = ref.current
+    if (!el) return
 
-    const timer = setInterval(() => {
-      step++
-      const progress = step / steps
-      // ease-out cubic
-      const eased = 1 - Math.pow(1 - progress, 3)
-      const value = eased * target
-      setDisplay(value.toLocaleString("de-DE", { minimumFractionDigits: value >= 2.4 ? 1 : 0, maximumFractionDigits: 1 }))
-      if (step >= steps) {
-        clearInterval(timer)
-        setDisplay("2,5")
-      }
-    }, interval)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasRun.current) {
+          hasRun.current = true
+          observer.disconnect()
 
-    return () => clearInterval(timer)
+          const target = 2.5
+          const duration = 1800
+          const steps = 60
+          const intervalMs = duration / steps
+          let step = 0
+
+          const timer = setInterval(() => {
+            step++
+            const eased = 1 - Math.pow(1 - step / steps, 3)
+            const value = eased * target
+            setDisplay(
+              value >= 2.45
+                ? "2,5"
+                : value.toLocaleString("de-DE", { minimumFractionDigits: 0, maximumFractionDigits: 1 })
+            )
+            if (step >= steps) {
+              clearInterval(timer)
+              setDisplay("2,5")
+            }
+          }, intervalMs)
+        }
+      },
+      { threshold: 0.5 }
+    )
+
+    observer.observe(el)
+    return () => observer.disconnect()
   }, [])
 
   return (
     <span
+      ref={ref}
       style={{
         background: "linear-gradient(135deg, #16a34a 0%, #15803d 40%, #22c55e 100%)",
         WebkitBackgroundClip: "text",
