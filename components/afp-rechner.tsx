@@ -395,40 +395,46 @@ function SelectField({
   error?: boolean
 }) {
   return (
-    <div className={`flex flex-col gap-1.5 ${error ? "animate-shake" : ""}`}>
-      <label className={`text-sm font-semibold uppercase tracking-wide ${error ? "text-red-400" : "text-slate-300"}`}>
+    <div className={`flex flex-col gap-2 ${error ? "animate-shake" : ""}`}>
+      <label className={`text-sm font-bold ${error ? "text-red-400" : "text-white"}`}>
         {label}
-        {error && <span className="ml-1 normal-case font-normal text-red-400 text-xs">— Pflichtfeld</span>}
+        {error && <span className="ml-1.5 font-normal text-red-400 text-xs">— bitte auswählen</span>}
       </label>
       <div className="relative">
         <select
           value={value}
           onChange={(e) => onChange(e.target.value)}
           style={{ fontSize: "16px" }}
-          className={`w-full bg-slate-800 border text-white rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 transition-all appearance-none cursor-pointer touch-manipulation min-h-[48px] ${
+          className={`w-full bg-slate-800 border text-white rounded-xl px-4 py-4 focus:outline-none focus:ring-2 transition-all appearance-none cursor-pointer touch-manipulation min-h-[54px] font-medium ${
             error
               ? "border-red-500 ring-2 ring-red-500/30 focus:border-red-400 focus:ring-red-400/30"
+              : value
+              ? "border-emerald-600/60 focus:border-emerald-500 focus:ring-emerald-500/20"
               : "border-slate-600 focus:border-emerald-500 focus:ring-emerald-500/20"
           }`}
         >
-          <option value="">{placeholder}</option>
+          <option value="" className="text-slate-500">{placeholder}</option>
           {options.map((o) => (
-            <option key={o.value} value={o.value}>
-              {o.label}
-            </option>
+            <option key={o.value} value={o.value}>{o.label}</option>
           ))}
         </select>
-        {error && (
-          <AlertCircle className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-red-400 pointer-events-none" aria-hidden="true" />
+        {/* Chevron */}
+        <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+        {value && !error && (
+          <div className="absolute left-4 -top-2.5">
+            <span className="bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">Ausgewählt</span>
+          </div>
         )}
       </div>
+      {hint && !error && <p className="text-xs text-slate-500 leading-relaxed">{hint}</p>}
       {error && (
-        <p className="text-xs text-red-400 flex items-center gap-1">
-          <AlertCircle className="w-3 h-3 flex-shrink-0" aria-hidden="true" />
-          Bitte auswählen, um fortzufahren.
+        <p className="text-xs text-red-400 flex items-center gap-1.5 font-medium">
+          <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
+          Pflichtfeld — bitte eine Option wählen.
         </p>
       )}
-      {hint && !error && <p className="text-xs text-slate-500 mt-0.5">{hint}</p>}
     </div>
   )
 }
@@ -457,10 +463,10 @@ function NumberField({
   error?: boolean
 }) {
   return (
-    <div className={`flex flex-col gap-1.5 ${error ? "animate-shake" : ""}`}>
-      <label className={`text-sm font-semibold uppercase tracking-wide ${error ? "text-red-400" : "text-slate-300"}`}>
+    <div className={`flex flex-col gap-2 ${error ? "animate-shake" : ""}`}>
+      <label className={`text-sm font-bold ${error ? "text-red-400" : "text-white"}`}>
         {label}
-        {error && <span className="ml-1 normal-case font-normal text-red-400 text-xs">— Pflichtfeld</span>}
+        {error && <span className="ml-1.5 font-normal text-red-400 text-xs">— bitte ausfüllen</span>}
       </label>
       <div className="relative">
         <input
@@ -472,28 +478,27 @@ function NumberField({
           max={max}
           placeholder={placeholder}
           style={{ fontSize: "16px" }}
-          className={`w-full bg-slate-800 border text-white rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 transition-all pr-16 touch-manipulation min-h-[48px] ${
+          className={`w-full bg-slate-800 border text-white rounded-xl px-4 py-4 focus:outline-none focus:ring-2 transition-all pr-16 touch-manipulation min-h-[54px] font-medium ${
             error
               ? "border-red-500 ring-2 ring-red-500/30 focus:border-red-400 focus:ring-red-400/30"
+              : value
+              ? "border-emerald-600/60 focus:border-emerald-500 focus:ring-emerald-500/20"
               : "border-slate-600 focus:border-emerald-500 focus:ring-emerald-500/20"
           }`}
         />
-        {error && !suffix && (
-          <AlertCircle className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-red-400 pointer-events-none" aria-hidden="true" />
-        )}
         {suffix && (
-          <span className={`absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium pointer-events-none ${error ? "text-red-400" : "text-slate-400"}`}>
+          <span className={`absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold pointer-events-none ${error ? "text-red-400" : "text-slate-400"}`}>
             {suffix}
           </span>
         )}
       </div>
+      {hint && !error && <p className="text-xs text-slate-500 leading-relaxed">{hint}</p>}
       {error && (
-        <p className="text-xs text-red-400 flex items-center gap-1">
-          <AlertCircle className="w-3 h-3 flex-shrink-0" aria-hidden="true" />
+        <p className="text-xs text-red-400 flex items-center gap-1.5 font-medium">
+          <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
           Bitte ausfüllen, um fortzufahren.
         </p>
       )}
-      {hint && !error && <p className="text-xs text-slate-500 mt-0.5">{hint}</p>}
     </div>
   )
 }
@@ -532,31 +537,43 @@ function ToggleField({
 // ─────────────────────────────────────────────────────────────────────────────
 // STEP INDICATOR
 // ─────────────────────────────────────────────────────────────────────────────
-const STEPS = ["Betrieb", "Vorhaben", "Person", "Ergebnis"]
+const STEPS = [
+  { label: "Betrieb",  short: "1" },
+  { label: "Vorhaben", short: "2" },
+  { label: "Person",   short: "3" },
+  { label: "Ergebnis", short: "4" },
+]
 
 function StepIndicator({ current }: { current: number }) {
   return (
-    <div className="flex items-center justify-between px-2 mb-6">
-      {STEPS.map((label, i) => (
-        <div key={label} className="flex items-center gap-1 flex-1 last:flex-none">
-          <div className="flex flex-col items-center gap-1">
+    <div className="flex items-center mb-8">
+      {STEPS.map((s, i) => (
+        <div key={s.label} className="flex items-center flex-1 last:flex-none">
+          <div className="flex flex-col items-center gap-1.5 relative">
             <div
-              className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
+              className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-extrabold transition-all duration-300 ${
                 i < current
-                  ? "bg-emerald-600 text-white"
+                  ? "bg-emerald-600 text-white shadow-lg shadow-emerald-900/50"
                   : i === current
-                  ? "bg-emerald-500 text-white ring-2 ring-emerald-400/40"
+                  ? "bg-emerald-500 text-white ring-4 ring-emerald-400/25 shadow-lg shadow-emerald-900/50 scale-110"
                   : "bg-slate-700 text-slate-500"
               }`}
             >
-              {i < current ? <CheckCircle2 className="w-4 h-4" /> : i + 1}
+              {i < current ? <CheckCircle2 className="w-4.5 h-4.5" /> : i + 1}
             </div>
-            <span className={`text-xs hidden sm:block ${i === current ? "text-emerald-400 font-semibold" : "text-slate-500"}`}>
-              {label}
+            <span className={`text-[11px] font-semibold whitespace-nowrap ${
+              i === current ? "text-emerald-400" : i < current ? "text-emerald-600" : "text-slate-600"
+            }`}>
+              {s.label}
             </span>
           </div>
           {i < STEPS.length - 1 && (
-            <div className={`flex-1 h-0.5 mx-1 mb-4 transition-all ${i < current ? "bg-emerald-600" : "bg-slate-700"}`} />
+            <div className="flex-1 mx-2 mb-5 relative h-0.5 rounded-full overflow-hidden bg-slate-700">
+              <div
+                className="h-full bg-emerald-600 transition-all duration-500"
+                style={{ width: i < current ? "100%" : "0%" }}
+              />
+            </div>
           )}
         </div>
       ))}
@@ -654,16 +671,21 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
 
         {/* ─── STEP 0: Betrieb ─────────────────────────────────────────────── */}
         {step === 0 && (
-          <div className="space-y-4">
+          <div className="space-y-5">
+            {/* Step Question */}
+            <div className="border-l-4 border-emerald-500 pl-4 mb-6">
+              <p className="text-[11px] font-bold text-emerald-400 uppercase tracking-widest mb-1">Schritt 1 von 3</p>
+              <h4 className="text-xl sm:text-2xl font-bold text-white leading-snug">
+                Wo liegt dein Betrieb<br className="hidden sm:block" /> und was hältst du?
+              </h4>
+              <p className="text-sm text-slate-400 mt-1">Der Fördersatz variiert stark je Bundesland und Tierhaltungsart.</p>
+            </div>
             {showErrors && !canProceed[0] && (
               <div className="flex items-center gap-2 bg-red-950/60 border border-red-700/50 rounded-xl px-4 py-3">
                 <AlertCircle className="w-4 h-4 text-red-400 flex-shrink-0" aria-hidden="true" />
-                <p className="text-red-300 text-sm font-semibold">Bitte alle Pflichtfelder ausfullen, um fortzufahren.</p>
+                <p className="text-red-300 text-sm font-semibold">Bitte alle Pflichtfelder ausfüllen, um fortzufahren.</p>
               </div>
             )}
-            <p className="text-slate-400 text-sm">
-              Wo liegt dein Betrieb und was hältst du?
-            </p>
             <SelectField
               label="Bundesland"
               value={bundesland}
@@ -693,7 +715,15 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
 
         {/* ─── STEP 1: Vorhaben ────────────────────────────────────────────── */}
         {step === 1 && (
-          <div className="space-y-4">
+          <div className="space-y-5">
+            {/* Step Question */}
+            <div className="border-l-4 border-emerald-500 pl-4 mb-6">
+              <p className="text-[11px] font-bold text-emerald-400 uppercase tracking-widest mb-1">Schritt 2 von 3</p>
+              <h4 className="text-xl sm:text-2xl font-bold text-white leading-snug">
+                Was willst du bauen<br className="hidden sm:block" /> oder investieren?
+              </h4>
+              <p className="text-sm text-slate-400 mt-1">Wähle die Investitionsart — sie bestimmt deinen Fördersatz direkt.</p>
+            </div>
             {showErrors && !canProceed[1] && (
               <div className="flex items-center gap-2 bg-red-950/60 border border-red-700/50 rounded-xl px-4 py-3">
                 <AlertCircle className="w-4 h-4 text-red-400 flex-shrink-0" aria-hidden="true" />
@@ -702,9 +732,6 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                 </p>
               </div>
             )}
-            <p className="text-slate-400 text-sm">
-              Was willst du bauen oder investieren?
-            </p>
             <div className={`grid grid-cols-1 gap-2 ${showErrors && !investitionsart ? "rounded-xl ring-2 ring-red-500/40 p-1 -m-1" : ""}`}>
               {INVESTITIONSARTEN.map((art) => (
                 <button
@@ -759,16 +786,21 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
 
         {/* ─── STEP 2: Person ──────────────────────────────────────────────── */}
         {step === 2 && (
-          <div className="space-y-4">
+          <div className="space-y-5">
+            {/* Step Question */}
+            <div className="border-l-4 border-emerald-500 pl-4 mb-6">
+              <p className="text-[11px] font-bold text-emerald-400 uppercase tracking-widest mb-1">Schritt 3 von 3 — Fast geschafft!</p>
+              <h4 className="text-xl sm:text-2xl font-bold text-white leading-snug">
+                Wer ist der Betriebsleiter?
+              </h4>
+              <p className="text-sm text-slate-400 mt-1">Alter und Einkommen bestimmen deinen Junglandwirt-Bonus und die Prosperitätsgrenze.</p>
+            </div>
             {showErrors && !canProceed[2] && (
               <div className="flex items-center gap-2 bg-red-950/60 border border-red-700/50 rounded-xl px-4 py-3">
                 <AlertCircle className="w-4 h-4 text-red-400 flex-shrink-0" aria-hidden="true" />
                 <p className="text-red-300 text-sm font-semibold">Bitte das Alter eingeben, um das Ergebnis zu berechnen.</p>
               </div>
             )}
-            <p className="text-slate-400 text-sm">
-              Wer ist der Betriebsleiter? Das bestimmt deine Boni.
-            </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <NumberField
                 label="Alter des Betriebsleiters"
@@ -1089,31 +1121,52 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
         )}
 
         {/* Navigation Buttons */}
-        <div className="flex gap-3 mt-6">
-          {step > 0 && step < 3 && (
+        <div className="mt-8 space-y-3">
+          {step < 3 && (
             <button
-              onClick={prevStep}
-              className="flex-1 py-3.5 px-4 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-slate-300 font-semibold rounded-xl text-sm transition-colors border border-slate-700 touch-manipulation min-h-[52px]"
+              onClick={nextStep}
+              className="relative overflow-hidden w-full py-4 px-6 bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-extrabold rounded-xl text-base transition-all shadow-lg shadow-emerald-900/40 touch-manipulation min-h-[56px] flex items-center justify-center gap-2 hg-btn"
             >
-              Zurück
+              {step === 2 ? (
+                <>
+                  <TractorIcon className="w-5 h-5 text-white flex-shrink-0" />
+                  Förderbetrag berechnen
+                  <ChevronRight className="w-5 h-5" />
+                </>
+              ) : (
+                <>
+                  Weiter
+                  <ChevronRight className="w-5 h-5" />
+                </>
+              )}
             </button>
           )}
           {step === 3 && (
             <button
               onClick={() => setStep(0)}
-              className="flex-1 py-3.5 px-4 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-slate-300 font-semibold rounded-xl text-sm transition-colors border border-slate-700 touch-manipulation min-h-[52px]"
+              className="w-full py-3.5 px-4 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-slate-300 font-semibold rounded-xl text-sm transition-colors border border-slate-700 touch-manipulation min-h-[52px]"
             >
               Neu berechnen
             </button>
           )}
-          {step < 3 && (
+          {step > 0 && step < 3 && (
             <button
-              onClick={nextStep}
-              disabled={!canProceed[step]}
-              className="flex-1 py-3.5 px-4 bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 disabled:bg-slate-700 disabled:text-slate-500 disabled:cursor-not-allowed text-white font-bold rounded-xl text-sm transition-all shadow-lg shadow-emerald-900/30 touch-manipulation min-h-[52px]"
+              onClick={prevStep}
+              className="w-full py-3 px-4 text-slate-500 hover:text-slate-300 font-semibold text-sm transition-colors touch-manipulation min-h-[44px] flex items-center justify-center gap-1"
             >
-              {step === 2 ? "Ergebnis anzeigen" : "Weiter"}
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+              Zurück zu Schritt {step}
             </button>
+          )}
+          {/* Progress hint */}
+          {step < 3 && (
+            <p className="text-center text-xs text-slate-600">
+              {canProceed[step]
+                ? "Alles ausgefüllt — du kannst fortfahren"
+                : `Noch ${step === 0 ? (!bundesland && !tierhaltung ? "2 Felder" : "1 Feld") : step === 1 ? (!investitionsart ? "Investitionsart" : "Volumen") : "Alter"} ausfüllen`}
+            </p>
           )}
         </div>
       </div>
