@@ -16,8 +16,7 @@ export function NavigationIndustrial() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
       
-      // Track active section for highlighting
-      const sections = ["rechner", "assets", "strategic-paths", "ablauf", "faq"]
+      const sections = ["rechner", "assets", "foerder-ziele", "funding-quotes", "exclusions", "ablauf", "experte", "faq"]
       for (const section of sections) {
         const el = document.getElementById(section)
         if (el) {
@@ -36,8 +35,10 @@ export function NavigationIndustrial() {
   const navItems = [
     { label: "Rechner", href: "#rechner", id: "rechner" },
     { label: "Was wird gefördert", href: "#assets", id: "assets" },
+    { label: "Nicht förderfähig", href: "#exclusions", id: "exclusions" },
     { label: "Förderquoten", href: "#funding-quotes", id: "funding-quotes" },
     { label: "Ablauf", href: "#ablauf", id: "ablauf" },
+    { label: "Experte", href: "#experte", id: "experte" },
     { label: "FAQ", href: "#faq", id: "faq" },
   ]
 
@@ -56,12 +57,12 @@ export function NavigationIndustrial() {
           <div className="flex items-center justify-between h-16 lg:h-18">
             {/* Logo */}
             <a href="/" className="flex items-center gap-3 group">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-md shadow-purple-500/20">
-                <span className="text-white font-bold text-lg">E</span>
+              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-green-600 to-emerald-700 flex items-center justify-center shadow-md shadow-green-700/20">
+                <span className="text-white font-bold text-sm">AFP</span>
               </div>
               <div className="hidden sm:block">
-                <span className="font-bold text-slate-900 text-lg">Eskalator</span>
-                <span className="text-slate-400 font-medium ml-1">AG</span>
+                <span className="font-bold text-slate-900 text-base leading-none">Landwirtschafts-</span>
+                <span className="block text-slate-500 font-medium text-xs">förderung</span>
               </div>
             </a>
 
@@ -74,7 +75,7 @@ export function NavigationIndustrial() {
                     href={item.href}
                     className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 ${
                       activeSection === item.id
-                        ? "text-purple-700 bg-white shadow-sm"
+                        ? "text-green-700 bg-white shadow-sm"
                         : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
                     }`}
                   >
@@ -88,17 +89,11 @@ export function NavigationIndustrial() {
             <div className="hidden lg:block">
               <Button
                 onClick={() => setIsModalOpen(true)}
-                className="relative bg-slate-900 hover:bg-slate-800 text-white font-semibold px-6 py-2.5 rounded-full overflow-hidden transition-all group
-                  animate-[glow-pulse_2.5s_ease-in-out_infinite]
-                  shadow-[0_0_16px_rgba(147,51,234,0.4)]"
+                className="relative bg-green-700 hover:bg-green-600 text-white font-semibold px-6 py-2.5 rounded-full overflow-hidden transition-all group shadow-lg shadow-green-900/20"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   JETZT Förderung berechnen
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </span>
-                {/* Shine sweep */}
-                <span className="absolute inset-0 overflow-hidden rounded-full">
-                  <span className="absolute -inset-full top-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-[shine_3s_ease-in-out_infinite]" />
                 </span>
               </Button>
             </div>
@@ -157,7 +152,7 @@ export function NavigationIndustrial() {
                       onClick={() => setMobileMenuOpen(false)}
                       className={`flex items-center justify-between px-4 py-4 text-base font-medium rounded-xl transition-all ${
                         activeSection === item.id
-                          ? "bg-teal-50 text-teal-700"
+                          ? "bg-green-50 text-green-700"
                           : "text-slate-700 hover:bg-slate-50"
                       }`}
                     >

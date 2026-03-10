@@ -79,7 +79,7 @@ export function ExclusionsSection() {
   const conditional = EXCLUSIONS.filter((e) => e.type === "conditional")
 
   return (
-    <section className="py-16 sm:py-24 bg-white border-t border-slate-100">
+    <section id="exclusions" className="py-16 sm:py-24 bg-white border-t border-slate-100">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
 
         {/* Header */}
