@@ -1,9 +1,40 @@
 "use client"
 
-import { useState, useMemo } from "react"
-import { AlertTriangle, TrendingUp, Award, ChevronRight, Leaf, CheckCircle2, XCircle, Info, AlertCircle } from "lucide-react"
+import { useState, useMemo, useEffect, useRef, useCallback } from "react"
+import { AlertTriangle, TrendingUp, Award, ChevronRight, Leaf, CheckCircle2, XCircle, Info, AlertCircle, Calendar } from "lucide-react"
 import { LeadCaptureModal } from "@/components/lead-capture-modal"
 import { TractorIcon, WheatIcon, BarnIcon, MoneyBagIcon, SunLeafIcon } from "@/components/agri-icons"
+
+// ─── TidyCal Embed — lokal im Rechner ────────────────────────────────────────
+function TidyCalEmbedRechner({ path }: { path: string }) {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const scriptLoadedRef = useRef(false)
+
+  useEffect(() => {
+    if (!containerRef.current) return
+    if (!scriptLoadedRef.current) {
+      const script = document.createElement("script")
+      script.src = "https://asset-tidycal.b-cdn.net/js/embed.js"
+      script.async = true
+      script.onload = () => { scriptLoadedRef.current = true }
+      containerRef.current.appendChild(script)
+    }
+    return () => {
+      if (containerRef.current) {
+        const iframe = containerRef.current.querySelector("iframe")
+        if (iframe) iframe.remove()
+      }
+    }
+  }, [])
+
+  return (
+    <div
+      ref={containerRef}
+      className="tidycal-embed rounded-xl overflow-hidden border border-slate-700 min-h-[400px] bg-white"
+      data-path={path}
+    />
+  )
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // DATA — exakt nach Förderquoten-Tabelle 2026 (Screenshot + PDF)
@@ -1072,6 +1103,34 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                     <p className="text-center text-xs text-slate-500 mt-2">
                       Kostenlos · Unverbindlich · Nur für Vorhaben ab 20.000 €
                     </p>
+
+                    {/* Kalender — Termin direkt buchen */}
+                    <div className="mt-6 border-t border-slate-700/60 pt-6">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-emerald-500 flex-shrink-0">
+                          <img
+                            src="/patrick-starkmann.webp"
+                            alt="Patrick Starkmann"
+                            className="w-full h-full object-cover object-top"
+                          />
+                          <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-slate-900 rounded-full" />
+                        </div>
+                        <div>
+                          <p className="text-sm font-bold text-white">Direkt Termin buchen</p>
+                          <p className="text-xs text-slate-400">Patrick Starkmann · AFP-Spezialist</p>
+                        </div>
+                      </div>
+
+                      <div className="bg-amber-950/40 border border-amber-600/30 rounded-xl px-4 py-3 mb-4 flex items-start gap-2.5">
+                        <Calendar className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                        <p className="text-amber-200 text-xs leading-relaxed">
+                          <span className="font-bold">Jetzt kostenlosen Beratungstermin sichern.</span>{" "}
+                          Patrick prüft dein Vorhaben persönlich und sorgt dafür, dass kein Fehler deinen Antrag gefährdet.
+                        </p>
+                      </div>
+
+                      <TidyCalEmbedRechner path="team/eskalator-ag/regional-investition" />
+                    </div>
                   </div>
                 )}
               </div>
