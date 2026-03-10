@@ -703,7 +703,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
             <TractorIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white" aria-hidden="true" />
           </div>
           <div>
-            <h3 className="text-white font-bold text-base sm:text-lg leading-tight">AFP-Förderrechner 2026</h3>
+            <h3 className="text-white font-bold text-base sm:text-lg leading-tight">Förderrechner für die Landwirtschaft 2026</h3>
             <p className="text-emerald-400 text-xs sm:text-sm">In 3 Schritten zu deinem exakten Förderbetrag</p>
           </div>
         </div>
@@ -1062,7 +1062,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                         Mehr als 87 % der Landwirte holen das nicht alleine raus.
                       </p>
                       <p className="text-slate-400 text-xs leading-relaxed">
-                        Buch jetzt deinen kostenlosen Termin — Patrick prüft dein Vorhaben und sorgt dafür, dass kein Fehler deinen Antrag gefährdet.
+                        Buch jetzt deinen kostenlosen Termin ��� Patrick prüft dein Vorhaben und sorgt dafür, dass kein Fehler deinen Antrag gefährdet.
                       </p>
                     </div>
 
@@ -1079,7 +1079,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                         </div>
                         <div>
                           <p className="text-sm font-bold text-white">Kostenlosen Termin buchen</p>
-                          <p className="text-xs text-slate-400">Patrick Starkmann · AFP-Spezialist</p>
+                          <p className="text-xs text-slate-400">Patrick Starkmann · Förderberater für die Landwirtschaft</p>
                         </div>
                       </div>
 

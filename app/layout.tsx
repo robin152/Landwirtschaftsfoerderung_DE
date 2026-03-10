@@ -25,15 +25,15 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "AFP-Förderung 2023–2027 | Bis zu 50 % Zuschuss für Stallbau & Tierwohl | Patrick Starkmann",
+  title: "Förderung für die Landwirtschaft 2023–2027 | Bis zu 50 % Zuschuss für Stallbau & Tierwohl | Patrick Starkmann",
   description:
-    "Berechne in 45 Sekunden deinen staatlichen AFP-Zuschuss. Stallbau, Tierwohl, SIUK, Gülle – wir kennen alle Bundesland-Quoten. Kostenlose Prüfung durch AFP-Spezialist Patrick Starkmann.",
+    "Berechne in 45 Sekunden deinen staatlichen Zuschuss. Stallbau, Tierwohl, SIUK, Gülle – wir kennen alle Bundesland-Quoten. Kostenlose Prüfung durch Förderberater Patrick Starkmann.",
   generator: "v0.app",
   keywords:
-    "AFP Förderung, Agrarinvestitionsförderungsprogramm, Stallbau Zuschuss, Tierwohl Förderung, SIUK, Güllelager Förderung, Landwirtschaft Förderung 2026, AFP Rechner, Junglandwirt Bonus",
-  authors: [{ name: "Patrick Starkmann – AFP-Spezialist für Landwirtschaft" }],
+    "Förderung Landwirtschaft, Agrarinvestitionsförderung, Stallbau Zuschuss, Tierwohl Förderung, SIUK, Güllelager Förderung, Landwirtschaft Förderung 2026, Förderrechner Landwirtschaft, Junglandwirt Bonus",
+  authors: [{ name: "Patrick Starkmann – Förderberater für die Landwirtschaft" }],
   creator: "Patrick Starkmann",
-  publisher: "AFP Landwirtschaftsförderung",
+  publisher: "Förderung für die Landwirtschaft – Eskalator AG",
   formatDetection: {
     email: false,
     telephone: false,
@@ -44,15 +44,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
     url: "https://afp-foerderung.de",
-    siteName: "AFP-Förderung – Patrick Starkmann",
-    title: "AFP-Förderung 2023–2027 | Bis zu 50 % Zuschuss für Stallbau & Tierwohl",
+    siteName: "Förderung für die Landwirtschaft – Patrick Starkmann",
+    title: "Förderung für die Landwirtschaft 2023–2027 | Bis zu 50 % Zuschuss für Stallbau & Tierwohl",
     description:
-      "Berechne in 45 Sekunden deinen staatlichen AFP-Zuschuss. Kostenlose Prüfung durch AFP-Spezialist Patrick Starkmann.",
+      "Berechne in 45 Sekunden deinen staatlichen Zuschuss. Kostenlose Prüfung durch Förderberater Patrick Starkmann.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "AFP-Förderung 2023–2027 | Bis zu 50 % Zuschuss für Stallbau & Tierwohl",
-    description: "Berechne in 45 Sekunden deinen staatlichen AFP-Zuschuss. Kostenlos & unverbindlich.",
+    title: "Förderung für die Landwirtschaft 2023–2027 | Bis zu 50 % Zuschuss für Stallbau & Tierwohl",
+    description: "Berechne in 45 Sekunden deinen staatlichen Zuschuss. Kostenlos & unverbindlich.",
   },
   icons: {
     icon: [

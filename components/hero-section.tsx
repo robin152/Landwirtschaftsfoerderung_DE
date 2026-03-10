@@ -161,7 +161,7 @@ export function HeroSection() {
                 <div className="absolute inset-0 rounded-xl md:rounded-2xl bg-gradient-to-br from-emerald-400/25 to-green-600/15 blur-2xl scale-105" />
                 <img
                   src="/hero-foerderung.webp"
-                  alt="Bis zu 50 % staatliche AFP-Förderung für Landwirte – Stallbau, Tierwohl, Umwelttechnik"
+                  alt="Bis zu 50 % staatliche Förderung für die Landwirtschaft – Stallbau, Tierwohl, Umwelttechnik"
                   className="relative rounded-xl md:rounded-2xl shadow-xl w-full max-h-48 md:max-h-none object-contain ring-1 ring-white/20"
                 />
                 <motion.div

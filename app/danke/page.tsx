@@ -163,7 +163,7 @@ export default function ThankYouPage() {
               </div>
               <div>
                 <p className="font-bold text-slate-900">Patrick Starkmann</p>
-                <p className="text-sm text-slate-500">AFP-Spezialist &amp; Sachverständiger (DGUSV)</p>
+                <p className="text-sm text-slate-500">Förderberater für die Landwirtschaft &amp; Sachverständiger (DGUSV)</p>
                 <p className="text-xs text-emerald-600 mt-0.5 font-medium">Prüft deine Anfrage persönlich</p>
               </div>
             </div>

@@ -135,7 +135,7 @@ export function AssetsSection() {
             Förderfähige Investitionen
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4 text-balance">
-            Was genau fördert das AFP — und wie viel?
+            Was genau fördert die Landwirtschaftsförderung — und wie viel?
           </h2>
           <p className="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto">
             4 Hauptkategorien mit unterschiedlichen Fördersätzen. Klicke deine an und sieh alle Details.
@@ -294,7 +294,7 @@ export function AssetsSection() {
             className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-500 text-white font-bold rounded-xl text-sm transition-all shadow-lg shadow-green-900/20 hg-btn relative overflow-hidden"
           >
             <TractorIcon className="w-4 h-4 text-white" />
-            Zum AFP-Rechner
+            Zum Förderrechner
           </button>
         </motion.div>
 

@@ -46,15 +46,15 @@ import { useCompany } from "@/contexts/company-context"
 const industryHooks: Record<string, { pain: string; hook: string }> = {
   "default": {
     pain: "Die Baukosten sind explodiert. Die Vorschriften werden immer verrückter. Und ohne den richtigen Zuschuss rechnet sich das alles nicht mehr.",
-    hook: "Genau deshalb bin ich hier: Ich hole dir das Maximum aus dem AFP – Tierwohl-Premium, SIUK-Bonus, Junglandwirt-Zuschlag. Du unterschreibst einmal, ich erledige den Rest."
+    hook: "Genau deshalb bin ich hier: Ich hole dir das Maximum aus der Förderung für die Landwirtschaft – Tierwohl-Premium, SIUK-Bonus, Junglandwirt-Zuschlag. Du unterschreibst einmal, ich erledige den Rest."
   },
   "milch": {
-    pain: "Milchvieh-Betriebe stehen 2026 unter Doppeldruck: neue Haltungsauflagen UND explodierende Stallbaukosten. Ohne AFP-Förderung rechnet sich der Umbau für die meisten nicht.",
+    pain: "Milchvieh-Betriebe stehen 2026 unter Doppeldruck: neue Haltungsauflagen UND explodierende Stallbaukosten. Ohne Förderung für die Landwirtschaft rechnet sich der Umbau für die meisten nicht.",
     hook: "Ich kenne die Milchvieh-spezifischen Förderpfade in jedem Bundesland – und hole dir den maximalen Tierwohl-Satz bevor die Antragsfenster 2026 schließen."
   },
   "schwein": {
     pain: "Schweinehaltung 2026: Neue Tierwohlauflagen, enge Zeitfenster, und viele Bundesländer haben die Förderung zwischenzeitlich ausgesetzt. Ohne Experten-Begleitung riskierst du eine teure Fehlentscheidung.",
-    hook: "Ich weiß genau, wo Schweinehaltung 2026 wieder förderfähig ist (z.B. Baden-Württemberg ab Sept. 2026) – und wie du das Maximum aus dem AFP holst."
+    hook: "Ich weiß genau, wo Schweinehaltung 2026 wieder förderfähig ist (z.B. Baden-Württemberg ab Sept. 2026) – und wie du das Maximum aus der Förderung für die Landwirtschaft holst."
   },
 }
 
@@ -101,7 +101,7 @@ export default function ExpertSection() {
           className="text-center mb-16"
         >
           <span className="inline-block text-xs font-semibold uppercase tracking-wider text-green-700 mb-4">
-            Dein AFP-Spezialist
+            Ihr Spezialist für Förderung in der Landwirtschaft
           </span>
           
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
@@ -126,7 +126,7 @@ export default function ExpertSection() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/patrick-starkmann.webp"
-                  alt="Patrick Starkmann – AFP-Spezialist für Landwirtschaft"
+                  alt="Patrick Starkmann – Spezialist für Förderung in der Landwirtschaft"
                   width={160}
                   height={160}
                   className="object-cover object-top w-full h-full"
@@ -134,7 +134,7 @@ export default function ExpertSection() {
               </div>
               
               <h3 className="text-2xl font-bold text-slate-900 mb-1">Patrick Starkmann</h3>
-              <p className="text-green-700 font-semibold mb-4">AFP-Spezialist für Landwirtschaft</p>
+              <p className="text-green-700 font-semibold mb-4">Spezialist für Förderung in der Landwirtschaft</p>
 
               {/* Contact Links */}
               <div className="flex gap-3 mb-6">
@@ -159,7 +159,7 @@ export default function ExpertSection() {
               <div className="space-y-2 text-sm text-slate-600">
                 <div className="flex items-center gap-2">
                   <Award className="w-4 h-4 text-green-700" aria-hidden="true" />
-                  <span>Zertifizierter AFP-Förderberater</span>
+                  <span>Zertifizierter Förderberater für die Landwirtschaft</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <FileCheck className="w-4 h-4 text-green-700" aria-hidden="true" />
@@ -236,7 +236,7 @@ export default function ExpertSection() {
                   </div>
                 ) : (
                   <p className="text-xl md:text-2xl text-slate-700 italic leading-relaxed pl-10 relative z-10">
-                    "Wer im Herbst nicht sät, der erntet im Sommer nichts." Genau so ist es mit der AFP-Förderung: Wer seinen Antrag früh und richtig stellt, holt bis zu 50 % der Investition als Zuschuss raus. Wer zu spät kommt oder Fehler macht, zahlt alles selbst — das muss nicht sein.
+                    "Wer im Herbst nicht sät, der erntet im Sommer nichts." Genau so ist es mit der Förderung für die Landwirtschaft: Wer seinen Antrag früh und richtig stellt, holt bis zu 50 % der Investition als Zuschuss raus. Wer zu spät kommt oder Fehler macht, zahlt alles selbst — das muss nicht sein.
                   </p>
                 )}
               </div>

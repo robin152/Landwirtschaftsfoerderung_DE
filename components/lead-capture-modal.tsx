@@ -106,7 +106,7 @@ const stepConfirmations = (firstName?: string, industry?: string) => [
     text: "Perfekt!",
     subtext: industry
       ? `Betriebe aus dem Bereich ${industry} sichern sich aktuell bis zu 50 % Zuschuss.`
-      : "Landwirtschaftliche Betriebe mit deinem Profil erhalten oft maximale AFP-Quoten.",
+      : "Landwirtschaftliche Betriebe mit deinem Profil erhalten oft maximale Förderquoten.",
   },
   {
     text: firstName ? `Sehr gut, ${firstName}!` : "Hervorragend!",
@@ -119,7 +119,7 @@ const stepConfirmations = (firstName?: string, industry?: string) => [
   {
     text: "Fast geschafft!",
     subtext: industry
-      ? `Mehrere ${industry}-Betriebe haben 2026 bereits ihren AFP-Bescheid erhalten.`
+      ? `Mehrere ${industry}-Betriebe haben 2026 bereits ihren Förderbescheid erhalten.`
       : "Dein Standort wird auf volle Förderfähigkeit geprüft...",
   },
   null, // Final step - no confirmation

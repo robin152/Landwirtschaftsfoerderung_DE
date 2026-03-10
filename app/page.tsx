@@ -41,7 +41,7 @@ export default function LandingPage() {
           </section>
         </ScrollReveal>
 
-        {/* AFP-Rechner */}
+        {/* Förderrechner */}
         <ScrollReveal variant="fade-up" duration={0.7}>
           <section id="rechner" className="py-16 sm:py-24 bg-gradient-to-b from-slate-50 to-white">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
@@ -51,7 +51,7 @@ export default function LandingPage() {
                     In 45 Sekunden weißt du exakt, wie viel der Staat dir zahlt
                   </h2>
                   <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
-                    Live & brutal ehrlich – dein persönlicher AFP-Förderbetrag für Stall, Gülle, Tierwohl oder Klimaschutz.
+                    Live & brutal ehrlich – dein persönlicher Förderbetrag für Stall, Gülle, Tierwohl oder Klimaschutz.
                   </p>
                 </div>
               </ScrollReveal>
@@ -106,10 +106,10 @@ export default function LandingPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FinancialService",
-            name: "AFP Agrarinvestitionsförderung – Eskalator AG",
+            name: "Förderung für die Landwirtschaft – Eskalator AG",
             url: "https://afp-foerderung.eskalator.ag",
             description:
-              "Bis zu 75 % Zuschuss für Stallbau, Güllelager, Tierwohl und Klimaschutz. AFP 2023–2027 bundesweit. Kostenloser Erstcheck in 45 Sekunden.",
+              "Bis zu 75 % Zuschuss für Stallbau, Güllelager, Tierwohl und Klimaschutz. Förderung für die Landwirtschaft 2023–2027 bundesweit. Kostenloser Erstcheck in 45 Sekunden.",
             areaServed: "DE",
             serviceType: "Agrarinvestitionsförderung",
             telephone: "+49-208-780-125-78",

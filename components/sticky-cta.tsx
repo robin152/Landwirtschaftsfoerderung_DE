@@ -93,7 +93,7 @@ function StickyCTAInner() {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src="/patrick-starkmann.webp"
-                      alt="Patrick Starkmann – AFP-Spezialist"
+                      alt="Patrick Starkmann – Förderberater für die Landwirtschaft"
                       width={64}
                       height={64}
                       className="object-cover object-top w-full h-full"
@@ -119,7 +119,7 @@ function StickyCTAInner() {
                   ) : (
                     <>
                       <h4 className="font-bold text-slate-900 text-base">Patrick Starkmann</h4>
-                      <p className="text-xs text-slate-500 mb-3">AFP-Spezialist</p>
+                      <p className="text-xs text-slate-500 mb-3">Förderberater für die Landwirtschaft</p>
                     </>
                   )}
 
@@ -191,7 +191,7 @@ function StickyCTAInner() {
 
                   {/* Text */}
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs text-slate-500 truncate">AFP-Spezialist Patrick Starkmann</p>
+                    <p className="text-xs text-slate-500 truncate">Förderberater Patrick Starkmann</p>
                     <p className="text-sm font-semibold text-slate-900 truncate">
                       {ownerSalutation ? `${ownerSalutation} – Termin sichern` : "Förderung kostenlos berechnen"}
                     </p>
