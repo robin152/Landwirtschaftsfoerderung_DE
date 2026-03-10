@@ -17,6 +17,20 @@
   50%       { text-shadow: 0 0 38px rgba(52,211,153,0.95), 0 0 72px rgba(52,211,153,0.55); }
 }
 
+/* Shake animation for validation errors */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  15%       { transform: translateX(-6px); }
+  30%       { transform: translateX(5px); }
+  45%       { transform: translateX(-4px); }
+  60%       { transform: translateX(3px); }
+  75%       { transform: translateX(-2px); }
+  90%       { transform: translateX(1px); }
+}
+.animate-shake {
+  animation: shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
 /* Custom range slider — violet track, thumb */
 input[type="range"].funding-slider {
   -webkit-appearance: none;
@@ -559,7 +573,8 @@ select:focus {
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px; /* Account for sticky header */
+  scroll-padding-top: 100px; /* Account for sticky header + top bar */
+  scrollbar-gutter: stable;
 }
 
 @media (prefers-reduced-motion: reduce) {

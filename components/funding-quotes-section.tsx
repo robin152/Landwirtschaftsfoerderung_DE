@@ -18,14 +18,18 @@ import { useState } from "react"
 // 3. HIGHLIGHT-BOX mit MAXIMUM Quote
 
 const fundingData = [
-  { region: "[REGION 1]", kmu: "[bis X%]", grossunternehmen: "[bis Y%]", examples: "[Beispielregionen]" },
-  { region: "[REGION 2]", kmu: "[bis X%]", grossunternehmen: "[bis Y%]", examples: "[Beispielregionen]" },
-  { region: "[REGION 3]", kmu: "[bis X%]", grossunternehmen: "[bis Y%]", examples: "[Beispielregionen]" },
-]
-
-const bonuses = [
-  { name: "[BONUS 1]", value: "[+X%]", icon: Leaf, color: "text-green-600", bg: "bg-green-50" },
-  { name: "[BONUS 2]", value: "[+X%]", icon: TrendingUp, color: "text-purple-600", bg: "bg-purple-50" },
+  { bl: "NRW",               maxInvest: "1,2 Mio.",    basis: "20 %", tierwohl: "40 %",   siuk: "50 %",   kombi: "40 %",  jung: "+10 %", note: "Kälbermatten-Aufschlag befristet" },
+  { bl: "Niedersachsen/HB/HH", maxInvest: "1,5 Mio.", basis: "20 %", tierwohl: "40 %",   siuk: "40 %",   kombi: "40 %",  jung: "+10 %", note: "Mobilställe explizit förderfähig" },
+  { bl: "Bayern",            maxInvest: "1,2 Mio.",    basis: "20 %", tierwohl: "25 %",   siuk: "40 %",   kombi: "40 %",  jung: "+10 %", note: "Meister +15 PP, Öko-Bonus" },
+  { bl: "Baden-Württemberg", maxInvest: "2,0 Mio.",    basis: "20 %", tierwohl: "30–40 %",siuk: "40 %",   kombi: "40 %",  jung: "+10 %", note: "Schweine ab Sept. 2026 wieder" },
+  { bl: "Hessen",            maxInvest: "5,0 Mio.",    basis: "20 %", tierwohl: "40 %",   siuk: "75 %",   kombi: "50 %",  jung: "+10 %", note: "Höchste SIUK-Sätze bundesweit", highlight: true },
+  { bl: "Sachsen-Anhalt",    maxInvest: "5,0 Mio.",    basis: "20 %", tierwohl: "40 %",   siuk: "40 %",   kombi: "40 %",  jung: "+10 %", note: "Höchste Prosper.-Grenze neue BL" },
+  { bl: "Brandenburg (+BE)", maxInvest: "5,0 Mio.",    basis: "40 %", tierwohl: "65 %",   siuk: "65 %",   kombi: "65 %",  jung: "+10 %", note: "Sehr hohe Sätze", highlight: true },
+  { bl: "Sachsen",           maxInvest: "5,0 Mio.",    basis: "20 %", tierwohl: "40 %",   siuk: "65 %",   kombi: "50 %",  jung: "+10 %", note: "GV/ha-Grenze < 2,0 beachten" },
+  { bl: "Thüringen",         maxInvest: "5,0 Mio.",    basis: "20 %", tierwohl: "40 %",   siuk: "40 %",   kombi: "40 %",  jung: "+10 %", note: "Extra-Öko-Bonus" },
+  { bl: "Rheinland-Pfalz",   maxInvest: "k.A. (min. 50k)", basis: "20 %", tierwohl: "40 %", siuk: "40 %", kombi: "40 %", jung: "+10 %", note: "Diversifizierung stark" },
+  { bl: "Saarland",          maxInvest: "3,0 Mio.",    basis: "25 %", tierwohl: "40 %",   siuk: "40 %",   kombi: "40 %",  jung: "+10 %", note: "Gülleabdeckung bis 90 %" },
+  { bl: "MV / SH / SL",     maxInvest: "1–5 Mio.",    basis: "20 %", tierwohl: "40 %",   siuk: "40–65 %",kombi: "40–50 %",jung: "+10 %", note: "Mobilställe & SIUK stark" },
 ]
 
 export function FundingQuotesSection() {
@@ -42,37 +46,56 @@ export function FundingQuotesSection() {
           viewport={{ once: true }}
           className="text-center mb-8 sm:mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-purple-50 rounded-full text-xs sm:text-sm font-semibold text-purple-600 mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-50 rounded-full text-xs sm:text-sm font-semibold text-green-700 mb-4">
             <MapPin className="w-3.5 h-3.5" />
-            [BADGE: z.B. "Standort entscheidet"]
+            Dein Bundesland entscheidet
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-3">
-            [HEADLINE: Förderquoten im Überblick]
+            Manche Bundesländer zahlen deutlich mehr – siehst du deins?
           </h2>
           <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
-            [SUBHEADLINE: Ihre Region bestimmt die Förderquote]
+            Der AFP-Fördersatz hängt von Standort, Maßnahme und deinen Boni ab. Hier der Überblick – ohne Weichzeichner.
           </p>
         </motion.div>
 
-        {/* Förderquoten Table */}
+        {/* Förderquoten Table — vollständig je Bundesland */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 overflow-hidden shadow-sm mb-8"
         >
+          {/* Table Header */}
+          <div className="grid grid-cols-7 gap-0 bg-slate-800 text-white text-xs font-bold uppercase tracking-wide">
+            <div className="col-span-2 px-4 py-3">Bundesland</div>
+            <div className="px-2 py-3 text-center">Basis</div>
+            <div className="px-2 py-3 text-center">Tierwohl</div>
+            <div className="px-2 py-3 text-center">SIUK max.</div>
+            <div className="px-2 py-3 text-center">Kombi max.</div>
+            <div className="px-2 py-3 text-center">Jung +10 %</div>
+          </div>
           {fundingData.map((row, idx) => (
-            <div key={idx} className={`p-4 sm:p-6 ${idx !== fundingData.length - 1 ? 'border-b border-slate-100' : ''}`}>
-              <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 items-center">
-                <div className="font-semibold text-slate-900">{row.region}</div>
-                <div className="text-center">
-                  <span className="inline-block px-3 py-1 bg-purple-50 text-purple-700 font-bold rounded-lg text-sm">
-                    {row.kmu}
-                  </span>
-                </div>
-                <div className="text-center text-sm text-slate-600">{row.grossunternehmen}</div>
-                <div className="text-sm text-slate-500">{row.examples}</div>
+            <div
+              key={row.bl}
+              className={`grid grid-cols-7 gap-0 text-sm border-b border-slate-100 last:border-0 transition-colors ${
+                "highlight" in row && row.highlight ? "bg-emerald-50" : idx % 2 === 0 ? "bg-white" : "bg-slate-50/50"
+              }`}
+            >
+              <div className="col-span-2 px-4 py-3">
+                <span className={`font-semibold ${"highlight" in row && row.highlight ? "text-emerald-800" : "text-slate-900"}`}>
+                  {row.bl}
+                </span>
+                <p className="text-xs text-slate-400 mt-0.5">{row.note}</p>
               </div>
+              <div className="px-2 py-3 text-center font-medium text-slate-700">{row.basis}</div>
+              <div className={`px-2 py-3 text-center font-semibold ${"highlight" in row && row.highlight ? "text-emerald-700" : "text-slate-700"}`}>
+                {row.tierwohl}
+              </div>
+              <div className={`px-2 py-3 text-center font-bold ${"highlight" in row && row.highlight ? "text-emerald-700" : "text-slate-800"}`}>
+                {row.siuk}
+              </div>
+              <div className="px-2 py-3 text-center font-semibold text-slate-700">{row.kombi}</div>
+              <div className="px-2 py-3 text-center font-medium text-amber-600">{row.jung}</div>
             </div>
           ))}
         </motion.div>
@@ -84,7 +107,10 @@ export function FundingQuotesSection() {
           viewport={{ once: true }}
           className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8"
         >
-          {bonuses.map((bonus) => {
+          {[
+            { name: "Tierwohl-Premium (Anlage 2)", value: "bis +20 %", icon: Leaf, color: "text-green-600", bg: "bg-green-50", hint: "Stallumbau mit mehr Platz, Licht & Außenklima" },
+            { name: "Junglandwirt-Bonus (≤ 40 Jahre)", value: "+10 %", icon: TrendingUp, color: "text-orange-600", bg: "bg-orange-50", hint: "Max. 20.000 € Aufschlag auf Basis-Zuschuss" },
+          ].map((bonus) => {
             const Icon = bonus.icon
             return (
               <div key={bonus.name} className="bg-white rounded-xl border border-slate-200 p-4 sm:p-5 flex items-center gap-4">
@@ -93,7 +119,7 @@ export function FundingQuotesSection() {
                 </div>
                 <div className="flex-1">
                   <div className="font-semibold text-slate-900 text-sm sm:text-base">{bonus.name}</div>
-                  <div className="text-xs sm:text-sm text-slate-500">oben drauf möglich</div>
+                  <div className="text-xs sm:text-sm text-slate-500">{bonus.hint}</div>
                 </div>
                 <div className={`text-xl sm:text-2xl font-bold ${bonus.color}`}>{bonus.value}</div>
               </div>
@@ -108,9 +134,9 @@ export function FundingQuotesSection() {
           viewport={{ once: true }}
           className="bg-gradient-to-r from-purple-600 to-violet-600 rounded-xl sm:rounded-2xl p-5 sm:p-6 text-center text-white mb-8"
         >
-          <div className="text-sm sm:text-base opacity-90 mb-1">[LABEL: Max Förderquote]</div>
-          <div className="text-4xl sm:text-5xl font-bold mb-2">[MAX-PROZENTSATZ]</div>
-          <div className="text-sm opacity-80">[BEDINGUNGEN]</div>
+          <div className="text-sm sm:text-base opacity-90 mb-1">Maximum AFP-Fördersatz (Tierwohl + Junglandwirt-Bonus)</div>
+          <div className="text-4xl sm:text-5xl font-bold mb-2">bis 50 %</div>
+          <div className="text-sm opacity-80">Basis 20 % + Tierwohl-Premium 20 % + Junglandwirt-Bonus 10 % = 50 % (alle Bundesländer)</div>
         </motion.div>
 
         {/* CTA */}
@@ -124,9 +150,9 @@ export function FundingQuotesSection() {
             onClick={() => setIsModalOpen(true)}
             className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-xl transition-colors"
           >
-            [CTA-BUTTON]
+            Jetzt meinen genauen Fördersatz berechnen
           </button>
-          <p className="text-sm text-slate-500 mt-2">[SUB-TEXT]</p>
+          <p className="text-sm text-slate-500 mt-2">Kostenlos • 45 Sekunden • Brutal ehrlich</p>
         </motion.div>
       </div>
 

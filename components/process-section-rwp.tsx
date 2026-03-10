@@ -58,61 +58,61 @@ const steps = [
   {
     number: "01",
     icon: FileSearch,
-    title: "[STEP 1: Einstieg/Qualifizierung]",
-    description: "[Was passiert? Wie wird geprüft? Welche Unterlagen brauchts?]",
-    duration: "[Zeitrahmen, z.B. 'Kostenlos']",
-    result: "[Outcome, z.B. 'Klare Förderstrategie']",
-    keyFact: "[Das Besondere: z.B. 'Kostenlos & unverbindlich']",
+    title: "Rechner ausfüllen (45 Sekunden)",
+    description: "Bundesland, Vorhaben, Investitionsvolumen, Alter – fertig. Du siehst sofort deinen vorläufigen Förderbetrag. Kein Blabla, keine versteckten Kosten.",
+    duration: "Kostenlos & sofort",
+    result: "Dein vorläufiger Förderbetrag steht",
+    keyFact: "Kostenlos & unverbindlich",
     keyFactIcon: Check,
     color: "teal",
   },
   {
     number: "02",
     icon: FileCheck,
-    title: "[STEP 2: Vorbereitung/Antragserstellung]",
-    description: "[Was wird getan? Welche Dokumente werden erstellt? Wer tut was?]",
-    duration: "[Zeitrahmen]",
-    result: "[Outcome, z.B. 'Vollständiger Antrag bereit']",
-    keyFact: "[Das Besondere: z.B. 'Wir machen alles für Sie']",
+    title: "Persönlichen Maximal-Check sichern",
+    description: "Klick auf 'Persönlichen Check' und schick mir deine groben Pläne. Ich prüfe Prosperitätsgrenze, Einkommensnachweis, Maßnahmentyp und alles, was 70 % der Anträge killt.",
+    duration: "1–2 Werktage",
+    result: "Klares Go / No-Go + Optimierungspotenzial",
+    keyFact: "Ich verhindere Ablehnungen",
     keyFactIcon: Shield,
     color: "blue",
-    warning: "[Optional Warnung: Was kann schief gehen?]",
+    warning: "Wichtig: KEINEN Auftrag vergeben, solange der Bescheid noch nicht da ist – sonst kein Cent!",
   },
   {
     number: "03",
     icon: Upload,
-    title: "[STEP 3: Einreichung]",
-    description: "[Wo/Wie wird eingereicht? Was passiert danach? Darf man schon anfangen?]",
-    duration: "[Zeitrahmen, z.B. 'Sofort nach Upload']",
-    result: "[Outcome, z.B. 'Maßnahmenbeginn möglich']",
-    keyFact: "[Das Besondere: z.B. 'Sofort starten!']",
+    title: "Antrag einreichen – und starten",
+    description: "Ich übernehme den kompletten Papierkram: Antrag, Portal (ELAN, BayFöG etc.), Nachweise, Kostenplan. Du unterschreibst einmal. Nach Einreichung: Maßnahmenbeginn erlaubt!",
+    duration: "Sofort nach Einreichung starten",
+    result: "Bescheid in 6–12 Wochen",
+    keyFact: "Maßnahmenbeginn sofort möglich",
     keyFactIcon: Zap,
     color: "emerald",
-    highlight: "[Game-Changer Info, z.B. 'Neu: Kein Warten auf Bescheid!']",
+    highlight: "NEU 2026: In vielen Bundesländern kein Warten auf Bewilligungsbescheid mehr!",
   },
   {
     number: "04",
     icon: Banknote,
-    title: "[STEP 4: Bewilligung & Investition]",
-    description: "[Was passiert während des Projekts? Wie fließen die Gelder? Gibt es Zwischenberichte?]",
-    duration: "[Zeitrahmen, z.B. 'Projektlaufzeit']",
-    result: "[Outcome, z.B. 'Investition läuft']",
-    keyFact: "[Das Besondere: z.B. 'Laufende Auszahlungen!']",
+    title: "Bauen & Abschlagszahlungen kassieren",
+    description: "Während du baust, fließen bereits Abschlagszahlungen. Ich begleite dich bei Zwischenberichten und Nachweisen – du konzentrierst dich auf deinen Betrieb.",
+    duration: "Projektlaufzeit 6–36 Monate",
+    result: "Laufende Auszahlungen sichern Liquidität",
+    keyFact: "Abschlagszahlungen möglich",
     keyFactIcon: CircleDollarSign,
     color: "violet",
-    highlight: "[Liquidity Benefit: z.B. 'Abschlagszahlungen möglich!']",
+    highlight: "Bis zu 3 Abschlagszahlungen während der Bauphase – keine Vorfinanzierung nötig",
   },
   {
     number: "05",
     icon: Shield,
-    title: "[STEP 5: Abschluss & Bindung]",
-    description: "[Was muss abgerechnet werden? Wie lange bleibt das Geld gebunden? Was darf nicht gemacht werden?]",
-    duration: "[Zeitrahmen, z.B. '3-5 Jahre Bindung']",
-    result: "[Outcome, z.B. 'Erfolgreicher Projektabschluss']",
-    keyFact: "[Das Besondere: z.B. 'Alles automatisiert!']",
+    title: "Abschluss & Zweckbindung",
+    description: "Nach Fertigstellung: Verwendungsnachweis einreichen, Restzahlung kassieren. Danach 5 Jahre Zweckbindung – das geförderte Asset bleibt im Betrieb.",
+    duration: "5 Jahre Zweckbindung",
+    result: "Voller Zuschuss aufs Konto",
+    keyFact: "Ich erledige die Abrechnung",
     keyFactIcon: AlertTriangle,
     color: "slate",
-    highlight: "[Was zu beachten ist: z.B. 'Zweckbindung 3-5 Jahre']",
+    highlight: "Zweckbindung 5 Jahre: Keine Veräußerung, Verlagerung oder Nutzungsänderung",
   },
 ]
 
@@ -384,38 +384,31 @@ export function ProcessSectionRWP() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 sm:mb-16"
         >
-          {/* TEMPLATE: Mini-Badge */}
-          <span className="inline-block px-3 py-1 bg-teal-100 text-teal-700 text-xs font-semibold rounded-full mb-4">
-            [BADGE: z.B. "DER ABLAUF", "SO FUNKTIONIERT ES"]
+          <span className="inline-block px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full mb-4">
+            Der Ablauf
           </span>
           
-          {/* TEMPLATE: Headline */}
-          {/* ANLEITUNG: Sollte Klarheit & Transparenz signalisieren */}
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
-            [HEADLINE: z.B. "So läuft die Förderung ab" oder "5 Schritte zum Zuschuss"]
+            Von der Idee bis zum Geld auf dem Konto – in 5 klaren Schritten
           </h2>
           
-          {/* TEMPLATE: Subheadline */}
-          {/* ANLEITUNG: Kurze Beschreibung warum transparent wichtig ist */}
           <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-6">
-            [SUBHEADLINE: Von X bis Y - was Sie erwartet]
+            Ich begleite dich von der ersten Berechnung bis zur Schlusszahlung – du baust, ich mach den Kram.
           </p>
           
           {/* Key Facts Row */}
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-            {/* TEMPLATE: 2-3 Key Benefits dieser Section */}
-            {/* ANLEITUNG: Was macht DIESEN Prozess besonders? (Speed, Transparent, Simple, etc.) */}
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-100 text-emerald-700 text-xs font-medium rounded-full">
               <Zap className="w-3 h-3" />
-              [KEY BENEFIT 1]
+              45 Sek. bis zum Ergebnis
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-violet-100 text-violet-700 text-xs font-medium rounded-full">
               <CircleDollarSign className="w-3 h-3" />
-              [KEY BENEFIT 2]
+              Abschlagszahlungen möglich
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">
               <Upload className="w-3 h-3" />
-              [KEY BENEFIT 3]
+              Sofort nach Einreichung starten
             </span>
           </div>
         </motion.div>
@@ -445,10 +438,10 @@ export function ProcessSectionRWP() {
             onClick={() => setIsModalOpen(true)}
             className="inline-flex items-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-teal-600 hover:bg-teal-500 text-white font-semibold rounded-xl shadow-lg transition-all group"
           >
-            [CTA-BUTTON-TEXT]
+            Jetzt kostenlos Förderbetrag berechnen
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
-          <p className="text-sm text-slate-500 mt-3">[SUB-TEXT: z.B. "Keine Kosten. Keine Verpflichtung."]</p>
+          <p className="text-sm text-slate-500 mt-3">Kostenlos • Unverbindlich • Nur für ernsthafte Vorhaben ab 20.000 €</p>
         </motion.div>
       </div>
 

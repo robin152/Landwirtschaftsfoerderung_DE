@@ -3,12 +3,13 @@
 import { motion } from "framer-motion"
 
 const tickerItems = [
-  "Produktivität: 35% Cash-Back für Automatisierung – früher 0€!",
-  "Klima-Turbo: Deutschlandweit 45% Zuschuss für grüne Technik!",
-  "Upgrade-Hebel: Volle Förderung ab +25% über Abschreibungs-Schnitt!",
-  "Wachstums-Cash: 35% Erstattung bei +10% Team-Zuwachs!",
-  "Digital-Bonus: Software zu 100% förderfähig – 35% zurück!",
-  "Second-Hand: 35% Zuschuss für Gebrauchtmaschinen – früher 0€!",
+  "AFP 2026: Bis zu 50 % Zuschuss für Tierwohl & Klimaschutz – jetzt berechnen!",
+  "Neue Bundesländer: Bis 5 Mio. € Investitionsvolumen förderfähig!",
+  "Junglandwirt-Bonus: +10 % extra wenn du unter 40 bist – macht bis zu 50 % Gesamtförderung!",
+  "NRW Kälbermatten-Aufschlag: Befristeter 10 % Extra-Bonus noch verfügbar!",
+  "Baden-Württemberg: 2 Mio. € Max-Invest + Schweine ab Sept. 2026 wieder förderfähig!",
+  "Gülle mit Abdeckung: Bis 40 % Zuschuss + 2 Monate Lagerkapazität Pflicht!",
+  "Tierwohl-Premium: Basis 20 % + 20 % Premium = 40 % für Stallumbau mit mehr Platz & Licht!",
 ]
 
 export function NewsTicker() {

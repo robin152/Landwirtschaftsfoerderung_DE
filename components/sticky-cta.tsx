@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { X, ArrowRight, Sparkles } from "lucide-react"
+import { X, ArrowRight } from "lucide-react"
 import { LeadCaptureModal } from "./lead-capture-modal"
 import { useCompany } from "@/contexts/company-context"
+import { TractorIcon, WheatIcon } from "@/components/agri-icons"
 
 function StickyCTAInner() {
   const [isVisible, setIsVisible] = useState(false)
@@ -73,8 +74,10 @@ function StickyCTAInner() {
                   <X className="w-3.5 h-3.5 text-slate-500" />
                 </button>
 
-                <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-4 pt-4 pb-12">
-                  <div className="flex items-center gap-2">
+                <div className="bg-gradient-to-br from-green-900 via-slate-800 to-slate-900 px-4 pt-4 pb-12 relative overflow-hidden">
+                  {/* Subtle wheat decorations */}
+                  <WheatIcon className="absolute -right-2 -top-2 w-16 h-16 text-green-700/20" />
+                  <div className="flex items-center gap-2 relative z-10">
                     <span className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
@@ -120,9 +123,9 @@ function StickyCTAInner() {
                       <motion.div
                         animate={{
                           boxShadow: [
-                            "0 0 0 0 rgba(147, 51, 234, 0)",
-                            "0 0 0 8px rgba(147, 51, 234, 0.3)",
-                            "0 0 0 0 rgba(147, 51, 234, 0)"
+                            "0 0 0 0 rgba(22, 163, 74, 0)",
+                            "0 0 0 8px rgba(22, 163, 74, 0.3)",
+                            "0 0 0 0 rgba(22, 163, 74, 0)"
                           ]
                         }}
                         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -132,8 +135,9 @@ function StickyCTAInner() {
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={() => setIsModalOpen(true)}
-                        className="w-full relative px-3 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-semibold transition-all flex items-center justify-center gap-2"
+                        className="w-full relative px-3 py-3 rounded-lg bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-semibold transition-all flex items-center justify-center gap-2"
                       >
+                        <TractorIcon className="w-4 h-4 text-white flex-shrink-0" />
                         <span className="text-xs">{ownerSalutation ? "Jetzt Termin sichern" : "Förderfähigkeit prüfen"}</span>
                         <motion.span animate={{ x: [0, 3, 0] }} transition={{ duration: 1, repeat: Infinity }}>
                           <ArrowRight className="w-3.5 h-3.5" />
@@ -146,7 +150,7 @@ function StickyCTAInner() {
                   </div>
                 </div>
 
-                <div className="h-0.5 bg-gradient-to-r from-purple-500 via-violet-500 to-fuchsia-500" />
+                <div className="h-0.5 bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500" />
               </div>
             </motion.div>
 
@@ -160,9 +164,11 @@ function StickyCTAInner() {
               style={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 99990 }}
               className="lg:hidden"
             >
-              <div className="bg-white/95 backdrop-blur-xl border-t border-slate-200 px-4 py-3 shadow-lg">
+              <div className="bg-white/95 backdrop-blur-xl border-t border-slate-200 px-4 pt-3 shadow-lg"
+                style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom, 0.75rem))" }}
+              >
                 <div className="flex items-center gap-3">
-                  <div className="relative w-11 h-11 rounded-full overflow-hidden border-2 border-purple-500 flex-shrink-0">
+                  <div className="relative w-11 h-11 rounded-full overflow-hidden border-2 border-green-500 flex-shrink-0">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src="/patrick-starkmann.jpg"
@@ -190,8 +196,9 @@ function StickyCTAInner() {
                     <motion.button
                       whileTap={{ scale: 0.95 }}
                       onClick={() => setIsModalOpen(true)}
-                      className="relative px-5 py-2.5 rounded-full bg-gradient-to-r from-purple-600 to-violet-600 text-white font-semibold text-sm"
+                      className="relative px-5 py-2.5 rounded-full bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold text-sm flex items-center gap-1.5"
                     >
+                      <TractorIcon className="w-4 h-4 text-white" />
                       Jetzt prüfen
                     </motion.button>
                   </div>
