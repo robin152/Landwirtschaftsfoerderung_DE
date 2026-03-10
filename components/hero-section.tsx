@@ -57,15 +57,6 @@ export function HeroSection() {
               >
                 <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-white/90 to-transparent pointer-events-none" />
 
-                {/* Eskalator logo badge */}
-                <div className="flex justify-center mb-3">
-                  <img
-                    src="/eskalator-logo.webp"
-                    alt="Eskalator AG – Fortschritt. Fördern."
-                    className="h-8 md:h-10 w-auto object-contain"
-                  />
-                </div>
-
                 <h1
                   className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-[1.1] text-balance mb-2 md:mb-3"
                   style={{
