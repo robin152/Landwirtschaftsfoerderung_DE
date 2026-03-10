@@ -1079,7 +1079,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                         </div>
                         <div>
                           <p className="text-sm font-bold text-white">Kostenlosen Termin buchen</p>
-                          <p className="text-xs text-slate-400">Patrick Starkmann · Förderberater für die Landwirtschaft</p>
+                          <p className="text-xs text-slate-400">Patrick Starkmann · Spezialist für Subventionen in der Agrarwirtschaft</p>
                         </div>
                       </div>
 

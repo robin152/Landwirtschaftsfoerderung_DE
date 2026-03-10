@@ -93,7 +93,7 @@ function StickyCTAInner() {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src="/patrick-starkmann.webp"
-                      alt="Patrick Starkmann – Förderberater für die Landwirtschaft"
+                      alt="Patrick Starkmann – Spezialist für Subventionen in der Agrarwirtschaft"
                       width={64}
                       height={64}
                       className="object-cover object-top w-full h-full"
@@ -119,7 +119,7 @@ function StickyCTAInner() {
                   ) : (
                     <>
                       <h4 className="font-bold text-slate-900 text-base">Patrick Starkmann</h4>
-                      <p className="text-xs text-slate-500 mb-3">Förderberater für die Landwirtschaft</p>
+                      <p className="text-xs text-slate-500 mb-3">Spezialist für Subventionen in der Agrarwirtschaft</p>
                     </>
                   )}
 

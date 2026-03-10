@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   generator: "v0.app",
   keywords:
     "Förderung Landwirtschaft, Agrarinvestitionsförderung, Stallbau Zuschuss, Tierwohl Förderung, SIUK, Güllelager Förderung, Landwirtschaft Förderung 2026, Förderrechner Landwirtschaft, Junglandwirt Bonus",
-  authors: [{ name: "Patrick Starkmann – Förderberater für die Landwirtschaft" }],
+  authors: [{ name: "Patrick Starkmann – Spezialist für Subventionen in der Agrarwirtschaft" }],
   creator: "Patrick Starkmann",
   publisher: "Förderung für die Landwirtschaft – Eskalator AG",
   formatDetection: {

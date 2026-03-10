@@ -159,7 +159,7 @@ export default function ExpertSection() {
               <div className="space-y-2 text-sm text-slate-600">
                 <div className="flex items-center gap-2">
                   <Award className="w-4 h-4 text-green-700" aria-hidden="true" />
-                  <span>Zertifizierter Förderberater für die Landwirtschaft</span>
+                  <span>Spezialist für Subventionen in der Agrarwirtschaft</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <FileCheck className="w-4 h-4 text-green-700" aria-hidden="true" />
