@@ -122,7 +122,8 @@ export default function ExpertSection() {
           <div className="grid lg:grid-cols-12 gap-0">
             {/* Left: Expert Photo */}
             <div className="lg:col-span-4 bg-gradient-to-br from-slate-100 to-slate-200 p-8 lg:p-12 flex flex-col items-center justify-center text-center">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
+                <div className="relative w-40 h-40 rounded-full overflow-hidden mb-6 shadow-xl shadow-slate-400/30 ring-4 ring-white">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/expert-photo.webp"
                   alt="Patrick Starkmann – AFP-Spezialist für Landwirtschaft"
