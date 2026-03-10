@@ -134,7 +134,7 @@ export function HeroSection() {
                 >
                   Sichern Sie sich bis zu{" "}
                   <AnimatedAmount />{" "}
-                  geschenktes Kapital für Ihren Hof – ohne einen Finger für den Papierkram zu rühren.
+                  Fördermittel für Ihren Hof – ohne einen Finger für den Papierkram zu rühren.
                 </h1>
               </div>
             </div>
