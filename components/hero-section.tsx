@@ -100,16 +100,15 @@ export function HeroSection() {
           </motion.div>
 
           {/* Row 2: Two-column grid — image left, benefits right */}
-          <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 mb-5 md:mb-6 items-stretch">
+          <div className="grid md:grid-cols-[auto_1fr] gap-4 md:gap-6 lg:gap-8 mb-5 md:mb-6 items-start">
 
-            {/* Left: Image */}
+            {/* Left: Image — fixed size, no crop */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="relative flex items-center justify-center"
+              className="relative flex items-start justify-center md:w-[300px] lg:w-[340px] xl:w-[380px] flex-shrink-0"
             >
-              {/* Mobile: simple image, no crop */}
               <div className="relative w-full">
                 <div className="absolute inset-0 rounded-xl md:rounded-2xl bg-gradient-to-br from-emerald-400/25 to-green-600/15 blur-2xl scale-105" />
                 <img
@@ -122,64 +121,86 @@ export function HeroSection() {
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                   className="absolute top-3 right-3 bg-white rounded-xl shadow-lg px-3 py-2 flex items-center gap-1.5 ring-1 ring-emerald-100"
                 >
-                  <MoneyBagIcon className="w-6 h-6 text-emerald-600 flex-shrink-0" />
+                  <MoneyBagIcon className="w-5 h-5 text-emerald-600 flex-shrink-0" />
                   <div>
                     <p className="text-[9px] font-semibold text-slate-500 uppercase tracking-wide leading-none mb-0.5">Zuschuss</p>
-                    <p className="text-base font-extrabold text-emerald-700 leading-none">bis 50 %</p>
+                    <p className="text-sm font-extrabold text-emerald-700 leading-none">bis 50 %</p>
                   </div>
                 </motion.div>
               </div>
             </motion.div>
 
-            {/* Right: Benefits / Kaufargumente */}
+            {/* Right: Conversion-starke Vorteile — top-aligned */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex flex-col gap-3 justify-center"
+              className="flex flex-col gap-2.5"
             >
+              {/* Header */}
+              <div className="mb-1">
+                <p className="text-xs font-bold text-green-700 uppercase tracking-widest mb-1">Was wird gefördert?</p>
+                <p className="text-sm text-slate-500 leading-snug">Wähle dein Thema — so viel Geld wartet auf dich:</p>
+              </div>
+
+              {/* Topic rows with amounts */}
               {[
-                {
-                  icon: TractorIcon,
-                  label: "In 45 Sek. weißt du es",
-                  desc: "Unser Rechner gibt dir sofort deinen exakten Förderbetrag — kein Blabla, keine versteckten Kosten.",
-                  accent: "bg-green-600",
-                },
-                {
-                  icon: ShieldCheckAgriIcon,
-                  label: "Ablehnungen werden verhindert",
-                  desc: "Prosperitätsgrenze, vorzeitiger Maßnahmenbeginn, falsche Kostenart — ich checke das alles vorher.",
-                  accent: "bg-emerald-600",
-                },
-                {
-                  icon: MoneyBagIcon,
-                  label: "Maximale Förderquote sichern",
-                  desc: "Tierwohl-Premium, SIUK-Bonus, Junglandwirt-Zuschlag und regionale Boni — wir finden alles, was dir zusteht.",
-                  accent: "bg-teal-600",
-                },
-                {
-                  icon: BarnIcon,
-                  label: "400+ Landwirte gefördert",
-                  desc: "98 % Erfolgsquote. Bundesweite Erfahrung in allen 16 Bundesländern.",
-                  accent: "bg-green-700",
-                },
-              ].map(({ icon: Icon, label, desc, accent }, i) => (
+                { topic: "Stallbau & Umbau", pct: "bis 40 %", bonus: null, icon: BarnIcon },
+                { topic: "Tierwohl & Haltung", pct: "bis 50 %", bonus: "+10 % Tierwohl-Premium", icon: ShieldCheckAgriIcon },
+                { topic: "Güllelager & Umwelt", pct: "bis 50 %", bonus: "inkl. SIUK-Bonus", icon: WheatIcon },
+                { topic: "Präzisionstechnik", pct: "bis 35 %", bonus: null, icon: TractorIcon },
+                { topic: "Junglandwirt-Bonus", pct: "+10 % extra", bonus: "Unter 40? Macht bis 60 %!", icon: MoneyBagIcon },
+              ].map(({ topic, pct, bonus, icon: Icon }, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, x: 16 }}
+                  initial={{ opacity: 0, x: 12 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: 0.25 + i * 0.08 }}
-                  className="flex items-start gap-3 bg-white border border-slate-100 rounded-xl p-3 md:p-4 shadow-sm hover:shadow-md transition-shadow"
+                  transition={{ duration: 0.35, delay: 0.3 + i * 0.07 }}
+                  className="flex items-center gap-3 rounded-xl px-3 py-2.5 border border-slate-100 hover:border-green-200 hover:shadow-md transition-all duration-200 cursor-default"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(240,253,244,0.7) 100%)",
+                    backdropFilter: "blur(8px)",
+                    WebkitBackdropFilter: "blur(8px)",
+                  }}
                 >
-                  <div className={`${accent} rounded-lg w-9 h-9 flex items-center justify-center flex-shrink-0 mt-0.5`}>
-                    <Icon className="w-5 h-5 text-white" />
+                  {/* Icon */}
+                  <div className="w-8 h-8 rounded-lg bg-green-600 flex items-center justify-center flex-shrink-0">
+                    <Icon className="w-4 h-4 text-white" />
                   </div>
-                  <div>
-                    <p className="font-bold text-slate-900 text-sm leading-snug">{label}</p>
-                    <p className="text-xs text-slate-500 mt-0.5 leading-relaxed">{desc}</p>
+                  {/* Topic */}
+                  <div className="flex-1 min-w-0">
+                    <p className="font-semibold text-slate-900 text-sm leading-none">{topic}</p>
+                    {bonus && <p className="text-[11px] text-emerald-600 font-medium mt-0.5 leading-none">{bonus}</p>}
+                  </div>
+                  {/* Percentage badge */}
+                  <div
+                    className="flex-shrink-0 rounded-lg px-2.5 py-1 font-black text-sm leading-none"
+                    style={{
+                      background: "linear-gradient(135deg, rgba(22,163,74,0.15) 0%, rgba(21,128,61,0.10) 100%)",
+                      border: "1px solid rgba(22,163,74,0.25)",
+                      color: "#15803d",
+                    }}
+                  >
+                    {pct}
                   </div>
                 </motion.div>
               ))}
+
+              {/* Social proof strip */}
+              <div className="flex items-center gap-4 mt-1 pt-2.5 border-t border-slate-100">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-xs font-semibold text-slate-700">400+ Landwirte gefördert</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" style={{ animationDelay: "0.5s" }} />
+                  <span className="text-xs font-semibold text-slate-700">98 % Erfolgsquote</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" style={{ animationDelay: "1s" }} />
+                  <span className="text-xs font-semibold text-slate-700">alle 16 Bundesländer</span>
+                </div>
+              </div>
             </motion.div>
 
           </div>
