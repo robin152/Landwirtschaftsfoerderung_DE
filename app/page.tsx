@@ -14,6 +14,7 @@ import { FAQMegaSection } from "@/components/faq-mega-section"
 import { ErrorBoundary } from "@/components/error-boundary"
 import { AFPRechner } from "@/components/afp-rechner"
 import { ScrollReveal } from "@/components/scroll-reveal"
+import { ExclusionsSection } from "@/components/exclusions-section"
 
 export default function LandingPage() {
   return (
@@ -70,6 +71,11 @@ export default function LandingPage() {
         {/* Förderquoten */}
         <ScrollReveal variant="slide-left" duration={0.7} delay={0.05}>
           <FundingQuotesSection />
+        </ScrollReveal>
+
+        {/* Ausschlüsse — was NICHT gefördert wird */}
+        <ScrollReveal variant="fade-up" duration={0.65}>
+          <ExclusionsSection />
         </ScrollReveal>
 
         {/* Prozess */}

@@ -1036,7 +1036,7 @@ export function LeadCaptureModal({ isOpen, onClose, onSuccess, prefilledData, so
                         Wo befindet sich der Investitionsstandort?
                       </label>
                       {formData.plz && formData.plz.length === 5 && (
-                        <p className="text-xs text-purple-600 mb-2 flex items-center gap-1">
+                        <p className="text-xs text-green-700 mb-2 flex items-center gap-1">
                           <CheckCircle2 className="w-3.5 h-3.5" />
                           PLZ automatisch aus Firmenadresse erkannt
                         </p>
@@ -1050,34 +1050,20 @@ export function LeadCaptureModal({ isOpen, onClose, onSuccess, prefilledData, so
                         onChange={(e) => setFormData({ ...formData, plz: e.target.value.replace(/\D/g, "") })}
                         onKeyDown={(e) => e.key === "Enter" && handleNext()}
                         onFocus={(e) => scrollInputIntoView(e.target)}
-                        className={`w-full px-4 py-4 text-base border-2 rounded-xl focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 transition-all touch-manipulation text-center text-xl tracking-widest font-mono ${formData.plz && formData.plz.length === 5 ? "border-purple-300 bg-purple-50/50" : "border-slate-200"}`}
+                        className={`w-full px-4 py-4 text-base border-2 rounded-xl focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-500/10 transition-all touch-manipulation text-center text-xl tracking-widest font-mono ${formData.plz && formData.plz.length === 5 ? "border-green-400 bg-green-50/40" : "border-slate-200"}`}
                         placeholder="45127"
                         autoComplete="postal-code"
                       />
-                      {regionInfo && (
+                      {formData.plz.length === 5 && (
                         <motion.div
-                          initial={{ opacity: 0, y: -10 }}
+                          initial={{ opacity: 0, y: -8 }}
                           animate={{ opacity: 1, y: 0 }}
-                          className="mt-3 p-3 bg-violet-50 rounded-xl border border-violet-200"
+                          className="mt-3 p-3 bg-green-50 rounded-xl border border-green-200"
                         >
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <p className="text-sm font-semibold text-violet-800">{regionInfo.region}</p>
-                              <p className="text-xs text-violet-600">Fördergebiet erkannt!</p>
-                            </div>
-                            <span className="text-xs font-bold px-3 py-1.5 bg-violet-500 text-white rounded-full">
-                              +{regionInfo.bonus}% Bonus
-                            </span>
-                          </div>
-                        </motion.div>
-                      )}
-                      {!regionInfo && formData.plz.length === 5 && (
-                        <motion.div
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className="mt-3 p-3 bg-blue-50 rounded-xl border border-blue-200"
-                        >
-                          <p className="text-sm text-blue-800">Wir prüfen Ihre Förderfähigkeit im Erstgespräch</p>
+                          <p className="text-sm text-green-800 font-medium flex items-center gap-2">
+                            <CheckCircle2 className="w-4 h-4 text-green-600 flex-shrink-0" />
+                            PLZ erkannt — Bundesland wird im Beratungsgespräch berücksichtigt
+                          </p>
                         </motion.div>
                       )}
                     </div>
