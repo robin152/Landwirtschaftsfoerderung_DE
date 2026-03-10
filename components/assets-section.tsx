@@ -214,7 +214,7 @@ export function AssetsSection() {
             </div>
 
             {/* Panel Body */}
-            <div className="p-5 sm:p-6">
+            <div className="p-6 sm:p-8">
               {"groups" in active && active.groups ? (
                 // SIUK: Gruppen-Layout
                 <div className="grid sm:grid-cols-3 gap-5">
@@ -242,17 +242,19 @@ export function AssetsSection() {
                 </div>
               ) : (
                 // Einfaches Listen-Layout
-                <div className="grid sm:grid-cols-2 gap-2.5">
+                <div className="grid sm:grid-cols-2 gap-4">
                   {active.items!.map((item, idx) => (
                     <motion.div
                       key={item}
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: idx * 0.04 }}
-                      className="flex items-start gap-3 bg-white rounded-xl p-3.5 border border-slate-200 shadow-sm"
+                      className="flex items-start gap-3 bg-white rounded-xl p-5 border border-slate-200 shadow-sm"
                     >
-                      <Check className={`w-4 h-4 flex-shrink-0 mt-0.5 ${active.iconColor}`} aria-hidden="true" />
-                      <span className="text-sm text-slate-700 leading-snug">{item}</span>
+                      <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${active.bgClass}`}>
+                        <Check className={`w-3.5 h-3.5 ${active.iconColor}`} aria-hidden="true" />
+                      </div>
+                      <span className="text-sm text-slate-700 leading-relaxed">{item}</span>
                     </motion.div>
                   ))}
                 </div>
