@@ -28,10 +28,10 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Förderung für die Landwirtschaft 2023–2027 | Bis zu 50 % Zuschuss für Stallbau & Tierwohl | Patrick Starkmann",
   description:
-    "Berechne in 45 Sekunden deinen staatlichen Zuschuss. Stallbau, Tierwohl, SIUK, Gülle – wir kennen alle Bundesland-Quoten. Kostenlose Prüfung durch Förderberater Patrick Starkmann.",
+    "Berechne in 45 Sekunden deinen staatlichen Zuschuss. Stallbau, Tierwohl, Emissionsschutz, Gülle – wir kennen alle Bundesland-Quoten. Kostenlose Prüfung durch Förderberater Patrick Starkmann.",
   generator: "v0.app",
   keywords:
-    "Förderung Landwirtschaft, Agrarinvestitionsförderung, Stallbau Zuschuss, Tierwohl Förderung, SIUK, Güllelager Förderung, Landwirtschaft Förderung 2026, Förderrechner Landwirtschaft, Junglandwirt Bonus",
+    "Förderung Landwirtschaft, Agrarinvestitionsförderung, Stallbau Zuschuss, Tierwohl Förderung, Emissionsschutz Förderung, Güllelager Förderung, Landwirtschaft Förderung 2026, Förderrechner Landwirtschaft, Junglandwirt Bonus",
   authors: [{ name: "Patrick Starkmann – Spezialist für Subventionen in der Agrarwirtschaft" }],
   creator: "Patrick Starkmann",
   publisher: "Förderung für die Landwirtschaft – Eskalator AG",

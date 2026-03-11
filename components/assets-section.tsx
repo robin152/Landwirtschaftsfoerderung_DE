@@ -42,7 +42,7 @@ const THEMEN = [
     dotColor: "bg-teal-500",
     image: "/images/gallery/klima-emissionsschutz.jpg",
     icon: SunLeafIcon,
-    desc: "SIUK-Maßnahmen mit den höchsten Fördersätzen bundesweit. Abluftanlagen, Güllekühlung und emissionsarme Stallböden.",
+    desc: "Emissionsschutz-Maßnahmen mit den höchsten Fördersätzen bundesweit. Abluftanlagen, Güllekühlung und emissionsarme Stallböden.",
     items: [
       "Abluftreinigungsanlagen",
       "Güllekühlung & Kot-Harn-Trennung",
@@ -51,7 +51,7 @@ const THEMEN = [
       "Phasenfütterung (nährstoffreduziert)",
       "Gasdichte Güllelagerabdeckung",
     ],
-    note: "SIUK = Stallbau, Infrastruktur, Umwelt & Klima. Kombinierbar mit Tierwohl-Bonus.",
+    note: "Klima- & Emissionsschutz (Anlage 3B). Kombinierbar mit Tierwohl-Bonus.",
   },
   {
     id: "kombi",

@@ -54,7 +54,7 @@ const EXCLUSIONS = [
   },
   {
     label: "Reine Basisförderung in Bayern / BW",
-    detail: "Bayern und Baden-Württemberg fördern nur noch Premium-Tierwohl und SIUK – keine Basismaßnahmen",
+    detail: "Bayern und Baden-Württemberg fördern nur noch Premium-Tierwohl und Emissionsschutz – keine Basismaßnahmen",
     icon: AlertTriangle,
     type: "conditional",
   },

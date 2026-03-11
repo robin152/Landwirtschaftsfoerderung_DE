@@ -38,7 +38,7 @@ const ZIELE = [
   },
   {
     Icon: SunLeafIcon,
-    title: "Emissionsminderung (SIUK)",
+    title: "Klima- & Emissionsschutz",
     desc: "Abluftreinigung, Güllekühlung, gasdichte Lagerabdeckung, Biogasanlagen und weitere Maßnahmen zur NH₃- und CO₂-Reduktion (Anlage 3B).",
     color: "from-sky-600 to-teal-600",
     bg: "bg-sky-50",
@@ -80,10 +80,10 @@ export function FoerderZieleSection() {
             <span className="text-sm font-semibold text-green-800">Was die Förderung für die Landwirtschaft abdeckt</span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-3 text-balance">
-            6 Förderziele — mindestens eines muss deine Investition erfüllen
+            Das alles lässt sich fördern — und das ist erst der Anfang
           </h2>
           <p className="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
-            Die Förderung konzentriert sich auf <strong className="text-slate-700">investive Maßnahmen in langlebige Wirtschaftsgüter</strong> — Neubau, Modernisierung oder Erwerb. Wer keines dieser Ziele belegen kann, wird abgelehnt.
+            Die Förderung für die Landwirtschaft deckt eine breite Palette an Investitionen ab. Ob neuer Stall, moderne Technik oder Klimaschutz — <strong className="text-slate-700">wer mindestens eines dieser Ziele verfolgt, hat gute Chancen auf bis zu 50 % Zuschuss.</strong>
           </p>
         </div>
 

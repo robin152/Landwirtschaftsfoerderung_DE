@@ -46,7 +46,7 @@ import { useCompany } from "@/contexts/company-context"
 const industryHooks: Record<string, { pain: string; hook: string }> = {
   "default": {
     pain: "Die Baukosten sind explodiert. Die Vorschriften werden immer verrückter. Und ohne den richtigen Zuschuss rechnet sich das alles nicht mehr.",
-    hook: "Genau deshalb bin ich hier: Ich hole dir das Maximum aus der Förderung für die Landwirtschaft – Tierwohl-Premium, SIUK-Bonus, Junglandwirt-Zuschlag. Du unterschreibst einmal, ich erledige den Rest."
+    hook: "Genau deshalb bin ich hier: Ich hole dir das Maximum aus der Förderung für die Landwirtschaft – Tierwohl-Premium, Emissionsschutz-Bonus, Junglandwirt-Zuschlag. Du unterschreibst einmal, ich erledige den Rest."
   },
   "milch": {
     pain: "Milchvieh-Betriebe stehen 2026 unter Doppeldruck: neue Haltungsauflagen UND explodierende Stallbaukosten. Ohne Förderung für die Landwirtschaft rechnet sich der Umbau für die meisten nicht.",
