@@ -251,8 +251,16 @@ export default function ExpertSection() {
                     "Milchvieh & Rinderhaltung",
                     "Schweinehaltung",
                     "Geflügel & Freilandhaltung",
-                    "Gülle & Gärrestelager",
+                    "Gülle- & Gärrestelager",
                     "Klimaschutz & Emissionen",
+                    "Fördermittel & Zuschüsse",
+                    "Innovationsförderung",
+                    "Infrastrukturförderung",
+                    "Mitarbeiterqualifizierung",
+                    "Ackerbau & Pflanzenbau",
+                    "Öko-Landbau",
+                    "Präzisionslandwirtschaft",
+                    "Diversifizierung & Direktvermarktung",
                   ].map((tag) => {
                     // Check if this tag relates to the company's industry
                     const isRelevant = industry && (
