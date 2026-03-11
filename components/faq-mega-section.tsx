@@ -56,8 +56,8 @@ const faqCategories: FAQCategory[] = [
         answer: "Landwirtschaftliche KMU, die mehr als 25 % Umsatz aus Primärproduktion erzielen, die ALG-Mindestgröße erfüllen und deren Betriebsleiter eine abgeschlossene landwirtschaftliche Ausbildung oder ein Studium hat."
       },
       {
-        question: "Was passiert, wenn mein Einkommen die Prosperitätsgrenze überschreitet?",
-        answer: "Dann gibt es keinen Zuschuss. Aktuelle Grenzen (März 2026): NRW 150.000/180.000 €, Niedersachsen 170.000/200.000 €, Bayern 140.000/170.000 €, BW 210.000/250.000 €. Bei Überschreitung ist eine Optimierung nur in Ausnahmefällen möglich."
+        question: "Was passiert, wenn mein Einkommen die staatliche Einkommensgrenze überschreitet?",
+        answer: "Dann gibt es keinen Zuschuss. Die Grenze liegt je nach Bundesland und Familienstand zwischen 140.000 € und 250.000 € pro Jahr. Bei Überschreitung ist eine Optimierung nur in Ausnahmefällen möglich — wir prüfen das individuell."
       },
       {
         question: "Gelten für Junglandwirte besondere Regeln?",

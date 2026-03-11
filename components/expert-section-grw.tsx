@@ -46,15 +46,15 @@ import { useCompany } from "@/contexts/company-context"
 const industryHooks: Record<string, { pain: string; hook: string }> = {
   "default": {
     pain: "Die Baukosten sind explodiert. Die Vorschriften werden immer verrückter. Und ohne den richtigen Zuschuss rechnet sich das alles nicht mehr.",
-    hook: "Genau deshalb bin ich hier: Ich hole dir das Maximum aus der Förderung für die Landwirtschaft – Tierwohl-Premium, Emissionsschutz-Bonus, Junglandwirt-Zuschlag. Du unterschreibst einmal, ich erledige den Rest."
+    hook: "Genau deshalb sind wir hier: Wir holen das Maximum aus der Förderung für die Landwirtschaft – Tierwohl-Premium, Emissionsschutz-Bonus, Junglandwirt-Zuschlag. Du unterschreibst einmal, wir erledigen den Rest."
   },
   "milch": {
     pain: "Milchvieh-Betriebe stehen 2026 unter Doppeldruck: neue Haltungsauflagen UND explodierende Stallbaukosten. Ohne Förderung für die Landwirtschaft rechnet sich der Umbau für die meisten nicht.",
-    hook: "Ich kenne die Milchvieh-spezifischen Förderpfade in jedem Bundesland – und hole dir den maximalen Tierwohl-Satz bevor die Antragsfenster 2026 schließen."
+    hook: "Wir kennen die Milchvieh-spezifischen Förderpfade in jedem Bundesland – und holen den maximalen Tierwohl-Satz bevor die Antragsfenster 2026 schließen."
   },
   "schwein": {
     pain: "Schweinehaltung 2026: Neue Tierwohlauflagen, enge Zeitfenster, und viele Bundesländer haben die Förderung zwischenzeitlich ausgesetzt. Ohne Experten-Begleitung riskierst du eine teure Fehlentscheidung.",
-    hook: "Ich weiß genau, wo Schweinehaltung 2026 wieder förderfähig ist (z.B. Baden-Württemberg ab Sept. 2026) – und wie du das Maximum aus der Förderung für die Landwirtschaft holst."
+    hook: "Wir wissen genau, wo Schweinehaltung 2026 wieder förderfähig ist (z.B. Baden-Württemberg ab Sept. 2026) – und wie du das Maximum aus der Förderung für die Landwirtschaft holst."
   },
 }
 
@@ -105,11 +105,11 @@ export default function ExpertSection() {
           </span>
           
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
-            Ich bin der Förder-Typ, der Landwirten wie dir jedes Jahr Millionen extra holt
+            Wir holen Landwirten wie dir jedes Jahr Millionen an Fördermitteln
           </h2>
           
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Ich verdiene erst, wenn du Geld bekommst. Deshalb arbeite ich nur mit Fällen, die ich auch wirklich gewinne.
+            Wir verdienen erst, wenn du Geld bekommst. Deshalb arbeiten wir nur mit Fällen, die wir auch wirklich gewinnen.
           </p>
         </motion.div>
 

@@ -41,7 +41,7 @@ const steps = [
     icon: FileCheck,
     title: "Persönlicher Check",
     sub: "1–2 Werktage",
-    description: "Ich prüfe Prosperitätsgrenze, Maßnahmentyp und alles, was 70 % der Anträge killt.",
+    description: "Wir prüfen dein Jahreseinkommen, den Investitionstyp und alle Stolperfallen, die 70 % der Anträge scheitern lassen.",
     duration: "1–2 Werktage",
     result: "Go / No-Go + Optimierung",
     keyFact: "Ablehnungen verhindern",
@@ -57,7 +57,7 @@ const steps = [
     icon: Upload,
     title: "Antrag einreichen",
     sub: "Sofort starten",
-    description: "Ich übernehme Antrag, Portal, Nachweise, Kostenplan. Du unterschreibst einmal.",
+    description: "Wir übernehmen Antrag, Portal, Nachweise, Kostenplan. Du unterschreibst einmal.",
     duration: "Nach Einreichung starten",
     result: "Bescheid in 6–12 Wochen",
     keyFact: "Sofortiger Maßnahmenbeginn",
@@ -73,7 +73,7 @@ const steps = [
     icon: Banknote,
     title: "Bauen & kassieren",
     sub: "6–36 Monate",
-    description: "Während du baust, fließen schon Abschlagszahlungen. Ich kümmere mich um Zwischenberichte.",
+    description: "Während du baust, fließen schon Abschlagszahlungen. Wir kümmern uns um Zwischenberichte.",
     duration: "6–36 Monate Laufzeit",
     result: "Laufende Auszahlungen",
     keyFact: "Bis zu 3 Abschläge",
@@ -92,7 +92,7 @@ const steps = [
     description: "Verwendungsnachweis einreichen, Restzahlung kassieren. 5 Jahre Zweckbindung.",
     duration: "5 Jahre Zweckbindung",
     result: "Voller Zuschuss aufs Konto",
-    keyFact: "Ich erledige die Abrechnung",
+    keyFact: "Wir erledigen die Abrechnung",
     keyFactIcon: Check,
     accent: "#16a34a",
     accentLight: "#dcfce7",
@@ -264,7 +264,7 @@ export function ProcessSectionRWP() {
             <span style={{ color: "#4ade80" }}> in 5 klaren Schritten</span>
           </h2>
           <p className="text-base text-slate-400 max-w-xl mx-auto leading-relaxed">
-            Ich begleite dich von der ersten Berechnung bis zur Schlusszahlung —
+            Wir begleiten Sie von der ersten Berechnung bis zur Schlusszahlung —
             du unterschreibst nur einmal.
           </p>
 

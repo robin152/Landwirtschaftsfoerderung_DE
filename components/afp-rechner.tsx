@@ -420,7 +420,7 @@ function AgriCardIcon({ icon, className }: { icon: string; className?: string })
   }
 }
 
-// ───────────────────────────────────────────────────────────���─────────────────
+// ───────────────────────────────────────���───────────────────���─────────────────
 // HELPER COMPONENTS
 // ─────────────────────────────────────────────────────────────────────────────
 function SelectField({
@@ -896,7 +896,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
               <h4 className="text-xl sm:text-2xl font-bold text-white leading-snug">
                 Wer ist der Betriebsleiter?
               </h4>
-              <p className="text-sm text-slate-400 mt-1">Alter und Einkommen bestimmen deinen Junglandwirt-Bonus und die Prosperitätsgrenze.</p>
+              <p className="text-sm text-slate-400 mt-1">Alter und Einkommen bestimmen deinen Junglandwirt-Bonus und ob du die staatliche Einkommensgrenze einhältst.</p>
             </div>
             {showErrors && !canProceed[2] && (
               <div className="flex items-center gap-2 bg-red-950/60 border border-red-700/50 rounded-xl px-4 py-3">
@@ -943,8 +943,8 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
             <div className="flex items-start gap-2 bg-slate-800/50 rounded-lg p-3">
               <Info className="w-4 h-4 text-slate-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
               <p className="text-xs text-slate-400">
-                Einkommensgrenze (Prosperitätsgrenze) variiert je Bundesland. Lass das Feld leer,
-                wenn du dir unsicher bist — ich prüfe das im persönlichen Check.
+                Die staatliche Einkommensgrenze variiert je Bundesland. Lass das Feld leer,
+                wenn du dir unsicher bist — wir prüfen das im persönlichen Check.
               </p>
             </div>
           </div>
@@ -978,8 +978,8 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                   </p>
                   <p className="text-red-400 text-xs mt-1">
                     Dein Einkommen ({Number(einkommen).toLocaleString("de-DE")} €) liegt über der
-                    Prosperitätsgrenze von {ergebnis.aktuelleGrenze?.toLocaleString("de-DE")} € in {bundesland}.
-                    Ich zeige dir, wie du das strategisch lösen kannst.
+                    staatlichen Einkommensgrenze von {ergebnis.aktuelleGrenze?.toLocaleString("de-DE")} € in {bundesland}.
+                    Wir zeigen dir, wie du das strategisch lösen kannst.
                   </p>
                 </div>
               </div>
