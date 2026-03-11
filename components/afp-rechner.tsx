@@ -420,7 +420,7 @@ function AgriCardIcon({ icon, className }: { icon: string; className?: string })
   }
 }
 
-// ───────────────────────────────────────���───────────────────���─────────────────
+// ───────────────────────────────────────�����───────────────────���─────────────────
 // HELPER COMPONENTS
 // ─────────────────────────────────────────────────────────────────────────────
 function SelectField({
@@ -926,13 +926,13 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
               />
             </div>
             <NumberField
-              label="Ø Einkommen letzte 3 Jahre"
+              label="Persönliches Brutto-Einkommen (Ø letzte 3 Jahre)"
               value={einkommen}
               onChange={setEinkommen}
               min={0}
               suffix="€"
-              placeholder="z.B. 120000"
-              hint="Positive Einkünfte lt. ESt-Bescheid. Leer lassen = wird nicht geprüft."
+              placeholder="z.B. 120.000"
+              hint="Dein persönliches Jahres-Bruttoeinkommen lt. Steuerbescheid — Durchschnitt der letzten 3 Jahre. Nicht das Betriebs-Ergebnis. Leer lassen = wird nicht geprüft."
             />
             <ToggleField
               label="Meister / staatl. gepr. Betriebswirt (Landwirt)"
