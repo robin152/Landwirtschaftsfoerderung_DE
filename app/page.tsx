@@ -16,6 +16,7 @@ import { AFPRechner } from "@/components/afp-rechner"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import { ExclusionsSection } from "@/components/exclusions-section"
 import { FoerderZieleSection } from "@/components/foerder-ziele-section"
+import { EskalatorTrustSection } from "@/components/eskalator-trust-section"
 
 export default function LandingPage() {
   return (
@@ -28,6 +29,9 @@ export default function LandingPage() {
         <ErrorBoundary inline>
           <HeroSection />
         </ErrorBoundary>
+
+        {/* Trust — Eskalator AG */}
+        <EskalatorTrustSection />
 
         {/* Förderziele — direkt unter Hero */}
         <ScrollReveal variant="fade-up" duration={0.6}>
