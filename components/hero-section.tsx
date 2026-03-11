@@ -109,35 +109,19 @@ export function HeroSection() {
             transition={{ duration: 0.5 }}
             className="text-center mb-4 md:mb-6"
           >
-            {/* Glass headline card */}
-            <div className="relative inline-block w-full mb-3">
-              <div className="relative rounded-2xl md:rounded-3xl px-4 py-5 md:px-8 md:py-7"
-                style={{
-                  background: "linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(248,250,252,0.70) 50%, rgba(255,255,255,0.80) 100%)",
-                  backdropFilter: "blur(20px) saturate(1.4)",
-                  WebkitBackdropFilter: "blur(20px) saturate(1.4)",
-                  border: "1px solid rgba(255,255,255,0.85)",
-                  boxShadow: "0 4px 32px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.95) inset",
-                }}
-              >
-                <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-white/90 to-transparent pointer-events-none" />
-
-                <h1
-                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-[1.1] text-balance mb-2 md:mb-3"
-                  style={{
-                    background: "linear-gradient(135deg, #166534 0%, #15803d 30%, #7c3aed 65%, #6d28d9 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                    filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.08))",
-                  }}
-                >
-                  Sichern Sie sich bis zu{" "}
-                  <AnimatedAmount />{" "}
-                  Fördermittel für Ihren Hof – ohne einen Finger für den Papierkram zu rühren.
-                </h1>
-              </div>
-            </div>
+            <h1
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.15] text-balance mb-2 md:mb-3"
+              style={{
+                background: "linear-gradient(135deg, #166534 0%, #15803d 30%, #7c3aed 65%, #6d28d9 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Sichern Sie sich bis zu{" "}
+              <AnimatedAmount />{" "}
+              Fördermittel für Ihren Hof – ohne einen Finger für den Papierkram zu rühren.
+            </h1>
 
             <p className="text-sm md:text-base lg:text-lg text-slate-600 leading-relaxed max-w-4xl mx-auto">
               Wir holen für Sie das absolute Maximum an staatlichen Zuschüssen heraus (bis zu{" "}
