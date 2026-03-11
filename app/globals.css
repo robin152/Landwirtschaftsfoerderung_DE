@@ -417,6 +417,30 @@ input[type="range"].funding-slider::-moz-range-progress {
   background: oklch(0.98 0.002 250);
 }
 
+/* Agriculture straw-warm section background — replaces cold slate-50 */
+.section-field {
+  background: #f5f2eb;
+}
+
+/* Agri divider ornament — a wheat-gold line with center dot */
+.agri-divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.agri-divider::before,
+.agri-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #b8860b55);
+}
+.agri-divider::after {
+  background: linear-gradient(to left, transparent, #b8860b55);
+}
+
 /* ====== STEP NUMBERS ====== */
 
 .step-number {

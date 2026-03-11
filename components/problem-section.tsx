@@ -1,190 +1,271 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
-import { TrendingUp, FileText, Clock, Euro } from "lucide-react"
+import { motion, useInView, useMotionValue, useSpring, animate } from "framer-motion"
+import { useRef, useEffect } from "react"
+import { TractorIcon, WheatIcon, FieldRowsIcon } from "@/components/agri-icons"
 
-const problems = [
+// Animated counter hook
+function useCounter(to: number, inView: boolean, decimals = 0) {
+  const nodeRef = useRef<HTMLSpanElement>(null)
+  useEffect(() => {
+    if (!inView || !nodeRef.current) return
+    const node = nodeRef.current
+    const controls = animate(0, to, {
+      duration: 1.4,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate(v) {
+        node.textContent = decimals > 0 ? v.toFixed(decimals) : Math.round(v).toLocaleString("de-DE")
+      },
+    })
+    return () => controls.stop()
+  }, [to, inView, decimals])
+  return nodeRef
+}
+
+const STATS = [
   {
-    icon: TrendingUp,
-    stat: "+47 %",
-    statLabel: "Baukosten seit 2020",
-    title: "Der neue Stall frisst den Gewinn von 10 Jahren.",
-    body: "Ein moderner Milchvieh-Stall für 120 Kühe kostet heute 1,8 bis 2,5 Mio. Euro. Vor vier Jahren war es noch die Hälfte. Stahl, Beton, Handwerker — alles explodiert. Gleichzeitig drücken Milchpreise, Energiekosten und neue Haltungsauflagen auf die Marge.",
-    color: "from-red-500/20 to-transparent",
-    borderColor: "border-red-500/30",
-    statColor: "text-red-400",
+    prefix: "+",
+    value: 47,
+    suffix: " %",
+    label: "Baukosten seit 2020",
+    detail: "Ein Milchvieh-Stall für 120 Kühe kostet heute 1,8–2,5 Mio. €. Vor vier Jahren war es die Hälfte. Stahl, Beton, Handwerker — alles explodiert.",
+    color: "#dc2626",
+    border: "#dc262622",
   },
   {
-    icon: FileText,
-    stat: "340+",
-    statLabel: "Seiten Förder-Richtlinien",
-    title: "Du führst einen Betrieb. Nicht ein Amt.",
-    body: "Jedes Bundesland hat eigene Formulare, eigene Fristen, eigene Anforderungen. Manche Anträge laufen über 4 verschiedene Behörden. Ein Fehler im Kostenplan, eine fehlende Unterschrift, ein falscher Maßnahmencode — und der Bescheid landet im Papierkorb. Ohne Begründung.",
-    color: "from-amber-500/20 to-transparent",
-    borderColor: "border-amber-500/30",
-    statColor: "text-amber-400",
+    prefix: "",
+    value: 340,
+    suffix: "+",
+    label: "Seiten Förder-Richtlinien",
+    detail: "Jedes Bundesland, eigene Formulare, eigene Fristen. Ein Fehler im Kostenplan, eine falsche Unterschrift — der Bescheid landet im Papierkorb.",
+    color: "#d97706",
+    border: "#d9770622",
   },
   {
-    icon: Clock,
-    stat: "14–22",
-    statLabel: "Monate Bearbeitungszeit",
-    title: "Bis der Bescheid kommt, hat sich die Welt dreimal gedreht.",
-    body: "Du hast die Idee, die Fläche, den Plan. Aber dann: Warten. Nachfragen. Wieder warten. Manche Landwirte warten über eineinhalb Jahre auf ihren Bescheid — und erfahren dann, dass ein formaler Fehler alles zunichte macht. Der Betrieb läuft weiter, der Druck bleibt.",
-    color: "from-blue-500/20 to-transparent",
-    borderColor: "border-blue-500/30",
-    statColor: "text-blue-400",
+    prefix: "",
+    value: 22,
+    suffix: " Monate",
+    label: "max. Bearbeitungszeit",
+    detail: "Bis der Bescheid kommt, hat sich die Welt dreimal gedreht. Der Betrieb läuft weiter. Der Druck bleibt.",
+    color: "#2563eb",
+    border: "#2563eb22",
   },
   {
-    icon: Euro,
-    stat: "Ø 280.000 €",
-    statLabel: "entgangene Förderung pro Betrieb",
-    title: "Das Geld liegt auf dem Tisch. Niemand sagt dir, dass du es nehmen kannst.",
-    body: "70 % aller förderfähigen Betriebe stellen keinen Antrag — weil sie nicht wissen, dass sie berechtigt sind. Oder weil der letzte Versuch scheiterte. Oder weil kein Berater in der Nähe ist, der das Thema wirklich kennt.",
-    color: "from-emerald-500/20 to-transparent",
-    borderColor: "border-emerald-500/30",
-    statColor: "text-emerald-400",
+    prefix: "Ø ",
+    value: 280000,
+    suffix: " €",
+    label: "entgangene Förderung pro Betrieb",
+    detail: "70 % aller förderfähigen Betriebe stellen keinen Antrag — weil sie nicht wissen, dass sie berechtigt sind.",
+    color: "#16a34a",
+    border: "#16a34a22",
   },
 ]
 
-function ProblemCard({ problem, index }: { problem: (typeof problems)[0]; index: number }) {
+function StatBlock({ stat, index }: { stat: (typeof STATS)[0]; index: number }) {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: "-80px" })
-  const Icon = problem.icon
+  const inView = useInView(ref, { once: true, margin: "-60px" })
+  const counterRef = useCounter(stat.value, inView)
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
-      animate={inView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.65, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`relative rounded-2xl border ${problem.borderColor} bg-slate-900/80 backdrop-blur-sm overflow-hidden`}
+      initial={{ opacity: 0, y: 32 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className="group relative flex flex-col gap-3 p-6 sm:p-8 bg-white rounded-2xl overflow-hidden"
+      style={{
+        border: `1.5px solid ${stat.border}`,
+        borderLeft: `4px solid ${stat.color}`,
+        boxShadow: `0 2px 16px ${stat.color}0a`,
+      }}
     >
-      <div className={`absolute inset-x-0 top-0 h-32 bg-gradient-to-b ${problem.color} pointer-events-none`} />
-      <div className="relative p-6 sm:p-8">
-        <div className="flex items-start gap-4 mb-5">
-          <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center">
-            <Icon className="w-5 h-5 text-slate-300" />
-          </div>
-          <div>
-            <div className={`text-3xl sm:text-4xl font-black ${problem.statColor} leading-none`}>
-              {problem.stat}
-            </div>
-            <div className="text-xs text-slate-500 font-medium mt-0.5 uppercase tracking-wider">
-              {problem.statLabel}
-            </div>
-          </div>
-        </div>
-        <h3 className="text-lg sm:text-xl font-bold text-white leading-snug mb-3 text-balance">
-          {problem.title}
-        </h3>
-        <p className="text-sm sm:text-base text-slate-400 leading-relaxed">{problem.body}</p>
+      {/* Animated background fill on hover */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        initial={{ opacity: 0 }}
+        whileHover={{ opacity: 1 }}
+        transition={{ duration: 0.35 }}
+        style={{ background: `${stat.color}05` }}
+      />
+
+      {/* Stat number */}
+      <div className="flex items-baseline gap-0 leading-none" style={{ color: stat.color }}>
+        <span className="text-4xl sm:text-5xl font-black tracking-tight">
+          {stat.prefix}
+          <span ref={counterRef}>0</span>
+          {stat.suffix}
+        </span>
       </div>
+
+      {/* Label */}
+      <p className="text-[11px] font-bold uppercase tracking-[0.15em]" style={{ color: `${stat.color}99` }}>
+        {stat.label}
+      </p>
+
+      {/* Divider */}
+      <div className="w-8 h-px" style={{ background: `${stat.color}33` }} />
+
+      {/* Detail text */}
+      <p className="text-sm text-[#3d3d2e] leading-relaxed">{stat.detail}</p>
     </motion.div>
   )
 }
 
 export function ProblemSection() {
   const headlineRef = useRef(null)
-  const headlineInView = useInView(headlineRef, { once: true, margin: "-60px" })
+  const headlineInView = useInView(headlineRef, { once: true, margin: "-40px" })
   const bridgeRef = useRef(null)
   const bridgeInView = useInView(bridgeRef, { once: true, margin: "-60px" })
 
   return (
     <>
-      {/* Problem Section */}
-      <section className="relative bg-slate-950 py-20 sm:py-28 overflow-hidden">
-        {/* Subtle grid */}
+      <section
+        className="relative py-16 sm:py-24 overflow-hidden"
+        style={{ background: "#f5f2eb" }}
+      >
+        {/* Warm grid texture */}
         <div
-          className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          className="absolute inset-0 pointer-events-none"
           style={{
+            opacity: 0.035,
             backgroundImage:
-              "linear-gradient(to right, #94a3b8 1px, transparent 1px), linear-gradient(to bottom, #94a3b8 1px, transparent 1px)",
+              "linear-gradient(to right, #3a5c2f 1px, transparent 1px), linear-gradient(to bottom, #3a5c2f 1px, transparent 1px)",
             backgroundSize: "64px 64px",
           }}
         />
-        {/* Center glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full bg-slate-800/20 blur-3xl pointer-events-none" />
+        {/* Field-rows watermark */}
+        <div className="absolute top-6 right-6 opacity-[0.05] pointer-events-none hidden lg:block">
+          <FieldRowsIcon className="w-56 h-56 text-[#3a5c2f]" />
+        </div>
 
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-          {/* Headline */}
+
+          {/* === HEADLINE — editorial, not SaaS === */}
           <motion.div
             ref={headlineRef}
-            initial={{ opacity: 0, y: 30 }}
-            animate={headlineInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7 }}
-            className="text-center mb-14 sm:mb-20"
+            className="mb-12 sm:mb-16 max-w-4xl"
           >
-            <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-red-400 mb-5">
-              Die Realität auf deutschen Höfen
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-[1.15] text-balance mb-5">
-              Du investierst alles —
-              <span className="text-slate-400"> und kämpfst trotzdem</span>
-              <br className="hidden sm:block" /> gegen steigende Kosten, volle Schreibtische
-              <br className="hidden sm:block" /> und leere Antworten vom Amt.
-            </h2>
-            <p className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
-              Wir sprechen täglich mit Landwirten. Immer wieder hören wir dieselben vier Geschichten.
-            </p>
+            {/* Eyebrow line */}
+            <motion.div
+              initial={{ opacity: 0, x: -12 }}
+              animate={headlineInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.45 }}
+              className="flex items-center gap-3 mb-6"
+            >
+              <div className="w-8 h-px bg-red-500" />
+              <TractorIcon className="w-4 h-4 text-red-500" />
+              <span className="text-[11px] font-black uppercase tracking-[0.22em] text-red-500">
+                Die Realität auf deutschen Höfen
+              </span>
+            </motion.div>
+
+            {/* Main headline — two lines, large */}
+            <div className="overflow-hidden mb-2">
+              <motion.h2
+                initial={{ y: "100%" }}
+                animate={headlineInView ? { y: 0 } : {}}
+                transition={{ duration: 0.7, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+                className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#1a1f0e] leading-[1.05] tracking-tight"
+              >
+                Du investierst alles.
+              </motion.h2>
+            </div>
+            <div className="overflow-hidden mb-6">
+              <motion.h2
+                initial={{ y: "100%" }}
+                animate={headlineInView ? { y: 0 } : {}}
+                transition={{ duration: 0.7, delay: 0.13, ease: [0.16, 1, 0.3, 1] }}
+                className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#6b7059] leading-[1.05] tracking-tight"
+              >
+                Und kämpfst trotzdem.
+              </motion.h2>
+            </div>
+
+            {/* Sub — left-aligned, clear */}
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={headlineInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.35 }}
+              className="text-base sm:text-lg text-[#4a4a3a] leading-relaxed max-w-2xl"
+            >
+              Steigende Kosten, volle Schreibtische, leere Antworten vom Amt —
+              wir hören diese vier Geschichten jeden Tag.
+            </motion.p>
           </motion.div>
 
-          {/* 2×2 Problem Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-            {problems.map((problem, i) => (
-              <ProblemCard key={i} problem={problem} index={i} />
+          {/* === 4-STAT GRID === */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-14 sm:mb-18">
+            {STATS.map((s, i) => (
+              <StatBlock key={i} stat={s} index={i} />
             ))}
           </div>
 
-          {/* Pull quote */}
+          {/* === PULL QUOTE — editorial stripe === */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-16 sm:mt-20 max-w-3xl mx-auto text-center"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="relative flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-8 px-6 sm:px-8 py-6 rounded-2xl overflow-hidden"
+            style={{ background: "#1a1f0e" }}
           >
-            <div className="w-8 h-px bg-slate-700 mx-auto mb-6" />
-            <blockquote className="text-xl sm:text-2xl font-semibold text-slate-300 italic leading-relaxed text-balance">
-              "Ich wusste nicht mal, dass ich Anspruch hatte. Vier Jahre lang hab ich das Geld liegen lassen."
-            </blockquote>
-            <p className="mt-4 text-sm text-slate-600">— Milchviehhalter, Bayern, 2024</p>
+            {/* Gold left line */}
+            <div
+              className="absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl"
+              style={{ background: "linear-gradient(to bottom, #b8860b, #d4a017)" }}
+            />
+            <WheatIcon className="w-8 h-8 flex-shrink-0 ml-2" style={{ color: "#d4a017" }} />
+            <div>
+              <blockquote className="text-base sm:text-lg font-semibold text-white italic leading-relaxed text-balance">
+                "Ich wusste nicht mal, dass ich Anspruch hatte. Vier Jahre lang hab ich das Geld liegen lassen."
+              </blockquote>
+              <p className="mt-2 text-xs font-medium" style={{ color: "#d4a017" }}>
+                — Milchviehhalter, Bayern, 2024
+              </p>
+            </div>
           </motion.div>
+
         </div>
       </section>
 
-      {/* Bridge to solution */}
-      <div ref={bridgeRef} className="relative bg-gradient-to-b from-slate-950 via-slate-900 to-slate-50 py-20 sm:py-24 overflow-hidden">
+      {/* === BRIDGE === */}
+      <div
+        ref={bridgeRef}
+        className="relative border-t py-14 sm:py-20 overflow-hidden"
+        style={{ background: "#fff", borderColor: "#e2ddd3" }}
+      >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl text-center">
           <motion.div
             initial={{ scaleY: 0, opacity: 0 }}
             animate={bridgeInView ? { scaleY: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="w-px h-14 bg-gradient-to-b from-slate-700 to-emerald-500 mx-auto mb-8 origin-top"
+            transition={{ duration: 0.5, delay: 0.05 }}
+            className="w-px h-12 mx-auto mb-8 origin-top"
+            style={{ background: "linear-gradient(to bottom, #e2ddd3, #3a5c2f)" }}
           />
           <motion.p
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={bridgeInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.35 }}
-            className="text-xs font-bold uppercase tracking-[0.2em] text-emerald-500 mb-5"
+            transition={{ duration: 0.45, delay: 0.28 }}
+            className="text-[11px] font-black uppercase tracking-[0.22em] mb-5"
+            style={{ color: "#3a5c2f" }}
           >
             Die gute Nachricht
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 18 }}
             animate={bridgeInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.45 }}
-            className="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight text-balance"
+            transition={{ duration: 0.55, delay: 0.4 }}
+            className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1a1f0e] leading-tight text-balance"
           >
-            Für all das gibt es staatliche Förderung —
-            <br />
-            <span className="text-emerald-400">und wir holen sie für dich.</span>
+            Für all das gibt es staatliche Förderung —{" "}
+            <span style={{ color: "#3a5c2f" }}>und wir holen sie für dich.</span>
           </motion.h2>
           <motion.div
             initial={{ scaleY: 0, opacity: 0 }}
             animate={bridgeInView ? { scaleY: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 0.7 }}
-            className="w-px h-10 bg-gradient-to-b from-emerald-500 to-slate-300 mx-auto mt-8 origin-top"
+            transition={{ duration: 0.45, delay: 0.68 }}
+            className="w-px h-10 mx-auto mt-8 origin-top"
+            style={{ background: "linear-gradient(to bottom, #3a5c2f, #e2ddd3)" }}
           />
         </div>
       </div>

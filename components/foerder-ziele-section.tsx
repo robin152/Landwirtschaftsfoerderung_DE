@@ -75,9 +75,9 @@ export function FoerderZieleSection() {
 
         {/* Header */}
         <div className="text-center mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-2 bg-green-50 border border-green-200 rounded-full px-4 py-1.5 mb-4">
-            <ShieldCheckAgriIcon className="w-4 h-4 text-green-700" />
-            <span className="text-sm font-semibold text-green-800">Was die Förderung für die Landwirtschaft abdeckt</span>
+          <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-4" style={{ background: "#fef3c7", border: "1px solid #d4a017aa" }}>
+            <ShieldCheckAgriIcon className="w-4 h-4" style={{ color: "#b8860b" }} />
+            <span className="text-sm font-semibold" style={{ color: "#92650a" }}>Was die Förderung für die Landwirtschaft abdeckt</span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-3 text-balance">
             Das alles lässt sich fördern — und das ist erst der Anfang
@@ -122,8 +122,8 @@ export function FoerderZieleSection() {
 
         {/* Bottom note */}
         <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 text-center">
-          <div className="inline-flex items-center gap-2 bg-slate-900 text-white rounded-xl px-5 py-3 text-sm font-medium shadow-md">
-            <span className="text-green-400 font-bold">Wichtig:</span>
+          <div className="inline-flex items-center gap-2 text-white rounded-xl px-5 py-3 text-sm font-medium shadow-md" style={{ background: "#1a2e0a" }}>
+            <span style={{ color: "#86efac" }} className="font-bold">Wichtig:</span>
             Investitionen in langlebige Wirtschaftsgüter mit mind. 5 Jahren Zweckbindung
           </div>
           <a
