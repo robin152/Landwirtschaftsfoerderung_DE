@@ -19,7 +19,7 @@ const CREDENTIALS = [
   },
   {
     icon: TrendingUp,
-    title: "ISO 56002 zertifiziert",
+    title: "ISO 56001 zertifiziert",
     desc: "Innovationsmanagement nach Norm — wir denken systematisch, nicht nach Bauchgefühl.",
   },
   {
