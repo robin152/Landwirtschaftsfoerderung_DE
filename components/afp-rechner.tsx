@@ -1205,7 +1205,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                 {[
                   "Landwirtschaftlicher KMU-Status nachweisbar",
                   "Betriebsleiter mit Fachausbildung (Landwirt / Meister / Agrar-Ing.)",
-                  "Kein vorzeitiger Maßnahmenbeginn vor Bewilligungsbescheid",
+                  "Wir starten den Antrag jetzt — damit du so früh wie möglich loslegen darfst",
                   "Vorhaben erhöht Tierwohl / Klima messbar über gesetzlichen Mindeststandard",
                   "Kein reiner Ersatz bestehender Anlage (Additionality-Nachweis)",
                 ].map((item) => (

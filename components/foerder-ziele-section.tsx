@@ -126,9 +126,15 @@ export function FoerderZieleSection() {
             <span className="text-green-400 font-bold">Wichtig:</span>
             Investitionen in langlebige Wirtschaftsgüter mit mind. 5 Jahren Zweckbindung
           </div>
-          <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-200 text-amber-800 rounded-xl px-5 py-3 text-sm font-medium">
-            Kein vorzeitiger Maßnahmenbeginn vor Förderbescheid
-          </div>
+          <a
+            href="#rechner"
+            className="inline-flex items-center gap-2 bg-green-700 hover:bg-green-600 text-white rounded-xl px-5 py-3 text-sm font-semibold shadow-md transition-colors group"
+          >
+            <span>Jetzt Antrag starten — und legal vor Baubeginn loslegen</span>
+            <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </a>
         </div>
 
       </div>
