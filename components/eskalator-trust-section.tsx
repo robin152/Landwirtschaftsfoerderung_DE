@@ -7,7 +7,7 @@ import { Shield, Award, Users, TrendingUp, CheckCircle2, Star } from "lucide-rea
 const STATS = [
   { value: ">98,85 %", label: "Erfolgsquote", sub: "bei Förderanträgen" },
   { value: "2015", label: "Gegründet", sub: "Schweizer AG, Pfäffikon SZ" },
-  { value: ">30 Mio. €", label: "Zuschüsse gesichert", sub: "für unsere Kunden" },
+  { value: ">25 Mio. €", label: "Zuschüsse gesichert", sub: "für unsere Kunden" },
   { value: ">478 h", label: "Bürokratie gespart", sub: "kumuliert, dokumentiert" },
 ]
 

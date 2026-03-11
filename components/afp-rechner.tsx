@@ -1188,8 +1188,8 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
             {/* Blocked CTA */}
             {isBlocked && (
               <button
-                onClick={onCTAClick}
-                className="w-full bg-slate-700 hover:bg-slate-600 text-white font-semibold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-200 text-sm"
+                onClick={() => { onCTAClick?.(); setShowUnlockModal(true) }}
+                className="w-full bg-emerald-700 hover:bg-emerald-600 active:bg-emerald-800 text-white font-semibold py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-200 text-sm shadow-lg shadow-emerald-900/30"
               >
                 Optimierungsmöglichkeiten kostenlos besprechen
                 <ChevronRight className="w-4 h-4" aria-hidden="true" />
