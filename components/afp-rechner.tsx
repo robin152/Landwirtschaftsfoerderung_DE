@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect, useRef, useCallback } from "react"
 import { AlertTriangle, TrendingUp, Award, ChevronRight, Leaf, CheckCircle2, XCircle, Info, AlertCircle, Calendar } from "lucide-react"
-import { LeadCaptureModal } from "@/components/lead-capture-modal"
+import { RechnerUnlockModal } from "@/components/rechner-unlock-modal"
 import { TractorIcon, WheatIcon, BarnIcon, MoneyBagIcon, SunLeafIcon } from "@/components/agri-icons"
 
 // ─── TidyCal Embed — lokal im Rechner ────────────────────────────────────────
@@ -96,7 +96,7 @@ const BUNDESLAENDER = {
     siukMax: 75,       // Hessen: SIUK bis 75 %!
     kombiMax: 50,
     jungBonus: 10,
-    besonderheit: "Höchste SIUK-Sätze bundesweit (75 %). Keine Einkommensgrenze für KMU. Nicht-produktive Investitionen sehr hoch gefördert.",
+    besonderheit: "Höchste Emissionsschutz-Sätze bundesweit (75 %). Keine Einkommensgrenze für KMU. Nicht-produktive Investitionen sehr hoch gefördert.",
   },
   "Sachsen-Anhalt": {
     maxInvest: 5_000_000,
@@ -118,7 +118,7 @@ const BUNDESLAENDER = {
     siukMax: 65,
     kombiMax: 65,
     jungBonus: 10,
-    besonderheit: "Sehr hohe Sätze: Basis schon 40 %, Tierwohl & SIUK bis 65 %. Inkl. Berlin-Betriebe.",
+    besonderheit: "Sehr hohe Sätze: Basis schon 40 %, Tierwohl & Emissionsschutz bis 65 %. Inkl. Berlin-Betriebe.",
   },
   "Sachsen": {
     maxInvest: 5_000_000,
@@ -129,7 +129,7 @@ const BUNDESLAENDER = {
     siukMax: 65,
     kombiMax: 50,
     jungBonus: 10,
-    besonderheit: "SIUK bis 65 %. Keine Einkommensgrenze. GV/ha-Grenze < 2,0 beachten.",
+    besonderheit: "Emissionsschutz bis 65 %. Keine Einkommensgrenze. GV/ha-Grenze < 2,0 beachten.",
   },
   "Thüringen": {
     maxInvest: 5_000_000,
@@ -162,7 +162,7 @@ const BUNDESLAENDER = {
     siukMax: 40,
     kombiMax: 40,
     jungBonus: 10,
-    besonderheit: "Max-Invest 1–5 Mio. variabel (Standardwert 1,5 Mio.). Mobilställe & SIUK stark.",
+    besonderheit: "Max-Invest 1–5 Mio. variabel (Standardwert 1,5 Mio.). Mobilställe & Emissionsschutz stark.",
   },
   "Rheinland-Pfalz": {
     maxInvest: null,         // variabel, mind. 50.000 € Invest
@@ -205,7 +205,7 @@ const INVESTITIONSARTEN = [
   },
   {
     id: "siuk",
-    label: "Klima- & Emissionsschutz SIUK (Anlage 3B)",
+    label: "Klima- & Emissionsschutz (Anlage 3B)",
     desc: "Abluft, Güllekühlung, Biogasanlage, Lager mit fester Abdeckung",
     badge: "bis 75 %",
     badgeColor: "bg-blue-900/60 text-blue-300 border-blue-700",
@@ -213,7 +213,7 @@ const INVESTITIONSARTEN = [
   },
   {
     id: "kombi",
-    label: "Kombination Tierwohl + SIUK",
+    label: "Kombination Tierwohl + Emissionsschutz",
     desc: "Stallbau + Emissionsschutz kombiniert — holt den maximalen Gesamtsatz",
     badge: "Maximum",
     badgeColor: "bg-orange-900/60 text-orange-300 border-orange-700",
@@ -246,7 +246,7 @@ const INVESTITIONSARTEN = [
   {
     id: "basis",
     label: "Lagerhalle / Fahrsilo / Sonstiges",
-    desc: "Maßnahmen ohne erhöhten Tierwohl- oder SIUK-Anteil",
+    desc: "Maßnahmen ohne erhöhten Tierwohl- oder Emissionsschutz-Anteil",
     badge: "20–25 %",
     badgeColor: "bg-slate-700/60 text-slate-300 border-slate-600",
     icon: "barn",
@@ -420,7 +420,7 @@ function AgriCardIcon({ icon, className }: { icon: string; className?: string })
   }
 }
 
-// ───────────────────────────────────────────────────────────��─────────────────
+// ───────────────────────────────────────�������───────────────────���─────────────────
 // HELPER COMPONENTS
 // ─────────────────────────────────────────────────────────────────────────────
 function SelectField({
@@ -896,7 +896,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
               <h4 className="text-xl sm:text-2xl font-bold text-white leading-snug">
                 Wer ist der Betriebsleiter?
               </h4>
-              <p className="text-sm text-slate-400 mt-1">Alter und Einkommen bestimmen deinen Junglandwirt-Bonus und die Prosperitätsgrenze.</p>
+              <p className="text-sm text-slate-400 mt-1">Alter und Einkommen bestimmen deinen Junglandwirt-Bonus und ob du die staatliche Einkommensgrenze einhältst.</p>
             </div>
             {showErrors && !canProceed[2] && (
               <div className="flex items-center gap-2 bg-red-950/60 border border-red-700/50 rounded-xl px-4 py-3">
@@ -926,13 +926,13 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
               />
             </div>
             <NumberField
-              label="Ø Einkommen letzte 3 Jahre"
+              label="Persönliches Brutto-Einkommen (Ø letzte 3 Jahre)"
               value={einkommen}
               onChange={setEinkommen}
               min={0}
               suffix="€"
-              placeholder="z.B. 120000"
-              hint="Positive Einkünfte lt. ESt-Bescheid. Leer lassen = wird nicht geprüft."
+              placeholder="z.B. 120.000"
+              hint="Dein persönliches Jahres-Bruttoeinkommen lt. Steuerbescheid — Durchschnitt der letzten 3 Jahre. Nicht das Betriebs-Ergebnis. Leer lassen = wird nicht geprüft."
             />
             <ToggleField
               label="Meister / staatl. gepr. Betriebswirt (Landwirt)"
@@ -943,8 +943,8 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
             <div className="flex items-start gap-2 bg-slate-800/50 rounded-lg p-3">
               <Info className="w-4 h-4 text-slate-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
               <p className="text-xs text-slate-400">
-                Einkommensgrenze (Prosperitätsgrenze) variiert je Bundesland. Lass das Feld leer,
-                wenn du dir unsicher bist — ich prüfe das im persönlichen Check.
+                Die staatliche Einkommensgrenze variiert je Bundesland. Lass das Feld leer,
+                wenn du dir unsicher bist — wir prüfen das im persönlichen Check.
               </p>
             </div>
           </div>
@@ -978,8 +978,8 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                   </p>
                   <p className="text-red-400 text-xs mt-1">
                     Dein Einkommen ({Number(einkommen).toLocaleString("de-DE")} €) liegt über der
-                    Prosperitätsgrenze von {ergebnis.aktuelleGrenze?.toLocaleString("de-DE")} € in {bundesland}.
-                    Ich zeige dir, wie du das strategisch lösen kannst.
+                    staatlichen Einkommensgrenze von {ergebnis.aktuelleGrenze?.toLocaleString("de-DE")} € in {bundesland}.
+                    Wir zeigen dir, wie du das strategisch lösen kannst.
                   </p>
                 </div>
               </div>
@@ -1205,7 +1205,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                 {[
                   "Landwirtschaftlicher KMU-Status nachweisbar",
                   "Betriebsleiter mit Fachausbildung (Landwirt / Meister / Agrar-Ing.)",
-                  "Kein vorzeitiger Maßnahmenbeginn vor Bewilligungsbescheid",
+                  "Wir starten den Antrag jetzt — damit du so früh wie möglich loslegen darfst",
                   "Vorhaben erhöht Tierwohl / Klima messbar über gesetzlichen Mindeststandard",
                   "Kein reiner Ersatz bestehender Anlage (Additionality-Nachweis)",
                 ].map((item) => (
@@ -1280,16 +1280,15 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
       </div>
     </div>
 
-      {/* Unlock Modal */}
+      {/* Unlock Modal — schlank: nur Name, Email, Mobil */}
       {showUnlockModal && (
-        <LeadCaptureModal
+        <RechnerUnlockModal
           isOpen={showUnlockModal}
           onClose={() => setShowUnlockModal(false)}
           onSuccess={() => {
             setShowUnlockModal(false)
             setResultUnlocked(true)
           }}
-          source="rechner-unlock"
           prefilledData={{
             investment: Number(investVolumen) || undefined,
             investitionsart: primaryInvestitionsart || undefined,

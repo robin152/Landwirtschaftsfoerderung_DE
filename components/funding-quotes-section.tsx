@@ -18,18 +18,18 @@ import { useState } from "react"
 // 3. HIGHLIGHT-BOX mit MAXIMUM Quote
 
 const fundingData = [
-  { bl: "NRW",               maxInvest: "1,2 Mio.",    basis: "20 %", tierwohl: "40 %",   siuk: "50 %",   kombi: "40 %",  jung: "+10 %", note: "Kälbermatten-Aufschlag befristet" },
-  { bl: "Niedersachsen/HB/HH", maxInvest: "1,5 Mio.", basis: "20 %", tierwohl: "40 %",   siuk: "40 %",   kombi: "40 %",  jung: "+10 %", note: "Mobilställe explizit förderfähig" },
-  { bl: "Bayern",            maxInvest: "1,2 Mio.",    basis: "20 %", tierwohl: "25 %",   siuk: "40 %",   kombi: "40 %",  jung: "+10 %", note: "Meister +15 PP, Öko-Bonus" },
-  { bl: "Baden-Württemberg", maxInvest: "2,0 Mio.",    basis: "20 %", tierwohl: "30–40 %",siuk: "40 %",   kombi: "40 %",  jung: "+10 %", note: "Schweine ab Sept. 2026 wieder" },
-  { bl: "Hessen",            maxInvest: "5,0 Mio.",    basis: "20 %", tierwohl: "40 %",   siuk: "75 %",   kombi: "50 %",  jung: "+10 %", note: "Höchste SIUK-Sätze bundesweit", highlight: true },
-  { bl: "Sachsen-Anhalt",    maxInvest: "5,0 Mio.",    basis: "20 %", tierwohl: "40 %",   siuk: "40 %",   kombi: "40 %",  jung: "+10 %", note: "Höchste Prosper.-Grenze neue BL" },
-  { bl: "Brandenburg (+BE)", maxInvest: "5,0 Mio.",    basis: "40 %", tierwohl: "65 %",   siuk: "65 %",   kombi: "65 %",  jung: "+10 %", note: "Sehr hohe Sätze", highlight: true },
-  { bl: "Sachsen",           maxInvest: "5,0 Mio.",    basis: "20 %", tierwohl: "40 %",   siuk: "65 %",   kombi: "50 %",  jung: "+10 %", note: "GV/ha-Grenze < 2,0 beachten" },
-  { bl: "Thüringen",         maxInvest: "5,0 Mio.",    basis: "20 %", tierwohl: "40 %",   siuk: "40 %",   kombi: "40 %",  jung: "+10 %", note: "Extra-Öko-Bonus" },
-  { bl: "Rheinland-Pfalz",   maxInvest: "k.A. (min. 50k)", basis: "20 %", tierwohl: "40 %", siuk: "40 %", kombi: "40 %", jung: "+10 %", note: "Diversifizierung stark" },
-  { bl: "Saarland",          maxInvest: "3,0 Mio.",    basis: "25 %", tierwohl: "40 %",   siuk: "40 %",   kombi: "40 %",  jung: "+10 %", note: "Gülleabdeckung bis 90 %" },
-  { bl: "MV / SH / SL",     maxInvest: "1–5 Mio.",    basis: "20 %", tierwohl: "40 %",   siuk: "40–65 %",kombi: "40–50 %",jung: "+10 %", note: "Mobilställe & SIUK stark" },
+  { bl: "NRW",               maxInvest: "1,2 Mio.",    basis: "20 %", tierwohl: "40 %",   klima: "50 %",   kombi: "40 %",  jung: "+10 %", note: "Kälbermatten-Aufschlag befristet" },
+  { bl: "Niedersachsen/HB/HH", maxInvest: "1,5 Mio.", basis: "20 %", tierwohl: "40 %",   klima: "40 %",   kombi: "40 %",  jung: "+10 %", note: "Mobilställe explizit förderfähig" },
+  { bl: "Bayern",            maxInvest: "1,2 Mio.",    basis: "20 %", tierwohl: "25 %",   klima: "40 %",   kombi: "40 %",  jung: "+10 %", note: "Meister +15 PP, Öko-Bonus" },
+  { bl: "Baden-Württemberg", maxInvest: "2,0 Mio.",    basis: "20 %", tierwohl: "30–40 %",klima: "40 %",   kombi: "40 %",  jung: "+10 %", note: "Schweine ab Sept. 2026 wieder" },
+  { bl: "Hessen",            maxInvest: "5,0 Mio.",    basis: "20 %", tierwohl: "40 %",   klima: "75 %",   kombi: "50 %",  jung: "+10 %", note: "Höchste Emissionsschutz-Sätze bundesweit", highlight: true },
+  { bl: "Sachsen-Anhalt",    maxInvest: "5,0 Mio.",    basis: "20 %", tierwohl: "40 %",   klima: "40 %",   kombi: "40 %",  jung: "+10 %", note: "Höchste Prosper.-Grenze neue BL" },
+  { bl: "Brandenburg (+BE)", maxInvest: "5,0 Mio.",    basis: "40 %", tierwohl: "65 %",   klima: "65 %",   kombi: "65 %",  jung: "+10 %", note: "Sehr hohe Sätze", highlight: true },
+  { bl: "Sachsen",           maxInvest: "5,0 Mio.",    basis: "20 %", tierwohl: "40 %",   klima: "65 %",   kombi: "50 %",  jung: "+10 %", note: "GV/ha-Grenze < 2,0 beachten" },
+  { bl: "Thüringen",         maxInvest: "5,0 Mio.",    basis: "20 %", tierwohl: "40 %",   klima: "40 %",   kombi: "40 %",  jung: "+10 %", note: "Extra-Öko-Bonus" },
+  { bl: "Rheinland-Pfalz",   maxInvest: "k.A. (min. 50k)", basis: "20 %", tierwohl: "40 %", klima: "40 %", kombi: "40 %", jung: "+10 %", note: "Diversifizierung stark" },
+  { bl: "Saarland",          maxInvest: "3,0 Mio.",    basis: "25 %", tierwohl: "40 %",   klima: "40 %",   kombi: "40 %",  jung: "+10 %", note: "Gülleabdeckung bis 90 %" },
+  { bl: "MV / SH / SL",     maxInvest: "1–5 Mio.",    basis: "20 %", tierwohl: "40 %",   klima: "40–65 %",kombi: "40–50 %",jung: "+10 %", note: "Mobilställe & Emissionsschutz stark" },
 ]
 
 export function FundingQuotesSection() {
@@ -86,7 +86,7 @@ export function FundingQuotesSection() {
             </div>
             <div className="px-1 sm:px-2 py-3 text-center leading-tight">
               Klima max.
-              <span className="block text-slate-400 font-normal normal-case text-[9px] sm:text-[10px] tracking-normal">SIUK Emissionen</span>
+              <span className="block text-slate-400 font-normal normal-case text-[9px] sm:text-[10px] tracking-normal">Emissionsschutz</span>
             </div>
             <div className="px-1 sm:px-2 py-3 text-center leading-tight">
               Kombi max.
@@ -115,7 +115,7 @@ export function FundingQuotesSection() {
                 {row.tierwohl}
               </div>
               <div className={`px-2 py-3 text-center font-bold ${"highlight" in row && row.highlight ? "text-emerald-700" : "text-slate-800"}`}>
-                {row.siuk}
+                {row.klima}
               </div>
               <div className="px-2 py-3 text-center font-semibold text-slate-700">{row.kombi}</div>
               <div className="px-2 py-3 text-center font-medium text-amber-600">{row.jung}</div>
@@ -130,8 +130,8 @@ export function FundingQuotesSection() {
           {[
             { term: "Basis",        desc: "Grundförderquote — gilt für alle förderfähigen Investitionen" },
             { term: "Tierwohl",     desc: "Stall-Umbau über Mindeststandard: mehr Platz, Licht, Laufhöfe (Anlage 1 + 2)" },
-            { term: "SIUK",         desc: "Stallbau, Infrastruktur, Umwelt & Klima — z.B. Abluftreinigung, Güllekühlung, Biogasanlage (Anlage 3B)" },
-            { term: "Kombi",        desc: "Kombination Tierwohl + SIUK in einem Vorhaben — ergibt den höchsten Gesamtsatz" },
+            { term: "Emissionsschutz", desc: "Klima- & Emissionsschutz (Anlage 3B) — z.B. Abluftreinigung, Güllekühlung, Biogasanlage" },
+            { term: "Kombi",           desc: "Kombination Tierwohl + Emissionsschutz in einem Vorhaben — ergibt den höchsten Gesamtsatz" },
             { term: "Jung +10 %",   desc: "Junglandwirt-Bonus für Betriebsinhaber bis 40 Jahre, max. 20.000 € Aufschlag" },
           ].map(({ term, desc }) => (
             <div key={term} className="flex items-start gap-1.5 text-xs text-slate-500">

@@ -56,8 +56,8 @@ const faqCategories: FAQCategory[] = [
         answer: "Landwirtschaftliche KMU, die mehr als 25 % Umsatz aus Primärproduktion erzielen, die ALG-Mindestgröße erfüllen und deren Betriebsleiter eine abgeschlossene landwirtschaftliche Ausbildung oder ein Studium hat."
       },
       {
-        question: "Was passiert, wenn mein Einkommen die Prosperitätsgrenze überschreitet?",
-        answer: "Dann gibt es keinen Zuschuss. Aktuelle Grenzen (März 2026): NRW 150.000/180.000 €, Niedersachsen 170.000/200.000 €, Bayern 140.000/170.000 €, BW 210.000/250.000 €. Bei Überschreitung ist eine Optimierung nur in Ausnahmefällen möglich."
+        question: "Was passiert, wenn mein Einkommen die staatliche Einkommensgrenze überschreitet?",
+        answer: "Dann gibt es keinen Zuschuss. Die Grenze liegt je nach Bundesland und Familienstand zwischen 140.000 € und 250.000 € pro Jahr. Bei Überschreitung ist eine Optimierung nur in Ausnahmefällen möglich — wir prüfen das individuell."
       },
       {
         question: "Gelten für Junglandwirte besondere Regeln?",
@@ -82,7 +82,7 @@ const faqCategories: FAQCategory[] = [
     faqs: [
       {
         question: "Welche Maßnahmen werden grundsätzlich gefördert?",
-        answer: "Stallbau mit Tierwohl-Standards, emissionsmindernde Technik (SIUK), Gülle- und Festmistlager mit Abdeckung, Präzisionstechnik, Bewässerung mit ≥ 15 % Einsparung, Naturgefahrenvorsorge und Kälbermatten."
+        answer: "Stallbau mit Tierwohl-Standards, emissionsmindernde Technik (Abluft, Güllekühlung, Lagerabdeckung), Gülle- und Festmistlager mit Abdeckung, Präzisionstechnik, Bewässerung mit ≥ 15 % Einsparung, Naturgefahrenvorsorge und Kälbermatten."
       },
       {
         question: "Welche Tageslicht-Anforderungen gelten für Tierwohl-Ställe?",
@@ -111,7 +111,7 @@ const faqCategories: FAQCategory[] = [
     faqs: [
       {
         question: "Wie hoch sind die möglichen Zuschussquoten?",
-        answer: "Basis: 20 %. Tierwohl-Premium: 35–40 % (Bayern nur 25 %). SIUK/Klima: bis 75 % (Hessen), Kombi bis 50 %. BW und Niedersachsen haben 2026 angepasste Sätze."
+        answer: "Basis: 20 %. Tierwohl-Premium: 35–40 % (Bayern nur 25 %). Emissionsschutz/Klima: bis 75 % (Hessen), Kombi bis 50 %. BW und Niedersachsen haben 2026 angepasste Sätze."
       },
       {
         question: "Wie hoch ist das maximale Investitionsvolumen?",
@@ -127,7 +127,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Kann ich mehrere Maßnahmen kombinieren?",
-        answer: "Ja. Tierwohl + SIUK ergibt oft den höchsten Satz (bis 50 %)."
+        answer: "Ja. Tierwohl + Emissionsschutz ergibt oft den höchsten Satz (bis 50 %)."
       },
     ]
   },

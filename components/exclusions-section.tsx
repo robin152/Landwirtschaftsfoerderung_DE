@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { XCircle, AlertTriangle, Info } from "lucide-react"
+import { XCircle, AlertTriangle, Info, ArrowRight } from "lucide-react"
 
 const EXCLUSIONS = [
   {
@@ -54,7 +54,7 @@ const EXCLUSIONS = [
   },
   {
     label: "Reine Basisförderung in Bayern / BW",
-    detail: "Bayern und Baden-Württemberg fördern nur noch Premium-Tierwohl und SIUK – keine Basismaßnahmen",
+    detail: "Bayern und Baden-Württemberg fördern nur noch Premium-Tierwohl und Emissionsschutz – keine Basismaßnahmen",
     icon: AlertTriangle,
     type: "conditional",
   },
@@ -192,6 +192,36 @@ export function ExclusionsSection() {
           </div>
 
         </div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55, delay: 0.15 }}
+          className="mt-12 sm:mt-16 text-center"
+        >
+          <p className="text-sm font-semibold text-slate-500 uppercase tracking-widest mb-3">
+            Dein Vorhaben ist nicht auf der Liste?
+          </p>
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 mb-3 text-balance">
+            Dann hol dir jetzt dein kostenloses Förder-Gutachten.
+          </h3>
+          <p className="text-base text-slate-500 max-w-xl mx-auto mb-8 leading-relaxed">
+            In 45 Sekunden siehst du, wie viel Zuschuss für deinen Betrieb möglich ist — kostenlos, ohne Risiko, ohne Behörden-Stress.
+          </p>
+          <a
+            href="#rechner"
+            className="inline-flex items-center gap-3 bg-green-700 hover:bg-green-600 active:bg-green-800 text-white font-bold text-base sm:text-lg px-8 sm:px-12 py-4 sm:py-5 rounded-2xl shadow-lg shadow-green-900/20 hover:shadow-xl hover:shadow-green-900/30 transition-all duration-200 group"
+          >
+            Jetzt Förderpotenzial berechnen
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </a>
+          <p className="mt-4 text-xs text-slate-400">
+            Kostenlos · Unverbindlich · Ergebnis in 45 Sekunden
+          </p>
+        </motion.div>
+
       </div>
     </section>
   )
