@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import { WheatIcon } from "@/components/agri-icons"
 
 const footerLinks = {
   unternehmen: [
@@ -126,7 +127,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mb-8 sm:mb-12 p-4 sm:p-6 bg-slate-50 rounded-xl border border-slate-200">
+        <div className="mb-8 sm:mb-12 p-4 sm:p-6 rounded-xl border" style={{ background: "#faf7f0", borderColor: "#e2ddd3" }}>
           <h4 className="font-semibold text-sm sm:text-base text-foreground mb-3">Rechtliche Grundlagen</h4>
           <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
             Unsere Beratung basiert auf dem Fördergesetz des Bundes und der Länder sowie den Richtlinien der
@@ -146,9 +147,12 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4 pt-6 sm:pt-8 border-t border-border text-center sm:text-left">
-          <p className="text-xs sm:text-sm text-muted-foreground">
-            © 2026 Eskalator AG • Hauptsitz: Schweiz
-          </p>
+          <div className="flex items-center gap-2">
+            <WheatIcon className="w-4 h-4 text-[#b8860b] opacity-60" />
+            <p className="text-xs sm:text-sm text-muted-foreground">
+              © 2026 Eskalator AG • Hauptsitz: Schweiz
+            </p>
+          </div>
           <p className="text-xs sm:text-sm text-muted-foreground">Made in Germany & Switzerland</p>
         </div>
       </div>

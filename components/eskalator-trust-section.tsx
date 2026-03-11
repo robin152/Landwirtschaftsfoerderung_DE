@@ -3,6 +3,7 @@
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { Shield, Award, Users, TrendingUp, CheckCircle2, Star } from "lucide-react"
+import { WheatIcon } from "@/components/agri-icons"
 
 const STATS = [
   { value: ">98,85 %", label: "Erfolgsquote", sub: "bei Förderanträgen" },
@@ -97,7 +98,8 @@ export function EskalatorTrustSection() {
           className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10 sm:mb-14"
         >
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-2">
+            <p className="text-xs font-bold uppercase tracking-widest mb-2 flex items-center gap-1.5" style={{ color: "#b8860b" }}>
+              <WheatIcon className="w-3.5 h-3.5" />
               Ihr Partner — Eskalator AG
             </p>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 text-balance leading-tight">
@@ -106,7 +108,7 @@ export function EskalatorTrustSection() {
             </h2>
           </div>
           {/* Google Badge */}
-          <div className="flex-shrink-0 flex items-center gap-2.5 bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5">
+          <div className="flex-shrink-0 flex items-center gap-2.5 rounded-xl px-4 py-2.5" style={{ background: "#faf7f0", border: "1px solid #e2ddd3" }}>
             <div className="flex flex-col items-center">
               <span className="text-xs text-slate-500 font-medium mb-0.5">Google</span>
               <div className="flex gap-0.5">
@@ -128,14 +130,18 @@ export function EskalatorTrustSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="grid grid-cols-2 lg:grid-cols-4 border border-slate-200 rounded-2xl overflow-hidden mb-8"
+          className="grid grid-cols-2 lg:grid-cols-4 rounded-2xl overflow-hidden mb-8"
+          style={{ border: "1px solid #e2ddd3" }}
         >
           {STATS.map((s, i) => (
             <div
               key={i}
-              className={`px-5 py-6 flex flex-col gap-1 bg-slate-50 ${
-                i < STATS.length - 1 ? "border-b lg:border-b-0 border-r-0 lg:border-r border-slate-200" : ""
-              } ${i === 1 ? "border-r border-slate-200 lg:border-r" : ""}`}
+              className={`px-5 py-6 flex flex-col gap-1`}
+            style={{
+              background: "#f7f4ec",
+              borderRight: i < STATS.length - 1 ? "1px solid #e2ddd3" : undefined,
+              borderBottom: i < 2 ? "1px solid #e2ddd3" : undefined,
+            }}
             >
               <span className="text-2xl sm:text-3xl font-bold text-emerald-700 leading-none">{s.value}</span>
               <span className="text-sm font-semibold text-slate-900">{s.label}</span>
@@ -157,7 +163,8 @@ export function EskalatorTrustSection() {
             {CREDENTIALS.map(({ icon: Icon, title, desc }, i) => (
               <div
                 key={i}
-                className="bg-white border border-slate-200 rounded-xl p-4 flex flex-col gap-2 shadow-sm"
+                className="bg-white rounded-xl p-4 flex flex-col gap-2 shadow-sm"
+                style={{ border: "1px solid #e2ddd3", borderTop: "3px solid #3a5c2f33" }}
               >
                 <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center">
                   <Icon className="w-4 h-4 text-emerald-700" />
@@ -168,7 +175,7 @@ export function EskalatorTrustSection() {
             ))}
 
             {/* UID / legal */}
-            <div className="sm:col-span-2 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 flex flex-wrap gap-x-6 gap-y-1.5">
+            <div className="sm:col-span-2 rounded-xl px-4 py-3 flex flex-wrap gap-x-6 gap-y-1.5" style={{ background: "#f7f4ec", border: "1px solid #e2ddd3" }}>
               {[
                 { label: "Rechtsform", value: "Aktiengesellschaft (CH)" },
                 { label: "UID", value: "CHE-399.487.701" },

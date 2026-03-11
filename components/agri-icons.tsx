@@ -180,6 +180,110 @@ export function SunLeafIcon({ className, ...props }: SVGProps<SVGSVGElement> & {
   )
 }
 
+// Field rows / planted furrows
+export function FieldRowsIcon({ className, ...props }: SVGProps<SVGSVGElement> & { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 64 64"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-hidden="true"
+      {...props}
+    >
+      {/* Horizon line */}
+      <line x1="4" y1="34" x2="60" y2="34" stroke="currentColor" strokeWidth="2" opacity="0.4" />
+      {/* Furrow rows — converging to center horizon (perspective) */}
+      <path d="M32 34 L4 56" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.9" />
+      <path d="M32 34 L60 56" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.9" />
+      <path d="M32 34 L14 56" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.75" />
+      <path d="M32 34 L50 56" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.75" />
+      <path d="M32 34 L22 56" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.6" />
+      <path d="M32 34 L42 56" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.6" />
+      {/* Sky: wheat stalks on horizon */}
+      <line x1="16" y1="34" x2="16" y2="24" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
+      <ellipse cx="16" cy="21" rx="2.5" ry="4" fill="currentColor" opacity="0.5" />
+      <line x1="24" y1="34" x2="24" y2="22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
+      <ellipse cx="24" cy="19" rx="2.5" ry="4" fill="currentColor" opacity="0.5" />
+      <line x1="32" y1="34" x2="32" y2="20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.6" />
+      <ellipse cx="32" cy="17" rx="2.5" ry="4" fill="currentColor" opacity="0.6" />
+      <line x1="40" y1="34" x2="40" y2="22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
+      <ellipse cx="40" cy="19" rx="2.5" ry="4" fill="currentColor" opacity="0.5" />
+      <line x1="48" y1="34" x2="48" y2="24" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
+      <ellipse cx="48" cy="21" rx="2.5" ry="4" fill="currentColor" opacity="0.5" />
+    </svg>
+  )
+}
+
+// Cow silhouette
+export function CowSilhouetteIcon({ className, ...props }: SVGProps<SVGSVGElement> & { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 64 64"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-hidden="true"
+      {...props}
+    >
+      {/* Body */}
+      <ellipse cx="32" cy="36" rx="18" ry="11" fill="currentColor" opacity="0.85" />
+      {/* Head */}
+      <ellipse cx="49" cy="28" rx="8" ry="7" fill="currentColor" opacity="0.85" />
+      {/* Snout */}
+      <ellipse cx="56" cy="30" rx="4" ry="3" fill="currentColor" opacity="0.7" />
+      {/* Nostrils */}
+      <circle cx="55" cy="31" r="0.8" fill="white" opacity="0.6" />
+      <circle cx="57" cy="31" r="0.8" fill="white" opacity="0.6" />
+      {/* Eye */}
+      <circle cx="50" cy="26" r="1.2" fill="white" opacity="0.7" />
+      {/* Ear */}
+      <ellipse cx="44" cy="22" rx="2.5" ry="4" fill="currentColor" opacity="0.7" transform="rotate(-20 44 22)" />
+      {/* Legs */}
+      <rect x="19" y="44" width="4" height="10" rx="2" fill="currentColor" opacity="0.8" />
+      <rect x="26" y="45" width="4" height="10" rx="2" fill="currentColor" opacity="0.8" />
+      <rect x="35" y="45" width="4" height="10" rx="2" fill="currentColor" opacity="0.8" />
+      <rect x="42" y="44" width="4" height="10" rx="2" fill="currentColor" opacity="0.8" />
+      {/* Udder */}
+      <ellipse cx="29" cy="46" rx="5" ry="3" fill="currentColor" opacity="0.5" />
+      {/* Tail */}
+      <path d="M14 34 Q8 28 10 22 Q12 20 14 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.7" />
+      {/* Spot */}
+      <ellipse cx="30" cy="33" rx="5" ry="4" fill="white" opacity="0.25" />
+    </svg>
+  )
+}
+
+// Gülle / slurry tank
+export function GuelleIcon({ className, ...props }: SVGProps<SVGSVGElement> & { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 64 64"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-hidden="true"
+      {...props}
+    >
+      {/* Tank cylinder */}
+      <ellipse cx="32" cy="20" rx="20" ry="6" fill="currentColor" opacity="0.4" />
+      <rect x="12" y="20" width="40" height="24" fill="currentColor" opacity="0.75" />
+      <ellipse cx="32" cy="44" rx="20" ry="6" fill="currentColor" opacity="0.85" />
+      {/* Cover band */}
+      <ellipse cx="32" cy="20" rx="20" ry="6" stroke="currentColor" strokeWidth="1.5" fill="none" opacity="0.9" />
+      {/* Dome top */}
+      <path d="M12 20 Q32 10 52 20" stroke="currentColor" strokeWidth="1.5" fill="none" opacity="0.5" />
+      {/* Pipe out */}
+      <rect x="28" y="44" width="8" height="10" rx="2" fill="currentColor" opacity="0.7" />
+      <rect x="24" y="52" width="16" height="4" rx="2" fill="currentColor" opacity="0.7" />
+      {/* Valve */}
+      <circle cx="32" cy="38" r="4" fill="white" opacity="0.2" />
+      <line x1="32" y1="35" x2="32" y2="41" stroke="white" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
+      <line x1="29" y1="38" x2="35" y2="38" stroke="white" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
+    </svg>
+  )
+}
+
 // Checkmark shield (Fördersicherheit)
 export function ShieldCheckAgriIcon({ className, ...props }: SVGProps<SVGSVGElement> & { className?: string }) {
   return (

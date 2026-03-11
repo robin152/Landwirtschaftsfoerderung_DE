@@ -46,9 +46,9 @@ const steps = [
     result: "Go / No-Go + Optimierung",
     keyFact: "Ablehnungen verhindern",
     keyFactIcon: Shield,
-    accent: "#2563eb",
-    accentLight: "#dbeafe",
-    accentText: "#1d4ed8",
+    accent: "#5a7a4a",
+    accentLight: "#d1fae5",
+    accentText: "#3a5c2f",
     warning: "Keinen Auftrag vergeben, solange der Bescheid noch aussteht!",
     highlight: null,
   },
@@ -118,7 +118,7 @@ function StepCard({ step, index, isLast }: { step: typeof steps[0]; index: numbe
       <div
         className="relative flex flex-col h-full rounded-2xl overflow-hidden"
         style={{
-          background: "linear-gradient(145deg, #0f172a 0%, #1e293b 100%)",
+          background: "linear-gradient(145deg, #0d1a0d 0%, #162616 100%)",
           border: `1.5px solid ${step.accent}33`,
           boxShadow: `0 4px 32px ${step.accent}18`,
         }}
@@ -243,7 +243,7 @@ export function ProcessSectionRWP() {
   const [headerRef, headerInView] = useInView({ triggerOnce: true, threshold: 0.15 })
 
   return (
-    <section id="ablauf" className="py-16 sm:py-24 overflow-hidden" style={{ background: "#020617" }}>
+    <section id="ablauf" className="py-16 sm:py-24 overflow-hidden" style={{ background: "#0f2010" }}>
       <div className="page-container px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
@@ -255,7 +255,7 @@ export function ProcessSectionRWP() {
           className="text-center mb-12 sm:mb-16"
         >
           <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4"
-            style={{ background: "#16a34a22", color: "#4ade80", border: "1px solid #16a34a44" }}>
+          style={{ background: "#16a34a22", color: "#86efac", border: "1px solid #16a34a44" }}>
             Der Ablauf
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 text-balance">
