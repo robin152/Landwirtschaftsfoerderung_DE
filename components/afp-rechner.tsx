@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect, useRef, useCallback } from "react"
 import { AlertTriangle, TrendingUp, Award, ChevronRight, Leaf, CheckCircle2, XCircle, Info, AlertCircle, Calendar } from "lucide-react"
-import { LeadCaptureModal } from "@/components/lead-capture-modal"
+import { RechnerUnlockModal } from "@/components/rechner-unlock-modal"
 import { TractorIcon, WheatIcon, BarnIcon, MoneyBagIcon, SunLeafIcon } from "@/components/agri-icons"
 
 // ─── TidyCal Embed — lokal im Rechner ────────────────────────────────────────
@@ -420,7 +420,7 @@ function AgriCardIcon({ icon, className }: { icon: string; className?: string })
   }
 }
 
-// ───────────────────────────────────────�����───────────────────���─────────────────
+// ───────────────────────────────────────�������───────────────────���─────────────────
 // HELPER COMPONENTS
 // ─────────────────────────────────────────────────────────────────────────────
 function SelectField({
@@ -1280,16 +1280,15 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
       </div>
     </div>
 
-      {/* Unlock Modal */}
+      {/* Unlock Modal — schlank: nur Name, Email, Mobil */}
       {showUnlockModal && (
-        <LeadCaptureModal
+        <RechnerUnlockModal
           isOpen={showUnlockModal}
           onClose={() => setShowUnlockModal(false)}
           onSuccess={() => {
             setShowUnlockModal(false)
             setResultUnlocked(true)
           }}
-          source="rechner-unlock"
           prefilledData={{
             investment: Number(investVolumen) || undefined,
             investitionsart: primaryInvestitionsart || undefined,
