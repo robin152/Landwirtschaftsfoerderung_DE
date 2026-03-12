@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 import { TractorIcon, WheatIcon, MoneyBagIcon, BarnIcon, ShieldCheckAgriIcon, SunriseIcon } from "@/components/agri-icons"
-import { Shield, Landmark, FileX2, Trophy } from "lucide-react"
+// Icons moved to inline numbered list
 import { LeadCaptureModal } from "@/components/lead-capture-modal"
 
 // Count-up animation for "2,5 Millionen €"
@@ -172,50 +172,62 @@ export function HeroSection() {
               className="flex flex-col gap-2.5"
             >
               {/* Header */}
-              <div className="mb-1">
-                <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#7c3aed" }}>Warum Sie mit uns gewinnen</p>
+              <div className="mb-2">
+                <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "#7c3aed" }}>Warum Sie mit uns gewinnen</p>
               </div>
 
-              {[
-                {
-                  icon: Shield,
-                  text: "Sichern Sie Ihr Lebenswerk für Ihre Kinder.",
-                  accent: "#16a34a",
-                },
-                {
-                  icon: Landmark,
-                  text: "Wachsen Sie unabhängig von teuren Bankkrediten.",
-                  accent: "#7c3aed",
-                },
-                {
-                  icon: Shield,
-                  text: "Minimieren Sie das finanzielle Risiko Ihrer Investition.",
-                  accent: "#16a34a",
-                },
-                {
-                  icon: FileX2,
-                  text: "Seien Sie wieder Landwirt statt Aktenfresser.",
-                  accent: "#7c3aed",
-                },
-                {
-                  icon: Trophy,
-                  text: "Sichern Sie sich staatlich finanzierten Wettbewerbsvorsprung.",
-                  accent: "#16a34a",
-                },
-              ].map(({ icon: Icon, text, accent }, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: 12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.35, delay: 0.3 + i * 0.06 }}
-                  className="flex items-center gap-3 py-1.5"
-                >
-                  <div className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0" style={{ background: accent }}>
-                    <Icon className="w-3.5 h-3.5 text-white" />
-                  </div>
-                  <p className="font-medium text-slate-700 text-sm leading-snug">{text}</p>
-                </motion.div>
-              ))}
+              {/* 5 Benefits - clean numbered list */}
+              <div className="space-y-3">
+                {[
+                  {
+                    num: "01",
+                    title: "Die Standortsicherung",
+                    headline: "Sichern Sie Ihren Familiennamen auf eigenem Grund.",
+                    tag: "KAPITAL-ANKER",
+                  },
+                  {
+                    num: "02",
+                    title: "Die Entscheidungsfreiheit",
+                    headline: "Gewinnen Sie Ihre volle unternehmerische Souveränität zurück.",
+                    tag: "BANKEN-UNABHÄNGIG",
+                  },
+                  {
+                    num: "03",
+                    title: "Der Generationen-Frieden",
+                    headline: "Vererben Sie ein florierendes Erbe statt finanzieller Lasten.",
+                    tag: "ENKELTAUGLICH",
+                  },
+                  {
+                    num: "04",
+                    title: "Die berufliche Würde",
+                    headline: "Tauschen Sie lähmende Bürokratie gegen Ihre Freiheit als Landwirt.",
+                    tag: "100% FREIRAUM",
+                  },
+                  {
+                    num: "05",
+                    title: "Die Innovationsführerschaft",
+                    headline: "Sichern Sie Ihren Vorsprung als moderner Agrar-Pionier.",
+                    tag: "MARKTVORSPRUNG",
+                  },
+                ].map(({ num, title, headline, tag }, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: 12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.35, delay: 0.3 + i * 0.06 }}
+                    className="flex items-start gap-3"
+                  >
+                    <span className="font-mono text-[10px] font-bold text-slate-300 mt-0.5 w-5 flex-shrink-0">{num}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-0.5">
+                        <span className="text-xs font-semibold text-slate-500">{title}</span>
+                        <span className="font-mono text-[9px] font-bold tracking-wider px-1.5 py-0.5 rounded bg-slate-100 text-slate-400">{tag}</span>
+                      </div>
+                      <p className="font-medium text-slate-800 text-sm leading-snug">{headline}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
 
               {/* Social proof strip */}
               <div className="flex items-center gap-4 mt-1 pt-2.5 border-t border-slate-100">
