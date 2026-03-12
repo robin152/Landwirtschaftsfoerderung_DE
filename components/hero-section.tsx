@@ -4,7 +4,8 @@ import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
-import { TractorIcon, WheatIcon, MoneyBagIcon, BarnIcon, ShieldCheckAgriIcon } from "@/components/agri-icons"
+import { TractorIcon, WheatIcon, MoneyBagIcon, BarnIcon, ShieldCheckAgriIcon, SunriseIcon } from "@/components/agri-icons"
+import { Shield, Landmark, Moon, FileX2, Trophy } from "lucide-react"
 import { LeadCaptureModal } from "@/components/lead-capture-modal"
 
 // Count-up animation for "2,5 Millionen €"
@@ -176,56 +177,56 @@ export function HeroSection() {
 
               {[
                 {
-                  icon: MoneyBagIcon,
-                  headline: "Halbe Kosten, voller Fortschritt",
-                  body: "Bauen Sie doppelt so groß oder bezahlen Sie Ihre Investition doppelt so schnell ab – der Staat übernimmt 50 % der Rechnung.",
+                  icon: Shield,
+                  text: "Sichern Sie Ihr Lebenswerk für Ihre Kinder.",
                   accent: "#16a34a",
-                  bg: "rgba(22,163,74,0.08)",
-                  border: "rgba(22,163,74,0.18)",
+                  bg: "rgba(22,163,74,0.06)",
+                  border: "rgba(22,163,74,0.15)",
                 },
                 {
-                  icon: ShieldCheckAgriIcon,
-                  headline: "Schuldenfrei wachsen",
-                  body: "Sichern Sie sich echtes Eigenkapital statt teurer Bankkredite. Weniger Zinslast, mehr Gewinn und ruhiger Schlaf für Ihre Familie.",
+                  icon: Landmark,
+                  text: "Machen Sie sich endlich unabhängig von Banken.",
                   accent: "#7c3aed",
-                  bg: "rgba(124,58,237,0.07)",
-                  border: "rgba(124,58,237,0.18)",
+                  bg: "rgba(124,58,237,0.05)",
+                  border: "rgba(124,58,237,0.15)",
                 },
                 {
-                  icon: BarnIcon,
-                  headline: "Endlich wieder nur Landwirt sein",
-                  body: "Wir nehmen Ihnen den kompletten Behörden-Wahnsinn ab. Während wir die Formulare bändigen, haben Sie den Kopf frei für Ihren Hof und Ihre Tiere.",
+                  icon: Moon,
+                  text: "Schlafen Sie ruhig durch garantierte Rechtssicherheit.",
                   accent: "#16a34a",
-                  bg: "rgba(22,163,74,0.08)",
-                  border: "rgba(22,163,74,0.18)",
+                  bg: "rgba(22,163,74,0.06)",
+                  border: "rgba(22,163,74,0.15)",
                 },
                 {
-                  icon: TractorIcon,
-                  headline: "Kein Rätselraten mehr",
-                  body: "In nur 45 Sekunden wissen Sie exakt, wie viel Geld für Ihren Betrieb reserviert ist. Schluss mit der Unsicherheit – planen Sie mit harten Fakten.",
+                  icon: FileX2,
+                  text: "Seien Sie wieder Landwirt statt geplagter Aktenfresser.",
                   accent: "#7c3aed",
-                  bg: "rgba(124,58,237,0.07)",
-                  border: "rgba(124,58,237,0.18)",
+                  bg: "rgba(124,58,237,0.05)",
+                  border: "rgba(124,58,237,0.15)",
                 },
-              ].map(({ icon: Icon, headline, body, accent, bg, border }, i) => (
+                {
+                  icon: Trophy,
+                  text: "Sichern Sie sich staatlich finanzierten Wettbewerbsvorsprung.",
+                  accent: "#16a34a",
+                  bg: "rgba(22,163,74,0.06)",
+                  border: "rgba(22,163,74,0.15)",
+                },
+              ].map(({ icon: Icon, text, accent, bg, border }, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, x: 12 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.35, delay: 0.3 + i * 0.07 }}
-                  className="flex items-start gap-3 rounded-xl px-3 py-2.5 transition-all duration-200 cursor-default hover:shadow-md"
+                  transition={{ duration: 0.35, delay: 0.3 + i * 0.06 }}
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 transition-all duration-200 cursor-default hover:shadow-sm"
                   style={{
                     background: bg,
                     border: `1px solid ${border}`,
                   }}
                 >
-                  <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: accent }}>
-                    <Icon className="w-4 h-4 text-white" />
+                  <div className="w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0" style={{ background: accent }}>
+                    <Icon className="w-3.5 h-3.5 text-white" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-bold text-slate-900 text-sm leading-snug">{headline}</p>
-                    <p className="text-[11px] text-slate-500 mt-0.5 leading-relaxed">{body}</p>
-                  </div>
+                  <p className="font-semibold text-slate-800 text-sm leading-snug">{text}</p>
                 </motion.div>
               ))}
 
