@@ -164,7 +164,7 @@ export function ProblemSection() {
                 transition={{ duration: 0.7, delay: 0.13, ease: [0.16, 1, 0.3, 1] }}
                 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#6b7059] leading-[1.1] tracking-tight"
               >
-                Und kämpfst trotzdem.
+                Und kämpfen trotzdem.
               </motion.h2>
             </div>
 
