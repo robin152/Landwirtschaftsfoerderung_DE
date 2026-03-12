@@ -288,8 +288,8 @@ export function HiddenChancesSection() {
           </h2>
 
           <p className="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Diese Themen sind echte Lead-Magneten — viele Landwirte wissen gar nicht, 
-            dass es dafür Geld gibt. Von Hagelschutz über Verkaufsautomaten bis zur Pferdezucht.
+            Diese Themen sind zusätzlich förderfähig und werden oft übersehen — von Hagelschutz 
+            über Verkaufsautomaten bis zur Pferdezucht.
           </p>
         </motion.div>
 
