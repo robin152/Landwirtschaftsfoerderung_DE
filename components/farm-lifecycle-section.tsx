@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { 
   Sprout,
@@ -240,6 +240,25 @@ export function FarmLifecycleSection() {
   const [activePhase, setActivePhase] = useState<string>("build")
   const sectionRef = useRef<HTMLElement>(null)
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
+
+  // Handle phase selection from the quiz component
+  const handleSetActivePhase = useCallback((event: CustomEvent<{ phaseId: string }>) => {
+    try {
+      const { phaseId } = event.detail
+      if (phaseId && LIFECYCLE_PHASES.some(p => p.id === phaseId)) {
+        setActivePhase(phaseId)
+      }
+    } catch (error) {
+      console.error("[FarmLifecycleSection] Error handling phase change:", error)
+    }
+  }, [])
+
+  // Listen for custom event from PhaseSelectorQuiz
+  useEffect(() => {
+    const handler = handleSetActivePhase as EventListener
+    window.addEventListener("setActivePhase", handler)
+    return () => window.removeEventListener("setActivePhase", handler)
+  }, [handleSetActivePhase])
 
   const active = LIFECYCLE_PHASES.find(p => p.id === activePhase)!
 

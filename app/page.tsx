@@ -17,6 +17,7 @@ import { ScrollReveal } from "@/components/scroll-reveal"
 import { ExclusionsSection } from "@/components/exclusions-section"
 import { FoerderZieleSection } from "@/components/foerder-ziele-section"
 import { FarmLifecycleSection } from "@/components/farm-lifecycle-section"
+import { PhaseSelectorQuiz } from "@/components/phase-selector-quiz"
 import { EskalatorTrustSection } from "@/components/eskalator-trust-section"
 import { ProblemSection } from "@/components/problem-section"
 
@@ -31,6 +32,11 @@ export default function LandingPage() {
         <ErrorBoundary inline>
           <HeroSection />
         </ErrorBoundary>
+
+        {/* Self-Selection Quiz — direkt nach Hero */}
+        <ScrollReveal variant="fade-up" duration={0.5}>
+          <PhaseSelectorQuiz />
+        </ScrollReveal>
 
         {/* Trust — Eskalator AG */}
         <EskalatorTrustSection />
