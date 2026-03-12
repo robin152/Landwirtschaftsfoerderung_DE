@@ -735,7 +735,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
           </div>
           <div>
             <h3 className="text-white font-bold text-base sm:text-lg leading-tight">Förderrechner für die Landwirtschaft 2026</h3>
-            <p className="text-emerald-400 text-xs sm:text-sm">In 3 Schritten zu deinem exakten Förderbetrag</p>
+            <p className="text-emerald-400 text-xs sm:text-sm">In 3 Schritten zu Ihrem exakten Förderbetrag</p>
           </div>
         </div>
       </div>
@@ -750,7 +750,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
             <div className="border-l-4 border-emerald-500 pl-4 mb-6">
               <p className="text-[11px] font-bold text-emerald-400 uppercase tracking-widest mb-1">Schritt 1 von 3</p>
               <h4 className="text-xl sm:text-2xl font-bold text-white leading-snug">
-                Wo liegt dein Betrieb<br className="hidden sm:block" /> und was hältst du?
+                Wo liegt Ihr Betrieb<br className="hidden sm:block" /> und was halten Sie?
               </h4>
               <p className="text-sm text-slate-400 mt-1">Der Fördersatz variiert stark je Bundesland und Tierhaltungsart.</p>
             </div>
@@ -794,9 +794,9 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
             <div className="border-l-4 border-emerald-500 pl-4 mb-6">
               <p className="text-[11px] font-bold text-emerald-400 uppercase tracking-widest mb-1">Schritt 2 von 3</p>
               <h4 className="text-xl sm:text-2xl font-bold text-white leading-snug">
-                Was willst du bauen<br className="hidden sm:block" /> oder investieren?
+                Was möchten Sie bauen<br className="hidden sm:block" /> oder investieren?
               </h4>
-              <p className="text-sm text-slate-400 mt-1">Wähle die Investitionsart — sie bestimmt deinen Fördersatz direkt.</p>
+              <p className="text-sm text-slate-400 mt-1">Wählen Sie die Investitionsart — sie bestimmt Ihren Fördersatz direkt.</p>
             </div>
             {showErrors && !canProceed[1] && (
               <div className="flex items-center gap-2 bg-red-950/60 border border-red-700/50 rounded-xl px-4 py-3">
@@ -896,7 +896,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
               <h4 className="text-xl sm:text-2xl font-bold text-white leading-snug">
                 Wer ist der Betriebsleiter?
               </h4>
-              <p className="text-sm text-slate-400 mt-1">Alter und Einkommen bestimmen deinen Junglandwirt-Bonus und ob du die staatliche Einkommensgrenze einhältst.</p>
+              <p className="text-sm text-slate-400 mt-1">Alter und Einkommen bestimmen Ihren Junglandwirt-Bonus und ob Sie die staatliche Einkommensgrenze einhalten.</p>
             </div>
             {showErrors && !canProceed[2] && (
               <div className="flex items-center gap-2 bg-red-950/60 border border-red-700/50 rounded-xl px-4 py-3">
@@ -932,7 +932,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
               min={0}
               suffix="€"
               placeholder="z.B. 120.000"
-              hint="Dein persönliches Jahres-Bruttoeinkommen lt. Steuerbescheid — Durchschnitt der letzten 3 Jahre. Nicht das Betriebs-Ergebnis. Leer lassen = wird nicht geprüft."
+              hint="Ihr persönliches Jahres-Bruttoeinkommen lt. Steuerbescheid — Durchschnitt der letzten 3 Jahre. Nicht das Betriebs-Ergebnis. Leer lassen = wird nicht geprüft."
             />
             <ToggleField
               label="Meister / staatl. gepr. Betriebswirt (Landwirt)"
@@ -944,7 +944,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
               <Info className="w-4 h-4 text-slate-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
               <p className="text-xs text-slate-400">
                 Die staatliche Einkommensgrenze variiert je Bundesland. Lass das Feld leer,
-                wenn du dir unsicher bist — wir prüfen das im persönlichen Check.
+                wenn Sie sich unsicher sind — wir prüfen das im persönlichen Check.
               </p>
             </div>
           </div>
@@ -977,9 +977,9 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                     Einkommensgrenze überschritten — aber es gibt Lösungen.
                   </p>
                   <p className="text-red-400 text-xs mt-1">
-                    Dein Einkommen ({Number(einkommen).toLocaleString("de-DE")} €) liegt über der
+                    Ihr Einkommen ({Number(einkommen).toLocaleString("de-DE")} €) liegt über der
                     staatlichen Einkommensgrenze von {ergebnis.aktuelleGrenze?.toLocaleString("de-DE")} € in {bundesland}.
-                    Wir zeigen dir, wie du das strategisch lösen kannst.
+                    Wir zeigen Ihnen, wie Sie das strategisch lösen können.
                   </p>
                 </div>
               </div>
@@ -1003,7 +1003,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
               <div className="bg-blue-950/60 border border-blue-700/50 rounded-xl p-3 flex gap-3">
                 <AlertTriangle className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
                 <p className="text-blue-400 text-xs">
-                  Deine Investition wurde auf das Bundesland-Maximum von {ergebnis.maxInvest.toLocaleString("de-DE")} € begrenzt.
+                  Ihre Investition wurde auf das Bundesland-Maximum von {ergebnis.maxInvest.toLocaleString("de-DE")} € begrenzt.
                   Nur dieser Teil wird gefördert. Restinvestition geht auf eigene Kosten.
                 </p>
               </div>
@@ -1017,7 +1017,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                   <p className="text-amber-300 font-bold text-xs">Viehbesatzgrenze — Prüfung empfohlen</p>
                   <p className="text-amber-400 text-xs mt-0.5">
                     Die meisten Bundesländer setzen max. 2,0 GV/ha selbstbewirtschafteter Fläche voraus.
-                    Dein Betrieb liegt darüber — im persönlichen Check klären wir die Auswirkung auf die Förderfähigkeit.
+                    Ihr Betrieb liegt darüber — im persönlichen Check klären wir die Auswirkung auf die Förderfähigkeit.
                   </p>
                 </div>
               </div>
@@ -1031,7 +1031,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                   <p className="text-red-300 font-bold text-xs">NRW Bestandsgrenze erreicht</p>
                   <p className="text-red-400 text-xs mt-0.5">
                     In NRW gelten kumulative Obergrenzen: max. 15.000 Hennenplätze, 600 Rinderplätze,
-                    1.500 Mastschweineplätze. Dein Bestand liegt möglicherweise über dieser Grenze — dies
+                    1.500 Mastschweineplätze. Ihr Bestand liegt möglicherweise über dieser Grenze — dies
                     kann zum Ausschluss führen. Wir prüfen das im Detail.
                   </p>
                 </div>
@@ -1061,7 +1061,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                         </div>
                       </div>
                       <p className="text-sm font-semibold text-emerald-400 uppercase tracking-wide mb-2">
-                        Dein Zuschuss vom Staat:
+                        Ihr Zuschuss vom Staat:
                       </p>
                       {/* Blurred amount */}
                       <p className="text-4xl sm:text-5xl font-extrabold text-white leading-none mb-2 blur-md">
@@ -1093,10 +1093,10 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                         </div>
                       </div>
                       <h4 className="text-white font-extrabold text-xl text-center mb-2 leading-tight">
-                        Dein Ergebnis ist fertig!
+                        Ihr Ergebnis ist fertig!
                       </h4>
                       <p className="text-slate-300 text-sm text-center mb-6 max-w-xs leading-relaxed">
-                        Trag dich kurz ein — dann siehst du sofort, wie viel Geld der Staat für dich bereithält.
+                        Tragen Sie sich kurz ein — dann sehen Sie sofort, wie viel Geld der Staat für Sie bereithält.
                       </p>
                       <button
                         onClick={() => setShowUnlockModal(true)}
@@ -1107,7 +1107,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                         <ChevronRight className="w-5 h-5" aria-hidden="true" />
                       </button>
                       <p className="text-slate-500 text-xs mt-3 text-center">
-                        Kostenlos · Kein Spam · Nur dein Ergebnis
+                        Kostenlos · Kein Spam · Nur Ihr Ergebnis
                       </p>
                     </div>
                   </div>
@@ -1120,7 +1120,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
 
                     {/* Zuschuss — gross & clean */}
                     <p className="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-3">
-                      Dein staatlicher Zuschuss
+                      Ihr staatlicher Zuschuss
                     </p>
                     <p className="text-5xl sm:text-6xl font-extrabold text-white leading-none mb-1 tabular-nums">
                       {ergebnis.zuschuss.toLocaleString("de-DE", { maximumFractionDigits: 0 })} €
@@ -1156,7 +1156,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                         Mehr als 87 % der Landwirte holen das nicht alleine raus.
                       </p>
                       <p className="text-slate-400 text-xs leading-relaxed">
-                        Buch jetzt deinen kostenlosen Termin ��� Patrick prüft dein Vorhaben und sorgt dafür, dass kein Fehler deinen Antrag gefährdet.
+                        Buchen Sie jetzt Ihren kostenlosen Termin ��� Patrick prüft Ihr Vorhaben und sorgt dafür, dass kein Fehler Ihren Antrag gefährdet.
                       </p>
                     </div>
 
@@ -1205,7 +1205,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
                 {[
                   "Landwirtschaftlicher KMU-Status nachweisbar",
                   "Betriebsleiter mit Fachausbildung (Landwirt / Meister / Agrar-Ing.)",
-                  "Wir starten den Antrag jetzt — damit du so früh wie möglich loslegen darfst",
+                  "Wir starten den Antrag jetzt — damit Sie so früh wie möglich loslegen dürfen",
                   "Vorhaben erhöht Tierwohl / Klima messbar über gesetzlichen Mindeststandard",
                   "Kein reiner Ersatz bestehender Anlage (Additionality-Nachweis)",
                 ].map((item) => (
@@ -1272,7 +1272,7 @@ export function AFPRechner({ onCTAClick }: { onCTAClick?: () => void }) {
           {step < 3 && (
             <p className="text-center text-xs text-slate-600">
               {canProceed[step]
-                ? "Alles ausgefüllt — du kannst fortfahren"
+                ? "Alles ausgefüllt — Sie können fortfahren"
                 : `Noch ${step === 0 ? (!bundesland && !tierhaltung ? "2 Felder" : "1 Feld") : step === 1 ? (investitionsarten.length === 0 ? "Investitionsart" : "Volumen") : "Alter"} ausfüllen`}
             </p>
           )}

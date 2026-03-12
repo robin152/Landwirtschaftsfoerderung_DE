@@ -16,6 +16,8 @@ import { AFPRechner } from "@/components/afp-rechner"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import { ExclusionsSection } from "@/components/exclusions-section"
 import { FoerderZieleSection } from "@/components/foerder-ziele-section"
+import { FarmLifecycleSection } from "@/components/farm-lifecycle-section"
+import { PhaseSelectorQuiz } from "@/components/phase-selector-quiz"
 import { EskalatorTrustSection } from "@/components/eskalator-trust-section"
 import { ProblemSection } from "@/components/problem-section"
 
@@ -30,6 +32,11 @@ export default function LandingPage() {
         <ErrorBoundary inline>
           <HeroSection />
         </ErrorBoundary>
+
+        {/* Self-Selection Quiz — direkt nach Hero */}
+        <ScrollReveal variant="fade-up" duration={0.5}>
+          <PhaseSelectorQuiz />
+        </ScrollReveal>
 
         {/* Trust — Eskalator AG */}
         <EskalatorTrustSection />
@@ -56,10 +63,10 @@ export default function LandingPage() {
               <ScrollReveal variant="fade-up" delay={0.1}>
                 <div className="text-center mb-10 sm:mb-14">
                   <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
-                    In 45 Sekunden weißt du exakt, wie viel der Staat dir zahlt
+                    In 45 Sekunden wissen Sie exakt, wie viel der Staat Ihnen zahlt
                   </h2>
                   <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
-                    Live & brutal ehrlich – dein persönlicher Förderbetrag für Stall, Gülle, Tierwohl oder Klimaschutz.
+                    Live und ehrlich – Ihr persönlicher Förderbetrag für Stall, Gülle, Tierwohl oder Klimaschutz.
                   </p>
                 </div>
               </ScrollReveal>
@@ -75,6 +82,11 @@ export default function LandingPage() {
         {/* Was wird gefördert */}
         <ScrollReveal variant="slide-left" duration={0.7}>
           <AssetsSection />
+        </ScrollReveal>
+
+        {/* Förderung nach Lebensphasen */}
+        <ScrollReveal variant="fade-up" duration={0.7}>
+          <FarmLifecycleSection />
         </ScrollReveal>
 
         {/* Experte */}

@@ -86,7 +86,7 @@ export function NavigationIndustrial() {
             {/* Single CTA */}
             <div className="hidden lg:block">
               <Button
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => document.getElementById("rechner")?.scrollIntoView({ behavior: "smooth" })}
                 className="relative bg-green-700 hover:bg-green-600 text-white font-semibold px-6 py-2.5 rounded-full overflow-hidden transition-all group shadow-lg shadow-green-900/20"
               >
                 <span className="relative z-10 flex items-center gap-2">

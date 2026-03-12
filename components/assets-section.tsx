@@ -189,11 +189,11 @@ export function AssetsSection() {
             <WheatIcon className="w-3.5 h-3.5" />
             Förderfähige Investitionsthemen
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4 text-balance">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4 text-balance">
             Was genau fördert die Landwirtschaftsförderung — und wie viel?
           </h2>
           <p className="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto">
-            7 Investitionsthemen mit unterschiedlichen Fördersätzen. Klicke ein Thema an für alle Details.
+            7 Investitionsthemen mit unterschiedlichen Fördersätzen. Klicken Sie ein Thema an für alle Details.
           </p>
         </motion.div>
 
@@ -363,8 +363,8 @@ export function AssetsSection() {
           className="mt-4 text-center"
         >
           <p className="text-slate-500 text-sm sm:text-base mb-4">
-            <span className="font-semibold text-slate-900">Dein Vorhaben ist dabei?</span>{" "}
-            Berechne jetzt deinen genauen Förderbetrag — kostenlos & in 45 Sekunden.
+            <span className="font-semibold text-slate-900">Ihr Vorhaben ist dabei?</span>{" "}
+            Berechnen Sie jetzt Ihren genauen Förderbetrag — kostenlos und in 45 Sekunden.
           </p>
           <button
             onClick={() => document.getElementById("rechner")?.scrollIntoView({ behavior: "smooth" })}

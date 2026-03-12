@@ -4,7 +4,8 @@ import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
-import { TractorIcon, WheatIcon, MoneyBagIcon, BarnIcon, ShieldCheckAgriIcon } from "@/components/agri-icons"
+import { TractorIcon, WheatIcon, MoneyBagIcon, BarnIcon, ShieldCheckAgriIcon, SunriseIcon } from "@/components/agri-icons"
+// Icons moved to inline numbered list
 import { LeadCaptureModal } from "@/components/lead-capture-modal"
 
 // Count-up animation for "2,5 Millionen €"
@@ -100,7 +101,7 @@ export function HeroSection() {
           ))}
         </div>
 
-        <div className="page-container relative w-full">
+        <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Row 1: Full-width headline — glass card */}
           <motion.div
@@ -110,7 +111,7 @@ export function HeroSection() {
             className="text-center mb-4 md:mb-6"
           >
             <h1
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.15] text-balance mb-2 md:mb-3"
+              className="text-2xl sm:text-3xl md:text-[2.25rem] lg:text-[2.75rem] xl:text-[3rem] font-bold leading-[1.15] text-balance mb-2 md:mb-3"
               style={{
                 background: "linear-gradient(135deg, #166534 0%, #15803d 30%, #7c3aed 65%, #6d28d9 100%)",
                 WebkitBackgroundClip: "text",
@@ -123,23 +124,24 @@ export function HeroSection() {
               Fördermittel für Ihren Hof – ohne einen Finger für den Papierkram zu rühren.
             </h1>
 
-            <p className="text-sm md:text-base lg:text-lg text-slate-600 leading-relaxed max-w-4xl mx-auto">
-              Wir holen für Sie das absolute Maximum an staatlichen Zuschüssen heraus (bis zu{" "}
-              <span className="font-semibold text-green-700">50 % Ihrer Investition</span>
-              ), während Sie sich voll auf Ihren Betrieb konzentrieren. Wir übernehmen die komplette Abwicklung vom ersten Antrag bis zur finalen Auszahlung auf Ihr Konto.{" "}
-              <span className="font-semibold text-slate-800">Kein Risiko, kein Behörden-Stress</span> – wir liefern den Bescheid, Sie bauen die Zukunft.
+            <p className="text-sm md:text-base lg:text-lg text-slate-600 leading-relaxed max-w-5xl mx-auto">
+              Wir schenken Ihnen die Freiheit zurück, wieder Landwirt aus Leidenschaft zu sein. Während wir{" "}
+              <span className="font-semibold text-green-700">bis zu 50 % Zuschuss</span>{" "}
+              für Sie sichern und den Behörden-Wahnsinn bis zur Auszahlung bändigen, stehen Sie wieder dort, wo Ihr Herz schlägt: Mitten auf Ihrem Land.{" "}
+              <span className="font-semibold text-slate-800">Bewahren Sie das Erbe Ihrer Vorfahren als stolzes Fundament für Ihre Kinder.</span>{" "}
+              Wir liefern den Bescheid, Sie erschaffen Bleibendes.
             </p>
           </motion.div>
 
-          {/* Row 2: Two-column grid — constrained width, centred */}
-          <div className="max-w-[56rem] mx-auto w-full grid md:grid-cols-[auto_1fr] gap-4 md:gap-6 mb-5 md:mb-6 items-start">
+          {/* Row 2: Two-column grid — constrained width, centered */}
+          <div className="max-w-4xl mx-auto w-full grid md:grid-cols-[auto_1fr] gap-4 md:gap-6 lg:gap-8 mb-5 md:mb-6 items-center">
 
             {/* Left: Image — fixed size, no crop */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="relative flex items-start justify-center md:w-[300px] lg:w-[340px] xl:w-[380px] flex-shrink-0"
+              className="relative flex items-center justify-center md:w-[260px] lg:w-[300px] xl:w-[320px] flex-shrink-0"
             >
               <div className="relative w-full">
                 <div className="absolute inset-0 rounded-xl md:rounded-2xl bg-gradient-to-br from-emerald-400/25 to-green-600/15 blur-2xl scale-105" />
@@ -170,78 +172,47 @@ export function HeroSection() {
               className="flex flex-col gap-2.5"
             >
               {/* Header */}
-              <div className="mb-1">
-                <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#7c3aed" }}>Warum Sie mit uns gewinnen</p>
+              <div className="mb-3">
+                <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "#7c3aed" }}>Warum Sie mit uns gewinnen</p>
               </div>
 
-              {[
-                {
-                  icon: MoneyBagIcon,
-                  headline: "Halbe Kosten, voller Fortschritt",
-                  body: "Bauen Sie doppelt so groß oder bezahlen Sie Ihre Investition doppelt so schnell ab – der Staat übernimmt 50 % der Rechnung.",
-                  accent: "#16a34a",
-                  bg: "rgba(22,163,74,0.08)",
-                  border: "rgba(22,163,74,0.18)",
-                },
-                {
-                  icon: ShieldCheckAgriIcon,
-                  headline: "Schuldenfrei wachsen",
-                  body: "Sichern Sie sich echtes Eigenkapital statt teurer Bankkredite. Weniger Zinslast, mehr Gewinn und ruhiger Schlaf für Ihre Familie.",
-                  accent: "#7c3aed",
-                  bg: "rgba(124,58,237,0.07)",
-                  border: "rgba(124,58,237,0.18)",
-                },
-                {
-                  icon: BarnIcon,
-                  headline: "Endlich wieder nur Landwirt sein",
-                  body: "Wir nehmen Ihnen den kompletten Behörden-Wahnsinn ab. Während wir die Formulare bändigen, haben Sie den Kopf frei für Ihren Hof und Ihre Tiere.",
-                  accent: "#16a34a",
-                  bg: "rgba(22,163,74,0.08)",
-                  border: "rgba(22,163,74,0.18)",
-                },
-                {
-                  icon: TractorIcon,
-                  headline: "Kein Rätselraten mehr",
-                  body: "In nur 45 Sekunden wissen Sie exakt, wie viel Geld für Ihren Betrieb reserviert ist. Schluss mit der Unsicherheit – planen Sie mit harten Fakten.",
-                  accent: "#7c3aed",
-                  bg: "rgba(124,58,237,0.07)",
-                  border: "rgba(124,58,237,0.18)",
-                },
-              ].map(({ icon: Icon, headline, body, accent, bg, border }, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: 12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.35, delay: 0.3 + i * 0.07 }}
-                  className="flex items-start gap-3 rounded-xl px-3 py-2.5 transition-all duration-200 cursor-default hover:shadow-md"
-                  style={{
-                    background: bg,
-                    border: `1px solid ${border}`,
-                  }}
-                >
-                  <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: accent }}>
-                    <Icon className="w-4 h-4 text-white" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-bold text-slate-900 text-sm leading-snug">{headline}</p>
-                    <p className="text-[11px] text-slate-500 mt-0.5 leading-relaxed">{body}</p>
-                  </div>
-                </motion.div>
-              ))}
+              {/* 5 Benefits - clean with green icons */}
+              <div className="space-y-2.5">
+                {[
+                  { icon: ShieldCheckAgriIcon, text: "Sichern Sie Ihren Familiennamen auf eigenem Grund." },
+                  { icon: BarnIcon, text: "Wachsen Sie unabhängig von teuren Bankkrediten." },
+                  { icon: MoneyBagIcon, text: "Minimieren Sie das finanzielle Risiko Ihrer Investition." },
+                  { icon: WheatIcon, text: "Seien Sie wieder Landwirt statt Aktenfresser." },
+                  { icon: TractorIcon, text: "Sichern Sie sich staatlich finanzierten Wettbewerbsvorsprung." },
+                ].map(({ icon: Icon, text }, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: 12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.35, delay: 0.3 + i * 0.05 }}
+                    className="flex items-center gap-3"
+                  >
+                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg flex items-center justify-center flex-shrink-0 bg-emerald-600">
+                      <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+                    </div>
+                    <p className="font-medium text-slate-700 text-[13px] sm:text-sm leading-snug">{text}</p>
+                  </motion.div>
+                ))}
+              </div>
 
               {/* Social proof strip */}
-              <div className="flex items-center gap-4 mt-1 pt-2.5 border-t border-slate-100">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-1 pt-2.5 border-t border-slate-100">
                 <div className="flex items-center gap-1.5">
                   <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-xs font-semibold text-slate-700">400+ Landwirte gefördert</span>
+                  <span className="text-[11px] sm:text-xs font-semibold text-slate-700">400+ gefördert</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#7c3aed", animationDelay: "0.5s" }} />
-                  <span className="text-xs font-semibold text-slate-700">98 % Erfolgsquote</span>
+                  <span className="text-[11px] sm:text-xs font-semibold text-slate-700">98 % Erfolg</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <div className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" style={{ animationDelay: "1s" }} />
-                  <span className="text-xs font-semibold text-slate-700">alle 16 Bundesländer</span>
+                  <span className="text-[11px] sm:text-xs font-semibold text-slate-700">16 Bundesländer</span>
                 </div>
               </div>
             </motion.div>

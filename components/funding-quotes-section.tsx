@@ -48,13 +48,13 @@ export function FundingQuotesSection() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-50 rounded-full text-xs sm:text-sm font-semibold text-green-700 mb-4">
             <MapPin className="w-3.5 h-3.5" />
-            Dein Bundesland entscheidet
+            Ihr Bundesland entscheidet
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-3">
-            Manche Bundesländer zahlen deutlich mehr – siehst du deins?
+            Manche Bundesländer zahlen deutlich mehr – sehen Sie Ihres?
           </h2>
           <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
-            Der Fördersatz für die Landwirtschaft hängt von Standort, Maßnahme und deinen Boni ab. Hier der Überblick – ohne Weichzeichner.
+            Der Fördersatz für die Landwirtschaft hängt von Standort, Maßnahme und Ihren Boni ab. Hier der Überblick – ohne Weichzeichner.
           </p>
         </motion.div>
 
