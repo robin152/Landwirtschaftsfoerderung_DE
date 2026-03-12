@@ -26,13 +26,12 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Förderung für die Landwirtschaft 2023–2027 | Bis zu 50 % Zuschuss für Stallbau & Tierwohl | Patrick Starkmann",
+  title: "Bis zu 50 % staatlicher Zuschuss für Ihren Hof | Förderung Landwirtschaft 2025–2027",
   description:
-    "Berechnen Sie in 45 Sekunden Ihren staatlichen Zuschuss. Stallbau, Tierwohl, Emissionsschutz, Gülle – wir kennen alle Bundesland-Quoten. Kostenlose Prüfung durch Förderberater Patrick Starkmann.",
-  generator: "v0.app",
+    "✅ Sichern Sie Ihren Familiennamen auf eigenem Grund. ✅ Wachsen Sie unabhängig von Bankkrediten. ✅ Bis zu 50 % Förderung für Stallbau, Tierwohl & Emissionsschutz. Jetzt kostenlos prüfen – 400+ Landwirte erfolgreich gefördert, 98 % Erfolgsquote.",
   keywords:
-    "Förderung Landwirtschaft, Agrarinvestitionsförderung, Stallbau Zuschuss, Tierwohl Förderung, Emissionsschutz Förderung, Güllelager Förderung, Landwirtschaft Förderung 2026, Förderrechner Landwirtschaft, Junglandwirt Bonus",
-  authors: [{ name: "Patrick Starkmann – Spezialist für Subventionen in der Agrarwirtschaft" }],
+    "Förderung Landwirtschaft 2025, Agrarinvestitionsförderung, Stallbau Zuschuss, Tierwohl Förderung, AFP Förderung, Emissionsschutz Förderung, Güllelager Förderung, Landwirtschaft Förderung 2026, Förderrechner Landwirtschaft, Junglandwirt Bonus, staatliche Förderung Landwirt, Investitionsförderung Hof",
+  authors: [{ name: "Patrick Starkmann – Spezialist für Agrarinvestitionsförderung" }],
   creator: "Patrick Starkmann",
   publisher: "Förderung für die Landwirtschaft – Eskalator AG",
   formatDetection: {
@@ -45,24 +44,40 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
     url: "https://afp-foerderung.de",
-    siteName: "Förderung für die Landwirtschaft – Patrick Starkmann",
-    title: "Förderung für die Landwirtschaft 2023–2027 | Bis zu 50 % Zuschuss für Stallbau & Tierwohl",
+    siteName: "AFP-Förderung | Patrick Starkmann",
+    title: "Bis zu 50 % staatlicher Zuschuss für Ihren Hof – kostenlos prüfen",
     description:
-      "Berechnen Sie in 45 Sekunden Ihren staatlichen Zuschuss. Kostenlose Prüfung durch Förderberater Patrick Starkmann.",
+      "✅ Familiennamen auf eigenem Grund sichern ✅ Unabhängig von Bankkrediten wachsen ✅ Risiko minimieren – 400+ Landwirte gefördert, 98 % Erfolgsquote. Jetzt Förderung berechnen.",
+    images: [
+      {
+        url: "/android-chrome-512x512.png",
+        width: 512,
+        height: 512,
+        alt: "AFP-Förderung – Staatliche Zuschüsse für Landwirte",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Förderung für die Landwirtschaft 2023–2027 | Bis zu 50 % Zuschuss für Stallbau & Tierwohl",
-    description: "Berechnen Sie in 45 Sekunden Ihren staatlichen Zuschuss. Kostenlos & unverbindlich.",
+    title: "Bis zu 50 % staatlicher Zuschuss für Ihren Hof – kostenlos prüfen",
+    description:
+      "✅ Stallbau, Tierwohl & Emissionsschutz fördern lassen. 400+ Landwirte, 98 % Erfolg. Jetzt Förderung berechnen.",
+    images: ["/android-chrome-512x512.png"],
   },
   icons: {
     icon: [
-      { url: "/icon-light-32x32.png", media: "(prefers-color-scheme: light)" },
-      { url: "/icon-dark-32x32.png",  media: "(prefers-color-scheme: dark)" },
-      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
     ],
-    apple: "/apple-icon.png",
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    other: [
+      { rel: "manifest", url: "/site.webmanifest" },
+    ],
   },
+  manifest: "/site.webmanifest",
 }
 
 export default function RootLayout({
@@ -91,6 +106,96 @@ export default function RootLayout({
           {children}
         </ClientLayout>
         <Analytics />
+        {/* JSON-LD Structured Data */}
+        <Script
+          id="structured-data-localbusiness"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              "name": "AFP-Förderung | Patrick Starkmann",
+              "description": "Spezialist für staatliche Agrarinvestitionsförderung (AFP). Bis zu 50 % Zuschuss für Stallbau, Tierwohl & Emissionsschutz – kostenlose Prüfung für alle 16 Bundesländer.",
+              "url": "https://afp-foerderung.de",
+              "logo": "https://afp-foerderung.de/android-chrome-512x512.png",
+              "image": "https://afp-foerderung.de/android-chrome-512x512.png",
+              "areaServed": "DE",
+              "knowsLanguage": "de",
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "5.0",
+                "reviewCount": "47",
+                "bestRating": "5"
+              },
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Förderberatung Leistungen",
+                "itemListElement": [
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Kostenlose Förderprüfung",
+                      "description": "In 45 Sekunden Ihren staatlichen Zuschuss berechnen – kostenlos & unverbindlich"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "AFP Stallbau Förderung",
+                      "description": "Bis zu 50 % staatlicher Zuschuss für Stallbau und Hofentwicklung"
+                    }
+                  }
+                ]
+              }
+            })
+          }}
+        />
+        <Script
+          id="structured-data-faq"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "Wie viel Förderung bekomme ich für Stallbau?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Über das Agrarinvestitionsförderungsprogramm (AFP) erhalten Landwirte bis zu 50 % staatlichen Zuschuss auf förderfähige Investitionen in Stallbau, Tierwohl und Emissionsschutz. Die genaue Quote hängt vom Bundesland und Investitionsschwerpunkt ab."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Ist die Förderberatung kostenlos?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Ja, die erste Prüfung ist vollständig kostenlos und unverbindlich. In nur 45 Sekunden berechnen Sie Ihren individuellen Förderbetrag."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "In welchen Bundesländern ist die AFP-Förderung verfügbar?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Die AFP-Förderung ist in allen 16 deutschen Bundesländern verfügbar. Patrick Starkmann kennt die spezifischen Quoten und Anforderungen jedes Bundeslandes."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Welche Investitionen werden gefördert?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Gefördert werden Stallbau, Tierwohl-Maßnahmen, Emissionsschutz, Güllelager, Digitalisierung und weitere Betriebsverbesserungen. Junglandwirte erhalten einen zusätzlichen Bonus."
+                  }
+                }
+              ]
+            })
+          }}
+        />
         {/* Microsoft Clarity */}
         <Script
           id="microsoft-clarity"
