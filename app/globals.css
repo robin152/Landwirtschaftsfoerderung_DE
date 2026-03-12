@@ -99,6 +99,34 @@ input[type="range"].funding-slider::-moz-range-progress {
   background: #3a5c2f;
 }
 
+/* ================================================================
+   PREMIUM TYPOGRAPHY — Google-klar, Magazin-Qualität
+   ================================================================ */
+
+/* Headings: Tight letter-spacing for premium feel */
+h1, h2, .heading-tight {
+  letter-spacing: -0.02em;
+}
+
+h3, h4, .heading-normal {
+  letter-spacing: -0.01em;
+}
+
+/* Body text: Comfortable line-height */
+body {
+  line-height: 1.625; /* leading-relaxed equivalent */
+}
+
+/* Paragraph styling */
+p {
+  line-height: 1.625;
+}
+
+/* Premium text color — never pure black */
+.text-premium {
+  color: #0f172a; /* slate-900 */
+}
+
 :root {
   /* ================================================================
      AGRICULTURE BIO PREMIUM — Olivgrün + Weizengold + Naturweiß
@@ -106,13 +134,13 @@ input[type="range"].funding-slider::-moz-range-progress {
      ================================================================ */
 
   --background: #ffffff;                  /* Reines Weiß — sauber wie Premium-Papier */
-  --foreground: #1a1f0e;                  /* Tiefes Olivschwarz */
+  --foreground: #0f172a;                  /* Slate-900 — sanfter als hartes Schwarz */
 
   --card: #fdfcf8;                        /* Warmes Off-White — wie handgeschöpftes Papier */
-  --card-foreground: #1a1f0e;
+  --card-foreground: #0f172a;
 
   --popover: #ffffff;
-  --popover-foreground: #1a1f0e;
+  --popover-foreground: #0f172a;
 
   /* Olivgrün — satt, geerdet, hochwertig */
   --primary: #3a5c2f;                     /* Tief-Olivgrün */
@@ -154,11 +182,11 @@ input[type="range"].funding-slider::-moz-range-progress {
   --radius: 0.625rem;                    /* Etwas organischer als 0.75 */
 
   --sidebar: #fdfcf8;
-  --sidebar-foreground: #1a1f0e;
+  --sidebar-foreground: #0f172a;
   --sidebar-primary: #3a5c2f;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #f5f3ee;
-  --sidebar-accent-foreground: #1a1f0e;
+  --sidebar-accent-foreground: #0f172a;
   --sidebar-border: #e2ddd3;
   --sidebar-ring: #3a5c2f;
 }
