@@ -16,7 +16,7 @@ import { AFPRechner } from "@/components/afp-rechner"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import { ExclusionsSection } from "@/components/exclusions-section"
 import { FoerderZieleSection } from "@/components/foerder-ziele-section"
-import { HiddenChancesSection } from "@/components/hidden-chances-section"
+import { FarmLifecycleSection } from "@/components/farm-lifecycle-section"
 import { EskalatorTrustSection } from "@/components/eskalator-trust-section"
 import { ProblemSection } from "@/components/problem-section"
 
@@ -78,9 +78,9 @@ export default function LandingPage() {
           <AssetsSection />
         </ScrollReveal>
 
-        {/* Versteckte Förderchancen — Nischenthemen */}
+        {/* Förderung nach Lebensphasen */}
         <ScrollReveal variant="fade-up" duration={0.7}>
-          <HiddenChancesSection />
+          <FarmLifecycleSection />
         </ScrollReveal>
 
         {/* Experte */}
