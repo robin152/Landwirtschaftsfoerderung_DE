@@ -69,44 +69,31 @@ function StatBlock({ stat, index }: { stat: (typeof STATS)[0]; index: number }) 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative flex flex-col gap-3 p-6 sm:p-8 bg-white rounded-2xl overflow-hidden"
+      transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+      className="group relative flex flex-col gap-2 p-4 sm:p-5 bg-white rounded-xl overflow-hidden"
       style={{
-        border: `1.5px solid ${stat.border}`,
-        borderLeft: `4px solid ${stat.color}`,
-        boxShadow: `0 2px 16px ${stat.color}0a`,
+        border: `1px solid ${stat.border}`,
+        borderLeft: `3px solid ${stat.color}`,
       }}
     >
-      {/* Animated background fill on hover */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        initial={{ opacity: 0 }}
-        whileHover={{ opacity: 1 }}
-        transition={{ duration: 0.35 }}
-        style={{ background: `${stat.color}05` }}
-      />
-
-      {/* Stat number */}
-      <div className="flex items-baseline gap-0 leading-none" style={{ color: stat.color }}>
-        <span className="text-4xl sm:text-5xl font-black tracking-tight">
-          {stat.prefix}
-          <span ref={counterRef}>0</span>
-          {stat.suffix}
-        </span>
+      {/* Stat number + Label inline */}
+      <div className="flex items-baseline justify-between gap-2">
+        <div className="flex items-baseline gap-0 leading-none" style={{ color: stat.color }}>
+          <span className="text-2xl sm:text-3xl font-semibold tracking-tight">
+            {stat.prefix}
+            <span ref={counterRef}>0</span>
+            {stat.suffix}
+          </span>
+        </div>
+        <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-right" style={{ color: `${stat.color}99` }}>
+          {stat.label}
+        </p>
       </div>
 
-      {/* Label */}
-      <p className="text-[11px] font-bold uppercase tracking-[0.15em]" style={{ color: `${stat.color}99` }}>
-        {stat.label}
-      </p>
-
-      {/* Divider */}
-      <div className="w-8 h-px" style={{ background: `${stat.color}33` }} />
-
-      {/* Detail text */}
-      <p className="text-sm text-[#3d3d2e] leading-relaxed">{stat.detail}</p>
+      {/* Detail text — more compact */}
+      <p className="text-xs text-slate-600 leading-relaxed">{stat.detail}</p>
     </motion.div>
   )
 }
@@ -120,7 +107,7 @@ export function ProblemSection() {
   return (
     <>
       <section
-        className="relative py-16 sm:py-24 overflow-hidden"
+        className="relative py-12 sm:py-16 overflow-hidden"
         style={{ background: "#f5f2eb" }}
       >
         {/* Warm grid texture */}
@@ -143,7 +130,7 @@ export function ProblemSection() {
           {/* === HEADLINE — editorial, not SaaS === */}
           <motion.div
             ref={headlineRef}
-            className="mb-12 sm:mb-16 max-w-4xl"
+            className="mb-8 sm:mb-10 max-w-4xl"
           >
             {/* Eyebrow line */}
             <motion.div
@@ -159,13 +146,13 @@ export function ProblemSection() {
               </span>
             </motion.div>
 
-            {/* Main headline — two lines, large */}
+            {/* Main headline — two lines, refined */}
             <div className="overflow-hidden mb-2">
               <motion.h2
                 initial={{ y: "100%" }}
                 animate={headlineInView ? { y: 0 } : {}}
                 transition={{ duration: 0.7, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-                className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#1a1f0e] leading-[1.05] tracking-tight"
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1a1f0e] leading-[1.1] tracking-tight"
               >
                 Du investierst alles.
               </motion.h2>
@@ -175,7 +162,7 @@ export function ProblemSection() {
                 initial={{ y: "100%" }}
                 animate={headlineInView ? { y: 0 } : {}}
                 transition={{ duration: 0.7, delay: 0.13, ease: [0.16, 1, 0.3, 1] }}
-                className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#6b7059] leading-[1.05] tracking-tight"
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#6b7059] leading-[1.1] tracking-tight"
               >
                 Und kämpfst trotzdem.
               </motion.h2>
@@ -194,7 +181,7 @@ export function ProblemSection() {
           </motion.div>
 
           {/* === 4-STAT GRID === */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-14 sm:mb-18">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10 sm:mb-14">
             {STATS.map((s, i) => (
               <StatBlock key={i} stat={s} index={i} />
             ))}
@@ -255,7 +242,7 @@ export function ProblemSection() {
             initial={{ opacity: 0, y: 18 }}
             animate={bridgeInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.55, delay: 0.4 }}
-            className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1a1f0e] leading-tight text-balance"
+            className="text-xl sm:text-2xl lg:text-3xl font-semibold text-[#1a1f0e] leading-snug text-balance"
           >
             Für all das gibt es staatliche Förderung —{" "}
             <span style={{ color: "#3a5c2f" }}>und wir holen sie für dich.</span>

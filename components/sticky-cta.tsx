@@ -10,7 +10,7 @@ import { TractorIcon, WheatIcon } from "@/components/agri-icons"
 function StickyCTAInner() {
   const [isVisible, setIsVisible] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [isDismissed, setIsDismissed] = useState(false)
+  const [isMinimized, setIsMinimized] = useState(false)
   const [mounted, setMounted] = useState(false)
   const { company, analysis } = useCompany()
 
@@ -22,13 +22,11 @@ function StickyCTAInner() {
     if (!mounted) return
 
     const handleScroll = () => {
-      if (!isDismissed) {
-        setIsVisible(window.scrollY > 300)
-      }
+      setIsVisible(window.scrollY > 300)
     }
 
     const timer = setTimeout(() => {
-      if (!isDismissed) setIsVisible(true)
+      setIsVisible(true)
     }, 4000)
 
     window.addEventListener("scroll", handleScroll, { passive: true })
@@ -36,11 +34,14 @@ function StickyCTAInner() {
       window.removeEventListener("scroll", handleScroll)
       clearTimeout(timer)
     }
-  }, [isDismissed, mounted])
+  }, [mounted])
 
-  const handleDismiss = () => {
-    setIsDismissed(true)
-    setIsVisible(false)
+  const handleMinimize = () => {
+    setIsMinimized(true)
+  }
+
+  const handleExpand = () => {
+    setIsMinimized(false)
   }
 
   const ownerLastName = analysis?.owner?.name?.split(" ").pop()
@@ -52,8 +53,34 @@ function StickyCTAInner() {
 
   return (
     <>
-      <AnimatePresence>
-        {isVisible && !isDismissed && (
+      <AnimatePresence mode="wait">
+        {isVisible && isMinimized ? (
+          /* ── Minimized state: small pill to expand ──────────────── */
+          <motion.button
+            key="sticky-minimized"
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            onClick={handleExpand}
+            style={{ position: "fixed", right: "1rem", bottom: "1.5rem", zIndex: 99990 }}
+            className="flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white rounded-full shadow-xl shadow-green-900/30 transition-all group"
+          >
+            <div className="relative w-8 h-8 rounded-full overflow-hidden border-2 border-white/30">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/patrick-starkmann.webp"
+                alt="Patrick Starkmann"
+                width={32}
+                height={32}
+                className="object-cover object-top w-full h-full"
+              />
+              <span className="absolute bottom-0 right-0 w-2 h-2 bg-green-400 border border-white rounded-full" />
+            </div>
+            <span className="text-sm font-semibold whitespace-nowrap">Beratung</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+          </motion.button>
+        ) : isVisible && !isMinimized ? (
           <>
             {/* ── Desktop: floating card bottom-right ───────────────── */}
             <motion.div
@@ -66,10 +93,10 @@ function StickyCTAInner() {
               className="hidden lg:block"
             >
               <div className="relative w-64 bg-white rounded-2xl shadow-2xl shadow-slate-900/20 border border-slate-200/80 overflow-hidden">
-                {/* Dismiss */}
+                {/* Minimize */}
                 <button
-                  onClick={handleDismiss}
-                  aria-label="Schließen"
+                  onClick={handleMinimize}
+                  aria-label="Minimieren"
                   className="absolute top-3 right-3 z-10 w-6 h-6 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors"
                 >
                   <X className="w-3.5 h-3.5 text-slate-500" aria-hidden="true" />
@@ -212,7 +239,7 @@ function StickyCTAInner() {
               </div>
             </motion.div>
           </>
-        )}
+        ) : null}
       </AnimatePresence>
 
       <LeadCaptureModal
