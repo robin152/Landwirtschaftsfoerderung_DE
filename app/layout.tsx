@@ -7,20 +7,20 @@ import { ClientLayout } from "@/components/client-layout"
 import "./globals.css"
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   variable: "--font-sans",
   display: "swap",
 })
 
 const playfair = Playfair_Display({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   variable: "--font-serif",
   display: "swap",
   weight: ["400", "600", "700", "800"],
 })
 
 const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   variable: "--font-mono",
   display: "swap",
 })
@@ -73,6 +73,7 @@ export default function RootLayout({
   return (
     <html lang="de">
       <head>
+        <meta charSet="utf-8" />
         {/* Preconnect to critical origins */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
