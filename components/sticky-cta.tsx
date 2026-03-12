@@ -37,12 +37,16 @@ function StickyCTAInner() {
   }, [mounted])
 
   const handleMinimize = () => {
+    console.log("[v0] handleMinimize called, setting isMinimized to true")
     setIsMinimized(true)
   }
 
   const handleExpand = () => {
+    console.log("[v0] handleExpand called, setting isMinimized to false")
     setIsMinimized(false)
   }
+
+  console.log("[v0] StickyCTA render - isVisible:", isVisible, "isMinimized:", isMinimized, "mounted:", mounted)
 
   const ownerLastName = analysis?.owner?.name?.split(" ").pop()
   const ownerSalutation =
