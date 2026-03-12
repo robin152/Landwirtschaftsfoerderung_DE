@@ -133,8 +133,8 @@ export function HeroSection() {
             </p>
           </motion.div>
 
-          {/* Row 2: Two-column grid — constrained width, centered */}
-          <div className="max-w-4xl mx-auto w-full grid md:grid-cols-[auto_1fr] gap-4 md:gap-6 lg:gap-8 mb-5 md:mb-6 items-center">
+          {/* Row 2: Two-column grid — constrained width, horizontally centered, left col top-aligned */}
+          <div className="max-w-4xl mx-auto w-full grid md:grid-cols-[auto_1fr] gap-4 md:gap-6 lg:gap-8 mb-5 md:mb-6 items-start">
 
             {/* Left: Image — fixed size, no crop */}
             <motion.div
