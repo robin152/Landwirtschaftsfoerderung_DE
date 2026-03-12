@@ -151,6 +151,22 @@ function StickyCTAInner() {
                   )}
 
                   <div className="space-y-2 mt-2">
+                    {/* Benefits list */}
+                    <ul className="space-y-1 mb-3">
+                      <li className="flex items-center gap-1.5 text-[10px] text-slate-600">
+                        <span className="w-1 h-1 rounded-full bg-green-500 flex-shrink-0" />
+                        Direkte Einschätzung der Förderfähigkeit
+                      </li>
+                      <li className="flex items-center gap-1.5 text-[10px] text-slate-600">
+                        <span className="w-1 h-1 rounded-full bg-green-500 flex-shrink-0" />
+                        Erste Ermittlung der Fördersumme
+                      </li>
+                      <li className="flex items-center gap-1.5 text-[10px] text-slate-600">
+                        <span className="w-1 h-1 rounded-full bg-green-500 flex-shrink-0" />
+                        Unverbindlich und 100 % kostenlos
+                      </li>
+                    </ul>
+
                     <div className="relative">
                       <motion.div
                         animate={{
@@ -167,20 +183,16 @@ function StickyCTAInner() {
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={() => setIsModalOpen(true)}
-                        className="w-full relative px-3 py-3 rounded-lg bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-semibold transition-all flex items-center justify-center gap-2"
+                        className="w-full relative px-3 py-2.5 rounded-lg bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-semibold transition-all flex items-center justify-center gap-2"
                       >
-                        <TractorIcon className="w-4 h-4 text-white flex-shrink-0" aria-hidden="true" />
-                        <span className="text-xs">
-                          {ownerSalutation ? "Jetzt Termin sichern" : "Förderung kostenlos berechnen"}
+                        <span className="text-[11px] leading-tight text-center">
+                          Jetzt kostenloses Erstgespräch buchen
                         </span>
                         <motion.span animate={{ x: [0, 3, 0] }} transition={{ duration: 1, repeat: Infinity }}>
-                          <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                          <ArrowRight className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
                         </motion.span>
                       </motion.button>
                     </div>
-                    <p className="text-[10px] text-center text-slate-400 leading-tight">
-                      Kostenlos &bull; Kein Risiko
-                    </p>
                   </div>
                 </div>
 
