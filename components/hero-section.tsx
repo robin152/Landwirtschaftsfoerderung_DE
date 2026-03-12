@@ -125,10 +125,11 @@ export function HeroSection() {
             </h1>
 
             <p className="text-sm md:text-base lg:text-lg text-slate-600 leading-relaxed max-w-5xl mx-auto">
-              Wir holen für Sie das absolute Maximum an staatlichen Zuschüssen heraus (bis zu{" "}
-              <span className="font-semibold text-green-700">50 % Ihrer Investition</span>
-              ), während Sie sich voll auf Ihren Betrieb konzentrieren. Wir übernehmen die komplette Abwicklung vom ersten Antrag bis zur finalen Auszahlung auf Ihr Konto.{" "}
-              <span className="font-semibold text-slate-800">Kein Risiko, kein Behörden-Stress</span> – wir liefern den Bescheid, Sie bauen die Zukunft.
+              Wir schenken Ihnen die Freiheit zurück, wieder Landwirt aus Leidenschaft zu sein. Während wir{" "}
+              <span className="font-semibold text-green-700">bis zu 50 % Zuschuss</span>{" "}
+              für Sie sichern und den Behörden-Wahnsinn bis zur Auszahlung bändigen, stehen Sie wieder dort, wo Ihr Herz schlägt: Mitten auf Ihrem Land.{" "}
+              <span className="font-semibold text-slate-800">Bewahren Sie das Erbe Ihrer Vorfahren als stolzes Fundament für Ihre Kinder.</span>{" "}
+              Wir liefern den Bescheid, Sie erschaffen Bleibendes.
             </p>
           </motion.div>
 
