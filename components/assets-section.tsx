@@ -189,7 +189,7 @@ export function AssetsSection() {
             <WheatIcon className="w-3.5 h-3.5" />
             Förderfähige Investitionsthemen
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4 text-balance">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4 text-balance">
             Was genau fördert die Landwirtschaftsförderung — und wie viel?
           </h2>
           <p className="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto">

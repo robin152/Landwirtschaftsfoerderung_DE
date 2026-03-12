@@ -179,7 +179,7 @@ export function WhatsNew2026Section() {
             </p>
           </div>
 
-          <h2 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+          <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-white mb-6">
             Die wichtigsten Änderungen{" "}
             <span className="relative">
               <span className="relative z-10 bg-gradient-to-r from-purple-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
@@ -215,7 +215,7 @@ export function WhatsNew2026Section() {
                 <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2 block">
                   Bisher (2023)
                 </span>
-                <div className="text-5xl lg:text-7xl font-bold text-slate-600 line-through decoration-red-500/50 decoration-4">
+                <div className="text-4xl sm:text-5xl lg:text-7xl font-bold text-slate-600 line-through decoration-red-500/50 decoration-4">
                   25%
                 </div>
                 <span className="text-slate-500 text-sm">Maximale Basisförderung</span>
@@ -250,7 +250,7 @@ export function WhatsNew2026Section() {
                   initial={{ scale: 0.5 }}
                   animate={isInView ? { scale: 1 } : {}}
                   transition={{ duration: 0.5, delay: 1, type: "spring", stiffness: 200 }}
-                  className="text-5xl lg:text-7xl font-bold bg-gradient-to-r from-purple-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent"
+                  className="text-4xl sm:text-5xl lg:text-7xl font-bold bg-gradient-to-r from-purple-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent"
                 >
                   <AnimatedCounter value={45} suffix="%" />
                 </motion.div>

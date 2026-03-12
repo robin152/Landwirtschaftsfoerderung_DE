@@ -76,7 +76,7 @@ const HIDDEN_CHANCES: HiddenChance[] = [
     subtitle: "Über den Standard hinaus",
     badge: "bis 35 %",
     badgeColor: "bg-amber-600",
-    description: "Oft wird nur 'Lagerhalle' gesagt (meist ausgeschlossen). Aber spezielle klimatisierte Lager für Qualitätserhalt sind förderfähig.",
+    description: "Oft wird nur Lagerhalle gesagt (meist ausgeschlossen). Aber spezielle klimatisierte Lager sind foerderfaehig.",
     items: [
       "Klimatisierte Lagerräume für Obst, Gemüse & Sonderkulturen",
       "Grobfutter-Lagerräume (Heu/Silage) bei Tierwohl-Umstellung",

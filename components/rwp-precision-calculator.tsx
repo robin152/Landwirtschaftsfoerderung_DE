@@ -1618,7 +1618,7 @@ function ResultStep({ calculation, location, company, onReset }: any) {
           <Award className="w-12 h-12" />
         </motion.div>
 
-        <h2 className="text-4xl font-bold mb-2">Ihre Förderindikation</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">Ihre Förderindikation</h2>
         <p className="text-violet-100 mb-8">RWP NRW 2026 – Basierend auf aktueller Richtlinie</p>
 
         <motion.div

@@ -192,27 +192,27 @@ export function HeroSection() {
                     transition={{ duration: 0.35, delay: 0.3 + i * 0.05 }}
                     className="flex items-center gap-3"
                   >
-                    <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 bg-emerald-600">
-                      <Icon className="w-4 h-4 text-white" />
+                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg flex items-center justify-center flex-shrink-0 bg-emerald-600">
+                      <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
                     </div>
-                    <p className="font-medium text-slate-700 text-sm leading-snug">{text}</p>
+                    <p className="font-medium text-slate-700 text-[13px] sm:text-sm leading-snug">{text}</p>
                   </motion.div>
                 ))}
               </div>
 
               {/* Social proof strip */}
-              <div className="flex items-center gap-4 mt-1 pt-2.5 border-t border-slate-100">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-1 pt-2.5 border-t border-slate-100">
                 <div className="flex items-center gap-1.5">
                   <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-xs font-semibold text-slate-700">400+ Landwirte gefördert</span>
+                  <span className="text-[11px] sm:text-xs font-semibold text-slate-700">400+ gefördert</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#7c3aed", animationDelay: "0.5s" }} />
-                  <span className="text-xs font-semibold text-slate-700">98 % Erfolgsquote</span>
+                  <span className="text-[11px] sm:text-xs font-semibold text-slate-700">98 % Erfolg</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <div className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" style={{ animationDelay: "1s" }} />
-                  <span className="text-xs font-semibold text-slate-700">alle 16 Bundesländer</span>
+                  <span className="text-[11px] sm:text-xs font-semibold text-slate-700">16 Bundesländer</span>
                 </div>
               </div>
             </motion.div>
