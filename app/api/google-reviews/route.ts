@@ -71,7 +71,6 @@ export async function GET() {
   const apiKey = process.env.GOOGLE_MAPS_API_KEY
   
   if (!apiKey) {
-    console.error("[v0] GOOGLE_MAPS_API_KEY not configured")
     return NextResponse.json(fallbackReviews)
   }
 
