@@ -76,7 +76,7 @@ const HIDDEN_CHANCES: HiddenChance[] = [
     subtitle: "Über den Standard hinaus",
     badge: "bis 35 %",
     badgeColor: "bg-amber-600",
-    description: "Oft wird nur „Lagerhalle" gesagt (meist ausgeschlossen). Aber spezielle klimatisierte Lager für Qualitätserhalt sind förderfähig.",
+    description: "Oft wird nur 'Lagerhalle' gesagt (meist ausgeschlossen). Aber spezielle klimatisierte Lager für Qualitätserhalt sind förderfähig.",
     items: [
       "Klimatisierte Lagerräume für Obst, Gemüse & Sonderkulturen",
       "Grobfutter-Lagerräume (Heu/Silage) bei Tierwohl-Umstellung",
@@ -140,7 +140,7 @@ const HIDDEN_CHANCES: HiddenChance[] = [
     subtitle: "Der vergessene Markt",
     badge: "bis 30 %",
     badgeColor: "bg-rose-600",
-    description: "In der Primärquelle wird Pferdezucht explizit erwähnt. Viele Berater klammern das aus, weil es oft als „Hobby" gilt.",
+    description: "In der Primärquelle wird Pferdezucht explizit erwähnt. Viele Berater klammern das aus, weil es oft als 'Hobby' gilt.",
     items: [
       "Stallungen für landwirtschaftliche Pferdezuchtbetriebe",
       "Reithallen mit landwirtschaftlicher Nutzung",
@@ -156,7 +156,7 @@ const HIDDEN_CHANCES: HiddenChance[] = [
     subtitle: "Smart Farming der Zukunft",
     badge: "bis 40 %",
     badgeColor: "bg-indigo-600",
-    description: "Unter „Verbesserung der Produktionsbedingungen" laufen moderne Digitalisierungsinvestitionen mit Top-Fördersätzen.",
+    description: "Unter 'Verbesserung der Produktionsbedingungen' laufen moderne Digitalisierungsinvestitionen mit Top-Fördersätzen.",
     items: [
       "Herdenmanagement-Systeme: Software & Sensorik",
       "Halsbänder & Pedometer zur Tierüberwachung",
