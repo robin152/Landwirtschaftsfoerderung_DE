@@ -3,10 +3,10 @@
 import { useState, useRef } from "react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { 
-  Rocket, 
-  HardHat, 
-  TrendingUp, 
-  Store,
+  Sprout,
+  Hammer,
+  CircleDollarSign,
+  ShoppingBasket,
   Check,
   ChevronRight,
   Sparkles,
@@ -31,7 +31,7 @@ import {
 
 interface LifecyclePhase {
   id: string
-  icon: typeof Rocket
+  icon: typeof Sprout
   title: string
   subtitle: string
   color: string
@@ -48,7 +48,7 @@ interface LifecyclePhase {
 const LIFECYCLE_PHASES: LifecyclePhase[] = [
   {
     id: "start",
-    icon: Rocket,
+    icon: Sprout,
     title: "Ich starte durch",
     subtitle: "Niederlassung, Beratung & Wissen",
     color: "text-violet-700",
@@ -80,7 +80,7 @@ const LIFECYCLE_PHASES: LifecyclePhase[] = [
   },
   {
     id: "build",
-    icon: HardHat,
+    icon: Hammer,
     title: "Ich baue um oder neu",
     subtitle: "Investitionen in Gebäude, Technik & Umwelt",
     color: "text-emerald-700",
@@ -132,7 +132,7 @@ const LIFECYCLE_PHASES: LifecyclePhase[] = [
   },
   {
     id: "optimize",
-    icon: TrendingUp,
+    icon: CircleDollarSign,
     title: "Ich optimiere den Cashflow",
     subtitle: "Flächenprämien, Umweltprogramme & Ökolandbau",
     color: "text-sky-700",
@@ -184,7 +184,7 @@ const LIFECYCLE_PHASES: LifecyclePhase[] = [
   },
   {
     id: "diversify",
-    icon: Store,
+    icon: ShoppingBasket,
     title: "Ich schaffe ein zweites Standbein",
     subtitle: "Direktvermarktung, Tourismus & Soziales",
     color: "text-amber-700",
