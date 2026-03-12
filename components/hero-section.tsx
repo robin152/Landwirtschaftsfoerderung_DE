@@ -100,7 +100,7 @@ export function HeroSection() {
           ))}
         </div>
 
-        <div className="page-container relative w-full">
+        <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Row 1: Full-width headline — glass card */}
           <motion.div
@@ -110,7 +110,7 @@ export function HeroSection() {
             className="text-center mb-4 md:mb-6"
           >
             <h1
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.15] text-balance mb-2 md:mb-3"
+              className="text-2xl sm:text-3xl md:text-[2.25rem] lg:text-[2.75rem] xl:text-[3rem] font-bold leading-[1.15] text-balance mb-2 md:mb-3"
               style={{
                 background: "linear-gradient(135deg, #166534 0%, #15803d 30%, #7c3aed 65%, #6d28d9 100%)",
                 WebkitBackgroundClip: "text",
@@ -123,7 +123,7 @@ export function HeroSection() {
               Fördermittel für Ihren Hof – ohne einen Finger für den Papierkram zu rühren.
             </h1>
 
-            <p className="text-sm md:text-base lg:text-lg text-slate-600 leading-relaxed max-w-4xl mx-auto">
+            <p className="text-sm md:text-base lg:text-lg text-slate-600 leading-relaxed max-w-5xl mx-auto">
               Wir holen für Sie das absolute Maximum an staatlichen Zuschüssen heraus (bis zu{" "}
               <span className="font-semibold text-green-700">50 % Ihrer Investition</span>
               ), während Sie sich voll auf Ihren Betrieb konzentrieren. Wir übernehmen die komplette Abwicklung vom ersten Antrag bis zur finalen Auszahlung auf Ihr Konto.{" "}
@@ -132,7 +132,7 @@ export function HeroSection() {
           </motion.div>
 
           {/* Row 2: Two-column grid — constrained width, centred */}
-          <div className="max-w-[56rem] mx-auto w-full grid md:grid-cols-[auto_1fr] gap-4 md:gap-6 mb-5 md:mb-6 items-start">
+          <div className="max-w-6xl mx-auto w-full grid md:grid-cols-[auto_1fr] gap-4 md:gap-8 lg:gap-10 mb-5 md:mb-6 items-start">
 
             {/* Left: Image — fixed size, no crop */}
             <motion.div
