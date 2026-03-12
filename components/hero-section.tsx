@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 import { TractorIcon, WheatIcon, MoneyBagIcon, BarnIcon, ShieldCheckAgriIcon, SunriseIcon } from "@/components/agri-icons"
-import { Shield, Landmark, Moon, FileX2, Trophy } from "lucide-react"
+import { Shield, Landmark, FileX2, Trophy } from "lucide-react"
 import { LeadCaptureModal } from "@/components/lead-capture-modal"
 
 // Count-up animation for "2,5 Millionen €"
@@ -180,53 +180,39 @@ export function HeroSection() {
                   icon: Shield,
                   text: "Sichern Sie Ihr Lebenswerk für Ihre Kinder.",
                   accent: "#16a34a",
-                  bg: "rgba(22,163,74,0.06)",
-                  border: "rgba(22,163,74,0.15)",
                 },
                 {
                   icon: Landmark,
-                  text: "Machen Sie sich endlich unabhängig von Banken.",
+                  text: "Wachsen Sie unabhängig von teuren Bankkrediten.",
                   accent: "#7c3aed",
-                  bg: "rgba(124,58,237,0.05)",
-                  border: "rgba(124,58,237,0.15)",
                 },
                 {
-                  icon: Moon,
-                  text: "Schlafen Sie ruhig durch garantierte Rechtssicherheit.",
+                  icon: Shield,
+                  text: "Minimieren Sie das finanzielle Risiko Ihrer Investition.",
                   accent: "#16a34a",
-                  bg: "rgba(22,163,74,0.06)",
-                  border: "rgba(22,163,74,0.15)",
                 },
                 {
                   icon: FileX2,
-                  text: "Seien Sie wieder Landwirt statt geplagter Aktenfresser.",
+                  text: "Seien Sie wieder Landwirt statt Aktenfresser.",
                   accent: "#7c3aed",
-                  bg: "rgba(124,58,237,0.05)",
-                  border: "rgba(124,58,237,0.15)",
                 },
                 {
                   icon: Trophy,
                   text: "Sichern Sie sich staatlich finanzierten Wettbewerbsvorsprung.",
                   accent: "#16a34a",
-                  bg: "rgba(22,163,74,0.06)",
-                  border: "rgba(22,163,74,0.15)",
                 },
-              ].map(({ icon: Icon, text, accent, bg, border }, i) => (
+              ].map(({ icon: Icon, text, accent }, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, x: 12 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.35, delay: 0.3 + i * 0.06 }}
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 transition-all duration-200 cursor-default hover:shadow-sm"
-                  style={{
-                    background: bg,
-                    border: `1px solid ${border}`,
-                  }}
+                  className="flex items-center gap-3 py-1.5"
                 >
-                  <div className="w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0" style={{ background: accent }}>
+                  <div className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0" style={{ background: accent }}>
                     <Icon className="w-3.5 h-3.5 text-white" />
                   </div>
-                  <p className="font-semibold text-slate-800 text-sm leading-snug">{text}</p>
+                  <p className="font-medium text-slate-700 text-sm leading-snug">{text}</p>
                 </motion.div>
               ))}
 
