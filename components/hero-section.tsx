@@ -133,15 +133,15 @@ export function HeroSection() {
             </p>
           </motion.div>
 
-          {/* Row 2: Two-column grid — constrained width, centred */}
-          <div className="max-w-6xl mx-auto w-full grid md:grid-cols-[auto_1fr] gap-4 md:gap-8 lg:gap-10 mb-5 md:mb-6 items-start">
+          {/* Row 2: Two-column grid — constrained width, centered */}
+          <div className="max-w-4xl mx-auto w-full grid md:grid-cols-[auto_1fr] gap-4 md:gap-6 lg:gap-8 mb-5 md:mb-6 items-center">
 
             {/* Left: Image — fixed size, no crop */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="relative flex items-start justify-center md:w-[300px] lg:w-[340px] xl:w-[380px] flex-shrink-0"
+              className="relative flex items-center justify-center md:w-[260px] lg:w-[300px] xl:w-[320px] flex-shrink-0"
             >
               <div className="relative w-full">
                 <div className="absolute inset-0 rounded-xl md:rounded-2xl bg-gradient-to-br from-emerald-400/25 to-green-600/15 blur-2xl scale-105" />
