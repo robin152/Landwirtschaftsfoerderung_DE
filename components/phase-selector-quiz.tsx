@@ -31,47 +31,47 @@ const PHASES: Phase[] = [
     id: "start",
     icon: Sprout,
     title: "Ich starte durch",
-    subtitle: "Hofubernahme & Grundung",
-    description: "Du ubernimmst einen Hof, grundest neu oder bist unter 40 Jahren in der Landwirtschaft aktiv.",
+    subtitle: "Hofübernahme & Gründung",
+    description: "Du übernimmst einen Hof, gründest neu oder bist unter 40 Jahren in der Landwirtschaft aktiv.",
     color: "text-violet-700",
     bgColor: "bg-violet-50",
     borderColor: "border-violet-200",
     hoverBorder: "hover:border-violet-400",
     iconBg: "bg-gradient-to-br from-violet-500 to-purple-600",
-    examples: ["Junglandwirt-Bonus", "Niederlassungsbeihilfe", "Beratungsforderung"]
+    examples: ["Junglandwirt-Bonus", "Niederlassungsbeihilfe", "Beratungsförderung"]
   },
   {
     id: "build",
     icon: Hammer,
     title: "Ich baue um oder neu",
-    subtitle: "Investition in Gebaude & Technik",
+    subtitle: "Investition in Gebäude & Technik",
     description: "Du planst einen Stallbau, Umbau, neue Technik oder Umweltinvestitionen.",
     color: "text-emerald-700",
     bgColor: "bg-emerald-50",
     borderColor: "border-emerald-200",
     hoverBorder: "hover:border-emerald-400",
     iconBg: "bg-gradient-to-br from-emerald-500 to-green-600",
-    examples: ["Stallbau bis 65 %", "Guellelager", "Energieeffizienz"]
+    examples: ["Stallbau bis 65 %", "Güllelager", "Energieeffizienz"]
   },
   {
     id: "optimize",
     icon: CircleDollarSign,
     title: "Ich optimiere den Cashflow",
-    subtitle: "Flachenprämien & Umweltprogramme",
-    description: "Du willst jahrliche Einnahmen durch Okolandbau, Agrarumweltmassnahmen oder Pramienprogramme steigern.",
+    subtitle: "Flächenprämien & Umweltprogramme",
+    description: "Du willst jährliche Einnahmen durch Ökolandbau, Agrarumweltmaßnahmen oder Prämienprogramme steigern.",
     color: "text-sky-700",
     bgColor: "bg-sky-50",
     borderColor: "border-sky-200",
     hoverBorder: "hover:border-sky-400",
     iconBg: "bg-gradient-to-br from-sky-500 to-blue-600",
-    examples: ["Oekolandbau", "Weideprämie", "Smart Farming"]
+    examples: ["Ökolandbau", "Weideprämie", "Smart Farming"]
   },
   {
     id: "diversify",
     icon: ShoppingBasket,
     title: "Ich schaffe ein zweites Standbein",
     subtitle: "Diversifizierung & Vermarktung",
-    description: "Du mochtest einen Hofladen, Ferienwohnungen, Gastronomie oder andere Einnahmequellen aufbauen.",
+    description: "Du möchtest einen Hofladen, Ferienwohnungen, Gastronomie oder andere Einnahmequellen aufbauen.",
     color: "text-amber-700",
     bgColor: "bg-amber-50",
     borderColor: "border-amber-200",
@@ -161,7 +161,7 @@ export function PhaseSelectorQuiz() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold mb-4"
           >
             <Sparkles className="w-3.5 h-3.5" />
-            Dein personlicher Forderweg
+            Dein persönlicher Förderweg
           </motion.div>
 
           <h2 
@@ -172,7 +172,7 @@ export function PhaseSelectorQuiz() {
           </h2>
 
           <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Wahle deine aktuelle Situation und erhalte nur die Forderungen, die fur dich relevant sind.
+            Wähle deine aktuelle Situation und erhalte nur die Förderungen, die für dich relevant sind.
           </p>
         </motion.div>
 
@@ -306,7 +306,7 @@ export function PhaseSelectorQuiz() {
                 exit={{ opacity: 0, y: 10 }}
                 className="flex flex-col items-center gap-2 text-slate-400"
               >
-                <span className="text-sm">Wahle deine Phase fur personalisierte Infos</span>
+                <span className="text-sm">Wähle deine Phase für personalisierte Infos</span>
                 <ArrowDown className="w-4 h-4 animate-bounce" />
               </motion.div>
             ) : (
@@ -323,7 +323,7 @@ export function PhaseSelectorQuiz() {
                 >
                   <Sparkles className="w-4 h-4" />
                 </motion.div>
-                Zeige passende Forderungen...
+                Zeige passende Förderungen...
               </motion.div>
             )}
           </AnimatePresence>
