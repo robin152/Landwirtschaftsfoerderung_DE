@@ -154,7 +154,7 @@ export function ProblemSection() {
                 transition={{ duration: 0.7, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
                 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1a1f0e] leading-[1.1] tracking-tight"
               >
-                Du investierst alles.
+                Sie investieren alles.
               </motion.h2>
             </div>
             <div className="overflow-hidden mb-6">
@@ -245,7 +245,7 @@ export function ProblemSection() {
             className="text-xl sm:text-2xl lg:text-3xl font-semibold text-[#1a1f0e] leading-snug text-balance"
           >
             Für all das gibt es staatliche Förderung —{" "}
-            <span style={{ color: "#3a5c2f" }}>und wir holen sie für dich.</span>
+            <span style={{ color: "#3a5c2f" }}>und wir holen sie für Sie.</span>
           </motion.h2>
           <motion.div
             initial={{ scaleY: 0, opacity: 0 }}

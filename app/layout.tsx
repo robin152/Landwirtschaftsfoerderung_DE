@@ -28,7 +28,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Förderung für die Landwirtschaft 2023–2027 | Bis zu 50 % Zuschuss für Stallbau & Tierwohl | Patrick Starkmann",
   description:
-    "Berechne in 45 Sekunden deinen staatlichen Zuschuss. Stallbau, Tierwohl, Emissionsschutz, Gülle – wir kennen alle Bundesland-Quoten. Kostenlose Prüfung durch Förderberater Patrick Starkmann.",
+    "Berechnen Sie in 45 Sekunden Ihren staatlichen Zuschuss. Stallbau, Tierwohl, Emissionsschutz, Gülle – wir kennen alle Bundesland-Quoten. Kostenlose Prüfung durch Förderberater Patrick Starkmann.",
   generator: "v0.app",
   keywords:
     "Förderung Landwirtschaft, Agrarinvestitionsförderung, Stallbau Zuschuss, Tierwohl Förderung, Emissionsschutz Förderung, Güllelager Förderung, Landwirtschaft Förderung 2026, Förderrechner Landwirtschaft, Junglandwirt Bonus",
@@ -48,12 +48,12 @@ export const metadata: Metadata = {
     siteName: "Förderung für die Landwirtschaft – Patrick Starkmann",
     title: "Förderung für die Landwirtschaft 2023–2027 | Bis zu 50 % Zuschuss für Stallbau & Tierwohl",
     description:
-      "Berechne in 45 Sekunden deinen staatlichen Zuschuss. Kostenlose Prüfung durch Förderberater Patrick Starkmann.",
+      "Berechnen Sie in 45 Sekunden Ihren staatlichen Zuschuss. Kostenlose Prüfung durch Förderberater Patrick Starkmann.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Förderung für die Landwirtschaft 2023–2027 | Bis zu 50 % Zuschuss für Stallbau & Tierwohl",
-    description: "Berechne in 45 Sekunden deinen staatlichen Zuschuss. Kostenlos & unverbindlich.",
+    description: "Berechnen Sie in 45 Sekunden Ihren staatlichen Zuschuss. Kostenlos & unverbindlich.",
   },
   icons: {
     icon: [

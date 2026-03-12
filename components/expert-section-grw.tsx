@@ -45,16 +45,16 @@ import { useCompany } from "@/contexts/company-context"
 // Template für Industry-spezifische Pain Points
 const industryHooks: Record<string, { pain: string; hook: string }> = {
   "default": {
-    pain: "Die Baukosten sind explodiert. Die Vorschriften werden immer verrückter. Und ohne den richtigen Zuschuss rechnet sich das alles nicht mehr.",
-    hook: "Genau deshalb sind wir hier: Wir holen das Maximum aus der Förderung für die Landwirtschaft – Tierwohl-Premium, Emissionsschutz-Bonus, Junglandwirt-Zuschlag. Du unterschreibst einmal, wir erledigen den Rest."
+    pain: "Die Baukosten sind explodiert. Die Vorschriften werden immer komplexer. Und ohne den richtigen Zuschuss rechnet sich das alles nicht mehr.",
+    hook: "Genau deshalb sind wir hier: Wir holen das Maximum aus der Förderung für die Landwirtschaft – Tierwohl-Premium, Emissionsschutz-Bonus, Junglandwirt-Zuschlag. Sie unterschreiben einmal, wir erledigen den Rest."
   },
   "milch": {
     pain: "Milchvieh-Betriebe stehen 2026 unter Doppeldruck: neue Haltungsauflagen UND explodierende Stallbaukosten. Ohne Förderung für die Landwirtschaft rechnet sich der Umbau für die meisten nicht.",
     hook: "Wir kennen die Milchvieh-spezifischen Förderpfade in jedem Bundesland – und holen den maximalen Tierwohl-Satz bevor die Antragsfenster 2026 schließen."
   },
   "schwein": {
-    pain: "Schweinehaltung 2026: Neue Tierwohlauflagen, enge Zeitfenster, und viele Bundesländer haben die Förderung zwischenzeitlich ausgesetzt. Ohne Experten-Begleitung riskierst du eine teure Fehlentscheidung.",
-    hook: "Wir wissen genau, wo Schweinehaltung 2026 wieder förderfähig ist (z.B. Baden-Württemberg ab Sept. 2026) – und wie du das Maximum aus der Förderung für die Landwirtschaft holst."
+    pain: "Schweinehaltung 2026: Neue Tierwohlauflagen, enge Zeitfenster, und viele Bundesländer haben die Förderung zwischenzeitlich ausgesetzt. Ohne Experten-Begleitung riskieren Sie eine teure Fehlentscheidung.",
+    hook: "Wir wissen genau, wo Schweinehaltung 2026 wieder förderfähig ist (z.B. Baden-Württemberg ab Sept. 2026) – und wie Sie das Maximum aus der Förderung für die Landwirtschaft holen."
   },
 }
 
@@ -105,11 +105,11 @@ export default function ExpertSection() {
           </span>
           
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
-            Wir holen Landwirten wie dir jedes Jahr Millionen an Fördermitteln
+            Wir holen Landwirten wie Ihnen jedes Jahr Millionen an Fördermitteln
           </h2>
           
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Wir verdienen erst, wenn du Geld bekommst. Deshalb arbeiten wir nur mit Fällen, die wir auch wirklich gewinnen.
+            Wir verdienen erst, wenn Sie Geld bekommen. Deshalb arbeiten wir nur mit Fällen, die wir auch wirklich gewinnen.
           </p>
         </motion.div>
 

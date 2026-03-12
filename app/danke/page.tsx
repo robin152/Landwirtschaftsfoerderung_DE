@@ -145,7 +145,7 @@ export default function ThankYouPage() {
               <CheckCircle className="w-10 h-10" aria-hidden="true" />
             </motion.div>
             <h1 className="text-2xl md:text-3xl font-bold mb-2 text-balance">Anfrage erfolgreich gesendet!</h1>
-            <p className="text-green-100 text-sm">Deine Förderfähigkeit wird jetzt geprüft</p>
+            <p className="text-green-100 text-sm">Ihre Förderfähigkeit wird jetzt geprüft</p>
           </div>
 
           {/* Content */}
@@ -164,7 +164,7 @@ export default function ThankYouPage() {
               <div>
                 <p className="font-bold text-slate-900">Patrick Starkmann</p>
                 <p className="text-sm text-slate-500">Spezialist für Subventionen in der Agrarwirtschaft &amp; Sachverständiger (DGUSV)</p>
-                <p className="text-xs text-emerald-600 mt-0.5 font-medium">Prüft deine Anfrage persönlich</p>
+                <p className="text-xs text-emerald-600 mt-0.5 font-medium">Prüft Ihre Anfrage persönlich</p>
               </div>
             </div>
 
@@ -178,13 +178,13 @@ export default function ThankYouPage() {
               {[
                 {
                   n: "1",
-                  title: "Prüfung deiner Angaben",
+                  title: "Prüfung Ihrer Angaben",
                   desc: "Patrick analysiert Bundesland, Vorhaben und Investitionssumme auf maximale Förderfähigkeit.",
                 },
                 {
                   n: "2",
                   title: "Persönliche Rückmeldung",
-                  desc: "Du erhältst deine individuelle Fördereinschätzung per E-Mail — meist am gleichen Werktag.",
+                  desc: "Sie erhalten Ihre individuelle Fördereinschätzung per E-Mail — meist am gleichen Werktag.",
                 },
                 {
                   n: "3",
@@ -211,7 +211,7 @@ export default function ThankYouPage() {
                 <p className="font-bold text-slate-900 text-sm">Direkt Termin buchen</p>
               </div>
               <p className="text-xs text-slate-500 mb-4">
-                Wähle einen Termin für dein kostenloses Erstgespräch mit Patrick.
+                Wählen Sie einen Termin für Ihr kostenloses Erstgespräch mit Patrick.
               </p>
               <TidyCalEmbed path="team/eskalator-ag/regional-investition" />
             </div>
@@ -219,7 +219,7 @@ export default function ThankYouPage() {
             {/* Trust */}
             <div className="flex items-center justify-center gap-2 text-xs text-slate-400">
               <Shield className="w-3.5 h-3.5" aria-hidden="true" />
-              <span>Deine Daten sind sicher und werden nicht weitergegeben</span>
+              <span>Ihre Daten sind sicher und werden nicht weitergegeben</span>
             </div>
           </div>
         </motion.div>

@@ -99,18 +99,18 @@ const stepConfirmations = (firstName?: string, industry?: string) => [
   {
     text: firstName ? `Willkommen, ${firstName}!` : "Super!",
     subtext: firstName
-      ? "Schön, dass du den nächsten Schritt gehst – Patrick freut sich auf deine Anfrage."
-      : "Wir bereiten deine persönliche Förderanalyse vor...",
+      ? "Schön, dass Sie den nächsten Schritt gehen – Patrick freut sich auf Ihre Anfrage."
+      : "Wir bereiten Ihre persönliche Förderanalyse vor...",
   },
   {
     text: "Perfekt!",
     subtext: industry
       ? `Betriebe aus dem Bereich ${industry} sichern sich aktuell bis zu 50 % Zuschuss.`
-      : "Landwirtschaftliche Betriebe mit deinem Profil erhalten oft maximale Förderquoten.",
+      : "Landwirtschaftliche Betriebe mit Ihrem Profil erhalten oft maximale Förderquoten.",
   },
   {
     text: firstName ? `Sehr gut, ${firstName}!` : "Hervorragend!",
-    subtext: "Patrick Starkmann wird deine Anfrage priorisiert bearbeiten – meist am gleichen Werktag.",
+    subtext: "Patrick Starkmann wird Ihre Anfrage priorisiert bearbeiten – meist am gleichen Werktag.",
   },
   {
     text: "Wichtiger Schritt!",
@@ -120,21 +120,21 @@ const stepConfirmations = (firstName?: string, industry?: string) => [
     text: "Fast geschafft!",
     subtext: industry
       ? `Mehrere ${industry}-Betriebe haben 2026 bereits ihren Förderbescheid erhalten.`
-      : "Dein Standort wird auf volle Förderfähigkeit geprüft...",
+      : "Ihr Standort wird auf volle Förderfähigkeit geprüft...",
   },
   null, // Final step - no confirmation
 ]
 
 // Industry-specific social proof messages
 const getIndustrySocialProof = (industry?: string): string => {
-  if (!industry) return "Unternehmen in Ihrer Branche"
+  if (!industry) return "Betriebe in Ihrer Branche"
   
   const industryLower = industry.toLowerCase()
   if (industryLower.includes("maschinenbau") || industryLower.includes("metall")) {
-    return "Maschinenbau-Unternehmen wie Ihres"
+    return "Maschinenbau-Betriebe wie Ihrer"
   }
   if (industryLower.includes("it") || industryLower.includes("software")) {
-    return "IT-Unternehmen wie Ihres"
+    return "IT-Betriebe wie Ihrer"
   }
   if (industryLower.includes("elektro")) {
     return "Elektrotechnik-Betriebe"
@@ -145,7 +145,7 @@ const getIndustrySocialProof = (industry?: string): string => {
   if (industryLower.includes("lebensmittel") || industryLower.includes("food")) {
     return "Lebensmittelproduzenten"
   }
-  return `${industry}-Unternehmen`
+  return `${industry}-Betriebe`
 }
 
 export function LeadCaptureModal({ isOpen, onClose, onSuccess, prefilledData, source }: LeadCaptureModalProps) {

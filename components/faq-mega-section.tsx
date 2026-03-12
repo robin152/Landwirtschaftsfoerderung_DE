@@ -36,7 +36,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Wird die Förderung als Zuschuss oder Darlehen gewährt?",
-        answer: "Es handelt sich ausschließlich um einen nicht rückzahlbaren Zuschuss. Nach Bewilligung und Schlussabrechnung fließt das Geld direkt auf dein Konto."
+        answer: "Es handelt sich ausschließlich um einen nicht rückzahlbaren Zuschuss. Nach Bewilligung und Schlussabrechnung fließt das Geld direkt auf Ihr Konto."
       },
       {
         question: "Muss ich Eigenkapital nachweisen?",
@@ -156,7 +156,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Wann beginnt der Maßnahmenbeginn?",
-        answer: "Bereits mit dem ersten Vertrag oder der ersten Bestellung. Nur Planung und Genehmigungen dürfen vorher laufen – sonst verlierst du den gesamten Anspruch."
+        answer: "Bereits mit dem ersten Vertrag oder der ersten Bestellung. Nur Planung und Genehmigungen dürfen vorher laufen – sonst verlieren Sie den gesamten Anspruch."
       },
     ]
   },
@@ -177,7 +177,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Was passiert bei Ablehnung?",
-        answer: "Du kannst in der nächsten Runde neu einreichen oder das Vorhaben anpassen. Keine automatische Begründungspflicht, aber oft hilft eine Nachfrage beim Amt."
+        answer: "Sie können in der nächsten Runde neu einreichen oder das Vorhaben anpassen. Keine automatische Begründungspflicht, aber oft hilft eine Nachfrage beim Amt."
       },
       {
         question: "Wie lange muss ich Unterlagen aufbewahren?",
@@ -349,7 +349,7 @@ export function FAQMegaSection() {
             className="mt-8 sm:mt-12 text-center"
           >
             <p className="text-slate-600 mb-4">
-              Deine Frage ist nicht dabei? Ich beantworte sie persönlich.
+              Ihre Frage ist nicht dabei? Ich beantworte sie persönlich.
             </p>
             <button
               onClick={() => setIsModalOpen(true)}

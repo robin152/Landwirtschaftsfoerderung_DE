@@ -289,7 +289,7 @@ export function FarmLifecycleSection() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 text-white text-xs font-semibold mb-5 shadow-lg"
           >
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            Dein Partner auf dem ganzen Weg
+            Ihr Partner auf dem ganzen Weg
           </motion.div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 tracking-tight text-balance leading-tight">
@@ -306,12 +306,12 @@ export function FarmLifecycleSection() {
                 style={{ transformOrigin: "left" }}
               />
             </span>
-            {" "}deines Hofes
+            {" "}Ihres Hofes
           </h2>
 
           <p className="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Landwirte denken in Generationen — wir auch. Egal wo du heute stehst: 
-            Wir begleiten dich über die nächsten 10 Jahre mit passenden Förderprogrammen.
+            Landwirte denken in Generationen — wir auch. Egal wo Sie heute stehen: 
+            Wir begleiten Sie über die nächsten 10 Jahre mit passenden Förderprogrammen.
           </p>
         </motion.div>
 
@@ -477,10 +477,10 @@ export function FarmLifecycleSection() {
             <div className="relative flex flex-col sm:flex-row items-center justify-between gap-6">
               <div className="text-center sm:text-left">
                 <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
-                  Egal wo du stehst — wir begleiten dich
+                  Egal wo Sie stehen — wir begleiten Sie
                 </h3>
                 <p className="text-slate-400 text-sm sm:text-base">
-                  Finde in 45 Sekunden heraus, welche Förderung zu deiner aktuellen Situation passt.
+                  Finden Sie in 45 Sekunden heraus, welche Förderung zu Ihrer aktuellen Situation passt.
                 </p>
               </div>
               <button

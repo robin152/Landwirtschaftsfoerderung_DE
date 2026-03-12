@@ -454,10 +454,10 @@ export function HiddenChancesSection() {
           >
             <div className="text-center sm:text-left">
               <p className="text-base sm:text-lg font-bold text-slate-900 mb-1">
-                Passt dein Vorhaben in eine dieser Nischen?
+                Passt Ihr Vorhaben in eine dieser Nischen?
               </p>
               <p className="text-sm text-slate-500">
-                Wir prüfen kostenlos, ob du für versteckte Fördertöpfe qualifiziert bist.
+                Wir prüfen kostenlos, ob Sie für versteckte Fördertöpfe qualifiziert sind.
               </p>
             </div>
             <button

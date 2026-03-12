@@ -32,7 +32,7 @@ const PHASES: Phase[] = [
     icon: Sprout,
     title: "Ich starte durch",
     subtitle: "Hofübernahme & Gründung",
-    description: "Du übernimmst einen Hof, gründest neu oder bist unter 40 Jahren in der Landwirtschaft aktiv.",
+    description: "Sie übernehmen einen Hof, gründen neu oder sind unter 40 Jahren in der Landwirtschaft aktiv.",
     color: "text-violet-700",
     bgColor: "bg-violet-50",
     borderColor: "border-violet-200",
@@ -45,7 +45,7 @@ const PHASES: Phase[] = [
     icon: Hammer,
     title: "Ich baue um oder neu",
     subtitle: "Investition in Gebäude & Technik",
-    description: "Du planst einen Stallbau, Umbau, neue Technik oder Umweltinvestitionen.",
+    description: "Sie planen einen Stallbau, Umbau, neue Technik oder Umweltinvestitionen.",
     color: "text-emerald-700",
     bgColor: "bg-emerald-50",
     borderColor: "border-emerald-200",
@@ -58,7 +58,7 @@ const PHASES: Phase[] = [
     icon: CircleDollarSign,
     title: "Ich optimiere den Cashflow",
     subtitle: "Flächenprämien & Umweltprogramme",
-    description: "Du willst jährliche Einnahmen durch Ökolandbau, Agrarumweltmaßnahmen oder Prämienprogramme steigern.",
+    description: "Sie möchten jährliche Einnahmen durch Ökolandbau, Agrarumweltmaßnahmen oder Prämienprogramme steigern.",
     color: "text-sky-700",
     bgColor: "bg-sky-50",
     borderColor: "border-sky-200",
@@ -71,7 +71,7 @@ const PHASES: Phase[] = [
     icon: ShoppingBasket,
     title: "Ich schaffe ein zweites Standbein",
     subtitle: "Diversifizierung & Vermarktung",
-    description: "Du möchtest einen Hofladen, Ferienwohnungen, Gastronomie oder andere Einnahmequellen aufbauen.",
+    description: "Sie möchten einen Hofladen, Ferienwohnungen, Gastronomie oder andere Einnahmequellen aufbauen.",
     color: "text-amber-700",
     bgColor: "bg-amber-50",
     borderColor: "border-amber-200",
@@ -161,18 +161,18 @@ export function PhaseSelectorQuiz() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold mb-4"
           >
             <Sparkles className="w-3.5 h-3.5" />
-            Dein persönlicher Förderweg
+            Ihr persönlicher Förderweg
           </motion.div>
 
           <h2 
             id="quiz-heading"
             className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-3 tracking-tight text-balance"
           >
-            In welcher Phase befindet sich dein Hof?
+            In welcher Phase befindet sich Ihr Hof?
           </h2>
 
           <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Wähle deine aktuelle Situation und erhalte nur die Förderungen, die für dich relevant sind.
+            Wählen Sie Ihre aktuelle Situation und erhalten Sie nur die Förderungen, die für Sie relevant sind.
           </p>
         </motion.div>
 
@@ -306,7 +306,7 @@ export function PhaseSelectorQuiz() {
                 exit={{ opacity: 0, y: 10 }}
                 className="flex flex-col items-center gap-2 text-slate-400"
               >
-                <span className="text-sm">Wähle deine Phase für personalisierte Infos</span>
+                <span className="text-sm">Wählen Sie Ihre Phase für personalisierte Infos</span>
                 <ArrowDown className="w-4 h-4 animate-bounce" />
               </motion.div>
             ) : (

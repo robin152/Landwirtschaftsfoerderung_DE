@@ -25,7 +25,7 @@ const steps = [
     icon: FileSearch,
     title: "Rechner ausfüllen",
     sub: "45 Sekunden",
-    description: "Bundesland, Vorhaben, Volumen, Alter – fertig. Dein Förderbetrag erscheint sofort.",
+    description: "Bundesland, Vorhaben, Volumen, Alter – fertig. Ihr Förderbetrag erscheint sofort.",
     duration: "Kostenlos & sofort",
     result: "Vorläufiger Förderbetrag",
     keyFact: "Kostenlos & unverbindlich",
@@ -41,7 +41,7 @@ const steps = [
     icon: FileCheck,
     title: "Persönlicher Check",
     sub: "1–2 Werktage",
-    description: "Wir prüfen dein Jahreseinkommen, den Investitionstyp und alle Stolperfallen, die 70 % der Anträge scheitern lassen.",
+    description: "Wir prüfen Ihr Jahreseinkommen, den Investitionstyp und alle Stolperfallen, die 70 % der Anträge scheitern lassen.",
     duration: "1–2 Werktage",
     result: "Go / No-Go + Optimierung",
     keyFact: "Ablehnungen verhindern",
@@ -57,7 +57,7 @@ const steps = [
     icon: Upload,
     title: "Antrag einreichen",
     sub: "Sofort starten",
-    description: "Wir übernehmen Antrag, Portal, Nachweise, Kostenplan. Du unterschreibst einmal.",
+    description: "Wir übernehmen Antrag, Portal, Nachweise, Kostenplan. Sie unterschreiben einmal.",
     duration: "Nach Einreichung starten",
     result: "Bescheid in 6–12 Wochen",
     keyFact: "Sofortiger Maßnahmenbeginn",
@@ -73,7 +73,7 @@ const steps = [
     icon: Banknote,
     title: "Bauen & kassieren",
     sub: "6–36 Monate",
-    description: "Während du baust, fließen schon Abschlagszahlungen. Wir kümmern uns um Zwischenberichte.",
+    description: "Während Sie bauen, fließen schon Abschlagszahlungen. Wir kümmern uns um Zwischenberichte.",
     duration: "6–36 Monate Laufzeit",
     result: "Laufende Auszahlungen",
     keyFact: "Bis zu 3 Abschläge",
@@ -265,7 +265,7 @@ export function ProcessSectionRWP() {
           </h2>
           <p className="text-base text-slate-400 max-w-xl mx-auto leading-relaxed">
             Wir begleiten Sie von der ersten Berechnung bis zur Schlusszahlung —
-            du unterschreibst nur einmal.
+            Sie unterschreiben nur einmal.
           </p>
 
           {/* Step progress pills */}

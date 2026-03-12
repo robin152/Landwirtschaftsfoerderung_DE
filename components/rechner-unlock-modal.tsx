@@ -254,7 +254,7 @@ export function RechnerUnlockModal({ isOpen, onClose, onSuccess, prefilledData }
                     </div>
                     <h3 className="text-white font-extrabold text-xl mb-2">Ergebnis wird geladen…</h3>
                     <p className="text-slate-400 text-sm leading-relaxed">
-                      Deine Anfrage ist bei uns — wir melden uns am gleichen Werktag.
+                      Ihre Anfrage ist bei uns — wir melden uns am gleichen Werktag.
                     </p>
                   </motion.div>
                 ) : (
@@ -269,7 +269,7 @@ export function RechnerUnlockModal({ isOpen, onClose, onSuccess, prefilledData }
                   >
                     {/* Subheadline */}
                     <p className="text-slate-300 text-sm leading-relaxed text-center">
-                      Nur <strong className="text-white">3 Felder</strong> — dann siehst du sofort deinen staatlichen Zuschuss.
+                      Nur <strong className="text-white">3 Felder</strong> — dann sehen Sie sofort Ihren staatlichen Zuschuss.
                     </p>
 
                     {/* Name */}

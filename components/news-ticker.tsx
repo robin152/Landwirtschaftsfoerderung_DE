@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 const tickerItems = [
   "Förderung für die Landwirtschaft 2026: Bis zu 50 % Zuschuss für Tierwohl & Klimaschutz – jetzt berechnen!",
   "Neue Bundesländer: Bis 5 Mio. € Investitionsvolumen förderfähig!",
-  "Junglandwirt-Bonus: +10 % extra wenn du unter 40 bist – macht bis zu 50 % Gesamtförderung!",
+  "Junglandwirt-Bonus: +10 % extra wenn Sie unter 40 sind – macht bis zu 50 % Gesamtförderung!",
   "NRW Kälbermatten-Aufschlag: Befristeter 10 % Extra-Bonus noch verfügbar!",
   "Baden-Württemberg: 2 Mio. € Max-Invest + Schweine ab Sept. 2026 wieder förderfähig!",
   "Gülle mit Abdeckung: Bis 40 % Zuschuss + 2 Monate Lagerkapazität Pflicht!",

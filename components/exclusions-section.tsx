@@ -48,7 +48,7 @@ const EXCLUSIONS = [
   },
   {
     label: "Schweinehaltungs-Neubauten",
-    detail: "In vielen Bundesländern bis 31.12.2027 ausgeschlossen – prüfe dein Bundesland",
+    detail: "In vielen Bundesländern bis 31.12.2027 ausgeschlossen – prüfen Sie Ihr Bundesland",
     icon: AlertTriangle,
     type: "conditional",
   },
@@ -99,7 +99,7 @@ export function ExclusionsSection() {
           </h2>
           <p className="text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed">
             Diese Ausschlüsse kosten Antragsteller jährlich Millionen — weil sie es erst nach Ablehnung erfahren.
-            Kennst du sie vorher, planst du von Anfang an korrekt.
+            Kennen Sie sie vorher, planen Sie von Anfang an korrekt.
           </p>
         </motion.div>
 
@@ -181,10 +181,10 @@ export function ExclusionsSection() {
               <Info className="w-5 h-5 text-green-700 flex-shrink-0 mt-0.5" />
               <div>
                 <p className="text-sm font-bold text-green-800 mb-1">
-                  Nicht sicher, ob deine Investition förderfähig ist?
+                  Nicht sicher, ob Ihre Investition förderfähig ist?
                 </p>
                 <p className="text-xs text-green-700 leading-relaxed">
-                  Patrick Starkmann prüft das kostenlos in einem kurzen Erstgespräch — bevor du einen Euro investierst.
+                  Patrick Starkmann prüft das kostenlos in einem kurzen Erstgespräch — bevor Sie einen Euro investieren.
                   98 % der Projekte, die er bewertet, sind förderfähig oder werden förderfähig gemacht.
                 </p>
               </div>
@@ -202,13 +202,13 @@ export function ExclusionsSection() {
           className="mt-12 sm:mt-16 text-center"
         >
           <p className="text-sm font-semibold text-slate-500 uppercase tracking-widest mb-3">
-            Dein Vorhaben ist nicht auf der Liste?
+            Ihr Vorhaben ist nicht auf der Liste?
           </p>
           <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 mb-3 text-balance">
-            Dann hol dir jetzt dein kostenloses Förder-Gutachten.
+            Dann holen Sie sich jetzt Ihr kostenloses Förder-Gutachten.
           </h3>
           <p className="text-base text-slate-500 max-w-xl mx-auto mb-8 leading-relaxed">
-            In 45 Sekunden siehst du, wie viel Zuschuss für deinen Betrieb möglich ist — kostenlos, ohne Risiko, ohne Behörden-Stress.
+            In 45 Sekunden sehen Sie, wie viel Zuschuss für Ihren Betrieb möglich ist — kostenlos, ohne Risiko, ohne Behörden-Stress.
           </p>
           <a
             href="#rechner"
